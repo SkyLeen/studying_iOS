@@ -73,7 +73,7 @@ class LoginFromController: UIViewController {
         var resaultOfLogin = "Welcome!"
         var color = UIColor.green
         
-        if loginField.text != login && pwdField.text != pwd {
+        if loginField.text != login || pwdField.text != pwd {
             resaultOfLogin = "Login or password incorrect"
             color = .red
         }
