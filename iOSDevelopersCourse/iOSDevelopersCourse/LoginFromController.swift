@@ -1,0 +1,85 @@
+//
+//  LoginFromController.swift
+//  iOSDevelopersCourse
+//
+//  Created by Natalya on 17/02/2018.
+//  Copyright © 2018 Natalya Shikhalyova. All rights reserved.
+//
+
+import UIKit
+
+class LoginFromController: UIViewController {
+
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var loginField: UITextField!
+    @IBOutlet weak var pwdField: UITextField!
+    @IBOutlet weak var errorField: UILabel!
+    
+    let login = "skyleen"
+    let pwd = "123456"
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        errorField.isHidden = true
+        //скрываем клавиатуру
+        let hideKbGesture = UITapGestureRecognizer(target: self, action: #selector(self.hideKeyboard))
+        self.scrollView?.addGestureRecognizer(hideKbGesture)
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //подписываемся на уведомления о появлении/скрытии клавиатуры
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWasShown), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillBeHidden), name: .UIKeyboardWillHide, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        //отписываемся от уведомлений появления/скрытия клавиатуры
+        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
+    }
+    
+    @objc func keyboardWasShown(notification: Notification) {
+        let kbInfo = notification.userInfo! as NSDictionary
+        let kbSize = (kbInfo.value(forKey: UIKeyboardFrameEndUserInfoKey) as! NSValue).cgRectValue.size
+        let contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0)
+        
+        scrollView?.contentInset = contentInsets
+        scrollView?.scrollIndicatorInsets = contentInsets
+    }
+    
+    @objc func keyboardWillBeHidden(notification: Notification) {
+        let contentInsets = UIEdgeInsets.zero
+        
+        scrollView?.contentInset = contentInsets
+        scrollView?.scrollIndicatorInsets = contentInsets
+    }
+    
+    @objc func hideKeyboard() {
+        self.scrollView?.endEditing(true)
+    }
+    
+    @IBAction func logInButton(_ sender: Any) {
+        logIn()
+    }
+    
+    func logIn() {
+        var resaultOfLogin = "Welcome!"
+        var color = UIColor.green
+        
+        if loginField.text != login || pwdField.text != pwd {
+            resaultOfLogin = "Login or password incorrect"
+            color = .red
+        }
+        
+        errorField.text = resaultOfLogin
+        errorField.textColor = color
+        errorField.isHidden = false
+    }
+}
