@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  LoginFromController.swift
 //  iOSDevelopersCourse
 //
 //  Created by Natalya on 17/02/2018.
@@ -8,11 +8,16 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class LoginFromController: UIViewController {
 
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var loginField: UITextField!
+    @IBOutlet weak var pwdField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -20,6 +25,6 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
+    @IBAction func logInButton(_ sender: Any) {
+    }
 }
-
