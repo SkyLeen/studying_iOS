@@ -131,10 +131,10 @@ my first application</string>
                                         <exclude reference="UJ8-n4-eDV"/>
                                         <exclude reference="XFl-gr-kzx"/>
                                         <exclude reference="ni5-HT-0ko"/>
-                                        <exclude reference="lrr-EH-dUY"/>
-                                        <exclude reference="m6W-2D-cD4"/>
                                         <exclude reference="S9L-pl-O9y"/>
                                         <exclude reference="t79-II-z83"/>
+                                        <exclude reference="lrr-EH-dUY"/>
+                                        <exclude reference="m6W-2D-cD4"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=compact">
@@ -149,15 +149,15 @@ my first application</string>
                                         <include reference="PYy-Qi-53y"/>
                                         <include reference="XFl-gr-kzx"/>
                                         <include reference="ni5-HT-0ko"/>
-                                        <exclude reference="2Nr-AZ-3ni"/>
-                                        <exclude reference="aV1-Yg-ume"/>
-                                        <include reference="lrr-EH-dUY"/>
-                                        <include reference="m6W-2D-cD4"/>
                                         <exclude reference="OFs-2Y-OVd"/>
                                         <include reference="S9L-pl-O9y"/>
                                         <exclude reference="c0w-I9-1bA"/>
                                         <exclude reference="jiO-qw-ae6"/>
                                         <include reference="t79-II-z83"/>
+                                        <exclude reference="2Nr-AZ-3ni"/>
+                                        <exclude reference="aV1-Yg-ume"/>
+                                        <include reference="lrr-EH-dUY"/>
+                                        <include reference="m6W-2D-cD4"/>
                                         <exclude reference="HuX-LB-FXi"/>
                                         <include reference="YMy-iH-krO"/>
                                         <exclude reference="cfI-ra-xmS"/>

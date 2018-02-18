@@ -12,11 +12,11 @@ class LoginFromController: UIViewController {
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var loginField: UITextField!
-    @IBOutlet weak var pwdField: UITextField!
+    @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var errorField: UILabel!
     
     let login = "skyleen"
-    let pwd = "123456"
+    let password = "123456"
     
     
     override func viewDidLoad() {
@@ -25,10 +25,6 @@ class LoginFromController: UIViewController {
         //скрываем клавиатуру
         let hideKbGesture = UITapGestureRecognizer(target: self, action: #selector(self.hideKeyboard))
         self.scrollView?.addGestureRecognizer(hideKbGesture)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -73,7 +69,7 @@ class LoginFromController: UIViewController {
         var resaultOfLogin = "Welcome!"
         var color = UIColor.green
         
-        if loginField.text != login || pwdField.text != pwd {
+        if loginField.text != login || passwordField.text != password {
             resaultOfLogin = "Login or password incorrect"
             color = .red
         }
