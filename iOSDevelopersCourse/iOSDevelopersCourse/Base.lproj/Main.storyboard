@@ -62,7 +62,7 @@ my first application</string>
                                             </mask>
                                         </variation>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jf8-oo-KNY">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jf8-oo-KNY" userLabel="Password Field">
                                         <rect key="frame" x="60" y="209" width="200" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -184,7 +184,7 @@ my first application</string>
                     <connections>
                         <outlet property="errorField" destination="jUE-2v-ZPP" id="fvh-8X-bh7"/>
                         <outlet property="loginField" destination="tKI-bs-50k" id="hsY-Hj-YJn"/>
-                        <outlet property="pwdField" destination="jf8-oo-KNY" id="azv-Id-xpO"/>
+                        <outlet property="passwordField" destination="jf8-oo-KNY" id="yX0-5E-bzm"/>
                         <outlet property="scrollView" destination="nUI-VC-vIl" id="sM4-04-gX5"/>
                     </connections>
                 </viewController>
