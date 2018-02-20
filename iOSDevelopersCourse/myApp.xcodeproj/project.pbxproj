@@ -11,6 +11,7 @@
 		04D37E7020381B1100F958AF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04D37E6E20381B1100F958AF /* Main.storyboard */; };
 		04D37E7220381B1100F958AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04D37E7120381B1100F958AF /* Assets.xcassets */; };
 		04D37E7D2038445C00F958AF /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D37E7C2038445C00F958AF /* LoginVC.swift */; };
+		04EA44B6203C2F5E00074ACA /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04EA44B5203C2F5E00074ACA /* Launch.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		04D37E7120381B1100F958AF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04D37E7620381B1100F958AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04D37E7C2038445C00F958AF /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		04EA44B5203C2F5E00074ACA /* Launch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 				04D37E7120381B1100F958AF /* Assets.xcassets */,
 				04D37E7620381B1100F958AF /* Info.plist */,
 				04D37E7C2038445C00F958AF /* LoginVC.swift */,
+				04EA44B5203C2F5E00074ACA /* Launch.storyboard */,
 			);
 			path = myApp;
 			sourceTree = "<group>";
@@ -122,6 +125,7 @@
 			files = (
 				04D37E7220381B1100F958AF /* Assets.xcassets in Resources */,
 				04D37E7020381B1100F958AF /* Main.storyboard in Resources */,
+				04EA44B6203C2F5E00074ACA /* Launch.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,7 +268,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G4SYRYWB23;
-				INFOPLIST_FILE = iOSDevelopersCourse/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/myApp/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "na-shi.myApp";
@@ -280,7 +284,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G4SYRYWB23;
-				INFOPLIST_FILE = iOSDevelopersCourse/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/myApp/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "na-shi.myApp";

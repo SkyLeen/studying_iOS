@@ -20,22 +20,31 @@ class LoginVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //скрываем клавиатуру
+
         let hideKbGesture = UITapGestureRecognizer(target: self, action: #selector(self.hideKeyboard))
-        self.scrollView?.addGestureRecognizer(hideKbGesture)
+        scrollView?.addGestureRecognizer(hideKbGesture)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //подписываемся на уведомления о появлении/скрытии клавиатуры
+        
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWasShown), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillBeHidden), name: .UIKeyboardWillHide, object: nil)
+        
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        //отписываемся от всех уведомлений
+        
         NotificationCenter.default.removeObserver(self)
+        
+        navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        let result = logIn()
+        return result
     }
     
     @objc func keyboardWasShown(notification: Notification) {
@@ -58,14 +67,18 @@ class LoginVC: UIViewController {
         self.scrollView?.endEditing(true)
     }
     
-    @IBAction func logInButton(_ sender: UIButton) {
-        logIn()
+    func logIn() -> Bool {
+        guard loginField.text == login && passwordField.text == password else {
+            showAlert()
+            return false
+        }
+        removeCredentials()
+        return true
     }
     
-    func logIn() {
-        if loginField.text != login || passwordField.text != password {
-            showAlert()
-        }
+    func removeCredentials() {
+        loginField.text?.removeAll()
+        passwordField.text?.removeAll()
     }
     
     func showAlert(){
