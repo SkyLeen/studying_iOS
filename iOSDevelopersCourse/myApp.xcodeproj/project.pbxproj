@@ -12,6 +12,7 @@
 		04D37E7220381B1100F958AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04D37E7120381B1100F958AF /* Assets.xcassets */; };
 		04D37E7D2038445C00F958AF /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D37E7C2038445C00F958AF /* LoginVC.swift */; };
 		04EA44B6203C2F5E00074ACA /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04EA44B5203C2F5E00074ACA /* Launch.storyboard */; };
+		04EA44BE203C5ED600074ACA /* TabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EA44BD203C5ED600074ACA /* TabBarVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		04D37E7620381B1100F958AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04D37E7C2038445C00F958AF /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		04EA44B5203C2F5E00074ACA /* Launch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
+		04EA44BD203C5ED600074ACA /* TabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				04D37E7620381B1100F958AF /* Info.plist */,
 				04D37E7C2038445C00F958AF /* LoginVC.swift */,
 				04EA44B5203C2F5E00074ACA /* Launch.storyboard */,
+				04EA44BD203C5ED600074ACA /* TabBarVC.swift */,
 			);
 			path = myApp;
 			sourceTree = "<group>";
@@ -137,6 +140,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04D37E6B20381B1100F958AF /* AppDelegate.swift in Sources */,
+				04EA44BE203C5ED600074ACA /* TabBarVC.swift in Sources */,
 				04D37E7D2038445C00F958AF /* LoginVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
