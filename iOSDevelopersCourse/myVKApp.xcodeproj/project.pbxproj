@@ -7,23 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0416313A2040806800446639 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 041631392040806800446639 /* Assets.xcassets */; };
 		04D37E6B20381B1100F958AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D37E6A20381B1100F958AF /* AppDelegate.swift */; };
 		04D37E7020381B1100F958AF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04D37E6E20381B1100F958AF /* Main.storyboard */; };
-		04D37E7220381B1100F958AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04D37E7120381B1100F958AF /* Assets.xcassets */; };
 		04D37E7D2038445C00F958AF /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D37E7C2038445C00F958AF /* LoginVC.swift */; };
 		04EA44B6203C2F5E00074ACA /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04EA44B5203C2F5E00074ACA /* Launch.storyboard */; };
-		04EA44BE203C5ED600074ACA /* TabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EA44BD203C5ED600074ACA /* TabBarVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		04D37E6720381B1100F958AF /* myApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		041631392040806800446639 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		04D37E6720381B1100F958AF /* myVKApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myVKApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04D37E6A20381B1100F958AF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04D37E6F20381B1100F958AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		04D37E7120381B1100F958AF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04D37E7620381B1100F958AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04D37E7C2038445C00F958AF /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		04EA44B5203C2F5E00074ACA /* Launch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
-		04EA44BD203C5ED600074ACA /* TabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,10 +35,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0416313820406E5A00446639 /* VCs */ = {
+			isa = PBXGroup;
+			children = (
+				04D37E7C2038445C00F958AF /* LoginVC.swift */,
+			);
+			path = VCs;
+			sourceTree = "<group>";
+		};
 		04D37E5E20381B1100F958AF = {
 			isa = PBXGroup;
 			children = (
-				04D37E6920381B1100F958AF /* myApp */,
+				04D37E6920381B1100F958AF /* myVKApp */,
 				04D37E6820381B1100F958AF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -48,31 +54,30 @@
 		04D37E6820381B1100F958AF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				04D37E6720381B1100F958AF /* myApp.app */,
+				04D37E6720381B1100F958AF /* myVKApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		04D37E6920381B1100F958AF /* myApp */ = {
+		04D37E6920381B1100F958AF /* myVKApp */ = {
 			isa = PBXGroup;
 			children = (
+				0416313820406E5A00446639 /* VCs */,
 				04D37E6A20381B1100F958AF /* AppDelegate.swift */,
 				04D37E6E20381B1100F958AF /* Main.storyboard */,
-				04D37E7120381B1100F958AF /* Assets.xcassets */,
+				041631392040806800446639 /* Assets.xcassets */,
 				04D37E7620381B1100F958AF /* Info.plist */,
-				04D37E7C2038445C00F958AF /* LoginVC.swift */,
 				04EA44B5203C2F5E00074ACA /* Launch.storyboard */,
-				04EA44BD203C5ED600074ACA /* TabBarVC.swift */,
 			);
-			path = myApp;
+			path = myVKApp;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		04D37E6620381B1100F958AF /* myApp */ = {
+		04D37E6620381B1100F958AF /* myVKApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 04D37E7920381B1100F958AF /* Build configuration list for PBXNativeTarget "myApp" */;
+			buildConfigurationList = 04D37E7920381B1100F958AF /* Build configuration list for PBXNativeTarget "myVKApp" */;
 			buildPhases = (
 				04D37E6320381B1100F958AF /* Sources */,
 				04D37E6420381B1100F958AF /* Frameworks */,
@@ -82,9 +87,9 @@
 			);
 			dependencies = (
 			);
-			name = myApp;
+			name = myVKApp;
 			productName = iOSDevelopersCourse;
-			productReference = 04D37E6720381B1100F958AF /* myApp.app */;
+			productReference = 04D37E6720381B1100F958AF /* myVKApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -103,7 +108,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 04D37E6220381B1100F958AF /* Build configuration list for PBXProject "myApp" */;
+			buildConfigurationList = 04D37E6220381B1100F958AF /* Build configuration list for PBXProject "myVKApp" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -116,7 +121,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				04D37E6620381B1100F958AF /* myApp */,
+				04D37E6620381B1100F958AF /* myVKApp */,
 			);
 		};
 /* End PBXProject section */
@@ -126,8 +131,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04D37E7220381B1100F958AF /* Assets.xcassets in Resources */,
 				04D37E7020381B1100F958AF /* Main.storyboard in Resources */,
+				0416313A2040806800446639 /* Assets.xcassets in Resources */,
 				04EA44B6203C2F5E00074ACA /* Launch.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -140,7 +145,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				04D37E6B20381B1100F958AF /* AppDelegate.swift in Sources */,
-				04EA44BE203C5ED600074ACA /* TabBarVC.swift in Sources */,
 				04D37E7D2038445C00F958AF /* LoginVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -272,10 +276,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G4SYRYWB23;
-				INFOPLIST_FILE = "$(SRCROOT)/myApp/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/myVKApp/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "na-shi.myApp";
+				PRODUCT_BUNDLE_IDENTIFIER = "na-shi.myVKApp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -288,10 +292,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G4SYRYWB23;
-				INFOPLIST_FILE = "$(SRCROOT)/myApp/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/myVKApp/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "na-shi.myApp";
+				PRODUCT_BUNDLE_IDENTIFIER = "na-shi.myVKApp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -301,7 +305,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		04D37E6220381B1100F958AF /* Build configuration list for PBXProject "myApp" */ = {
+		04D37E6220381B1100F958AF /* Build configuration list for PBXProject "myVKApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				04D37E7720381B1100F958AF /* Debug */,
@@ -310,7 +314,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		04D37E7920381B1100F958AF /* Build configuration list for PBXNativeTarget "myApp" */ = {
+		04D37E7920381B1100F958AF /* Build configuration list for PBXNativeTarget "myVKApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				04D37E7A20381B1100F958AF /* Debug */,
