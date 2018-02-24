@@ -67,7 +67,7 @@ class LoginVC: UIViewController {
     
     func logIn() -> Bool {
         guard loginField.text == login && passwordField.text == password else {
-            showAlert()
+            present(Functions().showAlert(withTitle: "Warning", message: "Login or password incorrect"), animated: true)
             return false
         }
         removeCredentials()
@@ -77,13 +77,5 @@ class LoginVC: UIViewController {
     func removeCredentials() {
         loginField.text?.removeAll()
         passwordField.text?.removeAll()
-    }
-    
-    func showAlert(){
-        let alertController = UIAlertController(title: "Warning", message: "Login or password incorrect", preferredStyle: .alert)
-        let actionButton = UIAlertAction(title: "OK", style: .cancel)
-        
-        alertController.addAction(actionButton)
-        present(alertController, animated: true)
     }
 }
