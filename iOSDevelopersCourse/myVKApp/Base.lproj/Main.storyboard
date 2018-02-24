@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="GurmukhiMN.ttc">
-            <string>GurmukhiMN-Bold</string>
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue</string>
+            <string>HelveticaNeue-Bold</string>
+        </array>
+        <array key="HelveticaNeueExtras.ttc">
+            <string>HelveticaNeue-CondensedBold</string>
         </array>
     </customFonts>
     <scenes>
@@ -20,31 +25,31 @@
             <objects>
                 <viewController extendedLayoutIncludesOpaqueBars="YES" id="BYZ-38-t0r" customClass="LoginVC" customModule="myVKApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleAspectFit" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="yellow" translatesAutoresizingMaskIntoConstraints="NO" id="IpS-9z-3ce">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nUI-VC-vIl">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JeT-Lg-9gR">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="0.0"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" id="mba-cH-D0s"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="96B-0c-h7P">
-                                        <rect key="frame" x="375" y="0.0" width="0.0" height="667"/>
+                                        <rect key="frame" x="320" y="0.0" width="0.0" height="568"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" id="jkF-1u-i8L"/>
                                         </constraints>
                                     </view>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Login" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tKI-bs-50k">
-                                        <rect key="frame" x="87.5" y="226" width="200" height="30"/>
+                                        <rect key="frame" x="60" y="220" width="200" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="200" id="D9H-0s-cJW"/>
                                         </constraints>
@@ -58,22 +63,25 @@
                                         </variation>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jf8-oo-KNY" userLabel="Password Field">
-                                        <rect key="frame" x="87.5" y="271" width="200" height="30"/>
+                                        <rect key="frame" x="60" y="265" width="200" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aNP-zF-hVX">
-                                        <rect key="frame" x="145.5" y="336" width="84" height="30"/>
+                                        <rect key="frame" x="107.5" y="330" width="105" height="40"/>
+                                        <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="30" id="d5D-k0-oVW"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="105" id="L46-ht-iow"/>
+                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="40" id="d5D-k0-oVW"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="GurmukhiMN-Bold" family="Gurmukhi MN" pointSize="26"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="34"/>
                                         <state key="normal" title="Log In">
-                                            <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleColor" red="0.93725490199999995" green="0.76078431369999999" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <variation key="heightClass=compact">
                                             <mask key="constraints">
+                                                <include reference="L46-ht-iow"/>
                                                 <include reference="d5D-k0-oVW"/>
                                             </mask>
                                         </variation>
@@ -82,8 +90,8 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ue-d1-1zw">
-                                        <rect key="frame" x="10" y="144" width="355" height="42"/>
-                                        <fontDescription key="fontDescription" name="GurmukhiMN-Bold" family="Gurmukhi MN" pointSize="30"/>
+                                        <rect key="frame" x="10" y="144" width="300" height="36"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="30"/>
                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -98,7 +106,7 @@
                                     <constraint firstItem="96B-0c-h7P" firstAttribute="leading" relation="lessThanOrEqual" secondItem="tKI-bs-50k" secondAttribute="trailing" priority="750" constant="60" id="HuX-LB-FXi"/>
                                     <constraint firstItem="jf8-oo-KNY" firstAttribute="top" secondItem="tKI-bs-50k" secondAttribute="bottom" constant="15" id="PYy-Qi-53y"/>
                                     <constraint firstAttribute="trailing" secondItem="96B-0c-h7P" secondAttribute="trailing" id="QAu-GO-8zK"/>
-                                    <constraint firstItem="1Ue-d1-1zw" firstAttribute="top" secondItem="JeT-Lg-9gR" secondAttribute="bottom" constant="90" id="SXs-vd-uqG"/>
+                                    <constraint firstItem="1Ue-d1-1zw" firstAttribute="top" secondItem="JeT-Lg-9gR" secondAttribute="bottom" constant="80" id="SXs-vd-uqG"/>
                                     <constraint firstAttribute="bottom" secondItem="96B-0c-h7P" secondAttribute="bottom" id="Scf-qb-YwN"/>
                                     <constraint firstItem="tKI-bs-50k" firstAttribute="leading" relation="lessThanOrEqual" secondItem="nUI-VC-vIl" secondAttribute="leading" priority="750" constant="70" id="UJ8-n4-eDV"/>
                                     <constraint firstItem="jf8-oo-KNY" firstAttribute="centerX" secondItem="nUI-VC-vIl" secondAttribute="centerX" constant="-90" id="XFl-gr-kzx"/>
@@ -122,10 +130,10 @@
                                         <exclude reference="SXs-vd-uqG"/>
                                         <exclude reference="DdK-eS-uO1"/>
                                         <exclude reference="UJ8-n4-eDV"/>
-                                        <exclude reference="lrr-EH-dUY"/>
-                                        <exclude reference="m6W-2D-cD4"/>
                                         <exclude reference="XFl-gr-kzx"/>
                                         <exclude reference="ni5-HT-0ko"/>
+                                        <exclude reference="lrr-EH-dUY"/>
+                                        <exclude reference="m6W-2D-cD4"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=compact">
@@ -136,16 +144,16 @@
                                         <include reference="UJ8-n4-eDV"/>
                                         <exclude reference="t9P-zg-7iM"/>
                                         <include reference="xuI-2F-fOC"/>
-                                        <exclude reference="2Nr-AZ-3ni"/>
-                                        <include reference="lrr-EH-dUY"/>
-                                        <include reference="m6W-2D-cD4"/>
-                                        <exclude reference="pvT-Hp-l3D"/>
                                         <include reference="2HR-Gl-7o1"/>
                                         <exclude reference="6wv-hO-4oT"/>
                                         <include reference="ECt-dj-siZ"/>
                                         <include reference="PYy-Qi-53y"/>
                                         <include reference="XFl-gr-kzx"/>
                                         <include reference="ni5-HT-0ko"/>
+                                        <exclude reference="2Nr-AZ-3ni"/>
+                                        <include reference="lrr-EH-dUY"/>
+                                        <include reference="m6W-2D-cD4"/>
+                                        <exclude reference="pvT-Hp-l3D"/>
                                         <exclude reference="HuX-LB-FXi"/>
                                         <include reference="YMy-iH-krO"/>
                                         <exclude reference="cfI-ra-xmS"/>
@@ -177,6 +185,7 @@
                         <barButtonItem key="backBarButtonItem" title="Log out" id="KY3-my-eoo"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="loginButton" destination="aNP-zF-hVX" id="bYY-xw-Rby"/>
                         <outlet property="loginField" destination="tKI-bs-50k" id="hsY-Hj-YJn"/>
                         <outlet property="passwordField" destination="jf8-oo-KNY" id="yX0-5E-bzm"/>
                         <outlet property="scrollView" destination="nUI-VC-vIl" id="sM4-04-gX5"/>
@@ -186,19 +195,19 @@
             </objects>
             <point key="canvasLocation" x="24.800000000000001" y="14.842578710644679"/>
         </scene>
-        <!--Groups-->
+        <!--My Friends-->
         <scene sceneID="fiF-AY-gHb">
             <objects>
                 <navigationController id="ZxJ-KV-cPA" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Groups" image="groupslist" id="xbl-D6-6v8"/>
+                    <tabBarItem key="tabBarItem" title="My Friends" image="users" id="xbl-D6-6v8"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="PSF-WS-phG">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.76078431369999999" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="barTintColor" red="0.93725490199999995" green="0.76078431369999999" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <textAttributes key="titleTextAttributes">
-                            <fontDescription key="fontDescription" name="GurmukhiMN-Bold" family="Gurmukhi MN" pointSize="20"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
                             <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </textAttributes>
                     </navigationBar>
@@ -210,24 +219,39 @@
             </objects>
             <point key="canvasLocation" x="1582" y="-761"/>
         </scene>
-        <!--Groups-->
+        <!--My Friends-->
         <scene sceneID="2m2-d7-mob">
             <objects>
-                <tableViewController id="HsF-eZ-o7S" sceneMemberID="viewController">
+                <tableViewController id="HsF-eZ-o7S" customClass="MyFriendsTableVC" customModule="myVKApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="QhM-uA-vSW">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="separatorColor" red="0.93725490199999995" green="0.76078431369999999" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StoryCell" id="R3Z-hb-R4S">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendCell" id="R3Z-hb-R4S" customClass="MyFriendsViewCell" customModule="myVKApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="R3Z-hb-R4S" id="fy9-Ig-CGV">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FriendNameLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uMC-sy-RmR">
+                                            <rect key="frame" x="16" y="11" width="288" height="22"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="uMC-sy-RmR" firstAttribute="leading" secondItem="fy9-Ig-CGV" secondAttribute="leadingMargin" id="T1l-Fs-4bk"/>
+                                        <constraint firstItem="uMC-sy-RmR" firstAttribute="top" secondItem="fy9-Ig-CGV" secondAttribute="topMargin" id="agR-dP-xBZ"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="uMC-sy-RmR" secondAttribute="trailing" id="bWl-BS-0O8"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="uMC-sy-RmR" secondAttribute="bottom" id="vQe-rr-rYB"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="zrG-0r-dxb" kind="show" id="6fL-mZ-Bf0"/>
+                                    <outlet property="friendNameLabel" destination="uMC-sy-RmR" id="04h-t6-hXZ"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -236,28 +260,31 @@
                             <outlet property="delegate" destination="HsF-eZ-o7S" id="NUV-pe-ut7"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Groups" image="groupslist" id="8Lh-8g-PpL"/>
-                    <navigationItem key="navigationItem" title="Groups" id="6Fa-0M-LaO">
+                    <tabBarItem key="tabBarItem" title="My Friends" image="users" id="8Lh-8g-PpL"/>
+                    <navigationItem key="navigationItem" title="My Friends" id="6Fa-0M-LaO">
                         <barButtonItem key="backBarButtonItem" title=" " id="cUJ-wR-mb2"/>
                     </navigationItem>
+                    <connections>
+                        <segue destination="zrG-0r-dxb" kind="show" identifier="showFriendPhotos" id="BCH-pX-VhN"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SP1-k7-fKD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2345" y="-761"/>
         </scene>
-        <!--Friends-->
+        <!--My Groups-->
         <scene sceneID="zng-bu-U58">
             <objects>
                 <navigationController id="s0l-z0-AxT" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Friends" image="users" id="OW4-YF-Lt6"/>
+                    <tabBarItem key="tabBarItem" title="My Groups" image="groupslist" id="OW4-YF-Lt6"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cUy-r8-wUv">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.76078431369999999" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="barTintColor" red="0.93725490199999995" green="0.76078431369999999" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <textAttributes key="titleTextAttributes">
-                            <fontDescription key="fontDescription" name="GurmukhiMN-Bold" family="Gurmukhi MN" pointSize="20"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
                             <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </textAttributes>
                     </navigationBar>
@@ -274,15 +301,15 @@
             <objects>
                 <tableViewController id="rg8-QG-3at" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="uJF-O8-cnb">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsCell" id="fcg-NJ-uHv">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fcg-NJ-uHv" id="8hl-2Y-LdU">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -298,20 +325,21 @@
             </objects>
             <point key="canvasLocation" x="1582" y="585"/>
         </scene>
-        <!--Friends-->
+        <!--My Groups-->
         <scene sceneID="cuP-r4-md5">
             <objects>
                 <tableViewController id="q7h-FB-2hx" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="V3o-Oc-qQ8">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="separatorColor" red="0.93725490199999995" green="0.76078431369999999" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FavoririesCell" id="2AE-Fq-N9l">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GroupCell" id="2AE-Fq-N9l">
+                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2AE-Fq-N9l" id="5Wf-si-bGM">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -321,38 +349,38 @@
                             <outlet property="delegate" destination="q7h-FB-2hx" id="ZDL-er-sXe"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Friends" image="users" id="GPS-lH-3a1"/>
-                    <navigationItem key="navigationItem" title="Friends" id="gvD-L8-fA6">
+                    <tabBarItem key="tabBarItem" title="My Groups" image="groupslist" id="GPS-lH-3a1"/>
+                    <navigationItem key="navigationItem" title="My Groups" id="gvD-L8-fA6">
                         <barButtonItem key="backBarButtonItem" title=" " id="HwU-pD-Xvg"/>
                         <barButtonItem key="rightBarButtonItem" image="add" id="8nd-fI-U3i">
                             <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <segue destination="uan-FQ-9s9" kind="show" identifier="addNewItem" id="Pml-Cg-SVH"/>
-                            </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="uan-FQ-9s9" kind="show" identifier="addNewGroup" id="nYQ-hB-i97"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GGp-0z-Pbu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2345" y="-88"/>
         </scene>
-        <!--Collection View Controller-->
+        <!--Title-->
         <scene sceneID="QaD-6d-lY7">
             <objects>
-                <collectionViewController hidesBottomBarWhenPushed="YES" id="zrG-0r-dxb" sceneMemberID="viewController">
+                <collectionViewController hidesBottomBarWhenPushed="YES" id="zrG-0r-dxb" customClass="MyFriendCollectionVC" customModule="myVKApp" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="7La-eB-mXa">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="rgJ-wR-I52">
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" sectionInsetReference="layoutMargins" id="rgJ-wR-I52">
                             <size key="itemSize" width="150" height="150"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="WeatherCell" id="26I-P6-wye">
-                                <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FriendPhotoCell" id="26I-P6-wye" customClass="MyFriendCollectionViewCell" customModule="myVKApp" customModuleProvider="target">
+                                <rect key="frame" x="85" y="8" width="150" height="150"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                     <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
@@ -365,25 +393,27 @@
                             <outlet property="delegate" destination="zrG-0r-dxb" id="22z-f6-RSz"/>
                         </connections>
                     </collectionView>
+                    <navigationItem key="navigationItem" title="Title" id="nhy-Hm-zeY"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L2K-H0-khX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3069.5999999999999" y="-761.46926536731644"/>
         </scene>
-        <!--Table View Controller-->
+        <!--All Groups-->
         <scene sceneID="cVp-10-kN7">
             <objects>
                 <tableViewController hidesBottomBarWhenPushed="YES" id="uan-FQ-9s9" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="HdC-gB-xr8">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="separatorColor" red="0.93725490199999995" green="0.76078431369999999" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AddingNewCell" id="8e5-Tz-pRg">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewGroupCell" id="8e5-Tz-pRg">
+                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8e5-Tz-pRg" id="kaY-F4-dF5">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -393,6 +423,7 @@
                             <outlet property="delegate" destination="uan-FQ-9s9" id="TOG-nn-9TL"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="All Groups" id="q4d-Ic-i6V"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XUX-wq-NUL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -410,8 +441,8 @@
                         <color key="selectedImageTintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
-                        <segue destination="s0l-z0-AxT" kind="relationship" relationship="viewControllers" id="AXF-tA-rKD"/>
                         <segue destination="ZxJ-KV-cPA" kind="relationship" relationship="viewControllers" id="Fff-5Y-cEf"/>
+                        <segue destination="s0l-z0-AxT" kind="relationship" relationship="viewControllers" id="AXF-tA-rKD"/>
                         <segue destination="rg8-QG-3at" kind="relationship" relationship="viewControllers" id="6md-9m-h6c"/>
                     </connections>
                 </tabBarController>

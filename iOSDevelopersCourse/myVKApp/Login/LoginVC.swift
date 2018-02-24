@@ -13,13 +13,15 @@ class LoginVC: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var loginField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
-    @IBOutlet weak var errorField: UILabel!
+    @IBOutlet weak var loginButton: UIButton!
     
     let login = "skyleen"
     let password = "123456"
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        loginButton.layer.cornerRadius = loginButton.frame.size.height / 2
 
         let hideKbGesture = UITapGestureRecognizer(target: self, action: #selector(self.hideKeyboard))
         scrollView?.addGestureRecognizer(hideKbGesture)
