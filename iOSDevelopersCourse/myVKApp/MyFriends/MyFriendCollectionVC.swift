@@ -9,7 +9,7 @@
 import UIKit
 
 
-class MyFriendCollectionVC: UICollectionViewController {
+class MyFriendCollectionVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     var friendName = String()
     var friendPhoto = UIImage()
@@ -35,4 +35,16 @@ class MyFriendCollectionVC: UICollectionViewController {
     
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let navigationBarSize = (self.navigationController?.navigationBar.bounds)!
+        let viewSize = collectionView.bounds
+        let cellWidth = viewSize.width
+        let cellHeight = viewSize.height - navigationBarSize.height
+        
+        let cellSize = CGSize(width: cellWidth, height: cellHeight)
+        
+        return cellSize
+    }
+    
 }

@@ -10,7 +10,7 @@ import UIKit
 
 class MyGroupsTableVC: UITableViewController {
 
-    var myGroupsArray = [String]()
+    var myGroupsArray = [(name: String, photo: UIImage)]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +27,8 @@ class MyGroupsTableVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath) as! MyGroupsViewCell
-        cell.myGroupNameLabel.text = myGroupsArray[indexPath.row]
+        cell.myGroupNameLabel.text = myGroupsArray[indexPath.row].name
+        cell.myGroupImageView.image = myGroupsArray[indexPath.row].photo
         return cell
     }
     
@@ -41,11 +42,19 @@ class MyGroupsTableVC: UITableViewController {
         guard let cellNewGroup = allGroupsVC.tableView.indexPathForSelectedRow else { return }
         
         let newGroup = allGroupsVC.AllGroupsArray[cellNewGroup.row]
-        guard !myGroupsArray.contains(newGroup) else {
-            present(Functions().showAlert(withTitle: "Warning", message: "There is a such Group in the list"), animated: true
-            )
-            return }
-        myGroupsArray.append(newGroup)
+        
+        guard !myGroupsArray.contains(where: { element in
+            if case newGroup.name = element.name {
+                return true
+            } else {
+                return false
+            }
+        }) else {
+            present(Functions().showAlert(withTitle: "Warning", message: "There is a such Group in the list"), animated: true)
+            return
+        }
+        
+        myGroupsArray.append((name: newGroup.name, photo: newGroup.photo) as! ((name: String, photo: UIImage)))
         tableView.reloadData()
     }
     

@@ -18,4 +18,9 @@ class Functions {
         
         return alertController
     }
+    
+    func setImageLayersSettings(for view: UIImageView) {
+        view.layer.cornerRadius = view.bounds.height/2
+        view.layer.masksToBounds = true
+    }
 }

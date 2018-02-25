@@ -11,9 +11,11 @@ import UIKit
 class MyGroupsViewCell: UITableViewCell {
     
     @IBOutlet weak var myGroupNameLabel: UILabel!
+    @IBOutlet weak var myGroupImageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        Functions().setImageLayersSettings(for: myGroupImageView)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
