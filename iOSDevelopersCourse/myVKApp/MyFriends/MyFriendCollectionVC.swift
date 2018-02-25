@@ -11,11 +11,12 @@ import UIKit
 
 class MyFriendCollectionVC: UICollectionViewController {
 
-    var friendName = ""
+    var friendName = String()
+    var friendPhoto = UIImage()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = friendName
+        navigationItem.title = friendName 
     }
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -30,9 +31,8 @@ class MyFriendCollectionVC: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FriendPhotoCell", for: indexPath) as! MyFriendCollectionViewCell
     
-        // Configure the cell
+        cell.myFriendPhoto.image = friendPhoto
     
         return cell
     }
-
 }

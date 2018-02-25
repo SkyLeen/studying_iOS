@@ -65,6 +65,8 @@ class LoginVC: UIViewController {
         self.scrollView?.endEditing(true)
     }
     
+    @IBAction func logOut(segue: UIStoryboardSegue) {}
+    
     func logIn() -> Bool {
         guard loginField.text == login && passwordField.text == password else {
             present(Functions().showAlert(withTitle: "Warning", message: "Login or password incorrect"), animated: true)

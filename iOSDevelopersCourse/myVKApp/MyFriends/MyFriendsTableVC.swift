@@ -8,29 +8,48 @@
 
 import UIKit
 
+struct SectionObjects {
+    var sectionName : Character
+    var sectionObjects : [(name: String, photo: UIImage)]
+}
+
 class MyFriendsTableVC: UITableViewController {
     
-    var myFriendsArray = ["Катя Катина", "Иван Иванов", "Маша Машина", "Вася Васин"]
+    var myFriendsArray = [
+        (name: "Катина Катя", photo: UIImage(named: "friend1.jpg")),
+        (name: "Машина Маша", photo: UIImage(named: "friend2.jpg")),
+        (name: "Иванов Иван", photo: UIImage(named: "friend3.jpg")),
+        (name:"Марусин Илья", photo: UIImage(named: "friend4.jpg")),
+        (name: "Васин Вася", photo: UIImage(named: "friend5.jpg"))
+    ]
+    var myFriendsInitialsArray = [Character]()
+    var sectionObjectArray = [SectionObjects]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getSectionObjects()
+        
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        let sectionsCount = sectionObjectArray.count
+        return sectionsCount
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let sectionName = String(myFriendsInitialsArray[section])
+        return sectionName.uppercased()
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let friendCount = myFriendsArray.count
-        return friendCount
+        let sectionRowsCount = sectionObjectArray[section].sectionObjects.count
+        return sectionRowsCount
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FriendCell", for: indexPath) as! MyFriendsViewCell
-
-        cell.friendNameLabel.text = myFriendsArray[indexPath.row]
-
+        cell.friendNameLabel.text = sectionObjectArray[indexPath.section].sectionObjects[indexPath.row].name
+        cell.friendImageView.image = sectionObjectArray[indexPath.section].sectionObjects[indexPath.row].photo
         return cell
     }
  
@@ -43,20 +62,26 @@ class MyFriendsTableVC: UITableViewController {
         guard let destinationVC = segue.destination as? MyFriendCollectionVC else { return }
         guard let friend = sender as? IndexPath else { return }
         
-        destinationVC.friendName = myFriendsArray[friend.row]
+        destinationVC.friendName = sectionObjectArray[friend.section].sectionObjects[friend.row].name
+        destinationVC.friendPhoto = sectionObjectArray[friend.section].sectionObjects[friend.row].photo
     }
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    private func getInitialsArray() {
+        for (_, name) in myFriendsArray.enumerated() {
+            if !myFriendsInitialsArray.contains(name.name.first!) {
+                myFriendsInitialsArray.append(name.name.first!)
+            }
+        }
+        myFriendsInitialsArray.sort(by: {$0 < $1})
     }
-    */
+    
+    private func getSectionObjects() {
+        getInitialsArray()
 
-
+        for initial in myFriendsInitialsArray {
+            if let names = myFriendsArray.filter({ $0.name.first == initial }) as? [(name: String, photo: UIImage)] {
+                sectionObjectArray.append(SectionObjects(sectionName: initial, sectionObjects: names.sorted(by: { $0.name < $1.name })))
+            }
+        }
+    }
 }

@@ -11,9 +11,12 @@ import UIKit
 class MyFriendsViewCell: UITableViewCell {
 
     @IBOutlet weak var friendNameLabel: UILabel!
+    @IBOutlet weak var friendImageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        friendImageView.layer.cornerRadius = 16
+        friendImageView.layer.masksToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

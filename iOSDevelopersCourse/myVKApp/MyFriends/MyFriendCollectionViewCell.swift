@@ -10,4 +10,12 @@ import UIKit
 
 class MyFriendCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var myFriendPhoto: UIImageView!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        layer.cornerRadius = 16
+        layer.masksToBounds = true
+    }
+    
 }
