@@ -10,17 +10,37 @@ import UIKit
 
 struct SectionObjects {
     var sectionName : Character
-    var sectionObjects : [(name: String, photo: UIImage)]
+    var sectionObjects : [(name: String, mainPhoto: UIImage, photos: [UIImage])]
 }
 
 class MyFriendsTableVC: UITableViewController {
     
     var myFriendsArray = [
-        (name: "Катина Катя", photo: UIImage(named: "friend1.jpg")),
-        (name: "Машина Маша", photo: UIImage(named: "friend2.jpg")),
-        (name: "Иванов Иван", photo: UIImage(named: "friend3.jpg")),
-        (name:"Марусин Илья", photo: UIImage(named: "friend4.jpg")),
-        (name: "Васин Вася", photo: UIImage(named: "friend5.jpg"))
+        (name: "Катина Катя", mainPhoto: UIImage(named: "friend1.jpg"), photos:[
+                                                                         UIImage(named: "friend1.jpg"),
+                                                                         UIImage(named: "friend2.jpg"),
+                                                                         UIImage(named: "friend3.jpg")
+                                                                        ]),
+        (name: "Машина Маша",mainPhoto: UIImage(named: "friend2.jpg"), photos: [
+                                                                        UIImage(named: "friend2.jpg"),
+                                                                        UIImage(named: "friend3.jpg"),
+                                                                        UIImage(named: "friend4.jpg")
+                                                                       ]),
+        (name: "Иванов Иван", mainPhoto: UIImage(named: "friend3.jpg"),photos: [
+                                                                        UIImage(named: "friend3.jpg"),
+                                                                        UIImage(named: "friend4.jpg"),
+                                                                        UIImage(named: "friend5.jpg")
+                                                                       ]),
+        (name:"Марусин Илья",mainPhoto: UIImage(named: "friend4.jpg"), photos: [
+                                                                        UIImage(named: "friend4.jpg"),
+                                                                        UIImage(named: "friend5.jpg"),
+                                                                        UIImage(named: "friend1.jpg")
+                                                                       ]),
+        (name: "Васин Вася",mainPhoto: UIImage(named: "friend5.jpg"), photos: [
+                                                                        UIImage(named: "friend1.jpg"),
+                                                                        UIImage(named: "friend2.jpg"),
+                                                                        UIImage(named: "friend5.jpg")
+                                                                       ])
     ]
     var myFriendsInitialsArray = [Character]()
     var sectionObjectArray = [SectionObjects]()
@@ -49,7 +69,7 @@ class MyFriendsTableVC: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FriendCell", for: indexPath) as! MyFriendsViewCell
         cell.friendNameLabel.text = sectionObjectArray[indexPath.section].sectionObjects[indexPath.row].name
-        cell.friendImageView.image = sectionObjectArray[indexPath.section].sectionObjects[indexPath.row].photo
+        cell.friendImageView.image = sectionObjectArray[indexPath.section].sectionObjects[indexPath.row].mainPhoto
         return cell
     }
  
@@ -63,7 +83,7 @@ class MyFriendsTableVC: UITableViewController {
         guard let friend = sender as? IndexPath else { return }
         
         destinationVC.friendName = sectionObjectArray[friend.section].sectionObjects[friend.row].name
-        destinationVC.friendPhoto = sectionObjectArray[friend.section].sectionObjects[friend.row].photo
+        destinationVC.friendPhotos = sectionObjectArray[friend.section].sectionObjects[friend.row].photos
     }
     
     private func getInitialsArray() {
@@ -79,7 +99,7 @@ class MyFriendsTableVC: UITableViewController {
         getInitialsArray()
 
         for initial in myFriendsInitialsArray {
-            if let names = myFriendsArray.filter({ $0.name.first == initial }) as? [(name: String, photo: UIImage)] {
+            if let names = myFriendsArray.filter({ $0.name.first! == initial }) as? [(name: String, mainPhoto: UIImage, photos: [UIImage])] {
                 sectionObjectArray.append(SectionObjects(sectionName: initial, sectionObjects: names.sorted(by: { $0.name < $1.name })))
             }
         }
