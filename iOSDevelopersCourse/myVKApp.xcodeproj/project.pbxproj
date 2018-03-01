@@ -8,6 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		0416313A2040806800446639 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 041631392040806800446639 /* Assets.xcassets */; };
+		0416316420415E5000446639 /* MyFriendsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0416316320415E5000446639 /* MyFriendsViewCell.swift */; };
+		0416316620415EDE00446639 /* MyFriendsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0416316520415EDE00446639 /* MyFriendsTableVC.swift */; };
+		0416316820415F7F00446639 /* MyFriendCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0416316720415F7F00446639 /* MyFriendCollectionVC.swift */; };
+		0416316A20415FF600446639 /* MyFriendCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0416316920415FF600446639 /* MyFriendCollectionViewCell.swift */; };
+		0416316C2042016500446639 /* MyGroupsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0416316B2042016500446639 /* MyGroupsTableVC.swift */; };
+		0416316E204201B800446639 /* MyGroupsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0416316D204201B800446639 /* MyGroupsViewCell.swift */; };
+		04163170204202F100446639 /* AllGroupsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0416316F204202F100446639 /* AllGroupsTableVC.swift */; };
+		04163175204203E400446639 /* AllGroupsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04163174204203E400446639 /* AllGroupsViewCell.swift */; };
+		041631772042109300446639 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041631762042109300446639 /* Functions.swift */; };
+		0416317A2042133500446639 /* SettingsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041631792042133500446639 /* SettingsTableVC.swift */; };
+		0416317C204213AA00446639 /* SettingsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0416317B204213AA00446639 /* SettingsViewCell.swift */; };
 		04D37E6B20381B1100F958AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D37E6A20381B1100F958AF /* AppDelegate.swift */; };
 		04D37E7020381B1100F958AF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04D37E6E20381B1100F958AF /* Main.storyboard */; };
 		04D37E7D2038445C00F958AF /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D37E7C2038445C00F958AF /* LoginVC.swift */; };
@@ -16,6 +27,17 @@
 
 /* Begin PBXFileReference section */
 		041631392040806800446639 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0416316320415E5000446639 /* MyFriendsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendsViewCell.swift; sourceTree = "<group>"; };
+		0416316520415EDE00446639 /* MyFriendsTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendsTableVC.swift; sourceTree = "<group>"; };
+		0416316720415F7F00446639 /* MyFriendCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendCollectionVC.swift; sourceTree = "<group>"; };
+		0416316920415FF600446639 /* MyFriendCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendCollectionViewCell.swift; sourceTree = "<group>"; };
+		0416316B2042016500446639 /* MyGroupsTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroupsTableVC.swift; sourceTree = "<group>"; };
+		0416316D204201B800446639 /* MyGroupsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroupsViewCell.swift; sourceTree = "<group>"; };
+		0416316F204202F100446639 /* AllGroupsTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupsTableVC.swift; sourceTree = "<group>"; };
+		04163174204203E400446639 /* AllGroupsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupsViewCell.swift; sourceTree = "<group>"; };
+		041631762042109300446639 /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
+		041631792042133500446639 /* SettingsTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableVC.swift; sourceTree = "<group>"; };
+		0416317B204213AA00446639 /* SettingsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewCell.swift; sourceTree = "<group>"; };
 		04D37E6720381B1100F958AF /* myVKApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myVKApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04D37E6A20381B1100F958AF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04D37E6F20381B1100F958AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -35,12 +57,50 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0416313820406E5A00446639 /* VCs */ = {
+		0416313820406E5A00446639 /* MyFriends */ = {
+			isa = PBXGroup;
+			children = (
+				0416316320415E5000446639 /* MyFriendsViewCell.swift */,
+				0416316520415EDE00446639 /* MyFriendsTableVC.swift */,
+				0416316720415F7F00446639 /* MyFriendCollectionVC.swift */,
+				0416316920415FF600446639 /* MyFriendCollectionViewCell.swift */,
+			);
+			path = MyFriends;
+			sourceTree = "<group>";
+		};
+		0416316120415DA200446639 /* MyGroups */ = {
+			isa = PBXGroup;
+			children = (
+				0416316B2042016500446639 /* MyGroupsTableVC.swift */,
+				0416316D204201B800446639 /* MyGroupsViewCell.swift */,
+			);
+			path = MyGroups;
+			sourceTree = "<group>";
+		};
+		0416316220415DB200446639 /* Login */ = {
 			isa = PBXGroup;
 			children = (
 				04D37E7C2038445C00F958AF /* LoginVC.swift */,
 			);
-			path = VCs;
+			path = Login;
+			sourceTree = "<group>";
+		};
+		04163171204202FC00446639 /* AllGroups */ = {
+			isa = PBXGroup;
+			children = (
+				0416316F204202F100446639 /* AllGroupsTableVC.swift */,
+				04163174204203E400446639 /* AllGroupsViewCell.swift */,
+			);
+			path = AllGroups;
+			sourceTree = "<group>";
+		};
+		04163178204212F900446639 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				041631792042133500446639 /* SettingsTableVC.swift */,
+				0416317B204213AA00446639 /* SettingsViewCell.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		04D37E5E20381B1100F958AF = {
@@ -62,8 +122,13 @@
 		04D37E6920381B1100F958AF /* myVKApp */ = {
 			isa = PBXGroup;
 			children = (
-				0416313820406E5A00446639 /* VCs */,
+				04163178204212F900446639 /* Settings */,
+				04163171204202FC00446639 /* AllGroups */,
+				0416316220415DB200446639 /* Login */,
+				0416316120415DA200446639 /* MyGroups */,
+				0416313820406E5A00446639 /* MyFriends */,
 				04D37E6A20381B1100F958AF /* AppDelegate.swift */,
+				041631762042109300446639 /* Functions.swift */,
 				04D37E6E20381B1100F958AF /* Main.storyboard */,
 				041631392040806800446639 /* Assets.xcassets */,
 				04D37E7620381B1100F958AF /* Info.plist */,
@@ -145,7 +210,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				04D37E6B20381B1100F958AF /* AppDelegate.swift in Sources */,
+				0416316820415F7F00446639 /* MyFriendCollectionVC.swift in Sources */,
+				0416317C204213AA00446639 /* SettingsViewCell.swift in Sources */,
+				0416316E204201B800446639 /* MyGroupsViewCell.swift in Sources */,
+				0416316420415E5000446639 /* MyFriendsViewCell.swift in Sources */,
+				041631772042109300446639 /* Functions.swift in Sources */,
+				0416316C2042016500446639 /* MyGroupsTableVC.swift in Sources */,
 				04D37E7D2038445C00F958AF /* LoginVC.swift in Sources */,
+				0416316A20415FF600446639 /* MyFriendCollectionViewCell.swift in Sources */,
+				04163170204202F100446639 /* AllGroupsTableVC.swift in Sources */,
+				04163175204203E400446639 /* AllGroupsViewCell.swift in Sources */,
+				0416317A2042133500446639 /* SettingsTableVC.swift in Sources */,
+				0416316620415EDE00446639 /* MyFriendsTableVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
