@@ -15,7 +15,7 @@ class MyFriendsViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        Functions().setImageLayersSettings(for: friendImageView)
+        ImageSettingsHelper().setImageLayersSettings(for: friendImageView, mode: .forAvatarImages)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

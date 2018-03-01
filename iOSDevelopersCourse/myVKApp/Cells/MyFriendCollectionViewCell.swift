@@ -14,9 +14,6 @@ class MyFriendCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-    
-        layer.cornerRadius = 16
-        layer.masksToBounds = true
+        ImageSettingsHelper().setImageLayersSettings(for: myFriendPhoto, mode: .forPhotos)
     }
-    
 }

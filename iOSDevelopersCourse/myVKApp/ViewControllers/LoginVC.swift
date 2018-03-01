@@ -69,7 +69,7 @@ class LoginVC: UIViewController {
     
     func logIn() -> Bool {
         guard loginField.text == login && passwordField.text == password else {
-            present(Functions().showAlert(withTitle: "Warning", message: "Login or password incorrect"), animated: true)
+            present(AlertHelper().showAlert(withTitle: "Warning", message: "Login or password incorrect"), animated: true)
             return false
         }
         removeCredentials()

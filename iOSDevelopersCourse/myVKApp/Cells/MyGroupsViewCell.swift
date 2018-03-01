@@ -1,5 +1,5 @@
 //
-//  AllGroupsViewCell.swift
+//  MyGroupsViewCell.swift
 //  myVKApp
 //
 //  Created by Natalya on 24/02/2018.
@@ -8,15 +8,14 @@
 
 import UIKit
 
-class AllGroupsViewCell: UITableViewCell {
+class MyGroupsViewCell: UITableViewCell {
     
-    @IBOutlet weak var allGroupNameLabel: UILabel!
-    @IBOutlet weak var allGroupImageView: UIImageView!
-    @IBOutlet weak var allGroupFollowersCountLabel: UILabel!
+    @IBOutlet weak var myGroupNameLabel: UILabel!
+    @IBOutlet weak var myGroupImageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        Functions().setImageLayersSettings(for: allGroupImageView)
+        ImageSettingsHelper().setImageLayersSettings(for: myGroupImageView, mode: .forAvatarImages)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

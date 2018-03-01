@@ -8,8 +8,7 @@
 
 import UIKit
 
-class Functions {
-    
+struct AlertHelper {
     func showAlert(withTitle title: String, message: String) -> UIAlertController {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let actionButton = UIAlertAction(title: "OK", style: .cancel)
@@ -18,9 +17,22 @@ class Functions {
         
         return alertController
     }
+}
+
+struct ImageSettingsHelper {
+    enum ImageSettingsModes {
+        case forAvatarImages
+        case forPhotos
+    }
     
-    func setImageLayersSettings(for view: UIImageView) {
-        view.layer.cornerRadius = view.bounds.height/2
+    func setImageLayersSettings(for view: UIImageView, mode: ImageSettingsModes) {
+        switch mode {
+        case .forAvatarImages:
+            view.layer.cornerRadius = view.bounds.height/2
+        case .forPhotos:
+            view.layer.cornerRadius = 16
+        }
+        
         view.layer.masksToBounds = true
     }
 }

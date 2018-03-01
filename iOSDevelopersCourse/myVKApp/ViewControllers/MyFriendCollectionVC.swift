@@ -20,11 +20,6 @@ class MyFriendCollectionVC: UICollectionViewController, UICollectionViewDelegate
         navigationItem.title = friendName 
     }
 
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-
-
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return friendPhotos.count
     }

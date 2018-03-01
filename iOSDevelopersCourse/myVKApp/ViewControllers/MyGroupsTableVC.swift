@@ -16,10 +16,6 @@ class MyGroupsTableVC: UITableViewController {
         super.viewDidLoad()
     }
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let rowsCount = myGroupsArray.count
         return rowsCount
@@ -41,7 +37,8 @@ class MyGroupsTableVC: UITableViewController {
         guard let allGroupsVC = segue.source as? AllGroupsTableVC else { return }
         guard let cellNewGroup = allGroupsVC.tableView.indexPathForSelectedRow else { return }
         
-        let newGroup = allGroupsVC.AllGroupsArray[cellNewGroup.row]
+        let isSearching = allGroupsVC.isSearching
+        let newGroup = isSearching ? allGroupsVC.filteredArray[cellNewGroup.row] : allGroupsVC.allGroupsArray[cellNewGroup.row]
         
         guard !myGroupsArray.contains(where: { element in
             if case newGroup.name = element.name {
@@ -50,7 +47,7 @@ class MyGroupsTableVC: UITableViewController {
                 return false
             }
         }) else {
-            present(Functions().showAlert(withTitle: "Warning", message: "There is a such Group in the list"), animated: true)
+            present(AlertHelper().showAlert(withTitle: "Warning", message: "There is a such Group in the list"), animated: true)
             return
         }
         
