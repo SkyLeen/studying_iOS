@@ -19,8 +19,10 @@
 		041631772042109300446639 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041631762042109300446639 /* Helpers.swift */; };
 		0416317A2042133500446639 /* SettingsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041631792042133500446639 /* SettingsTableVC.swift */; };
 		0416317C204213AA00446639 /* SettingsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0416317B204213AA00446639 /* SettingsViewCell.swift */; };
-		04D21945204A8DF3001E5B26 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D21944204A8DF3001E5B26 /* NetworkRequest.swift */; };
+		04D21945204A8DF3001E5B26 /* AuthorizationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D21944204A8DF3001E5B26 /* AuthorizationRequest.swift */; };
 		04D21947204AA716001E5B26 /* LoginWebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D21946204AA716001E5B26 /* LoginWebVC.swift */; };
+		04D2194B204B0AF6001E5B26 /* MethodRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D2194A204B0AF6001E5B26 /* MethodRequest.swift */; };
+		04D21950204B2754001E5B26 /* AuthorizationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D2194F204B2754001E5B26 /* AuthorizationModel.swift */; };
 		04D37E6B20381B1100F958AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D37E6A20381B1100F958AF /* AppDelegate.swift */; };
 		04D37E7020381B1100F958AF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04D37E6E20381B1100F958AF /* Main.storyboard */; };
 		04D37E7D2038445C00F958AF /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D37E7C2038445C00F958AF /* LoginVC.swift */; };
@@ -41,8 +43,10 @@
 		041631762042109300446639 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		041631792042133500446639 /* SettingsTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableVC.swift; sourceTree = "<group>"; };
 		0416317B204213AA00446639 /* SettingsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewCell.swift; sourceTree = "<group>"; };
-		04D21944204A8DF3001E5B26 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
+		04D21944204A8DF3001E5B26 /* AuthorizationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationRequest.swift; sourceTree = "<group>"; };
 		04D21946204AA716001E5B26 /* LoginWebVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWebVC.swift; sourceTree = "<group>"; };
+		04D2194A204B0AF6001E5B26 /* MethodRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MethodRequest.swift; sourceTree = "<group>"; };
+		04D2194F204B2754001E5B26 /* AuthorizationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationModel.swift; sourceTree = "<group>"; };
 		04D37E6720381B1100F958AF /* myVKApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myVKApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04D37E6A20381B1100F958AF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04D37E6F20381B1100F958AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -69,8 +73,8 @@
 		04D2193B20486CEB001E5B26 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				04D21946204AA716001E5B26 /* LoginWebVC.swift */,
 				04D37E7C2038445C00F958AF /* LoginVC.swift */,
+				04D21946204AA716001E5B26 /* LoginWebVC.swift */,
 				0416316520415EDE00446639 /* MyFriendsTableVC.swift */,
 				0416316720415F7F00446639 /* MyFriendCollectionVC.swift */,
 				0416316B2042016500446639 /* MyGroupsTableVC.swift */,
@@ -96,7 +100,9 @@
 			isa = PBXGroup;
 			children = (
 				041631762042109300446639 /* Helpers.swift */,
-				04D21944204A8DF3001E5B26 /* NetworkRequest.swift */,
+				04D21944204A8DF3001E5B26 /* AuthorizationRequest.swift */,
+				04D2194F204B2754001E5B26 /* AuthorizationModel.swift */,
+				04D2194A204B0AF6001E5B26 /* MethodRequest.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -290,12 +296,14 @@
 				0416316420415E5000446639 /* MyFriendsViewCell.swift in Sources */,
 				041631772042109300446639 /* Helpers.swift in Sources */,
 				0416316C2042016500446639 /* MyGroupsTableVC.swift in Sources */,
+				04D2194B204B0AF6001E5B26 /* MethodRequest.swift in Sources */,
 				04D37E7D2038445C00F958AF /* LoginVC.swift in Sources */,
 				0416316A20415FF600446639 /* MyFriendCollectionViewCell.swift in Sources */,
 				04163170204202F100446639 /* AllGroupsTableVC.swift in Sources */,
 				04163175204203E400446639 /* AllGroupsViewCell.swift in Sources */,
+				04D21950204B2754001E5B26 /* AuthorizationModel.swift in Sources */,
 				0416317A2042133500446639 /* SettingsTableVC.swift in Sources */,
-				04D21945204A8DF3001E5B26 /* NetworkRequest.swift in Sources */,
+				04D21945204A8DF3001E5B26 /* AuthorizationRequest.swift in Sources */,
 				0416316620415EDE00446639 /* MyFriendsTableVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

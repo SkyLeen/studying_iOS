@@ -15,8 +15,14 @@ class MyFriendCollectionVC: UICollectionViewController, UICollectionViewDelegate
     var friendPhotos = [UIImage]()
     let interitemSpace: CGFloat = 5
     
+    var friendId = ""
+    var accessToken = ""
+    var userId = ""
+    var photosRequest = MethodRequest()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        photosRequest.getPhotos(userId: userId, accessToken: accessToken, friendId: friendId)
         navigationItem.title = friendName 
     }
 

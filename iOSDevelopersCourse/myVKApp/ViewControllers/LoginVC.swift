@@ -59,13 +59,12 @@ class LoginVC: UIViewController {
     
     @IBAction func logOut(segue: UIStoryboardSegue) {}
     
-    
     @IBAction func logIn(_ sender: UIButton) {
         logIn()
     }
     
     func logIn() {
-        let alertController = UIAlertController(title: "Log in", message: "Are you sure you want to log in throw VK account?", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Log in", message: "Are you sure you want to log in through VK account?", preferredStyle: .alert)
         
         let yesButton = UIAlertAction(title: "Yes", style: .default, handler: { action in
             self.performSegue(withIdentifier: "showAuthorization", sender: self)

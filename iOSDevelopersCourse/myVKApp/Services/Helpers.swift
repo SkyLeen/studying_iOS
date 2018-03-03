@@ -8,12 +8,6 @@
 
 import UIKit
 
-enum AuthorizationResult {
-    case accessToken
-    case error
-    case defaultResult
-}
-
 struct AlertHelper {
     func showAlert(withTitle title: String, message: String) -> UIAlertController {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)

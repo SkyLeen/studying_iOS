@@ -10,6 +10,10 @@ import UIKit
 
 class AllGroupsTableVC: UITableViewController {
     
+    var accessToken = ""
+    var userId = ""
+    var groupsRequest = MethodRequest()
+    
     let searchBar = UISearchBar()
     let allGroupsArray = [
         (name: "Хабрахабр", photo: UIImage(named: "habrahabr.jpg"), followers: 726895),
@@ -24,6 +28,9 @@ class AllGroupsTableVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         createSearchBar()
+        
+        groupsRequest.getAllGroups(accessToken: accessToken)
+        groupsRequest.getGroupsByName(accessToken: accessToken, groupName: "Хабр")
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

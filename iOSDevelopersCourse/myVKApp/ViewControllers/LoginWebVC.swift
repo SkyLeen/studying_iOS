@@ -12,16 +12,29 @@ class LoginWebVC: UIViewController {
 
     @IBOutlet weak var webView: UIWebView!
     
-    let authorizationRequest = NetworkRequest()
-    var authorizationResult = (type: AuthorizationResult.defaultResult, text: "Default")
+    let authorizationRequest = AuthorizationRequest()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        webView.delegate = self
-        tryAuthorize()
+        loadAuthtirozationRequest()
     }
     
-    func tryAuthorize() {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "showApp" else { return }
+        guard let destVC = segue.destination as? UITabBarController else { return }
+        
+        guard let navVC = destVC.viewControllers?.first as? UINavigationController else { return }
+        guard let friendsVC = navVC.viewControllers.first as? MyFriendsTableVC else { return }
+        friendsVC.accessToken = authorizationRequest.authorization.accessToken
+        friendsVC.userId = authorizationRequest.authorization.userId
+        
+        guard let navGroupVC = destVC.viewControllers?[1] as? UINavigationController else { return }
+        guard let groupsVC = navGroupVC.viewControllers.first as? MyGroupsTableVC else { return }
+        groupsVC.accessToken = authorizationRequest.authorization.accessToken
+        groupsVC.userId = authorizationRequest.authorization.userId
+    }
+    
+    func loadAuthtirozationRequest() {
         let request = authorizationRequest.requestAuthorization()
         webView.loadRequest(request)
     }
@@ -29,22 +42,13 @@ class LoginWebVC: UIViewController {
 
 extension LoginWebVC: UIWebViewDelegate {
     func webViewDidFinishLoad(_ webView: UIWebView) {
-         logIn()
-    }
-    
-    func logIn() {
-        guard let responseUrl = webView.request?.url else { return }
-        authorizationResult = authorizationRequest.getAuthorizationResult(url: responseUrl)
-        switch authorizationResult.type {
-        case .accessToken:
-            performSegue(withIdentifier: "showApp", sender: nil)
-        case .error:
-            performSegue(withIdentifier: "logOut", sender: self)
-        case .defaultResult:
-            print("Waiting for getting response")
+        guard let responseUrl = webView.request?.url, let _ = responseUrl.fragment else { return }
+        authorizationRequest.setAuthorizationResult(url: responseUrl)
+        
+        if !(authorizationRequest.authorization.accessToken == "") {
+            performSegue(withIdentifier: "showApp", sender: self)
+        } else {
+            performSegue(withIdentifier: "exit", sender: self)
         }
     }
-    
-    
-
 }

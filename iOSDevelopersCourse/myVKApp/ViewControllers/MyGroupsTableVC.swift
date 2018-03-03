@@ -10,10 +10,15 @@ import UIKit
 
 class MyGroupsTableVC: UITableViewController {
 
+    var accessToken = ""
+    var userId = ""
+    var groupsRequest = MethodRequest()
+    
     var myGroupsArray = [(name: String, photo: UIImage)]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        groupsRequest.getUserGroups(userId: userId, accessToken: accessToken)
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -26,6 +31,13 @@ class MyGroupsTableVC: UITableViewController {
         cell.myGroupNameLabel.text = myGroupsArray[indexPath.row].name
         cell.myGroupImageView.image = myGroupsArray[indexPath.row].photo
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "showAllGroups" else { return }
+        guard let destinationVC = segue.destination as? AllGroupsTableVC else { return }
+        destinationVC.accessToken = accessToken
+        destinationVC.userId = userId
     }
     
     @IBAction func addNewGroupPressed(_ sender: UIBarButtonItem) {

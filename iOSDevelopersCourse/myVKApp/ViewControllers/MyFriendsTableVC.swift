@@ -15,6 +15,10 @@ struct SectionObjects {
 
 class MyFriendsTableVC: UITableViewController {
     
+    var accessToken = ""
+    var userId = ""
+    var friendsRequest = MethodRequest()
+    
     var myFriendsArray = [
         (name: "Катина Катя", mainPhoto: UIImage(named: "friend1.jpg"), photos:[]),
         (name: "Машина Маша",mainPhoto: UIImage(named: "friend2.jpg"), photos: [
@@ -46,6 +50,8 @@ class MyFriendsTableVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        friendsRequest.getFrendsList(userId: userId, accessToken: accessToken)
         getSectionObjects()
     }
 
@@ -82,6 +88,9 @@ class MyFriendsTableVC: UITableViewController {
         
         destinationVC.friendName = sectionObjectArray[friend.section].sectionObjects[friend.row].name
         destinationVC.friendPhotos = sectionObjectArray[friend.section].sectionObjects[friend.row].photos as! [UIImage]
+        destinationVC.accessToken = accessToken
+        destinationVC.userId = userId
+        destinationVC.friendId = "78758674"
     }
     
     private func getInitialsArray() {
