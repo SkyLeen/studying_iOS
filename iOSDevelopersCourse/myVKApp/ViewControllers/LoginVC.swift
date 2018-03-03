@@ -15,9 +15,6 @@ class LoginVC: UIViewController {
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     
-    let login = "skyleen"
-    let password = "123456"
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,11 +35,6 @@ class LoginVC: UIViewController {
         super.viewWillDisappear(animated)
         
         NotificationCenter.default.removeObserver(self)
-    }
-    
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        let result = logIn()
-        return result
     }
     
     @objc func keyboardWasShown(notification: Notification) {
@@ -67,17 +59,22 @@ class LoginVC: UIViewController {
     
     @IBAction func logOut(segue: UIStoryboardSegue) {}
     
-    func logIn() -> Bool {
-        guard loginField.text == login && passwordField.text == password else {
-            present(AlertHelper().showAlert(withTitle: "Warning", message: "Login or password incorrect"), animated: true)
-            return false
-        }
-        removeCredentials()
-        return true
+    
+    @IBAction func logIn(_ sender: UIButton) {
+        logIn()
     }
     
-    func removeCredentials() {
-        loginField.text?.removeAll()
-        passwordField.text?.removeAll()
+    func logIn() {
+        let alertController = UIAlertController(title: "Log in", message: "Are you sure you want to log in throw VK account?", preferredStyle: .alert)
+        
+        let yesButton = UIAlertAction(title: "Yes", style: .default, handler: { action in
+            self.performSegue(withIdentifier: "showAuthorization", sender: self)
+        })
+        let noButton = UIAlertAction(title: "No", style: .cancel)
+        
+        alertController.addAction(noButton)
+        alertController.addAction(yesButton)
+        
+        present(alertController, animated: true)
     }
 }

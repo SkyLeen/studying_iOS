@@ -48,7 +48,7 @@
                                             <constraint firstAttribute="width" id="jkF-1u-i8L"/>
                                         </constraints>
                                     </view>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Login" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tKI-bs-50k">
+                                    <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Login" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tKI-bs-50k">
                                         <rect key="frame" x="60" y="220" width="200" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="200" id="D9H-0s-cJW"/>
@@ -62,7 +62,7 @@
                                             </mask>
                                         </variation>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jf8-oo-KNY" userLabel="Password Field">
+                                    <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jf8-oo-KNY" userLabel="Password Field">
                                         <rect key="frame" x="60" y="265" width="200" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -86,7 +86,8 @@
                                             </mask>
                                         </variation>
                                         <connections>
-                                            <segue destination="fAW-te-Zjk" kind="presentation" identifier="goTo" modalTransitionStyle="crossDissolve" id="lep-o9-pbV"/>
+                                            <action selector="logIn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ar0-6r-5k0"/>
+                                            <segue destination="FrK-zd-Hq7" kind="presentation" identifier="showAuthorization" modalTransitionStyle="partialCurl" id="L8r-ci-I2S"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ue-d1-1zw">
@@ -193,7 +194,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="24.800000000000001" y="14.842578710644679"/>
+            <point key="canvasLocation" x="-864" y="62"/>
         </scene>
         <!--My Friends-->
         <scene sceneID="fiF-AY-gHb">
@@ -550,6 +551,39 @@
             </objects>
             <point key="canvasLocation" x="3070" y="-88"/>
         </scene>
+        <!--Login WebVC-->
+        <scene sceneID="wnB-5d-ffL">
+            <objects>
+                <viewController id="FrK-zd-Hq7" customClass="LoginWebVC" customModule="myVKApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="erS-eB-Dwc">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="to7-9H-58H">
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="to7-9H-58H" firstAttribute="top" secondItem="QK9-vJ-zVo" secondAttribute="top" id="JgI-5K-YLX"/>
+                            <constraint firstItem="to7-9H-58H" firstAttribute="leading" secondItem="QK9-vJ-zVo" secondAttribute="leading" id="OMm-f6-Fjk"/>
+                            <constraint firstItem="QK9-vJ-zVo" firstAttribute="bottom" secondItem="to7-9H-58H" secondAttribute="bottom" id="VrA-gV-qTO"/>
+                            <constraint firstItem="QK9-vJ-zVo" firstAttribute="trailing" secondItem="to7-9H-58H" secondAttribute="trailing" id="WJA-Le-Gde"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="QK9-vJ-zVo"/>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="to7-9H-58H" id="724-eb-rfH"/>
+                        <segue destination="fAW-te-Zjk" kind="presentation" identifier="showApp" modalTransitionStyle="partialCurl" id="3mE-TK-Ln5"/>
+                        <segue destination="669-sK-QHT" kind="unwind" identifier="logOut" unwindAction="logOutWithSegue:" id="Jua-oN-dyg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s5i-XF-YAl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="669-sK-QHT" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="-21" y="64"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="6el-06-rQd">
             <objects>
@@ -569,7 +603,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mLB-S4-Jjt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="790" y="15"/>
+            <point key="canvasLocation" x="711" y="63"/>
         </scene>
     </scenes>
     <resources>

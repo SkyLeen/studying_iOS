@@ -4,6 +4,5 @@
 target 'myVKApp' do
   use_frameworks!
 
-pod 'Alamofire', '~> 4.6'
 
 end

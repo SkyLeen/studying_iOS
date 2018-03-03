@@ -1,5 +1,5 @@
 //
-//  Functions.swift
+//  Helpers.swift
 //  myVKApp
 //
 //  Created by Natalya on 25/02/2018.
@@ -7,6 +7,12 @@
 //
 
 import UIKit
+
+enum AuthorizationResult {
+    case accessToken
+    case error
+    case defaultResult
+}
 
 struct AlertHelper {
     func showAlert(withTitle title: String, message: String) -> UIAlertController {

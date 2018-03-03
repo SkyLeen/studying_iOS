@@ -47,7 +47,6 @@ class MyFriendsTableVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getSectionObjects()
-        
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
