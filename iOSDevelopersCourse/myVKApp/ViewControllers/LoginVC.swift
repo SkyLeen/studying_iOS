@@ -4,7 +4,8 @@
 //
 //  Created by Natalya on 17/02/2018.
 //  Copyright © 2018 Natalya Shikhalyova. All rights reserved.
-//
+// Запросы к  API формируются в соответствующих вьюхах
+// Успешная авторизация перенаправляет дальше
 
 import UIKit
 
