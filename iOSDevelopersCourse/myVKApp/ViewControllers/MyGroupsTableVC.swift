@@ -13,12 +13,14 @@ class MyGroupsTableVC: UITableViewController {
     var accessToken = ""
     var userId = ""
     var groupsRequest = MethodRequest()
-    
-    var myGroupsArray = [(name: String, photo: UIImage)]()
+    var myGroupsArray = [Group]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        groupsRequest.getUserGroups(userId: userId, accessToken: accessToken)
+        groupsRequest.getUserGroups(userId: userId, accessToken: accessToken, completion: { [weak self] groups in
+            self?.myGroupsArray = groups
+            self?.tableView.reloadData()
+        })
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -28,8 +30,8 @@ class MyGroupsTableVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath) as! MyGroupsViewCell
-        cell.myGroupNameLabel.text = myGroupsArray[indexPath.row].name
-        cell.myGroupImageView.image = myGroupsArray[indexPath.row].photo
+        cell.myGroupNameLabel.text = myGroupsArray[indexPath.row].nameGroup
+        cell.myGroupImageView.image = myGroupsArray[indexPath.row].photoGroup
         return cell
     }
     
@@ -53,7 +55,7 @@ class MyGroupsTableVC: UITableViewController {
         let newGroup = isSearching ? allGroupsVC.filteredArray[cellNewGroup.row] : allGroupsVC.allGroupsArray[cellNewGroup.row]
         
         guard !myGroupsArray.contains(where: { element in
-            if case newGroup.name = element.name {
+            if case newGroup.nameGroup = element.nameGroup {
                 return true
             } else {
                 return false
@@ -63,8 +65,10 @@ class MyGroupsTableVC: UITableViewController {
             return
         }
         
-        myGroupsArray.append((name: newGroup.name, photo: newGroup.photo) as! ((name: String, photo: UIImage)))
-        tableView.reloadData()
+        groupsRequest.joinGroup(accessToken: accessToken, idGroup: newGroup.idGroup, completion: {
+            self.viewDidLoad()
+        })
+
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {

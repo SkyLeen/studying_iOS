@@ -15,22 +15,18 @@ class AllGroupsTableVC: UITableViewController {
     var groupsRequest = MethodRequest()
     
     let searchBar = UISearchBar()
-    let allGroupsArray = [
-        (name: "Хабрахабр", photo: UIImage(named: "habrahabr.jpg"), followers: 726895),
-        (name: "Just English", photo: UIImage(named: "justEnglish.jpg"), followers: 2135834),
-        (name: "GeekBrains", photo: UIImage(named: "geekbrains.jpg"), followers: 112428),
-        (name: "HappyWAY.travel", photo: UIImage(named: "happytravel.jpg"), followers: 1866),
-        (name: "Намалевич", photo: UIImage(named: "namalevich.jpg"), followers: 749016),
-        (name: "KudaGO", photo: UIImage(named: "kudago.jpg"), followers: 692030)]
-    var filteredArray = [(name: String, photo: UIImage?, followers: Int)]()
+    var allGroupsArray = [Group]()
+    var filteredArray = [Group]()
     var isSearching = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         createSearchBar()
         
-        groupsRequest.getAllGroups(accessToken: accessToken)
-        groupsRequest.getGroupsByName(accessToken: accessToken, groupName: "Хабр")
+        groupsRequest.getAllGroups(accessToken: accessToken, completion: { [weak self] groups in
+            self?.allGroupsArray = groups
+            self?.tableView.reloadData()
+        })
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -41,12 +37,12 @@ class AllGroupsTableVC: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewGroupCell", for: indexPath) as! AllGroupsViewCell
         if isSearching {
-            cell.allGroupNameLabel.text = filteredArray[indexPath.row].name
-            cell.allGroupImageView.image = filteredArray[indexPath.row].photo
+            cell.allGroupNameLabel.text = filteredArray[indexPath.row].nameGroup
+            cell.allGroupImageView.image = filteredArray[indexPath.row].photoGroup
             cell.allGroupFollowersCountLabel.text = "\(filteredArray[indexPath.row].followers) followers"
         } else {
-            cell.allGroupNameLabel.text = allGroupsArray[indexPath.row].name
-            cell.allGroupImageView.image = allGroupsArray[indexPath.row].photo
+            cell.allGroupNameLabel.text = allGroupsArray[indexPath.row].nameGroup
+            cell.allGroupImageView.image = allGroupsArray[indexPath.row].photoGroup
             cell.allGroupFollowersCountLabel.text = "\(allGroupsArray[indexPath.row].followers) followers"
         }
         return cell
@@ -76,10 +72,11 @@ extension AllGroupsTableVC: UISearchBarDelegate {
             tableView.reloadData()
         } else {
             isSearching = true
-            filteredArray = allGroupsArray.filter({ text in
-                return text.name.lowercased().contains(searchText.lowercased())
+            
+            groupsRequest.getGroupsSearch(accessToken: accessToken, searchText: searchText.lowercased(), completion: { [weak self] groups in
+                self?.filteredArray = groups
+                self?.tableView.reloadData()
             })
-            tableView.reloadData()
         }
     }
     

@@ -22,7 +22,7 @@ class MyFriendCollectionVC: UICollectionViewController, UICollectionViewDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        photosRequest.getPhotos(userId: userId, accessToken: accessToken, friendId: friendId, completion: { [weak self] photos in
+        photosRequest.getFriendPhotos(userId: userId, accessToken: accessToken, friendId: friendId, completion: { [weak self] photos in
             self?.friendPhotos = photos
             self?.collectionView?.reloadData()
         })
