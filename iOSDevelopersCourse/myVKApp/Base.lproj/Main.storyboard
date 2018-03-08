@@ -196,36 +196,38 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <color key="separatorColor" red="0.93725490199999995" green="0.76078431369999999" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FriendCell" rowHeight="77" id="R3Z-hb-R4S" customClass="MyFriendsViewCell" customModule="myVKApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="55.5" width="320" height="77"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FriendCell" rowHeight="45" id="R3Z-hb-R4S" customClass="MyFriendsViewCell" customModule="myVKApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="55.5" width="320" height="45"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="R3Z-hb-R4S" id="fy9-Ig-CGV">
-                                    <rect key="frame" x="0.0" y="0.0" width="286" height="76.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="286" height="44.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bqo-y4-BRD">
-                                            <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="45" height="45.5"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="75" id="N5A-G1-TXk"/>
-                                                <constraint firstAttribute="width" constant="75" id="UcD-yD-Vc9"/>
+                                                <constraint firstAttribute="height" constant="45" id="N5A-G1-TXk"/>
+                                                <constraint firstAttribute="width" constant="45" id="UcD-yD-Vc9"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FriendNameLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uMC-sy-RmR">
-                                            <rect key="frame" x="85" y="0.0" width="201" height="77"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FriendNameLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uMC-sy-RmR">
+                                            <rect key="frame" x="65" y="0.0" width="221" height="21"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="uMC-sy-RmR" firstAttribute="leading" secondItem="bqo-y4-BRD" secondAttribute="trailing" constant="10" id="2jM-oH-cIJ"/>
-                                        <constraint firstItem="uMC-sy-RmR" firstAttribute="top" secondItem="fy9-Ig-CGV" secondAttribute="top" id="7f9-3J-Zhl"/>
+                                        <constraint firstItem="uMC-sy-RmR" firstAttribute="leading" secondItem="bqo-y4-BRD" secondAttribute="trailing" constant="20" id="2jM-oH-cIJ"/>
+                                        <constraint firstAttribute="trailing" secondItem="uMC-sy-RmR" secondAttribute="trailing" id="53K-bf-xdR"/>
                                         <constraint firstItem="bqo-y4-BRD" firstAttribute="leadingMargin" secondItem="fy9-Ig-CGV" secondAttribute="leading" constant="8" id="HQy-mE-HZc"/>
-                                        <constraint firstItem="uMC-sy-RmR" firstAttribute="centerY" secondItem="fy9-Ig-CGV" secondAttribute="centerY" id="R9F-WW-tqf"/>
-                                        <constraint firstAttribute="bottom" secondItem="uMC-sy-RmR" secondAttribute="bottom" id="Vha-1S-Emz"/>
+                                        <constraint firstItem="bqo-y4-BRD" firstAttribute="top" secondItem="fy9-Ig-CGV" secondAttribute="top" id="QWx-NA-K3f"/>
+                                        <constraint firstItem="uMC-sy-RmR" firstAttribute="top" secondItem="fy9-Ig-CGV" secondAttribute="top" id="bCO-OG-Qqb"/>
+                                        <constraint firstItem="bqo-y4-BRD" firstAttribute="leading" secondItem="fy9-Ig-CGV" secondAttribute="leading" id="fWo-Si-6Gr"/>
                                         <constraint firstItem="bqo-y4-BRD" firstAttribute="centerY" secondItem="fy9-Ig-CGV" secondAttribute="centerY" id="hOf-ut-U0c"/>
                                         <constraint firstAttribute="trailing" secondItem="uMC-sy-RmR" secondAttribute="trailing" id="oPg-FJ-lGv"/>
-                                        <constraint firstAttribute="bottom" secondItem="bqo-y4-BRD" secondAttribute="bottom" constant="2" id="vuS-Ih-Dau"/>
+                                        <constraint firstAttribute="bottom" secondItem="bqo-y4-BRD" secondAttribute="bottom" id="vuS-Ih-Dau"/>
+                                        <constraint firstAttribute="bottom" secondItem="uMC-sy-RmR" secondAttribute="bottom" id="z1q-lW-uiM"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>

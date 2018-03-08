@@ -14,7 +14,7 @@ class MethodRequest {
     let baseUrl = "https://api.vk.com"
     let path = "/method"
     
-    func getFrendsList(userId: String, accessToken: String) {
+    func getFrendsList(userId: String, accessToken: String, completion: @escaping ([User]) -> ()) {
         let pathMethod = "/friends.get"
         let url = baseUrl + path + pathMethod
         let parameters: Parameters = [
@@ -28,8 +28,8 @@ class MethodRequest {
         Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON { response in
             switch response.result {
             case .success(let value):
-                let json = JSON(value)
-                print("Friends: \(json)")
+                let users = JSON(value)["response"]["items"].flatMap({ User(json: $0.1) })
+                completion(users)
             case .failure(let error):
                 print(error)
             }

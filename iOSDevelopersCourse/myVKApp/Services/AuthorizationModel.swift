@@ -11,5 +11,5 @@ import Foundation
 struct Authorization {
     var accessToken: String = ""
     var userId: String = ""
-    var dataAccessToken: NSDate = NSDate()
+    var dataAccessToken: Date = Date()
 }

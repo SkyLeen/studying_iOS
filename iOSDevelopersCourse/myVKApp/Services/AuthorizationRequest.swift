@@ -13,7 +13,6 @@ class AuthorizationRequest {
     let scheme = "https"
     let baseHost = "oauth.vk.com"
     let cliendId = "6389925"
-    var authorization = Authorization()
     
     func requestAuthorization() -> URLRequest {
         let path = "/authorize"
@@ -37,13 +36,14 @@ class AuthorizationRequest {
         return request
     }
     
-    func setAuthorizationResult(url: URL) {
+    func setAuthorizationResult(url: URL, completion: @escaping (Authorization) -> ()) {
 
         let urlFragment = url.fragment!
         let params = getParamsDictionary(urlFragment: urlFragment)
         
         if (url.absoluteString.range(of: "access_token") != nil) {
-            authorization = Authorization(accessToken: params["access_token"]!, userId: params["user_id"]!, dataAccessToken: NSDate())
+            let authorization = Authorization(accessToken: params["access_token"]!, userId: params["user_id"]!, dataAccessToken: Date())
+            completion(authorization)
         }
     }
     

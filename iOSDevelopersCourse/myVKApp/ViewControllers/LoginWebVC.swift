@@ -13,6 +13,7 @@ class LoginWebVC: UIViewController {
     @IBOutlet weak var webView: UIWebView!
     
     let authorizationRequest = AuthorizationRequest()
+    var authorization = Authorization()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,13 +26,13 @@ class LoginWebVC: UIViewController {
         
         guard let navVC = destVC.viewControllers?.first as? UINavigationController else { return }
         guard let friendsVC = navVC.viewControllers.first as? MyFriendsTableVC else { return }
-        friendsVC.accessToken = authorizationRequest.authorization.accessToken
-        friendsVC.userId = authorizationRequest.authorization.userId
+        friendsVC.accessToken = authorization.accessToken
+        friendsVC.userId = authorization.userId
         
         guard let navGroupVC = destVC.viewControllers?[1] as? UINavigationController else { return }
         guard let groupsVC = navGroupVC.viewControllers.first as? MyGroupsTableVC else { return }
-        groupsVC.accessToken = authorizationRequest.authorization.accessToken
-        groupsVC.userId = authorizationRequest.authorization.userId
+        groupsVC.accessToken = authorization.accessToken
+        groupsVC.userId = authorization.userId
     }
     
     func loadAuthtirozationRequest() {
@@ -43,9 +44,11 @@ class LoginWebVC: UIViewController {
 extension LoginWebVC: UIWebViewDelegate {
     func webViewDidFinishLoad(_ webView: UIWebView) {
         guard let responseUrl = webView.request?.url, let _ = responseUrl.fragment else { return }
-        authorizationRequest.setAuthorizationResult(url: responseUrl)
+        authorizationRequest.setAuthorizationResult(url: responseUrl, completion: { authorization in
+            self.authorization = authorization
+        })
         
-        if !(authorizationRequest.authorization.accessToken == "") {
+        if !(authorization.accessToken == "") {
             performSegue(withIdentifier: "showApp", sender: self)
         } else {
             performSegue(withIdentifier: "exit", sender: self)
