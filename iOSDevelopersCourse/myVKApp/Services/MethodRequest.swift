@@ -36,14 +36,14 @@ class MethodRequest {
         }
     }
     
-    func getPhotos(userId: String, accessToken: String, friendId: String) {
+    func getPhotos(userId: String, accessToken: String, friendId: Int, completion: @escaping ([Photos]) -> ()) {
         let pathMethod = "/photos.get"
         let url = baseUrl + path + pathMethod
         let parameters: Parameters = [
             "user_id":userId,
             "access_token":accessToken,
             "owner_id":friendId,
-            "album_id":"profile",
+            "album_id":"wall",
             "rev":"1",
             "v":"5.73"
         ]
@@ -51,8 +51,8 @@ class MethodRequest {
         Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON { response in
             switch response.result {
             case .success(let value):
-                let json = JSON(value)
-                print("Photos: \(json)")
+                let photos = JSON(value)["response"]["items"].flatMap({ Photos(json: $0.1) })
+                completion(photos)
             case .failure(let error):
                 print(error)
             }

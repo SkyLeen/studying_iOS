@@ -65,10 +65,9 @@ class MyFriendsTableVC: UITableViewController {
         guard let friend = sender as? IndexPath else { return }
         
         destinationVC.friendName = sectionObjectArray[friend.section].sectionObjects[friend.row].name
-        //destinationVC.friendPhotos = sectionObjectArray[friend.section].sectionObjects[friend.row].photos as! [UIImage]
         destinationVC.accessToken = accessToken
         destinationVC.userId = userId
-        destinationVC.friendId = "78758674"
+        destinationVC.friendId = sectionObjectArray[friend.section].sectionObjects[friend.row].idUser
     }
     
     private func getInitialsArray() {
