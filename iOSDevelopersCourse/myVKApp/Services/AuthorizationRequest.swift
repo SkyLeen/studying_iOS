@@ -27,7 +27,6 @@ class AuthorizationRequest {
             URLQueryItem(name: "scope", value: "groups"),
             URLQueryItem(name: "display", value: "page"),
             URLQueryItem(name: "redirect_uri", value: urlRedirect),
-            //URLQueryItem(name: "revoke", value: "1"),
             URLQueryItem(name: "response_type", value: "token"),
             URLQueryItem(name: "v", value: "5.73")
         ]
@@ -38,7 +37,6 @@ class AuthorizationRequest {
     }
     
     func setAuthorizationResult(url: URL, completion: @escaping (Authorization) -> ()) {
-
         let urlFragment = url.fragment!
         let params = getParamsDictionary(urlFragment: urlFragment)
         

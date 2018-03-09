@@ -144,7 +144,7 @@ class MethodRequest {
         }
     }
     
-    func leaveGroup (accessToken: String, idGroup: Int) {
+    func leaveGroup (accessToken: String, idGroup: Int,completion: @escaping () -> ()) {
         let pathMethod = "/groups.leave"
         let url = baseUrl + path + pathMethod
         let parameters: Parameters = [
@@ -156,8 +156,8 @@ class MethodRequest {
         Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON { response in
             switch response.result {
             case .success(let value):
-                let response = JSON(value)
-                print(response)
+                print(JSON(value))
+                completion()
             case .failure(let error):
                 print(error)
             }

@@ -23,10 +23,10 @@ class AllGroupsTableVC: UITableViewController {
         super.viewDidLoad()
         createSearchBar()
         
-        groupsRequest.getAllGroups(accessToken: accessToken, completion: { [weak self] groups in
+        groupsRequest.getAllGroups(accessToken: accessToken) { [weak self] groups in
             self?.allGroupsArray = groups
             self?.tableView.reloadData()
-        })
+        }
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -73,10 +73,10 @@ extension AllGroupsTableVC: UISearchBarDelegate {
         } else {
             isSearching = true
             
-            groupsRequest.getGroupsSearch(accessToken: accessToken, searchText: searchText.lowercased(), completion: { [weak self] groups in
+            groupsRequest.getGroupsSearch(accessToken: accessToken, searchText: searchText.lowercased()) { [weak self] groups in
                 self?.filteredArray = groups
                 self?.tableView.reloadData()
-            })
+            }
         }
     }
     

@@ -44,9 +44,9 @@ class LoginWebVC: UIViewController {
 extension LoginWebVC: UIWebViewDelegate {
     func webViewDidFinishLoad(_ webView: UIWebView) {
         guard let responseUrl = webView.request?.url, let _ = responseUrl.fragment else { return }
-        authorizationRequest.setAuthorizationResult(url: responseUrl, completion: { authorization in
+        authorizationRequest.setAuthorizationResult(url: responseUrl) { authorization in
             self.authorization = authorization
-        })
+        }
         
         if !(authorization.accessToken == "") {
             performSegue(withIdentifier: "showApp", sender: self)
