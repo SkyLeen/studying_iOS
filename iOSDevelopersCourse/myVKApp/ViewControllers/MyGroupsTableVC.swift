@@ -17,10 +17,7 @@ class MyGroupsTableVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        groupsRequest.getUserGroups(userId: userId, accessToken: accessToken) { [weak self] groups in
-            self?.myGroupsArray = groups
-            self?.tableView.reloadData()
-        }
+        methodRequest()
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -66,17 +63,23 @@ class MyGroupsTableVC: UITableViewController {
         }
         
         groupsRequest.joinGroup(accessToken: accessToken, idGroup: newGroup.idGroup) {
-            self.viewDidLoad()
+            self.methodRequest()
         }
-
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         let idGroup = myGroupsArray[indexPath.row].idGroup
         if editingStyle == .delete {
             groupsRequest.leaveGroup(accessToken: accessToken, idGroup: idGroup) {
-                self.viewDidLoad()
+                self.methodRequest()
             }
+        }
+    }
+    
+    func methodRequest() {
+        groupsRequest.getUserGroups(userId: userId, accessToken: accessToken) { [weak self] groups in
+            self?.myGroupsArray = groups
+            self?.tableView.reloadData()
         }
     }
 }

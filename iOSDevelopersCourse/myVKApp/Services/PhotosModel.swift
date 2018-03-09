@@ -15,7 +15,7 @@ struct Photos {
     
     init(json: JSON) {
         self.idUser = json["owner_id"].intValue
-        self.photos = UIImage(data: try! Data(contentsOf: json["photo_130"].url!)) ?? UIImage(named: "friends")!
+        self.photos = UIImage(data: try! Data(contentsOf: json["photo_130"].url!))!
     }
     
 }

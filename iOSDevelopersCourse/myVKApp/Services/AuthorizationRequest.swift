@@ -32,7 +32,6 @@ class AuthorizationRequest {
         ]
         
         let request = URLRequest(url: urlComponents.url!)
-        
         return request
     }
     

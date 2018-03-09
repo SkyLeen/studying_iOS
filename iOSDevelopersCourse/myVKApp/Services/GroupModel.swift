@@ -19,7 +19,7 @@ struct Group {
         self.idGroup = json["id"].intValue
         self.nameGroup = json["name"].stringValue
         self.followers = json["members_count"].intValue
-        self.photoGroup = UIImage(data: try! Data(contentsOf: json["photo_50"].url!)) ?? UIImage(named: "groups")!
+        self.photoGroup = UIImage(data: try! Data(contentsOf: json["photo_50"].url!))!
     }
     
     init(idGroup: Int, nameGroup: String, followers: Int, photoGroup: UIImage) {

@@ -25,6 +25,6 @@ struct User {
         self.idUser = json["id"].intValue
         self.firstName = json["first_name"].stringValue
         self.lastName = json["last_name"].stringValue
-        self.photo = UIImage(data: try! Data(contentsOf: json["photo_100"].url!)) ?? UIImage(named: "friends")!
+        self.photo = UIImage(data: try! Data(contentsOf: json["photo_100"].url!))!
     }
 }
