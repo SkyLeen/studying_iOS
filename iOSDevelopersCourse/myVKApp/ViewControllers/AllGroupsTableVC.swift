@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import SwiftKeychainWrapper
 
 class AllGroupsTableVC: UITableViewController {
     
-    var accessToken = ""
-    var userId = ""
+    let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")!
+    let userId =  KeychainWrapper.standard.string(forKey: "userId")!
     var groupsRequest = GroupsRequests()
     
     let searchBar = UISearchBar()

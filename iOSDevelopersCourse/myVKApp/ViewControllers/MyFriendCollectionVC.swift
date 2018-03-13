@@ -7,18 +7,19 @@
 //
 
 import UIKit
+import SwiftKeychainWrapper
 
 
 class MyFriendCollectionVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
+    let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")!
+    let userId =  KeychainWrapper.standard.string(forKey: "userId")!
+    var photosRequest = UsersRequests()
+    
     var friendName = String()
     var friendPhotos = [Photos]()
     let interItemSpace: CGFloat = 5
-    
     var friendId = 0
-    var accessToken = ""
-    var userId = ""
-    var photosRequest = UsersRequests()
     
     override func viewDidLoad() {
         super.viewDidLoad()

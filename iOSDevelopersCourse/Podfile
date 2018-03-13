@@ -6,5 +6,6 @@ target 'myVKApp' do
 pod 'Alamofire', '~>4.6.0'
 pod 'SwiftyJSON', '~>4.0'
 pod 'RealmSwift'
+pod 'SwiftKeychainWrapper'
 
 end

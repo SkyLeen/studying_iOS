@@ -12,24 +12,15 @@ class LoginVC: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var loginButton: UIButton!
     
-    let logOut = LogOutRequest()
+    let userDefaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         loginButton.layer.cornerRadius = loginButton.frame.size.height / 2
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
     }
     
     @IBAction func logOut(segue: UIStoryboardSegue) {
-        logOut.logOut()
+        LogOutRequest().logOut()
     }
     
     @IBAction func logIn(_ sender: UIButton) {
@@ -37,16 +28,10 @@ class LoginVC: UIViewController {
     }
     
     func logIn() {
-        let alertController = UIAlertController(title: "Log in", message: "Are you sure you want to log in through VK account?", preferredStyle: .alert)
-        
-        let yesButton = UIAlertAction(title: "Yes", style: .default, handler: { action in
-            self.performSegue(withIdentifier: "showAuthorization", sender: self)
-        })
-        let noButton = UIAlertAction(title: "No", style: .cancel)
-        
-        alertController.addAction(noButton)
-        alertController.addAction(yesButton)
-        
-        present(alertController, animated: true)
+        guard !userDefaults.bool(forKey: "isLogged") else {
+            self.performSegue(withIdentifier: "goToApplication", sender: self)
+            return
+        }
+        self.performSegue(withIdentifier: "showAuthorization", sender: self)
     }
 }

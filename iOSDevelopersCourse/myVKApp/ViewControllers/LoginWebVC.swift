@@ -7,32 +7,18 @@
 //
 
 import WebKit
+import SwiftKeychainWrapper
 
 class LoginWebVC: UIViewController {
 
     @IBOutlet weak var webView: UIWebView!
     
+    let keyChain = KeychainWrapper.standard
     let authorizationRequest = AuthorizationRequest()
-    var authorization = Authorization()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         loadAuthtirozationRequest()
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "showApp" else { return }
-        guard let destVC = segue.destination as? UITabBarController else { return }
-        
-        guard let navVC = destVC.viewControllers?.first as? UINavigationController else { return }
-        guard let friendsVC = navVC.viewControllers.first as? MyFriendsTableVC else { return }
-        friendsVC.accessToken = authorization.accessToken
-        friendsVC.userId = authorization.userId
-        
-        guard let navGroupVC = destVC.viewControllers?[1] as? UINavigationController else { return }
-        guard let groupsVC = navGroupVC.viewControllers.first as? MyGroupsTableVC else { return }
-        groupsVC.accessToken = authorization.accessToken
-        groupsVC.userId = authorization.userId
     }
     
     func loadAuthtirozationRequest() {
@@ -44,11 +30,9 @@ class LoginWebVC: UIViewController {
 extension LoginWebVC: UIWebViewDelegate {
     func webViewDidFinishLoad(_ webView: UIWebView) {
         guard let responseUrl = webView.request?.url, let _ = responseUrl.fragment else { return }
-        authorizationRequest.setAuthorizationResult(url: responseUrl) { authorization in
-            self.authorization = authorization
-        }
+        authorizationRequest.setAuthorizationResult(url: responseUrl)
         
-        if !(authorization.accessToken == "") {
+        if !(keyChain.string(forKey: "accessToken") == "") {
             performSegue(withIdentifier: "showApp", sender: self)
         } else {
             performSegue(withIdentifier: "exit", sender: self)

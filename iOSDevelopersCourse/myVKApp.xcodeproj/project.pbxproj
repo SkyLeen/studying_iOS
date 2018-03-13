@@ -27,7 +27,6 @@
 		04D21945204A8DF3001E5B26 /* AuthorizationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D21944204A8DF3001E5B26 /* AuthorizationRequest.swift */; };
 		04D21947204AA716001E5B26 /* LoginWebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D21946204AA716001E5B26 /* LoginWebVC.swift */; };
 		04D2194B204B0AF6001E5B26 /* GroupsRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D2194A204B0AF6001E5B26 /* GroupsRequests.swift */; };
-		04D21950204B2754001E5B26 /* AuthorizationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D2194F204B2754001E5B26 /* AuthorizationModel.swift */; };
 		04D37E6B20381B1100F958AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D37E6A20381B1100F958AF /* AppDelegate.swift */; };
 		04D37E7020381B1100F958AF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04D37E6E20381B1100F958AF /* Main.storyboard */; };
 		04D37E7D2038445C00F958AF /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D37E7C2038445C00F958AF /* LoginVC.swift */; };
@@ -56,7 +55,6 @@
 		04D21944204A8DF3001E5B26 /* AuthorizationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationRequest.swift; sourceTree = "<group>"; };
 		04D21946204AA716001E5B26 /* LoginWebVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWebVC.swift; sourceTree = "<group>"; };
 		04D2194A204B0AF6001E5B26 /* GroupsRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupsRequests.swift; sourceTree = "<group>"; };
-		04D2194F204B2754001E5B26 /* AuthorizationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationModel.swift; sourceTree = "<group>"; };
 		04D37E6720381B1100F958AF /* myVKApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myVKApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04D37E6A20381B1100F958AF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04D37E6F20381B1100F958AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -83,7 +81,6 @@
 		0490991D2056F4D7009C784A /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				04D2194F204B2754001E5B26 /* AuthorizationModel.swift */,
 				049CEBA22051AF28007ED7C2 /* UserModel.swift */,
 				049CEBA42051D558007ED7C2 /* PhotosModel.swift */,
 				049CEBA62051E3D5007ED7C2 /* GroupModel.swift */,
@@ -279,6 +276,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftKeychainWrapper/SwiftKeychainWrapper.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -286,6 +284,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftKeychainWrapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -330,7 +329,6 @@
 				0416316A20415FF600446639 /* MyFriendCollectionViewCell.swift in Sources */,
 				04163170204202F100446639 /* AllGroupsTableVC.swift in Sources */,
 				04163175204203E400446639 /* AllGroupsViewCell.swift in Sources */,
-				04D21950204B2754001E5B26 /* AuthorizationModel.swift in Sources */,
 				0416317A2042133500446639 /* SettingsTableVC.swift in Sources */,
 				04D21945204A8DF3001E5B26 /* AuthorizationRequest.swift in Sources */,
 				0490992020580A05009C784A /* UsersRequests.swift in Sources */,

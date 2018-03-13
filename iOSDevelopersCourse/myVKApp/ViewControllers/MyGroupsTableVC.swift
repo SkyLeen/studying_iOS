@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import SwiftKeychainWrapper
 
 class MyGroupsTableVC: UITableViewController {
 
-    var accessToken = ""
-    var userId = ""
+    let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")!
+    let userId =  KeychainWrapper.standard.string(forKey: "userId")!
     var groupsRequest = GroupsRequests()
+    
     var myGroupsArray = [Group]()
     
     override func viewDidLoad() {
@@ -29,13 +31,6 @@ class MyGroupsTableVC: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath) as! MyGroupsViewCell
         cell.group = myGroupsArray[indexPath.row]
         return cell
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "showAllGroups" else { return }
-        guard let destinationVC = segue.destination as? AllGroupsTableVC else { return }
-        destinationVC.accessToken = accessToken
-        destinationVC.userId = userId
     }
     
     @IBAction func addNewGroupPressed(_ sender: UIBarButtonItem) {
@@ -61,21 +56,21 @@ class MyGroupsTableVC: UITableViewController {
             return
         }
         
-        groupsRequest.joinGroup(accessToken: accessToken, idGroup: newGroup.idGroup) {
-            self.getUserGroups()
+        groupsRequest.joinGroup(accessToken: accessToken, idGroup: newGroup.idGroup) { [weak self] in
+            self?.getUserGroups()
         }
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         let idGroup = myGroupsArray[indexPath.row].idGroup
         if editingStyle == .delete {
-            groupsRequest.leaveGroup(accessToken: accessToken, idGroup: idGroup) {
-                self.getUserGroups()
+            groupsRequest.leaveGroup(accessToken: accessToken, idGroup: idGroup) { [weak self] in
+                self?.getUserGroups()
             }
         }
     }
     
-    func getUserGroups() {
+    private func getUserGroups() {
         groupsRequest.getUserGroups(userId: userId, accessToken: accessToken) { [weak self] groups in
             self?.myGroupsArray = groups
             DispatchQueue.main.async {
