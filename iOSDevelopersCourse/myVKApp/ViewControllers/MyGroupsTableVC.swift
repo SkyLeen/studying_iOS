@@ -17,7 +17,7 @@ class MyGroupsTableVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        methodRequest()
+        getUserGroups()
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -27,8 +27,7 @@ class MyGroupsTableVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath) as! MyGroupsViewCell
-        cell.myGroupNameLabel.text = myGroupsArray[indexPath.row].nameGroup
-        cell.myGroupImageView.image = myGroupsArray[indexPath.row].photoGroup
+        cell.group = myGroupsArray[indexPath.row]
         return cell
     }
     
@@ -63,7 +62,7 @@ class MyGroupsTableVC: UITableViewController {
         }
         
         groupsRequest.joinGroup(accessToken: accessToken, idGroup: newGroup.idGroup) {
-            self.methodRequest()
+            self.getUserGroups()
         }
     }
     
@@ -71,15 +70,17 @@ class MyGroupsTableVC: UITableViewController {
         let idGroup = myGroupsArray[indexPath.row].idGroup
         if editingStyle == .delete {
             groupsRequest.leaveGroup(accessToken: accessToken, idGroup: idGroup) {
-                self.methodRequest()
+                self.getUserGroups()
             }
         }
     }
     
-    func methodRequest() {
+    func getUserGroups() {
         groupsRequest.getUserGroups(userId: userId, accessToken: accessToken) { [weak self] groups in
             self?.myGroupsArray = groups
-            self?.tableView.reloadData()
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
         }
     }
 }

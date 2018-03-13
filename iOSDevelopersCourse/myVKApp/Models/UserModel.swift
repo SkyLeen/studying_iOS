@@ -10,10 +10,11 @@ import Foundation
 import SwiftyJSON
 
 struct User {
+    
     var idUser: Int = 0
     private var firstName: String = ""
     private var lastName: String = ""
-    var photo: UIImage = UIImage(named: "friends")!
+    var photoUrl: URL?
     var name: String {
         get {
             let last = lastName == "" ? firstName : lastName
@@ -22,9 +23,9 @@ struct User {
     }
     
     init(json: JSON) {
-        self.idUser = json["id"].intValue
-        self.firstName = json["first_name"].stringValue
-        self.lastName = json["last_name"].stringValue
-        self.photo = UIImage(data: try! Data(contentsOf: json["photo_100"].url!))!
+        idUser = json["id"].intValue
+        firstName = json["first_name"].stringValue
+        lastName = json["last_name"].stringValue
+        photoUrl = json["photo_100"].url
     }
 }

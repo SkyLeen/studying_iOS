@@ -10,12 +10,13 @@ import Foundation
 import SwiftyJSON
 
 struct Photos {
+    
     var idUser: Int = 0
-    var photos: UIImage = UIImage(named: "friends")!
+    var photoUrl: URL?
     
     init(json: JSON) {
-        self.idUser = json["owner_id"].intValue
-        self.photos = UIImage(data: try! Data(contentsOf: json["photo_130"].url!))!
+        idUser = json["owner_id"].intValue
+        photoUrl = json["photo_130"].url
     }
     
 }

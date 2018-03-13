@@ -10,22 +10,23 @@ import Foundation
 import SwiftyJSON
 
 struct Group {
+    
     var idGroup: Int = 0
     var nameGroup: String = ""
     var followers: Int = 0
-    var photoGroup: UIImage = UIImage(named: "groups")!
+    var photoGroupUrl: URL?
     
     init(json: JSON) {
-        self.idGroup = json["id"].intValue
-        self.nameGroup = json["name"].stringValue
-        self.followers = json["members_count"].intValue
-        self.photoGroup = UIImage(data: try! Data(contentsOf: json["photo_50"].url!))!
+        idGroup = json["id"].intValue
+        nameGroup = json["name"].stringValue
+        followers = json["members_count"].intValue
+        photoGroupUrl = json["photo_50"].url
     }
     
-    init(idGroup: Int, nameGroup: String, followers: Int, photoGroup: UIImage) {
+    init(idGroup: Int, nameGroup: String, followers: Int, photoGroup: URL?) {
         self.idGroup = idGroup
         self.nameGroup = nameGroup
         self.followers = followers
-        self.photoGroup = photoGroup
+        self.photoGroupUrl = photoGroup
     }
 }

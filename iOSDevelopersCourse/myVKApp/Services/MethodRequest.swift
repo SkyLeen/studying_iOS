@@ -32,6 +32,7 @@ class MethodRequest {
                 completion(users)
             case .failure(let error):
                 print(error)
+                completion([])
             }
         }
     }
@@ -55,6 +56,7 @@ class MethodRequest {
                 completion(photos)
             case .failure(let error):
                 print(error)
+                completion([])
             }
         }
     }
@@ -77,6 +79,7 @@ class MethodRequest {
                 completion(groups)
             case .failure(let error):
                 print(error)
+                completion([])
             }
         }
     }
@@ -98,6 +101,7 @@ class MethodRequest {
                 completion(groups)
             case .failure(let error):
                 print(error)
+                completion([])
             }
         }
     }
@@ -120,6 +124,7 @@ class MethodRequest {
                 completion(groups)
             case .failure(let error):
                 print(error)
+                completion([])
             }
         }
     }
@@ -140,6 +145,7 @@ class MethodRequest {
                 completion()
             case .failure(let error):
                 print(error)
+                completion()
             }
         }
     }
@@ -160,6 +166,7 @@ class MethodRequest {
                 completion()
             case .failure(let error):
                 print(error)
+                completion()
             }
         }
     }

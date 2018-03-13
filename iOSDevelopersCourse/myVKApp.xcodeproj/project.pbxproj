@@ -78,6 +78,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0490991D2056F4D7009C784A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				04D2194F204B2754001E5B26 /* AuthorizationModel.swift */,
+				049CEBA22051AF28007ED7C2 /* UserModel.swift */,
+				049CEBA42051D558007ED7C2 /* PhotosModel.swift */,
+				049CEBA62051E3D5007ED7C2 /* GroupModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		04D2193B20486CEB001E5B26 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -109,11 +120,7 @@
 			children = (
 				041631762042109300446639 /* Helpers.swift */,
 				04D21944204A8DF3001E5B26 /* AuthorizationRequest.swift */,
-				04D2194F204B2754001E5B26 /* AuthorizationModel.swift */,
 				04D2194A204B0AF6001E5B26 /* MethodRequest.swift */,
-				049CEBA22051AF28007ED7C2 /* UserModel.swift */,
-				049CEBA42051D558007ED7C2 /* PhotosModel.swift */,
-				049CEBA62051E3D5007ED7C2 /* GroupModel.swift */,
 				0445CD6B2052656900D48551 /* LogOutRequest.swift */,
 			);
 			path = Services;
@@ -140,6 +147,7 @@
 		04D37E6920381B1100F958AF /* myVKApp */ = {
 			isa = PBXGroup;
 			children = (
+				0490991D2056F4D7009C784A /* Models */,
 				04D2193D20486D16001E5B26 /* Services */,
 				04D2193C20486D0B001E5B26 /* Cells */,
 				04D2193B20486CEB001E5B26 /* ViewControllers */,

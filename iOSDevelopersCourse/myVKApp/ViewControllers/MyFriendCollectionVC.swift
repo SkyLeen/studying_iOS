@@ -24,7 +24,9 @@ class MyFriendCollectionVC: UICollectionViewController, UICollectionViewDelegate
         super.viewDidLoad()
         photosRequest.getFriendPhotos(userId: userId, accessToken: accessToken, friendId: friendId) { [weak self] photos in
             self?.friendPhotos = photos
-            self?.collectionView?.reloadData()
+            DispatchQueue.main.async {
+                self?.collectionView?.reloadData()
+            }
         }
         navigationItem.title = friendName 
     }
@@ -36,7 +38,7 @@ class MyFriendCollectionVC: UICollectionViewController, UICollectionViewDelegate
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FriendPhotoCell", for: indexPath) as! MyFriendCollectionViewCell
     
-        cell.myFriendPhoto.image = friendPhotos[indexPath.row].photos
+        cell.photo = friendPhotos[indexPath.row]
     
         return cell
     }

@@ -25,7 +25,9 @@ class AllGroupsTableVC: UITableViewController {
         
         groupsRequest.getAllGroups(accessToken: accessToken) { [weak self] groups in
             self?.allGroupsArray = groups
-            self?.tableView.reloadData()
+            DispatchQueue.main.async {
+                 self?.tableView.reloadData()
+            }
         }
     }
 
@@ -37,13 +39,9 @@ class AllGroupsTableVC: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewGroupCell", for: indexPath) as! AllGroupsViewCell
         if isSearching {
-            cell.allGroupNameLabel.text = filteredArray[indexPath.row].nameGroup
-            cell.allGroupImageView.image = filteredArray[indexPath.row].photoGroup
-            cell.allGroupFollowersCountLabel.text = "\(filteredArray[indexPath.row].followers) followers"
+            cell.group = filteredArray[indexPath.row]
         } else {
-            cell.allGroupNameLabel.text = allGroupsArray[indexPath.row].nameGroup
-            cell.allGroupImageView.image = allGroupsArray[indexPath.row].photoGroup
-            cell.allGroupFollowersCountLabel.text = "\(allGroupsArray[indexPath.row].followers) followers"
+            cell.group = allGroupsArray[indexPath.row]
         }
         return cell
     }
@@ -52,7 +50,7 @@ class AllGroupsTableVC: UITableViewController {
         searchBar.endEditing(true)
     }
     
-    func createSearchBar() {
+    private func createSearchBar() {
         searchBar.barTintColor = .white
         searchBar.tintColor = .white
         searchBar.showsCancelButton = true
@@ -65,6 +63,7 @@ class AllGroupsTableVC: UITableViewController {
 }
 
 extension AllGroupsTableVC: UISearchBarDelegate {
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchBar.text == nil || searchBar.text == "" {
             isSearching = false
@@ -72,10 +71,11 @@ extension AllGroupsTableVC: UISearchBarDelegate {
             tableView.reloadData()
         } else {
             isSearching = true
-            
             groupsRequest.getGroupsSearch(accessToken: accessToken, searchText: searchText.lowercased()) { [weak self] groups in
                 self?.filteredArray = groups
-                self?.tableView.reloadData()
+                DispatchQueue.main.async {
+                    self?.tableView.reloadData()
+                }
             }
         }
     }

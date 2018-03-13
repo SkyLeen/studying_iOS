@@ -10,10 +10,34 @@ import UIKit
 
 class MyFriendCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var myFriendPhoto: UIImageView!
+    @IBOutlet private weak var myFriendPhoto: UIImageView!
+    
+    var task: URLSessionTask?
+    var photo: Photos? {
+        didSet {
+           getUserPhotos()
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         ImageSettingsHelper().setImageLayersSettings(for: myFriendPhoto, mode: .forPhotos)
+    }
+    
+    private func getUserPhotos() {
+        myFriendPhoto.image = nil
+        task?.cancel()
+        task = nil
+        guard let url = photo?.photoUrl else { return }
+        task = URLSession.shared.dataTask(with: url) { (data, response,_) in
+            guard let data = data else { return }
+            let image = UIImage(data: data)
+            DispatchQueue.main.async { [weak self] in
+                guard let s = self else { return }
+                guard s.photo?.photoUrl == response?.url else { return }
+                s.myFriendPhoto.image = image
+            }
+        }
+        task?.resume()
     }
 }

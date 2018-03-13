@@ -9,8 +9,8 @@
 import UIKit
 
 struct SectionObjects {
-    var sectionName : Character
-    var sectionObjects : [User]
+    var section: Character
+    var users: [User]
 }
 
 class MyFriendsTableVC: UITableViewController {
@@ -29,7 +29,9 @@ class MyFriendsTableVC: UITableViewController {
         friendsRequest.getFrendsList(userId: userId, accessToken: accessToken) { [weak self] friends in
             self?.myFriendsArray = friends
             self?.getSectionObjects()
-            self?.tableView.reloadData()
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
         }
     }
     
@@ -44,14 +46,13 @@ class MyFriendsTableVC: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let sectionRowsCount = sectionObjectArray[section].sectionObjects.count
+        let sectionRowsCount = sectionObjectArray[section].users.count
         return sectionRowsCount
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FriendCell", for: indexPath) as! MyFriendsViewCell
-        cell.friendNameLabel.text = sectionObjectArray[indexPath.section].sectionObjects[indexPath.row].name
-        cell.friendImageView.image = sectionObjectArray[indexPath.section].sectionObjects[indexPath.row].photo
+        cell.user = sectionObjectArray[indexPath.section].users[indexPath.row]
         return cell
     }
  
@@ -64,10 +65,10 @@ class MyFriendsTableVC: UITableViewController {
         guard let destinationVC = segue.destination as? MyFriendCollectionVC else { return }
         guard let friend = sender as? IndexPath else { return }
         
-        destinationVC.friendName = sectionObjectArray[friend.section].sectionObjects[friend.row].name
+        destinationVC.friendName = sectionObjectArray[friend.section].users[friend.row].name
         destinationVC.accessToken = accessToken
         destinationVC.userId = userId
-        destinationVC.friendId = sectionObjectArray[friend.section].sectionObjects[friend.row].idUser
+        destinationVC.friendId = sectionObjectArray[friend.section].users[friend.row].idUser
     }
     
     private func getInitialsArray() {
@@ -84,7 +85,7 @@ class MyFriendsTableVC: UITableViewController {
        
         for initial in myFriendsInitialsArray {
             let names: [User] = myFriendsArray.filter({ $0.name.first! == initial })
-            sectionObjectArray.append(SectionObjects(sectionName: initial, sectionObjects: names.sorted(by: { $0.name < $1.name })))
+            sectionObjectArray.append(SectionObjects(section: initial, users: names.sorted(by: { $0.name < $1.name })))
         }
     }
 }
