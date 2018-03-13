@@ -12,7 +12,7 @@ class AllGroupsTableVC: UITableViewController {
     
     var accessToken = ""
     var userId = ""
-    var groupsRequest = MethodRequest()
+    var groupsRequest = GroupsRequests()
     
     let searchBar = UISearchBar()
     var allGroupsArray = [Group]()

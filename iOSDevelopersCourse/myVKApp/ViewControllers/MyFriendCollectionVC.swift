@@ -18,7 +18,7 @@ class MyFriendCollectionVC: UICollectionViewController, UICollectionViewDelegate
     var friendId = 0
     var accessToken = ""
     var userId = ""
-    var photosRequest = MethodRequest()
+    var photosRequest = UsersRequests()
     
     override func viewDidLoad() {
         super.viewDidLoad()

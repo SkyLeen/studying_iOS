@@ -20,12 +20,13 @@
 		0416317A2042133500446639 /* SettingsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041631792042133500446639 /* SettingsTableVC.swift */; };
 		0416317C204213AA00446639 /* SettingsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0416317B204213AA00446639 /* SettingsViewCell.swift */; };
 		0445CD6C2052656900D48551 /* LogOutRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0445CD6B2052656900D48551 /* LogOutRequest.swift */; };
+		0490992020580A05009C784A /* UsersRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0490991F20580A05009C784A /* UsersRequests.swift */; };
 		049CEBA32051AF28007ED7C2 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CEBA22051AF28007ED7C2 /* UserModel.swift */; };
 		049CEBA52051D558007ED7C2 /* PhotosModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CEBA42051D558007ED7C2 /* PhotosModel.swift */; };
 		049CEBA72051E3D5007ED7C2 /* GroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CEBA62051E3D5007ED7C2 /* GroupModel.swift */; };
 		04D21945204A8DF3001E5B26 /* AuthorizationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D21944204A8DF3001E5B26 /* AuthorizationRequest.swift */; };
 		04D21947204AA716001E5B26 /* LoginWebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D21946204AA716001E5B26 /* LoginWebVC.swift */; };
-		04D2194B204B0AF6001E5B26 /* MethodRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D2194A204B0AF6001E5B26 /* MethodRequest.swift */; };
+		04D2194B204B0AF6001E5B26 /* GroupsRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D2194A204B0AF6001E5B26 /* GroupsRequests.swift */; };
 		04D21950204B2754001E5B26 /* AuthorizationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D2194F204B2754001E5B26 /* AuthorizationModel.swift */; };
 		04D37E6B20381B1100F958AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D37E6A20381B1100F958AF /* AppDelegate.swift */; };
 		04D37E7020381B1100F958AF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04D37E6E20381B1100F958AF /* Main.storyboard */; };
@@ -48,12 +49,13 @@
 		041631792042133500446639 /* SettingsTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableVC.swift; sourceTree = "<group>"; };
 		0416317B204213AA00446639 /* SettingsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewCell.swift; sourceTree = "<group>"; };
 		0445CD6B2052656900D48551 /* LogOutRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOutRequest.swift; sourceTree = "<group>"; };
+		0490991F20580A05009C784A /* UsersRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersRequests.swift; sourceTree = "<group>"; };
 		049CEBA22051AF28007ED7C2 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		049CEBA42051D558007ED7C2 /* PhotosModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosModel.swift; sourceTree = "<group>"; };
 		049CEBA62051E3D5007ED7C2 /* GroupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupModel.swift; sourceTree = "<group>"; };
 		04D21944204A8DF3001E5B26 /* AuthorizationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationRequest.swift; sourceTree = "<group>"; };
 		04D21946204AA716001E5B26 /* LoginWebVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWebVC.swift; sourceTree = "<group>"; };
-		04D2194A204B0AF6001E5B26 /* MethodRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MethodRequest.swift; sourceTree = "<group>"; };
+		04D2194A204B0AF6001E5B26 /* GroupsRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupsRequests.swift; sourceTree = "<group>"; };
 		04D2194F204B2754001E5B26 /* AuthorizationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationModel.swift; sourceTree = "<group>"; };
 		04D37E6720381B1100F958AF /* myVKApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myVKApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04D37E6A20381B1100F958AF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -120,7 +122,8 @@
 			children = (
 				041631762042109300446639 /* Helpers.swift */,
 				04D21944204A8DF3001E5B26 /* AuthorizationRequest.swift */,
-				04D2194A204B0AF6001E5B26 /* MethodRequest.swift */,
+				0490991F20580A05009C784A /* UsersRequests.swift */,
+				04D2194A204B0AF6001E5B26 /* GroupsRequests.swift */,
 				0445CD6B2052656900D48551 /* LogOutRequest.swift */,
 			);
 			path = Services;
@@ -274,11 +277,15 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-myVKApp/Pods-myVKApp-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -318,7 +325,7 @@
 				0416316420415E5000446639 /* MyFriendsViewCell.swift in Sources */,
 				041631772042109300446639 /* Helpers.swift in Sources */,
 				0416316C2042016500446639 /* MyGroupsTableVC.swift in Sources */,
-				04D2194B204B0AF6001E5B26 /* MethodRequest.swift in Sources */,
+				04D2194B204B0AF6001E5B26 /* GroupsRequests.swift in Sources */,
 				04D37E7D2038445C00F958AF /* LoginVC.swift in Sources */,
 				0416316A20415FF600446639 /* MyFriendCollectionViewCell.swift in Sources */,
 				04163170204202F100446639 /* AllGroupsTableVC.swift in Sources */,
@@ -326,6 +333,7 @@
 				04D21950204B2754001E5B26 /* AuthorizationModel.swift in Sources */,
 				0416317A2042133500446639 /* SettingsTableVC.swift in Sources */,
 				04D21945204A8DF3001E5B26 /* AuthorizationRequest.swift in Sources */,
+				0490992020580A05009C784A /* UsersRequests.swift in Sources */,
 				049CEBA32051AF28007ED7C2 /* UserModel.swift in Sources */,
 				049CEBA52051D558007ED7C2 /* PhotosModel.swift in Sources */,
 				0416316620415EDE00446639 /* MyFriendsTableVC.swift in Sources */,

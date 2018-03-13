@@ -17,7 +17,7 @@ class MyFriendsTableVC: UITableViewController {
     
     var accessToken = ""
     var userId = ""
-    var friendsRequest = MethodRequest()
+    var friendsRequest = UsersRequests()
     var myFriendsArray = [User]()
     
     var myFriendsInitialsArray = [Character]()

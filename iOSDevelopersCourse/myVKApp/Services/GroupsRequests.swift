@@ -9,57 +9,12 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
+import RealmSwift
 
-class MethodRequest {
+class GroupsRequests {
+
     let baseUrl = "https://api.vk.com"
     let path = "/method"
-    
-    func getFrendsList(userId: String, accessToken: String, completion: @escaping ([User]) -> ()) {
-        let pathMethod = "/friends.get"
-        let url = baseUrl + path + pathMethod
-        let parameters: Parameters = [
-            "user_id":userId,
-            "access_token":accessToken,
-            "order":"name",
-            "fields": "uid, first_name, last_name, photo_100",
-            "v":"5.73"
-        ]
-        
-        Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON { response in
-            switch response.result {
-            case .success(let value):
-                let users = JSON(value)["response"]["items"].flatMap({ User(json: $0.1) })
-                completion(users)
-            case .failure(let error):
-                print(error)
-                completion([])
-            }
-        }
-    }
-    
-    func getFriendPhotos(userId: String, accessToken: String, friendId: Int, completion: @escaping ([Photos]) -> ()) {
-        let pathMethod = "/photos.get"
-        let url = baseUrl + path + pathMethod
-        let parameters: Parameters = [
-            "user_id":userId,
-            "access_token":accessToken,
-            "owner_id":friendId,
-            "album_id":"wall",
-            "rev":"1",
-            "v":"5.73"
-        ]
-        
-        Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON { response in
-            switch response.result {
-            case .success(let value):
-                let photos = JSON(value)["response"]["items"].flatMap({ Photos(json: $0.1) })
-                completion(photos)
-            case .failure(let error):
-                print(error)
-                completion([])
-            }
-        }
-    }
     
     func getUserGroups(userId: String, accessToken: String, completion: @escaping ([Group]) -> ()) {
         let pathMethod = "/groups.get"
@@ -72,10 +27,11 @@ class MethodRequest {
             "v":"5.73"
         ]
         
-        Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON { response in
+        Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON { [weak self] response in
             switch response.result {
             case .success(let value):
                 let groups = JSON(value)["response"]["items"].flatMap({ Group(json: $0.1) })
+                self?.saveUserData(groups: groups)
                 completion(groups)
             case .failure(let error):
                 print(error)
@@ -94,10 +50,11 @@ class MethodRequest {
             "v":"5.73"
         ]
         
-        Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON { response in
+        Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON { [weak self] response in
             switch response.result {
             case .success(let value):
                 let groups = JSON(value)["response"]["items"].flatMap({ Group(json: $0.1) })
+                self?.saveUserData(groups: groups)
                 completion(groups)
             case .failure(let error):
                 print(error)
@@ -117,10 +74,11 @@ class MethodRequest {
             "v":"5.73"
         ]
         
-        Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON { response in
+        Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON { [weak self] response in
             switch response.result {
             case .success(let value):
                 let groups = JSON(value)["response"]["items"].flatMap({ Group(json: $0.1) })
+                self?.saveUserData(groups: groups)
                 completion(groups)
             case .failure(let error):
                 print(error)
@@ -171,4 +129,14 @@ class MethodRequest {
         }
     }
     
+    private func saveUserData(groups: [Group]) {
+        do {
+            let realm = try Realm()
+            realm.beginWrite()
+            realm.add(groups)
+            try realm.commitWrite()
+        } catch {
+            print(error)
+        }
+    }
 }

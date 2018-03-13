@@ -30,15 +30,15 @@ class MyFriendsViewCell: UITableViewCell {
         task?.cancel()
         task = nil
         friendNameLabel.text = user?.name
-        guard let url = user?.photoUrl else { return }
+        guard let url = URL(string: (user?.photoUrl)!) else { return }
         task = URLSession.shared.dataTask(with: url) { (data, response, _) in
             guard let data = data else { return }
             let image = UIImage(data: data)
             DispatchQueue.main.async { [weak self] in
                 guard let s = self else { return }
-                guard s.user?.photoUrl == response?.url else { return }
+                guard URL(string: (s.user?.photoUrl)!) == response?.url else { return }
                 s.friendImageView.image = image
-            }
+                }
         }
         task?.resume()
     }

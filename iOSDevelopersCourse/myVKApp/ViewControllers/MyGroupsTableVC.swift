@@ -12,7 +12,7 @@ class MyGroupsTableVC: UITableViewController {
 
     var accessToken = ""
     var userId = ""
-    var groupsRequest = MethodRequest()
+    var groupsRequest = GroupsRequests()
     var myGroupsArray = [Group]()
     
     override func viewDidLoad() {
