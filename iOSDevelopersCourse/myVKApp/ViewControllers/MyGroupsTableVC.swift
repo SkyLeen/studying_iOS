@@ -11,8 +11,8 @@ import SwiftKeychainWrapper
 
 class MyGroupsTableVC: UITableViewController {
 
-    let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")!
-    let userId =  KeychainWrapper.standard.string(forKey: "userId")!
+    let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")
+    let userId =  KeychainWrapper.standard.string(forKey: "userId")
     var groupsRequest = GroupsRequests()
     
     var myGroupsArray = [Group]()
@@ -56,7 +56,7 @@ class MyGroupsTableVC: UITableViewController {
             return
         }
         
-        groupsRequest.joinGroup(accessToken: accessToken, idGroup: newGroup.idGroup) { [weak self] in
+        groupsRequest.joinGroup(accessToken: accessToken!, idGroup: newGroup.idGroup) { [weak self] in
             self?.getUserGroups()
         }
     }
@@ -64,14 +64,14 @@ class MyGroupsTableVC: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         let idGroup = myGroupsArray[indexPath.row].idGroup
         if editingStyle == .delete {
-            groupsRequest.leaveGroup(accessToken: accessToken, idGroup: idGroup) { [weak self] in
+            groupsRequest.leaveGroup(accessToken: accessToken!, idGroup: idGroup) { [weak self] in
                 self?.getUserGroups()
             }
         }
     }
     
     private func getUserGroups() {
-        groupsRequest.getUserGroups(userId: userId, accessToken: accessToken) { [weak self] groups in
+        groupsRequest.getUserGroups(userId: userId!, accessToken: accessToken!) { [weak self] groups in
             self?.myGroupsArray = groups
             DispatchQueue.main.async {
                 self?.tableView.reloadData()

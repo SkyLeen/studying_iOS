@@ -14,8 +14,16 @@ class LoginVC: UIViewController {
     
     let userDefaults = UserDefaults.standard
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        guard userDefaults.bool(forKey: "isLogged") else { return }
+        self.performSegue(withIdentifier: "missAuthorization", sender: self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         loginButton.layer.cornerRadius = loginButton.frame.size.height / 2
     }
     
@@ -24,14 +32,6 @@ class LoginVC: UIViewController {
     }
     
     @IBAction func logIn(_ sender: UIButton) {
-        logIn()
-    }
-    
-    func logIn() {
-        guard !userDefaults.bool(forKey: "isLogged") else {
-            self.performSegue(withIdentifier: "goToApplication", sender: self)
-            return
-        }
         self.performSegue(withIdentifier: "showAuthorization", sender: self)
     }
 }

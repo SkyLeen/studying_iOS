@@ -11,8 +11,8 @@ import SwiftKeychainWrapper
 
 class AllGroupsTableVC: UITableViewController {
     
-    let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")!
-    let userId =  KeychainWrapper.standard.string(forKey: "userId")!
+    let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")
+    let userId =  KeychainWrapper.standard.string(forKey: "userId")
     var groupsRequest = GroupsRequests()
     
     let searchBar = UISearchBar()
@@ -24,7 +24,7 @@ class AllGroupsTableVC: UITableViewController {
         super.viewDidLoad()
         createSearchBar()
         
-        groupsRequest.getAllGroups(accessToken: accessToken) { [weak self] groups in
+        groupsRequest.getAllGroups(accessToken: accessToken!) { [weak self] groups in
             self?.allGroupsArray = groups
             DispatchQueue.main.async {
                  self?.tableView.reloadData()
@@ -72,7 +72,7 @@ extension AllGroupsTableVC: UISearchBarDelegate {
             tableView.reloadData()
         } else {
             isSearching = true
-            groupsRequest.getGroupsSearch(accessToken: accessToken, searchText: searchText.lowercased()) { [weak self] groups in
+            groupsRequest.getGroupsSearch(accessToken: accessToken!, searchText: searchText.lowercased()) { [weak self] groups in
                 self?.filteredArray = groups
                 DispatchQueue.main.async {
                     self?.tableView.reloadData()

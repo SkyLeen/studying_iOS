@@ -12,8 +12,8 @@ import SwiftKeychainWrapper
 
 class MyFriendCollectionVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
-    let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")!
-    let userId =  KeychainWrapper.standard.string(forKey: "userId")!
+    let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")
+    let userId =  KeychainWrapper.standard.string(forKey: "userId")
     var photosRequest = UsersRequests()
     
     var friendName = String()
@@ -23,7 +23,7 @@ class MyFriendCollectionVC: UICollectionViewController, UICollectionViewDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        photosRequest.getFriendPhotos(userId: userId, accessToken: accessToken, friendId: friendId) { [weak self] photos in
+        photosRequest.getFriendPhotos(userId: userId!, accessToken: accessToken!, friendId: friendId) { [weak self] photos in
             self?.friendPhotos = photos
             DispatchQueue.main.async {
                 self?.collectionView?.reloadData()

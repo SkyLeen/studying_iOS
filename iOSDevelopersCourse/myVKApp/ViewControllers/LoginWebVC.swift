@@ -32,7 +32,7 @@ extension LoginWebVC: UIWebViewDelegate {
         guard let responseUrl = webView.request?.url, let _ = responseUrl.fragment else { return }
         authorizationRequest.setAuthorizationResult(url: responseUrl)
         
-        if !(keyChain.string(forKey: "accessToken") == "") {
+        if !(keyChain.string(forKey: "accessToken") == nil) {
             performSegue(withIdentifier: "showApp", sender: self)
         } else {
             performSegue(withIdentifier: "exit", sender: self)

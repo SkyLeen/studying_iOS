@@ -16,8 +16,8 @@ struct SectionObjects {
 
 class MyFriendsTableVC: UITableViewController {
     
-    let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")!
-    let userId =  KeychainWrapper.standard.string(forKey: "userId")!
+    let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")
+    let userId =  KeychainWrapper.standard.string(forKey: "userId")
     var friendsRequest = UsersRequests()
     
     var myFriendsArray = [User]()
@@ -27,7 +27,7 @@ class MyFriendsTableVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        
-        friendsRequest.getFrendsList(userId: userId, accessToken: accessToken) { [weak self] friends in
+        friendsRequest.getFrendsList(userId: userId!, accessToken: accessToken!) { [weak self] friends in
             self?.myFriendsArray = friends
             self?.getSectionObjects()
             DispatchQueue.main.async {
