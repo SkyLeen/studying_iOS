@@ -12,7 +12,7 @@ import RealmSwift
 
 class User: Object {
     
-    @objc dynamic var idUser: Int = 0
+    @objc dynamic var idUser: String = ""
     
     var friends = List<Friend>()
     var groups = List<Group>()
@@ -21,7 +21,7 @@ class User: Object {
         return "idUser"
     }
     
-    convenience init(idUser: Int) {
+    convenience init(idUser: String) {
         self.init()
         self.idUser = idUser
     }

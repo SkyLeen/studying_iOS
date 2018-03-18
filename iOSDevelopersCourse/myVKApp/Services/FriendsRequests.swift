@@ -31,7 +31,7 @@ class FriendsRequests {
             switch response.result {
             case .success(let value):
                 let users = JSON(value)["response"]["items"].flatMap({ Friend(json: $0.1) })
-                self.loadFriendsData(friends: users, userId: Int(userId)!, accessToken: accessToken)
+                self.loadFriendsData(friends: users, userId: userId, accessToken: accessToken)
                 completion()
             case .failure(let error):
                 print(error)
@@ -65,7 +65,7 @@ class FriendsRequests {
         }
     }
     
-    private func loadFriendsData(friends: [Friend], userId: Int, accessToken: String) {
+    private func loadFriendsData(friends: [Friend], userId: String, accessToken: String) {
         do {
             let realm = try Realm()
             let user = realm.object(ofType: User.self, forPrimaryKey: userId)

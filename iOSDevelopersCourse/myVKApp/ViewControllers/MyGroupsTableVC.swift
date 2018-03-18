@@ -80,7 +80,7 @@ class MyGroupsTableVC: UITableViewController {
     private func loadGroupsData() {
         do {
             let realm = try Realm()
-            let groups = realm.objects(Group.self).filter("userId == %@", Int(userId!)!)
+            let groups = realm.objects(Group.self).filter("userId == %@", userId!)
             myGroupsArray = Array(groups)
         } catch {
             print(error.localizedDescription)

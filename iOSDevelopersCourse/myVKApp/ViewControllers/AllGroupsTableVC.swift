@@ -60,11 +60,16 @@ class AllGroupsTableVC: UITableViewController {
         navigationItem.titleView = searchBar
     }
     
-    private func loadGroupsData() {
+    private func loadGroupsData(filter: String = "") {
         do {
             let realm = try Realm()
-            let groups = realm.objects(Group.self).filter("userId == %@", 0)
-            allGroupsArray = Array(groups)
+            let groups = realm.objects(Group.self).filter("userId == %@", "")
+            switch isSearching {
+            case true:
+                filteredArray = Array(groups.filter("nameGroup CONTAINS[c] '\(filter)'"))
+            case false:
+                allGroupsArray = Array(groups)
+            }
         } catch {
             print(error.localizedDescription)
         }
@@ -80,12 +85,8 @@ extension AllGroupsTableVC: UISearchBarDelegate {
             tableView.reloadData()
         } else {
             isSearching = true
-//            GroupsRequests().getGroupsSearch(accessToken: accessToken!, searchText: searchText.lowercased()) { [weak self] in
-//                self?.filteredArray = groups
-//                DispatchQueue.main.async {
-//                    self?.tableView.reloadData()
-//                }
-//            }
+            self.loadGroupsData(filter: searchText)
+            self.tableView.reloadData()
         }
     }
     

@@ -48,7 +48,7 @@ class AuthorizationRequest {
             keyChain.set(params["access_token"]!, forKey: "accessToken")
             keyChain.set(params["user_id"]!, forKey: "userId")
             
-            loadUserData(userId: params["user_id"]!, accessToken: params["access_token"]!)
+            loadUserData(userId: String(params["user_id"]!))
         }
     }
     
@@ -66,15 +66,15 @@ class AuthorizationRequest {
         return params
     }
     
-    private func loadUserData(userId: String, accessToken: String) {
-        createUser(userId: userId, accessToken: accessToken)
+    private func loadUserData(userId: String) {
+        createUser(userId: userId)
     }
     
-    private func createUser(userId: String, accessToken: String) {
+    private func createUser(userId: String) {
         var configuration = Realm.Configuration()
         configuration.deleteRealmIfMigrationNeeded = true
         
-        let user = User(idUser: Int(userId)!)
+        let user = User(idUser: userId)
         
         do {
             let realm = try Realm(configuration: configuration)
