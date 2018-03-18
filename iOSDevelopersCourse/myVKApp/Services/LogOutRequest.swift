@@ -8,12 +8,14 @@
 
 import Foundation
 import SwiftKeychainWrapper
+import RealmSwift
 
 class LogOutRequest {
     
     func logOut() {
         removeDefaults()
         removeCookies()
+        removeDataBase()
     }
     
     private func removeDefaults() {
@@ -30,6 +32,17 @@ class LogOutRequest {
             let domainName = cookie.domain
             guard let _ = domainName.range(of: "vk.com") else { return }
             storage.deleteCookie(cookie)
+        }
+    }
+    
+    private func removeDataBase() {
+        do {
+            let realm = try Realm()
+            try realm.write {
+                realm.deleteAll()
+            }
+        } catch {
+            print(error.localizedDescription)
         }
     }
 }

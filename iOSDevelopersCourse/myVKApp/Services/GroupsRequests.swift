@@ -16,7 +16,7 @@ class GroupsRequests {
     let baseUrl = "https://api.vk.com"
     let path = "/method"
     
-    func getUserGroups(userId: String, accessToken: String, completion: @escaping ([Group]) -> ()) {
+    func getUserGroups(userId: String, accessToken: String, completion: @escaping () -> ()) {
         let pathMethod = "/groups.get"
         let url = baseUrl + path + pathMethod
         let parameters: Parameters = [
@@ -27,20 +27,20 @@ class GroupsRequests {
             "v":"5.73"
         ]
         
-        Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON { [weak self] response in
+        Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON { response in
             switch response.result {
             case .success(let value):
-                let groups = JSON(value)["response"]["items"].flatMap({ Group(json: $0.1) })
-                self?.saveUserData(groups: groups)
-                completion(groups)
+                let groups = JSON(value)["response"]["items"].flatMap({ Group(json: $0.1, userId: Int(userId)!) })
+                self.loadUserGroups(groups: groups, userId: Int(userId)!, accessToken: accessToken)
+                completion()
             case .failure(let error):
                 print(error)
-                completion([])
+                completion()
             }
         }
     }
     
-    func getAllGroups(accessToken: String, completion: @escaping ([Group]) -> ()) {
+    func getAllGroups(accessToken: String, completion: @escaping () -> ()) {
         let pathMethod = "/groups.getCatalog"
         let url = baseUrl + path + pathMethod
         let parameters: Parameters = [
@@ -50,15 +50,15 @@ class GroupsRequests {
             "v":"5.73"
         ]
         
-        Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON { [weak self] response in
+        Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON { response in
             switch response.result {
             case .success(let value):
-                let groups = JSON(value)["response"]["items"].flatMap({ Group(json: $0.1) })
-                self?.saveUserData(groups: groups)
-                completion(groups)
+                let groups = JSON(value)["response"]["items"].flatMap({ Group(json: $0.1, userId: 0) })
+                self.loadUserGroups(groups: groups, userId: 0, accessToken: accessToken)
+                completion()
             case .failure(let error):
                 print(error)
-                completion([])
+                completion()
             }
         }
     }
@@ -74,11 +74,10 @@ class GroupsRequests {
             "v":"5.73"
         ]
         
-        Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON { [weak self] response in
+        Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON { response in
             switch response.result {
             case .success(let value):
-                let groups = JSON(value)["response"]["items"].flatMap({ Group(json: $0.1) })
-                self?.saveUserData(groups: groups)
+                let groups = JSON(value)["response"]["items"].flatMap({ Group(json: $0.1, userId: 0) })
                 completion(groups)
             case .failure(let error):
                 print(error)
@@ -129,14 +128,19 @@ class GroupsRequests {
         }
     }
     
-    private func saveUserData(groups: [Group]) {
+    private func loadUserGroups(groups: [Group], userId: Int, accessToken: String) {
         do {
             let realm = try Realm()
-            realm.beginWrite()
-            realm.add(groups)
-            try realm.commitWrite()
+            let user = realm.object(ofType: User.self, forPrimaryKey: userId)
+            let oldGroups = realm.objects(Group.self).filter("userId == %@", userId)
+            try realm.write {
+                realm.delete(oldGroups)
+                for group in groups {
+                    user?.groups.append(group)
+                }
+            }
         } catch {
-            print(error)
+            print(error.localizedDescription)
         }
     }
 }

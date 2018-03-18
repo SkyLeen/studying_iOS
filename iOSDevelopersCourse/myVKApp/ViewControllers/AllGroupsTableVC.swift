@@ -8,12 +8,12 @@
 
 import UIKit
 import SwiftKeychainWrapper
+import RealmSwift
 
 class AllGroupsTableVC: UITableViewController {
     
     let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")
     let userId =  KeychainWrapper.standard.string(forKey: "userId")
-    var groupsRequest = GroupsRequests()
     
     let searchBar = UISearchBar()
     var allGroupsArray = [Group]()
@@ -24,11 +24,9 @@ class AllGroupsTableVC: UITableViewController {
         super.viewDidLoad()
         createSearchBar()
         
-        groupsRequest.getAllGroups(accessToken: accessToken!) { [weak self] groups in
-            self?.allGroupsArray = groups
-            DispatchQueue.main.async {
-                 self?.tableView.reloadData()
-            }
+         GroupsRequests().getAllGroups(accessToken: accessToken!) { [weak self] in
+            self?.loadGroupsData()
+            self?.tableView.reloadData()
         }
     }
 
@@ -61,6 +59,16 @@ class AllGroupsTableVC: UITableViewController {
         searchBar.delegate = self
         navigationItem.titleView = searchBar
     }
+    
+    private func loadGroupsData() {
+        do {
+            let realm = try Realm()
+            let groups = realm.objects(Group.self).filter("userId == %@", 0)
+            allGroupsArray = Array(groups)
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
 }
 
 extension AllGroupsTableVC: UISearchBarDelegate {
@@ -72,12 +80,12 @@ extension AllGroupsTableVC: UISearchBarDelegate {
             tableView.reloadData()
         } else {
             isSearching = true
-            groupsRequest.getGroupsSearch(accessToken: accessToken!, searchText: searchText.lowercased()) { [weak self] groups in
-                self?.filteredArray = groups
-                DispatchQueue.main.async {
-                    self?.tableView.reloadData()
-                }
-            }
+//            GroupsRequests().getGroupsSearch(accessToken: accessToken!, searchText: searchText.lowercased()) { [weak self] in
+//                self?.filteredArray = groups
+//                DispatchQueue.main.async {
+//                    self?.tableView.reloadData()
+//                }
+//            }
         }
     }
     

@@ -8,31 +8,28 @@
 
 import UIKit
 import  SwiftKeychainWrapper
+import RealmSwift
 
 struct SectionObjects {
     var section: Character
-    var users: [User]
+    var users: [Friend]
 }
 
 class MyFriendsTableVC: UITableViewController {
     
     let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")
     let userId =  KeychainWrapper.standard.string(forKey: "userId")
-    var friendsRequest = UsersRequests()
     
-    var myFriendsArray = [User]()
+    var myFriendsArray = [Friend]()
     var myFriendsInitialsArray = [Character]()
     var sectionObjectArray = [SectionObjects]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-        friendsRequest.getFrendsList(userId: userId!, accessToken: accessToken!) { [weak self] friends in
-            self?.myFriendsArray = friends
+         FriendsRequests().getFriendsList(userId: userId!, accessToken: accessToken!) { [weak self] in
+            self?.loadFriendsData()
             self?.getSectionObjects()
-            DispatchQueue.main.async {
-                self?.tableView.reloadData()
-            }
+            self?.tableView.reloadData()
         }
     }
     
@@ -67,7 +64,17 @@ class MyFriendsTableVC: UITableViewController {
         guard let friend = sender as? IndexPath else { return }
 
         destinationVC.friendName = sectionObjectArray[friend.section].users[friend.row].name
-        destinationVC.friendId = sectionObjectArray[friend.section].users[friend.row].idUser
+        destinationVC.friendId = sectionObjectArray[friend.section].users[friend.row].idFriend
+    }
+    
+    private func loadFriendsData() {
+        do {
+            let realm = try Realm()
+            let friends = realm.objects(Friend.self)
+            myFriendsArray = Array(friends)
+        } catch {
+            print(error.localizedDescription)
+        }
     }
     
     private func getInitialsArray() {
@@ -81,9 +88,8 @@ class MyFriendsTableVC: UITableViewController {
     
     private func getSectionObjects() {
         getInitialsArray()
-       
         for initial in myFriendsInitialsArray {
-            let names: [User] = myFriendsArray.filter({ $0.name.first! == initial })
+            let names: [Friend] = myFriendsArray.filter({ $0.name.first! == initial })
             sectionObjectArray.append(SectionObjects(section: initial, users: names.sorted(by: { $0.name < $1.name })))
         }
     }

@@ -14,7 +14,7 @@ class MyFriendsViewCell: UITableViewCell {
     @IBOutlet private weak var friendImageView: UIImageView!
     
     private var task: URLSessionTask?
-    var user: User? {
+    var user: Friend? {
         didSet {
             getUserProperties()
         }
