@@ -28,13 +28,13 @@ class MyFriendCollectionViewCell: UICollectionViewCell {
         myFriendPhoto.image = nil
         task?.cancel()
         task = nil
-        guard let url = photo?.photoUrl else { return }
+        guard let url = URL(string: (photo?.photoUrl)!) else { return }
         task = URLSession.shared.dataTask(with: url) { (data, response,_) in
             guard let data = data else { return }
             let image = UIImage(data: data)
             DispatchQueue.main.async { [weak self] in
                 guard let s = self else { return }
-                guard s.photo?.photoUrl == response?.url else { return }
+                guard URL(string: (s.photo?.photoUrl)!) == response?.url else { return }
                 s.myFriendPhoto.image = image
             }
         }

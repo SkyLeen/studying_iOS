@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import  SwiftKeychainWrapper
 
 struct SectionObjects {
     var section: Character
@@ -15,11 +16,11 @@ struct SectionObjects {
 
 class MyFriendsTableVC: UITableViewController {
     
-    var accessToken = ""
-    var userId = ""
-    var friendsRequest = MethodRequest()
-    var myFriendsArray = [User]()
+    let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")!
+    let userId =  KeychainWrapper.standard.string(forKey: "userId")!
+    var friendsRequest = UsersRequests()
     
+    var myFriendsArray = [User]()
     var myFriendsInitialsArray = [Character]()
     var sectionObjectArray = [SectionObjects]()
     
@@ -64,10 +65,8 @@ class MyFriendsTableVC: UITableViewController {
         guard segue.identifier == "showFriendPhotos" else { return }
         guard let destinationVC = segue.destination as? MyFriendCollectionVC else { return }
         guard let friend = sender as? IndexPath else { return }
-        
+
         destinationVC.friendName = sectionObjectArray[friend.section].users[friend.row].name
-        destinationVC.accessToken = accessToken
-        destinationVC.userId = userId
         destinationVC.friendId = sectionObjectArray[friend.section].users[friend.row].idUser
     }
     

@@ -8,13 +8,14 @@
 
 import Foundation
 import SwiftyJSON
+import RealmSwift
 
-struct User {
+class User: Object {
     
-    var idUser: Int = 0
-    private var firstName: String = ""
-    private var lastName: String = ""
-    var photoUrl: URL?
+    @objc dynamic var idUser: Int = 0
+    @objc dynamic private var firstName: String = ""
+    @objc dynamic private var lastName: String = ""
+    @objc dynamic var photoUrl: String?
     var name: String {
         get {
             let last = lastName == "" ? firstName : lastName
@@ -22,10 +23,11 @@ struct User {
         }
     }
     
-    init(json: JSON) {
-        idUser = json["id"].intValue
-        firstName = json["first_name"].stringValue
-        lastName = json["last_name"].stringValue
-        photoUrl = json["photo_100"].url
+    convenience init(json: JSON) {
+        self.init()
+        self.idUser = json["id"].intValue
+        self.firstName = json["first_name"].stringValue
+        self.lastName = json["last_name"].stringValue
+        self.photoUrl = json["photo_100"].stringValue
     }
 }

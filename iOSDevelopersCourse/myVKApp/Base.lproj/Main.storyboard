@@ -56,7 +56,7 @@
                                             <constraint firstAttribute="height" relation="lessThanOrEqual" constant="40" id="d5D-k0-oVW"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="34"/>
-                                        <state key="normal" title="Log In">
+                                        <state key="normal" title="GO!">
                                             <color key="titleColor" red="0.93725490199999995" green="0.76078431369999999" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <variation key="heightClass=compact">
@@ -76,8 +76,8 @@
                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Press the Log In button  for getting authorization" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9cY-01-Uz0">
-                                        <rect key="frame" x="40" y="226" width="240" height="48"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Press the button  for entering" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9cY-01-Uz0">
+                                        <rect key="frame" x="77" y="226" width="166.5" height="48"/>
                                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -156,6 +156,7 @@
                     <connections>
                         <outlet property="loginButton" destination="aNP-zF-hVX" id="bYY-xw-Rby"/>
                         <outlet property="scrollView" destination="nUI-VC-vIl" id="sM4-04-gX5"/>
+                        <segue destination="fAW-te-Zjk" kind="show" identifier="goToApplication" id="Hts-1W-I3A"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -551,7 +552,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s5i-XF-YAl" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="669-sK-QHT" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-30" y="12"/>
+            <point key="canvasLocation" x="-49" y="-306"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="6el-06-rQd">
@@ -582,4 +583,7 @@
         <image name="settings" width="33" height="33"/>
         <image name="yellow" width="133" height="204"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Hts-1W-I3A"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -8,22 +8,25 @@
 
 import Foundation
 import SwiftyJSON
+import RealmSwift
 
-struct Group {
+class Group: Object {
     
-    var idGroup: Int = 0
-    var nameGroup: String = ""
-    var followers: Int = 0
-    var photoGroupUrl: URL?
+    @objc dynamic var idGroup: Int = 0
+    @objc dynamic var nameGroup: String = ""
+    @objc dynamic var followers: Int = 0
+    @objc dynamic var photoGroupUrl: String?
     
-    init(json: JSON) {
-        idGroup = json["id"].intValue
-        nameGroup = json["name"].stringValue
-        followers = json["members_count"].intValue
-        photoGroupUrl = json["photo_50"].url
+    convenience init(json: JSON) {
+        self.init()
+        self.idGroup = json["id"].intValue
+        self.nameGroup = json["name"].stringValue
+        self.followers = json["members_count"].intValue
+        self.photoGroupUrl = json["photo_50"].stringValue
     }
     
-    init(idGroup: Int, nameGroup: String, followers: Int, photoGroup: URL?) {
+    convenience init(idGroup: Int, nameGroup: String, followers: Int, photoGroup: String?) {
+        self.init()
         self.idGroup = idGroup
         self.nameGroup = nameGroup
         self.followers = followers

@@ -7,17 +7,29 @@
 //
 
 import Foundation
-import Alamofire
+import SwiftKeychainWrapper
 
 class LogOutRequest {
+    
     func logOut() {
+        removeDefaults()
+        removeCookies()
+    }
+    
+    private func removeDefaults() {
+        let userDefaults = UserDefaults.standard
+        let keyChain = KeychainWrapper.standard
+        userDefaults.removeObject(forKey: "isLogged")
+        keyChain.removeObject(forKey: "accessToken")
+        keyChain.removeObject(forKey: "userId")
+    }
+    
+    private func removeCookies() {
         let storage = HTTPCookieStorage.shared
         for cookie in storage.cookies! {
             let domainName = cookie.domain
-            let domainRange = domainName.range(of: "vk.com")
-            guard !(domainRange?.isEmpty)! else { return }
+            guard let _ = domainName.range(of: "vk.com") else { return }
             storage.deleteCookie(cookie)
         }
-
     }
 }
