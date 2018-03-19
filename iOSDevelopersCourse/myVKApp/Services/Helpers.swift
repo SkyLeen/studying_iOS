@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 struct AlertHelper {
     func showAlert(withTitle title: String, message: String) -> UIAlertController {
