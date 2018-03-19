@@ -8,13 +8,12 @@
 
 import UIKit
 import SwiftKeychainWrapper
-
+import RealmSwift
 
 class MyFriendCollectionVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
-    let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")!
-    let userId =  KeychainWrapper.standard.string(forKey: "userId")!
-    var photosRequest = UsersRequests()
+    let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")
+    let userId =  KeychainWrapper.standard.string(forKey: "userId")
     
     var friendName = String()
     var friendPhotos = [Photos]()
@@ -23,13 +22,11 @@ class MyFriendCollectionVC: UICollectionViewController, UICollectionViewDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        photosRequest.getFriendPhotos(userId: userId, accessToken: accessToken, friendId: friendId) { [weak self] photos in
-            self?.friendPhotos = photos
-            DispatchQueue.main.async {
-                self?.collectionView?.reloadData()
-            }
+        FriendsRequests().getFriendPhotos(userId: userId!, accessToken: accessToken!, friendId: friendId) { [weak self]  in
+            self?.loadFriendsPhotos(friendId: (self?.friendId)!)
+            self?.collectionView?.reloadData()
         }
-        navigationItem.title = friendName 
+        navigationItem.title = friendName
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -60,5 +57,15 @@ class MyFriendCollectionVC: UICollectionViewController, UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return interItemSpace
+    }
+    
+    private func loadFriendsPhotos(friendId: Int) {
+        do {
+            let realm = try Realm()
+            let photos = realm.objects(Photos.self).filter("idFriend == %@", friendId)
+            friendPhotos = Array(photos)
+        } catch {
+            print(error.localizedDescription)
+        }
     }
 }

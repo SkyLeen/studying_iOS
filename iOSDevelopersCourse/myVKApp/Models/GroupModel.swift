@@ -16,20 +16,22 @@ class Group: Object {
     @objc dynamic var nameGroup: String = ""
     @objc dynamic var followers: Int = 0
     @objc dynamic var photoGroupUrl: String?
+    @objc dynamic var userId: String = ""
+    @objc dynamic var compoundKey: String = ""
+   
+    var user = LinkingObjects(fromType: User.self, property: "groups")
     
-    convenience init(json: JSON) {
+    @objc override open class func primaryKey() -> String? {
+        return "compoundKey"
+    }
+    
+    convenience init(json: JSON, userId: String = "") {
         self.init()
         self.idGroup = json["id"].intValue
         self.nameGroup = json["name"].stringValue
         self.followers = json["members_count"].intValue
         self.photoGroupUrl = json["photo_50"].stringValue
-    }
-    
-    convenience init(idGroup: Int, nameGroup: String, followers: Int, photoGroup: String?) {
-        self.init()
-        self.idGroup = idGroup
-        self.nameGroup = nameGroup
-        self.followers = followers
-        self.photoGroupUrl = photoGroup
+        self.userId = userId
+        self.compoundKey = "\(idGroup)\(userId)"
     }
 }

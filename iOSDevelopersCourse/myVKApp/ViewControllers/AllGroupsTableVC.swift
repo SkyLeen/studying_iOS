@@ -8,12 +8,12 @@
 
 import UIKit
 import SwiftKeychainWrapper
+import RealmSwift
 
 class AllGroupsTableVC: UITableViewController {
     
-    let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")!
-    let userId =  KeychainWrapper.standard.string(forKey: "userId")!
-    var groupsRequest = GroupsRequests()
+    let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")
+    let userId =  KeychainWrapper.standard.string(forKey: "userId")
     
     let searchBar = UISearchBar()
     var allGroupsArray = [Group]()
@@ -24,11 +24,9 @@ class AllGroupsTableVC: UITableViewController {
         super.viewDidLoad()
         createSearchBar()
         
-        groupsRequest.getAllGroups(accessToken: accessToken) { [weak self] groups in
-            self?.allGroupsArray = groups
-            DispatchQueue.main.async {
-                 self?.tableView.reloadData()
-            }
+         GroupsRequests().getAllGroups(accessToken: accessToken!) { [weak self] in
+            self?.loadGroupsData()
+            self?.tableView.reloadData()
         }
     }
 
@@ -61,6 +59,21 @@ class AllGroupsTableVC: UITableViewController {
         searchBar.delegate = self
         navigationItem.titleView = searchBar
     }
+    
+    private func loadGroupsData(filter: String = "") {
+        do {
+            let realm = try Realm()
+            let groups = realm.objects(Group.self).filter("userId == %@", "")
+            switch isSearching {
+            case true:
+                filteredArray = Array(groups.filter("nameGroup CONTAINS[c] '\(filter)'"))
+            case false:
+                allGroupsArray = Array(groups)
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
 }
 
 extension AllGroupsTableVC: UISearchBarDelegate {
@@ -72,12 +85,8 @@ extension AllGroupsTableVC: UISearchBarDelegate {
             tableView.reloadData()
         } else {
             isSearching = true
-            groupsRequest.getGroupsSearch(accessToken: accessToken, searchText: searchText.lowercased()) { [weak self] groups in
-                self?.filteredArray = groups
-                DispatchQueue.main.async {
-                    self?.tableView.reloadData()
-                }
-            }
+            self.loadGroupsData(filter: searchText)
+            self.tableView.reloadData()
         }
     }
     

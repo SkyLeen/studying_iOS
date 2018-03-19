@@ -8,6 +8,7 @@
 
 import Foundation
 import SwiftKeychainWrapper
+import RealmSwift
 
 class AuthorizationRequest {
     
@@ -46,6 +47,8 @@ class AuthorizationRequest {
             userDefaults.set(true, forKey: "isLogged")
             keyChain.set(params["access_token"]!, forKey: "accessToken")
             keyChain.set(params["user_id"]!, forKey: "userId")
+            
+            loadUserData(userId: String(params["user_id"]!))
         }
     }
     
@@ -61,5 +64,25 @@ class AuthorizationRequest {
                         return dict
                 }
         return params
+    }
+    
+    private func loadUserData(userId: String) {
+        createUser(userId: userId)
+    }
+    
+    private func createUser(userId: String) {
+        var configuration = Realm.Configuration()
+        configuration.deleteRealmIfMigrationNeeded = true
+        
+        let user = User(idUser: userId)
+        
+        do {
+            let realm = try Realm(configuration: configuration)
+            try realm.write {
+                realm.add(user, update: true)
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
     }
 }

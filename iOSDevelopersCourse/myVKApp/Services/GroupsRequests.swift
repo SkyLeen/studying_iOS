@@ -16,7 +16,7 @@ class GroupsRequests {
     let baseUrl = "https://api.vk.com"
     let path = "/method"
     
-    func getUserGroups(userId: String, accessToken: String, completion: @escaping ([Group]) -> ()) {
+    func getUserGroups(userId: String, accessToken: String, completion: @escaping () -> ()) {
         let pathMethod = "/groups.get"
         let url = baseUrl + path + pathMethod
         let parameters: Parameters = [
@@ -27,20 +27,20 @@ class GroupsRequests {
             "v":"5.73"
         ]
         
-        Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON { [weak self] response in
+        Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON {  response in
             switch response.result {
             case .success(let value):
-                let groups = JSON(value)["response"]["items"].flatMap({ Group(json: $0.1) })
-                self?.saveUserData(groups: groups)
-                completion(groups)
+                let groups = JSON(value)["response"]["items"].flatMap({ Group(json: $0.1, userId: userId) })
+                self.loadUserGroups(groups: groups, userId: userId, accessToken: accessToken)
+                completion()
             case .failure(let error):
                 print(error)
-                completion([])
+                completion()
             }
         }
     }
     
-    func getAllGroups(accessToken: String, completion: @escaping ([Group]) -> ()) {
+    func getAllGroups(accessToken: String, completion: @escaping () -> ()) {
         let pathMethod = "/groups.getCatalog"
         let url = baseUrl + path + pathMethod
         let parameters: Parameters = [
@@ -50,39 +50,15 @@ class GroupsRequests {
             "v":"5.73"
         ]
         
-        Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON { [weak self] response in
+        Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON { response in
             switch response.result {
             case .success(let value):
                 let groups = JSON(value)["response"]["items"].flatMap({ Group(json: $0.1) })
-                self?.saveUserData(groups: groups)
-                completion(groups)
+                self.loadAllGroups(groups: groups, accessToken: accessToken)
+                completion()
             case .failure(let error):
                 print(error)
-                completion([])
-            }
-        }
-    }
-    
-    func getGroupsSearch(accessToken: String, searchText: String, completion: @escaping ([Group]) -> ()) {
-        let pathMethod = "/groups.search"
-        let url = baseUrl + path + pathMethod
-        let parameters: Parameters = [
-            "q":searchText.lowercased(),
-            "access_token":accessToken,
-            "sort":2,
-            "fields":"members_count",
-            "v":"5.73"
-        ]
-        
-        Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON { [weak self] response in
-            switch response.result {
-            case .success(let value):
-                let groups = JSON(value)["response"]["items"].flatMap({ Group(json: $0.1) })
-                self?.saveUserData(groups: groups)
-                completion(groups)
-            case .failure(let error):
-                print(error)
-                completion([])
+                completion()
             }
         }
     }
@@ -129,14 +105,34 @@ class GroupsRequests {
         }
     }
     
-    private func saveUserData(groups: [Group]) {
+    private func loadUserGroups(groups: [Group], userId: String, accessToken: String) {
+        var configuration = Realm.Configuration()
+        configuration.deleteRealmIfMigrationNeeded = true
         do {
-            let realm = try Realm()
-            realm.beginWrite()
-            realm.add(groups)
-            try realm.commitWrite()
+            let realm = try Realm(configuration: configuration)
+            let user = realm.object(ofType: User.self, forPrimaryKey: userId)
+            let oldGroups = realm.objects(Group.self).filter("userId == %@", userId)
+            try realm.write {
+                realm.delete(oldGroups)
+                for group in groups {
+                    user?.groups.append(group)
+                }
+            }
         } catch {
-            print(error)
+            print(error.localizedDescription)
+        }
+    }
+    
+    private func loadAllGroups(groups: [Group], accessToken: String) {
+        var configuration = Realm.Configuration()
+        configuration.deleteRealmIfMigrationNeeded = true
+        do {
+            let realm = try Realm(configuration: configuration)
+            try realm.write {
+                realm.add(groups,update: true)
+            }
+        } catch {
+            print(error.localizedDescription)
         }
     }
 }

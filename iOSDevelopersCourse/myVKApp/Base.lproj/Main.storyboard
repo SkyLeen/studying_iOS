@@ -56,7 +56,7 @@
                                             <constraint firstAttribute="height" relation="lessThanOrEqual" constant="40" id="d5D-k0-oVW"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="34"/>
-                                        <state key="normal" title="GO!">
+                                        <state key="normal" title="Log In">
                                             <color key="titleColor" red="0.93725490199999995" green="0.76078431369999999" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <variation key="heightClass=compact">
@@ -76,8 +76,8 @@
                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Press the button  for entering" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9cY-01-Uz0">
-                                        <rect key="frame" x="77" y="226" width="166.5" height="48"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Press the Log In button  for authorization" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9cY-01-Uz0">
+                                        <rect key="frame" x="45" y="226" width="230" height="48"/>
                                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -156,7 +156,7 @@
                     <connections>
                         <outlet property="loginButton" destination="aNP-zF-hVX" id="bYY-xw-Rby"/>
                         <outlet property="scrollView" destination="nUI-VC-vIl" id="sM4-04-gX5"/>
-                        <segue destination="fAW-te-Zjk" kind="show" identifier="goToApplication" id="Hts-1W-I3A"/>
+                        <segue destination="fAW-te-Zjk" kind="show" identifier="missAuthorization" id="Hts-1W-I3A"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -536,10 +536,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="vK8-XT-ncO" firstAttribute="leading" secondItem="QK9-vJ-zVo" secondAttribute="leading" id="0cZ-fy-4xv"/>
-                            <constraint firstItem="vK8-XT-ncO" firstAttribute="top" secondItem="QK9-vJ-zVo" secondAttribute="top" id="JLd-SW-Moe"/>
-                            <constraint firstItem="QK9-vJ-zVo" firstAttribute="trailing" secondItem="vK8-XT-ncO" secondAttribute="trailing" id="WSA-L4-Pi0"/>
-                            <constraint firstItem="QK9-vJ-zVo" firstAttribute="bottom" secondItem="vK8-XT-ncO" secondAttribute="bottom" id="yhb-Xw-xIP"/>
+                            <constraint firstItem="vK8-XT-ncO" firstAttribute="leading" secondItem="QK9-vJ-zVo" secondAttribute="leading" id="2m1-Cd-2xu"/>
+                            <constraint firstItem="QK9-vJ-zVo" firstAttribute="bottom" secondItem="vK8-XT-ncO" secondAttribute="bottom" id="JY8-wq-4cg"/>
+                            <constraint firstItem="vK8-XT-ncO" firstAttribute="top" secondItem="QK9-vJ-zVo" secondAttribute="top" id="Jr8-GS-uhQ"/>
+                            <constraint firstItem="vK8-XT-ncO" firstAttribute="trailing" secondItem="QK9-vJ-zVo" secondAttribute="trailing" id="Nnu-pU-TbU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="QK9-vJ-zVo"/>
                     </view>
@@ -584,6 +584,6 @@
         <image name="yellow" width="133" height="204"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Hts-1W-I3A"/>
+        <segue reference="3mE-TK-Ln5"/>
     </inferredMetricsTieBreakers>
 </document>
