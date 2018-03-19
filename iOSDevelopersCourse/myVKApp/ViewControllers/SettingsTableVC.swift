@@ -9,7 +9,7 @@
 import UIKit
 
 class SettingsTableVC: UITableViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -31,10 +31,10 @@ class SettingsTableVC: UITableViewController {
     }
     
     func showLogOutAlert() {
-        let alertController = UIAlertController(title: "Log out", message: "Are you sure to want to log out?", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Log out", message: "Are you sure you want to log out?", preferredStyle: .alert)
         
-        let yesButton = UIAlertAction(title: "Yes", style: .default, handler: {
-            action in self.performSegue(withIdentifier: "logOut", sender: self)
+        let yesButton = UIAlertAction(title: "Yes", style: .default, handler: { action in
+            self.performSegue(withIdentifier: "logOut", sender: self)
         })
         let noButton = UIAlertAction(title: "No", style: .cancel)
         

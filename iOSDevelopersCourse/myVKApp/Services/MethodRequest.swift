@@ -14,7 +14,7 @@ class MethodRequest {
     let baseUrl = "https://api.vk.com"
     let path = "/method"
     
-    func getFrendsList(userId: String, accessToken: String) {
+    func getFrendsList(userId: String, accessToken: String, completion: @escaping ([User]) -> ()) {
         let pathMethod = "/friends.get"
         let url = baseUrl + path + pathMethod
         let parameters: Parameters = [
@@ -28,22 +28,23 @@ class MethodRequest {
         Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON { response in
             switch response.result {
             case .success(let value):
-                let json = JSON(value)
-                print("Friends: \(json)")
+                let users = JSON(value)["response"]["items"].flatMap({ User(json: $0.1) })
+                completion(users)
             case .failure(let error):
                 print(error)
+                completion([])
             }
         }
     }
     
-    func getPhotos(userId: String, accessToken: String, friendId: String) {
+    func getFriendPhotos(userId: String, accessToken: String, friendId: Int, completion: @escaping ([Photos]) -> ()) {
         let pathMethod = "/photos.get"
         let url = baseUrl + path + pathMethod
         let parameters: Parameters = [
             "user_id":userId,
             "access_token":accessToken,
             "owner_id":friendId,
-            "album_id":"profile",
+            "album_id":"wall",
             "rev":"1",
             "v":"5.73"
         ]
@@ -51,21 +52,22 @@ class MethodRequest {
         Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON { response in
             switch response.result {
             case .success(let value):
-                let json = JSON(value)
-                print("Photos: \(json)")
+                let photos = JSON(value)["response"]["items"].flatMap({ Photos(json: $0.1) })
+                completion(photos)
             case .failure(let error):
                 print(error)
+                completion([])
             }
         }
     }
     
-    func getUserGroups(userId: String, accessToken: String) {
+    func getUserGroups(userId: String, accessToken: String, completion: @escaping ([Group]) -> ()) {
         let pathMethod = "/groups.get"
         let url = baseUrl + path + pathMethod
         let parameters: Parameters = [
             "user_id":userId,
             "access_token":accessToken,
-            "extended":"1",
+            "extended":1,
             "fields":"members_count",
             "v":"5.73"
         ]
@@ -73,20 +75,21 @@ class MethodRequest {
         Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON { response in
             switch response.result {
             case .success(let value):
-                let json = JSON(value)
-                print("UserGroups: \(json)")
+                let groups = JSON(value)["response"]["items"].flatMap({ Group(json: $0.1) })
+                completion(groups)
             case .failure(let error):
                 print(error)
+                completion([])
             }
         }
     }
     
-    func getAllGroups(accessToken: String) {
+    func getAllGroups(accessToken: String, completion: @escaping ([Group]) -> ()) {
         let pathMethod = "/groups.getCatalog"
         let url = baseUrl + path + pathMethod
         let parameters: Parameters = [
             "access_token":accessToken,
-            "extended":"1",
+            "extended":1,
             "fields":"members_count",
             "v":"5.73"
         ]
@@ -94,20 +97,22 @@ class MethodRequest {
         Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON { response in
             switch response.result {
             case .success(let value):
-                let json = JSON(value)
-                print("AllGroups: \(json)")
+                let groups = JSON(value)["response"]["items"].flatMap({ Group(json: $0.1) })
+                completion(groups)
             case .failure(let error):
                 print(error)
+                completion([])
             }
         }
     }
     
-    func getGroupsByName(accessToken: String, groupName: String) {
+    func getGroupsSearch(accessToken: String, searchText: String, completion: @escaping ([Group]) -> ()) {
         let pathMethod = "/groups.search"
         let url = baseUrl + path + pathMethod
         let parameters: Parameters = [
-            "q":groupName,
+            "q":searchText.lowercased(),
             "access_token":accessToken,
+            "sort":2,
             "fields":"members_count",
             "v":"5.73"
         ]
@@ -115,11 +120,55 @@ class MethodRequest {
         Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON { response in
             switch response.result {
             case .success(let value):
-                let json = JSON(value)
-                print("SearchGroups: \(json)")
+                let groups = JSON(value)["response"]["items"].flatMap({ Group(json: $0.1) })
+                completion(groups)
             case .failure(let error):
                 print(error)
+                completion([])
             }
         }
     }
+    
+    func joinGroup (accessToken: String, idGroup: Int, completion: @escaping () -> ()) {
+        let pathMethod = "/groups.join"
+        let url = baseUrl + path + pathMethod
+        let parameters: Parameters = [
+            "group_id":idGroup,
+            "access_token":accessToken,
+            "v":"5.73"
+        ]
+        
+        Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                print(JSON(value))
+                completion()
+            case .failure(let error):
+                print(error)
+                completion()
+            }
+        }
+    }
+    
+    func leaveGroup (accessToken: String, idGroup: Int,completion: @escaping () -> ()) {
+        let pathMethod = "/groups.leave"
+        let url = baseUrl + path + pathMethod
+        let parameters: Parameters = [
+            "group_id":idGroup,
+            "access_token":accessToken,
+            "v":"5.73"
+        ]
+        
+        Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                print(JSON(value))
+                completion()
+            case .failure(let error):
+                print(error)
+                completion()
+            }
+        }
+    }
+    
 }

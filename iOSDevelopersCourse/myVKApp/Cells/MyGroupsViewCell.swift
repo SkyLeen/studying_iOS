@@ -10,16 +10,36 @@ import UIKit
 
 class MyGroupsViewCell: UITableViewCell {
     
-    @IBOutlet weak var myGroupNameLabel: UILabel!
-    @IBOutlet weak var myGroupImageView: UIImageView!
+    @IBOutlet private weak var myGroupNameLabel: UILabel!
+    @IBOutlet private weak var myGroupImageView: UIImageView!
+    
+    var task: URLSessionTask?
+    var group: Group? {
+        didSet {
+            getCurrentGroupsProperties()
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         ImageSettingsHelper().setImageLayersSettings(for: myGroupImageView, mode: .forAvatarImages)
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    
+    private func getCurrentGroupsProperties() {
+        myGroupImageView.image = nil
+        task?.cancel()
+        task = nil
+        myGroupNameLabel.text = group?.nameGroup
+        guard let url = group?.photoGroupUrl else { return }
+        task = URLSession.shared.dataTask(with: url) { (data, response, _) in
+            guard let data = data else { return }
+            let image = UIImage(data: data)
+            DispatchQueue.main.async { [weak self] in
+                guard let s = self else { return }
+                guard s.group?.photoGroupUrl == response?.url else { return }
+                s.myGroupImageView.image = image
+            }
+        }
+        task?.resume()
     }
-
 }

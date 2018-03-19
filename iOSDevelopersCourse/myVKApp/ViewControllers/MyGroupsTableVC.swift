@@ -13,12 +13,11 @@ class MyGroupsTableVC: UITableViewController {
     var accessToken = ""
     var userId = ""
     var groupsRequest = MethodRequest()
-    
-    var myGroupsArray = [(name: String, photo: UIImage)]()
+    var myGroupsArray = [Group]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        groupsRequest.getUserGroups(userId: userId, accessToken: accessToken)
+        getUserGroups()
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -28,8 +27,7 @@ class MyGroupsTableVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath) as! MyGroupsViewCell
-        cell.myGroupNameLabel.text = myGroupsArray[indexPath.row].name
-        cell.myGroupImageView.image = myGroupsArray[indexPath.row].photo
+        cell.group = myGroupsArray[indexPath.row]
         return cell
     }
     
@@ -53,7 +51,7 @@ class MyGroupsTableVC: UITableViewController {
         let newGroup = isSearching ? allGroupsVC.filteredArray[cellNewGroup.row] : allGroupsVC.allGroupsArray[cellNewGroup.row]
         
         guard !myGroupsArray.contains(where: { element in
-            if case newGroup.name = element.name {
+            if case newGroup.nameGroup = element.nameGroup {
                 return true
             } else {
                 return false
@@ -63,14 +61,26 @@ class MyGroupsTableVC: UITableViewController {
             return
         }
         
-        myGroupsArray.append((name: newGroup.name, photo: newGroup.photo) as! ((name: String, photo: UIImage)))
-        tableView.reloadData()
+        groupsRequest.joinGroup(accessToken: accessToken, idGroup: newGroup.idGroup) {
+            self.getUserGroups()
+        }
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        let idGroup = myGroupsArray[indexPath.row].idGroup
         if editingStyle == .delete {
-            myGroupsArray.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            groupsRequest.leaveGroup(accessToken: accessToken, idGroup: idGroup) {
+                self.getUserGroups()
+            }
+        }
+    }
+    
+    func getUserGroups() {
+        groupsRequest.getUserGroups(userId: userId, accessToken: accessToken) { [weak self] groups in
+            self?.myGroupsArray = groups
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
         }
     }
 }
