@@ -24,7 +24,7 @@ class AllGroupsTableVC: UITableViewController {
         super.viewDidLoad()
         createSearchBar()
         
-         GroupsRequests().getAllGroups(accessToken: accessToken!) { [weak self] in
+         GroupsRequests.getAllGroups(accessToken: accessToken!) { [weak self] in
             self?.loadGroupsData()
             self?.tableView.reloadData()
         }
@@ -61,17 +61,13 @@ class AllGroupsTableVC: UITableViewController {
     }
     
     private func loadGroupsData(filter: String = "") {
-        do {
-            let realm = try Realm()
-            let groups = realm.objects(Group.self).filter("userId == %@", "")
-            switch isSearching {
-            case true:
-                filteredArray = Array(groups.filter("nameGroup CONTAINS[c] '\(filter)'"))
-            case false:
-                allGroupsArray = Array(groups)
-            }
-        } catch {
-            print(error.localizedDescription)
+        let groups = Loader.loadData(object: Group()).filter("userId == %@", "")
+        
+        switch isSearching {
+        case true:
+            filteredArray = Array(groups.filter("nameGroup CONTAINS[c] '\(filter)'"))
+        case false:
+            allGroupsArray = Array(groups)
         }
     }
 }

@@ -19,7 +19,7 @@ class MyGroupsTableVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getUserGroups() 
+        getUserGroups()
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -56,7 +56,7 @@ class MyGroupsTableVC: UITableViewController {
             return
         }
         
-        GroupsRequests().joinGroup(accessToken: accessToken!, idGroup: newGroup.idGroup) { [weak self] in
+        GroupsRequests.joinGroup(accessToken: accessToken!, idGroup: newGroup.idGroup) { [weak self] in
             self?.getUserGroups()
         }
     }
@@ -64,26 +64,17 @@ class MyGroupsTableVC: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         let idGroup = myGroupsArray[indexPath.row].idGroup
         if editingStyle == .delete {
-            GroupsRequests().leaveGroup(accessToken: accessToken!, idGroup: idGroup) { [weak self] in
+            GroupsRequests.leaveGroup(accessToken: accessToken!, idGroup: idGroup) { [weak self] in
                 self?.getUserGroups()
             }
         }
     }
     
     private func getUserGroups() {
-        GroupsRequests().getUserGroups(userId: userId!, accessToken: accessToken!) { [weak self] in
-            self?.loadGroupsData()
+        GroupsRequests.getUserGroups(userId: userId!, accessToken: accessToken!) { [weak self] in
+            let groups = Loader.loadData(object: Group()).filter("userId == %@", (self?.userId!)!)
+            self?.myGroupsArray = Array(groups)
             self?.tableView.reloadData()
-        }
-    }
-    
-    private func loadGroupsData() {
-        do {
-            let realm = try Realm()
-            let groups = realm.objects(Group.self).filter("userId == %@", userId!)
-            myGroupsArray = Array(groups)
-        } catch {
-            print(error.localizedDescription)
         }
     }
 }

@@ -22,8 +22,9 @@ class MyFriendCollectionVC: UICollectionViewController, UICollectionViewDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        FriendsRequests().getFriendPhotos(userId: userId!, accessToken: accessToken!, friendId: friendId) { [weak self]  in
-            self?.loadFriendsPhotos(friendId: (self?.friendId)!)
+        FriendsRequests.getFriendPhotos(userId: userId!, accessToken: accessToken!, friendId: friendId) { [weak self]  in
+            let photos = Loader.loadData(object: Photos()).filter("idFriend == %@", (self?.friendId)!)
+            self?.friendPhotos = Array(photos)
             self?.collectionView?.reloadData()
         }
         navigationItem.title = friendName
@@ -57,15 +58,5 @@ class MyFriendCollectionVC: UICollectionViewController, UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return interItemSpace
-    }
-    
-    private func loadFriendsPhotos(friendId: Int) {
-        do {
-            let realm = try Realm()
-            let photos = realm.objects(Photos.self).filter("idFriend == %@", friendId)
-            friendPhotos = Array(photos)
-        } catch {
-            print(error.localizedDescription)
-        }
     }
 }

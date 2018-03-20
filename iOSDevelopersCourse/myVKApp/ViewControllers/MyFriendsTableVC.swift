@@ -26,8 +26,8 @@ class MyFriendsTableVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-         FriendsRequests().getFriendsList(userId: userId!, accessToken: accessToken!) { [weak self] in
-            self?.loadFriendsData()
+         FriendsRequests.getFriendsList(userId: userId!, accessToken: accessToken!) { [weak self] in
+            self?.myFriendsArray = Array(Loader.loadData(object: Friend()))
             self?.getSectionObjects()
             self?.tableView.reloadData()
         }
@@ -65,16 +65,6 @@ class MyFriendsTableVC: UITableViewController {
 
         destinationVC.friendName = sectionObjectArray[friend.section].users[friend.row].name
         destinationVC.friendId = sectionObjectArray[friend.section].users[friend.row].idFriend
-    }
-    
-    private func loadFriendsData() {
-        do {
-            let realm = try Realm()
-            let friends = realm.objects(Friend.self)
-            myFriendsArray = Array(friends)
-        } catch {
-            print(error.localizedDescription)
-        }
     }
     
     private func getInitialsArray() {

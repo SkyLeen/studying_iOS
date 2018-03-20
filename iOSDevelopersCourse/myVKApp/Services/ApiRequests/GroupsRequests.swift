@@ -6,17 +6,15 @@
 //  Copyright © 2018 Natalya Shikhalyova. All rights reserved.
 //
 
-import Foundation
 import Alamofire
 import SwiftyJSON
-import RealmSwift
 
 class GroupsRequests {
 
-    let baseUrl = "https://api.vk.com"
-    let path = "/method"
+    static let baseUrl = "https://api.vk.com"
+    static let path = "/method"
     
-    func getUserGroups(userId: String, accessToken: String, completion: @escaping () -> ()) {
+    static func getUserGroups(userId: String, accessToken: String, completion: @escaping () -> ()) {
         let pathMethod = "/groups.get"
         let url = baseUrl + path + pathMethod
         let parameters: Parameters = [
@@ -31,7 +29,7 @@ class GroupsRequests {
             switch response.result {
             case .success(let value):
                 let groups = JSON(value)["response"]["items"].flatMap({ Group(json: $0.1, userId: userId) })
-                self.loadUserGroups(groups: groups, userId: userId, accessToken: accessToken)
+                Saver.loadUserGroups(groups: groups, userId: userId)
                 completion()
             case .failure(let error):
                 print(error)
@@ -40,7 +38,7 @@ class GroupsRequests {
         }
     }
     
-    func getAllGroups(accessToken: String, completion: @escaping () -> ()) {
+    static func getAllGroups(accessToken: String, completion: @escaping () -> ()) {
         let pathMethod = "/groups.getCatalog"
         let url = baseUrl + path + pathMethod
         let parameters: Parameters = [
@@ -54,7 +52,7 @@ class GroupsRequests {
             switch response.result {
             case .success(let value):
                 let groups = JSON(value)["response"]["items"].flatMap({ Group(json: $0.1) })
-                self.loadAllGroups(groups: groups, accessToken: accessToken)
+                Saver.loadAllGroups(groups: groups)
                 completion()
             case .failure(let error):
                 print(error)
@@ -63,7 +61,7 @@ class GroupsRequests {
         }
     }
     
-    func joinGroup (accessToken: String, idGroup: Int, completion: @escaping () -> ()) {
+    static func joinGroup (accessToken: String, idGroup: Int, completion: @escaping () -> ()) {
         let pathMethod = "/groups.join"
         let url = baseUrl + path + pathMethod
         let parameters: Parameters = [
@@ -84,7 +82,7 @@ class GroupsRequests {
         }
     }
     
-    func leaveGroup (accessToken: String, idGroup: Int,completion: @escaping () -> ()) {
+    static func leaveGroup (accessToken: String, idGroup: Int,completion: @escaping () -> ()) {
         let pathMethod = "/groups.leave"
         let url = baseUrl + path + pathMethod
         let parameters: Parameters = [
@@ -102,37 +100,6 @@ class GroupsRequests {
                 print(error)
                 completion()
             }
-        }
-    }
-    
-    private func loadUserGroups(groups: [Group], userId: String, accessToken: String) {
-        var configuration = Realm.Configuration()
-        configuration.deleteRealmIfMigrationNeeded = true
-        do {
-            let realm = try Realm(configuration: configuration)
-            let user = realm.object(ofType: User.self, forPrimaryKey: userId)
-            let oldGroups = realm.objects(Group.self).filter("userId == %@", userId)
-            try realm.write {
-                realm.delete(oldGroups)
-                for group in groups {
-                    user?.groups.append(group)
-                }
-            }
-        } catch {
-            print(error.localizedDescription)
-        }
-    }
-    
-    private func loadAllGroups(groups: [Group], accessToken: String) {
-        var configuration = Realm.Configuration()
-        configuration.deleteRealmIfMigrationNeeded = true
-        do {
-            let realm = try Realm(configuration: configuration)
-            try realm.write {
-                realm.add(groups,update: true)
-            }
-        } catch {
-            print(error.localizedDescription)
         }
     }
 }
