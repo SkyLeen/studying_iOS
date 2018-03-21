@@ -21,6 +21,7 @@
 		0416317C204213AA00446639 /* SettingsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0416317B204213AA00446639 /* SettingsViewCell.swift */; };
 		0445CD6C2052656900D48551 /* LogOutRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0445CD6B2052656900D48551 /* LogOutRequest.swift */; };
 		046DE624205D967200FEF668 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046DE623205D967200FEF668 /* UserModel.swift */; };
+		047F26C32062C4C100CCD79C /* RealmNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047F26C22062C4C100CCD79C /* RealmNotifications.swift */; };
 		0490992020580A05009C784A /* FriendsRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0490991F20580A05009C784A /* FriendsRequests.swift */; };
 		049CEBA32051AF28007ED7C2 /* FriendModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CEBA22051AF28007ED7C2 /* FriendModel.swift */; };
 		049CEBA52051D558007ED7C2 /* PhotosModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CEBA42051D558007ED7C2 /* PhotosModel.swift */; };
@@ -52,6 +53,7 @@
 		0416317B204213AA00446639 /* SettingsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewCell.swift; sourceTree = "<group>"; };
 		0445CD6B2052656900D48551 /* LogOutRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOutRequest.swift; sourceTree = "<group>"; };
 		046DE623205D967200FEF668 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		047F26C22062C4C100CCD79C /* RealmNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmNotifications.swift; sourceTree = "<group>"; };
 		0490991F20580A05009C784A /* FriendsRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsRequests.swift; sourceTree = "<group>"; };
 		049CEBA22051AF28007ED7C2 /* FriendModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendModel.swift; sourceTree = "<group>"; };
 		049CEBA42051D558007ED7C2 /* PhotosModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosModel.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 			children = (
 				04D19B2C2060F1C700E1CADE /* RealmSaving.swift */,
 				04D19B2E2060FC9B00E1CADE /* RealmLoading.swift */,
+				047F26C22062C4C100CCD79C /* RealmNotifications.swift */,
 			);
 			path = RealmRequests;
 			sourceTree = "<group>";
@@ -132,8 +135,8 @@
 		04D2193C20486D0B001E5B26 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				0416316920415FF600446639 /* MyFriendCollectionViewCell.swift */,
 				0416316320415E5000446639 /* MyFriendsViewCell.swift */,
+				0416316920415FF600446639 /* MyFriendCollectionViewCell.swift */,
 				0416316D204201B800446639 /* MyGroupsViewCell.swift */,
 				04163174204203E400446639 /* AllGroupsViewCell.swift */,
 				0416317B204213AA00446639 /* SettingsViewCell.swift */,
@@ -346,6 +349,7 @@
 				0416317C204213AA00446639 /* SettingsViewCell.swift in Sources */,
 				0445CD6C2052656900D48551 /* LogOutRequest.swift in Sources */,
 				0416316E204201B800446639 /* MyGroupsViewCell.swift in Sources */,
+				047F26C32062C4C100CCD79C /* RealmNotifications.swift in Sources */,
 				0416316420415E5000446639 /* MyFriendsViewCell.swift in Sources */,
 				041631772042109300446639 /* Helpers.swift in Sources */,
 				0416316C2042016500446639 /* MyGroupsTableVC.swift in Sources */,

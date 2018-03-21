@@ -10,22 +10,14 @@ import UIKit
 import SwiftKeychainWrapper
 import RealmSwift
 
-struct SectionObjects {
-    var section: Character
-    var users: Results<Friend>
-}
-
 class MyFriendsTableVC: UITableViewController {
     
     let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")
     let userId =  KeychainWrapper.standard.string(forKey: "userId")
     
     lazy var myFriendsArray: Results<Friend> = {
-        return Loader.loadData(object: Friend())
+        return Loader.loadData(object: Friend()).sorted(byKeyPath: "lastName")
     }()
-    
-    var myFriendsInitialsArray = [Character]()
-    var sectionObjectArray = [SectionObjects]()
     
     var token: NotificationToken?
     
@@ -36,31 +28,17 @@ class MyFriendsTableVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         FriendsRequests.getFriendsList(userId: userId!, accessToken: accessToken!)
-        getSectionObjects()
-        
-        for (index,objects) in sectionObjectArray.enumerated() {
-            getNotification(for: objects.users, section: index)
-        }
-    }
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        let sectionsCount = sectionObjectArray.count
-        return sectionsCount
-    }
-    
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let sectionName = String(myFriendsInitialsArray[section])
-        return sectionName
+        token = Notificator.getNotificationForTableVC(for: myFriendsArray, tableView: self.tableView)
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let sectionRowsCount = sectionObjectArray[section].users.count
+        let sectionRowsCount = myFriendsArray.count
         return sectionRowsCount
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FriendCell", for: indexPath) as! MyFriendsViewCell
-        cell.user = sectionObjectArray[indexPath.section].users[indexPath.row]
+        cell.user = myFriendsArray[indexPath.row]
         return cell
     }
  
@@ -73,44 +51,7 @@ class MyFriendsTableVC: UITableViewController {
         guard let destinationVC = segue.destination as? MyFriendCollectionVC else { return }
         guard let friend = sender as? IndexPath else { return }
 
-        destinationVC.friendName = sectionObjectArray[friend.section].users[friend.row].name
-        destinationVC.friendId = sectionObjectArray[friend.section].users[friend.row].idFriend
-    }
-    
-    private func getInitialsArray() {
-        for (_, friend) in myFriendsArray.enumerated() {
-            if !myFriendsInitialsArray.contains(friend.name.first!) {
-                myFriendsInitialsArray.append(friend.name.first!)
-            }
-        }
-        myFriendsInitialsArray.sort(by: {$0 < $1})
-    }
-    
-    private func getSectionObjects() {
-        getInitialsArray()
-        for (_,initial) in myFriendsInitialsArray.enumerated() {
-            guard !sectionObjectArray.contains(where: { $0.section == initial } ) else { return }
-            let names = myFriendsArray.filter("lastName BEGINSWITH '\(String(initial))'")
-            sectionObjectArray.append(SectionObjects(section: initial, users: names))
-        }
-    }
-    
-    private func getNotification(for objects: Results<Friend> , section: Int) {
-        token = objects.observe({ [weak self] changes in
-            guard let tableView = self?.tableView else { return }
-            switch changes {
-            case .initial:
-                tableView.reloadData()
-            case .update(_, let delete, let insert, let update):
-                tableView.beginUpdates()
-                tableView.deleteRows(at: delete.map({ IndexPath(row: $0, section: section) }), with: .automatic)
-                tableView.insertRows(at: insert.map({ IndexPath(row: $0, section: section) }), with: .automatic)
-                //tableView.reloadSections(IndexSet.init(integer: section), with: .automatic)
-                tableView.reloadRows(at: update.map({ IndexPath(row: $0, section: section) }), with: .automatic)
-                tableView.endUpdates()
-            case .error(let error):
-                print(error.localizedDescription)
-            }
-        })
+        destinationVC.friendName = myFriendsArray[friend.row].name
+        destinationVC.friendId = myFriendsArray[friend.row].idFriend
     }
 }
