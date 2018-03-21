@@ -7,12 +7,12 @@
 //
 
 import UIKit
-import  SwiftKeychainWrapper
+import SwiftKeychainWrapper
 import RealmSwift
 
 struct SectionObjects {
     var section: Character
-    var users: [Friend]
+    var users: Results<Friend>
 }
 
 class MyFriendsTableVC: UITableViewController {
@@ -20,16 +20,26 @@ class MyFriendsTableVC: UITableViewController {
     let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")
     let userId =  KeychainWrapper.standard.string(forKey: "userId")
     
-    var myFriendsArray = [Friend]()
+    lazy var myFriendsArray: Results<Friend> = {
+        return Loader.loadData(object: Friend())
+    }()
+    
     var myFriendsInitialsArray = [Character]()
     var sectionObjectArray = [SectionObjects]()
     
+    var token: NotificationToken?
+    
+    deinit {
+        token?.invalidate()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-         FriendsRequests.getFriendsList(userId: userId!, accessToken: accessToken!) { [weak self] in
-            self?.myFriendsArray = Array(Loader.loadData(object: Friend()))
-            self?.getSectionObjects()
-            self?.tableView.reloadData()
+        FriendsRequests.getFriendsList(userId: userId!, accessToken: accessToken!)
+        getSectionObjects()
+        
+        for (index,objects) in sectionObjectArray.enumerated() {
+            getNotification(for: objects.users, section: index)
         }
     }
     
@@ -78,9 +88,29 @@ class MyFriendsTableVC: UITableViewController {
     
     private func getSectionObjects() {
         getInitialsArray()
-        for initial in myFriendsInitialsArray {
-            let names: [Friend] = myFriendsArray.filter({ $0.name.first! == initial })
-            sectionObjectArray.append(SectionObjects(section: initial, users: names.sorted(by: { $0.name < $1.name })))
+        for (_,initial) in myFriendsInitialsArray.enumerated() {
+            guard !sectionObjectArray.contains(where: { $0.section == initial } ) else { return }
+            let names = myFriendsArray.filter("lastName BEGINSWITH '\(String(initial))'")
+            sectionObjectArray.append(SectionObjects(section: initial, users: names))
         }
+    }
+    
+    private func getNotification(for objects: Results<Friend> , section: Int) {
+        token = objects.observe({ [weak self] changes in
+            guard let tableView = self?.tableView else { return }
+            switch changes {
+            case .initial:
+                tableView.reloadData()
+            case .update(_, let delete, let insert, let update):
+                tableView.beginUpdates()
+                tableView.deleteRows(at: delete.map({ IndexPath(row: $0, section: section) }), with: .automatic)
+                tableView.insertRows(at: insert.map({ IndexPath(row: $0, section: section) }), with: .automatic)
+                //tableView.reloadSections(IndexSet.init(integer: section), with: .automatic)
+                tableView.reloadRows(at: update.map({ IndexPath(row: $0, section: section) }), with: .automatic)
+                tableView.endUpdates()
+            case .error(let error):
+                print(error.localizedDescription)
+            }
+        })
     }
 }

@@ -27,9 +27,7 @@ class Saver {
             let oldFriends = realm.objects(Friend.self)
             try realm.write {
                 realm.delete(oldFriends)
-                for friend in friends {
-                    user?.friends.append(friend)
-                }
+                user?.friends.append(objectsIn: friends)
             }
         } catch {
             print(error.localizedDescription)
@@ -43,9 +41,7 @@ class Saver {
             let oldPhotos = realm.objects(Photos.self).filter("idFriend == %@", friendId)
             try realm.write {
                 realm.delete(oldPhotos)
-                for photo in photos {
-                    friend?.photos.append(photo)
-                }
+                friend?.photos.append(objectsIn: photos)
             }
         } catch {
             print(error.localizedDescription)
@@ -59,9 +55,7 @@ class Saver {
             let oldGroups = realm.objects(Group.self).filter("userId == %@", userId)
             try realm.write {
                 realm.delete(oldGroups)
-                for group in groups {
-                    user?.groups.append(group)
-                }
+                user?.groups.append(objectsIn: groups)
             }
         } catch {
             print(error.localizedDescription)

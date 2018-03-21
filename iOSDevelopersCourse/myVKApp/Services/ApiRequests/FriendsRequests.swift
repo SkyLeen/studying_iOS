@@ -14,7 +14,7 @@ class FriendsRequests {
     static let baseUrl = "https://api.vk.com"
     static let path = "/method"
     
-   static func getFriendsList(userId: String, accessToken: String, completion: @escaping () -> ()) {
+   static func getFriendsList(userId: String, accessToken: String) {
         let pathMethod = "/friends.get"
         let url = baseUrl + path + pathMethod
         let parameters: Parameters = [
@@ -30,10 +30,8 @@ class FriendsRequests {
             case .success(let value):
                 let users = JSON(value)["response"]["items"].flatMap({ Friend(json: $0.1) })
                 Saver.loadFriendsData(friends: users, userId: userId)
-                completion()
             case .failure(let error):
                 print(error)
-                completion()
             }
         }
     }
