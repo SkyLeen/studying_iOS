@@ -12,14 +12,20 @@ import RealmSwift
 
 class MyGroupsTableVC: UITableViewController {
 
-    let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")
-    let userId =  KeychainWrapper.standard.string(forKey: "userId")
+    private let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")
+    private let userId =  KeychainWrapper.standard.string(forKey: "userId")
     
-    var myGroupsArray = [Group]()
+    var myGroupsArray: Results<Group>!
+    var token: NotificationToken?
+    
+    deinit {
+        token?.invalidate()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getUserGroups()
+        getNotification()
+        GroupsRequests.getUserGroups(userId: userId!, accessToken: accessToken!)
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -56,25 +62,15 @@ class MyGroupsTableVC: UITableViewController {
             return
         }
         
-        GroupsRequests.joinGroup(accessToken: accessToken!, idGroup: newGroup.idGroup) { [weak self] in
-            self?.getUserGroups()
-        }
+        GroupsRequests.joinGroup(accessToken: accessToken!, idGroup: newGroup.idGroup)
+        Saver.saveNewGroup(group: newGroup, userId: userId!)
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         let idGroup = myGroupsArray[indexPath.row].idGroup
         if editingStyle == .delete {
-            GroupsRequests.leaveGroup(accessToken: accessToken!, idGroup: idGroup) { [weak self] in
-                self?.getUserGroups()
-            }
-        }
-    }
-    
-    private func getUserGroups() {
-        GroupsRequests.getUserGroups(userId: userId!, accessToken: accessToken!) { [weak self] in
-            let groups = Loader.loadData(object: Group()).filter("userId == %@", (self?.userId!)!)
-            self?.myGroupsArray = Array(groups)
-            self?.tableView.reloadData()
+            GroupsRequests.leaveGroup(accessToken: accessToken!, idGroup: idGroup)
+            Deleter.deleteData(object: myGroupsArray[indexPath.row])
         }
     }
 }

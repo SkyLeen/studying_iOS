@@ -3,8 +3,8 @@
 
 target 'myVKApp' do
   use_frameworks!
-pod 'Alamofire', '~>4.6.0'
-pod 'SwiftyJSON', '~>4.0'
+pod 'Alamofire'
+pod 'SwiftyJSON'
 pod 'RealmSwift'
 pod 'SwiftKeychainWrapper'
 

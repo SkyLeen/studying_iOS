@@ -29,22 +29,21 @@ class FriendsRequests {
             switch response.result {
             case .success(let value):
                 let users = JSON(value)["response"]["items"].flatMap({ Friend(json: $0.1) })
-                Saver.loadFriendsData(friends: users, userId: userId)
+                Saver.saveFriendsData(friends: users, userId: userId)
             case .failure(let error):
                 print(error)
             }
         }
     }
     
-    static func getFriendPhotos(userId: String, accessToken: String, friendId: Int, completion: @escaping () -> ()) {
-        let pathMethod = "/photos.get"
+    static func getFriendPhotos(userId: String, accessToken: String, friendId: Int) {
+        let pathMethod = "/photos.getAll"
         let url = baseUrl + path + pathMethod
         let parameters: Parameters = [
             "user_id":userId,
             "access_token":accessToken,
             "owner_id":friendId,
-            "album_id":"wall",
-            "rev":"1",
+            "skip_hidden":"1",
             "v":"5.73"
         ]
         
@@ -52,11 +51,9 @@ class FriendsRequests {
             switch response.result {
             case .success(let value):
                 let photos = JSON(value)["response"]["items"].flatMap({ Photos(json: $0.1) })
-                Saver.loadFriendsPhotos(photos: photos, friendId: friendId)
-                completion()
+                Saver.saveFriendsPhotos(photos: photos, friendId: friendId)
             case .failure(let error):
                 print(error)
-                completion()
             }
         }
     }

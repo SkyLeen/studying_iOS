@@ -10,24 +10,28 @@ import UIKit
 import SwiftKeychainWrapper
 import RealmSwift
 
-class MyFriendCollectionVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class MyFriendCollectionVC: UICollectionViewController {
 
     let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")
     let userId =  KeychainWrapper.standard.string(forKey: "userId")
     
     var friendName = String()
-    var friendPhotos = [Photos]()
     let interItemSpace: CGFloat = 5
     var friendId = 0
     
+    var friendPhotos: Results<Photos>!
+    
+    var token: NotificationToken?
+    
+    deinit {
+        token?.invalidate()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        FriendsRequests.getFriendPhotos(userId: userId!, accessToken: accessToken!, friendId: friendId) { [weak self]  in
-            let photos = Loader.loadData(object: Photos()).filter("idFriend == %@", (self?.friendId)!)
-            self?.friendPhotos = Array(photos)
-            self?.collectionView?.reloadData()
-        }
         navigationItem.title = friendName
+        getNotification()
+        FriendsRequests.getFriendPhotos(userId: userId!, accessToken: accessToken!, friendId: friendId)
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -41,6 +45,9 @@ class MyFriendCollectionVC: UICollectionViewController, UICollectionViewDelegate
     
         return cell
     }
+}
+
+extension MyFriendCollectionVC: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let itemsCount: CGFloat = 4
@@ -48,7 +55,7 @@ class MyFriendCollectionVC: UICollectionViewController, UICollectionViewDelegate
         let itemWidth = (screenWidth - (interItemSpace * itemsCount))/itemsCount
         
         let cellSize = CGSize(width: itemWidth, height: itemWidth)
-
+        
         return cellSize
     }
     

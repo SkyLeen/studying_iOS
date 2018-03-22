@@ -1,5 +1,5 @@
 //
-//  RealmSaving.swift
+//  RealmSaver.swift
 //  myVKApp
 //
 //  Created by Natalya on 20/03/2018.
@@ -10,22 +10,22 @@ import RealmSwift
 
 class Saver {
     
-    static let config = setConfiguration()
+    private static let config = setConfiguration()
     
-    static func setConfiguration() -> Realm.Configuration {
+    private static func setConfiguration() -> Realm.Configuration {
         var configuration = Realm.Configuration()
         configuration.deleteRealmIfMigrationNeeded = true
-        Realm.Configuration.defaultConfiguration = configuration
         
         return configuration
     }
 
-    static func loadFriendsData(friends: [Friend], userId: String) {
+    static func saveFriendsData(friends: [Friend], userId: String) {
         do {
             let realm = try Realm(configuration: config)
             let user = realm.object(ofType: User.self, forPrimaryKey: userId)
             let oldFriends = realm.objects(Friend.self)
             try realm.write {
+                print(realm.configuration.fileURL!)
                 realm.delete(oldFriends)
                 user?.friends.append(objectsIn: friends)
             }
@@ -34,7 +34,7 @@ class Saver {
         }
     }
     
-    static func loadFriendsPhotos (photos: [Photos], friendId: Int) {
+    static func saveFriendsPhotos (photos: [Photos], friendId: Int) {
         do {
             let realm = try Realm(configuration: config)
             let friend = realm.object(ofType: Friend.self, forPrimaryKey: friendId)
@@ -48,7 +48,7 @@ class Saver {
         }
     }
     
-    static func loadUserGroups(groups: [Group], userId: String) {
+    static func saveUserGroups(groups: [Group], userId: String) {
         do {
             let realm = try Realm(configuration: config)
             let user = realm.object(ofType: User.self, forPrimaryKey: userId)
@@ -62,7 +62,20 @@ class Saver {
         }
     }
     
-    static func loadAllGroups(groups: [Group]) {
+    static func saveNewGroup(group: Group, userId: String) {
+        do {
+            let realm = try Realm(configuration: config)
+            let user = realm.object(ofType: User.self, forPrimaryKey: userId)
+            try realm.write {
+                group.userId = userId
+                user?.groups.append(group)
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    static func saveAllGroups(groups: [Group]) {
         do {
             let realm = try Realm(configuration: config)
             try realm.write {

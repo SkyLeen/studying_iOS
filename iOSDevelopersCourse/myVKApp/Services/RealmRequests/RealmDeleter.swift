@@ -1,23 +1,24 @@
 //
-//  RealmLoading.swift
+//  RealmDeleter.swift
 //  myVKApp
 //
-//  Created by Natalya on 20/03/2018.
+//  Created by Natalya on 22/03/2018.
 //  Copyright © 2018 Natalya Shikhalyova. All rights reserved.
 //
 
 import RealmSwift
 
-class Loader {
+class Deleter {
     
-    static func loadData<T: Object> (object: T) -> Results<T> {
-        var result: Results<T>?
+    static func deleteData<T: Object>(object: T){
         do {
             let realm = try Realm()
-            result = realm.objects(T.self)
+            try realm.write {
+                realm.delete(object)
+            }
+            
         } catch {
             print(error.localizedDescription)
         }
-        return result!
     }
 }
