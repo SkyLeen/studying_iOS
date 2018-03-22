@@ -29,7 +29,7 @@ class FriendsRequests {
             switch response.result {
             case .success(let value):
                 let users = JSON(value)["response"]["items"].flatMap({ Friend(json: $0.1) })
-                Saver.saveFriendsData(friends: users, userId: userId)
+                FriendsSaver.saveFriendsData(friends: users, userId: userId)
             case .failure(let error):
                 print(error)
             }
@@ -51,7 +51,7 @@ class FriendsRequests {
             switch response.result {
             case .success(let value):
                 let photos = JSON(value)["response"]["items"].flatMap({ Photos(json: $0.1) })
-                Saver.saveFriendsPhotos(photos: photos, friendId: friendId)
+                FriendsSaver.saveFriendsPhotos(photos: photos, friendId: friendId)
             case .failure(let error):
                 print(error)
             }

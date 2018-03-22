@@ -15,7 +15,9 @@ class MyFriendsTableVC: UITableViewController {
     let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")
     let userId =  KeychainWrapper.standard.string(forKey: "userId")
     
-    var myFriendsArray: Results<Friend>!
+    lazy var myFriendsArray: Results<Friend> = {
+        return Loader.loadData(object: Friend()).sorted(byKeyPath: "lastName")
+    }()
     
     var token: NotificationToken?
     
@@ -25,8 +27,8 @@ class MyFriendsTableVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getNotification()
         FriendsRequests.getFriendsList(userId: userId!, accessToken: accessToken!)
+        getNotification()
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -46,7 +46,6 @@ extension AllGroupsTableVC: UISearchBarDelegate {
 extension AllGroupsTableVC {
     
     func getNotification() {
-        allGroupsArray = Loader.loadData(object: Group()).filter("userId == ''")
         token = allGroupsArray.observe({ [weak self] changes in
             guard let view = self?.tableView else { return }
             switch changes {

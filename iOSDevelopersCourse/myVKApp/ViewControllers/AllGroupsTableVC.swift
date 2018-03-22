@@ -16,8 +16,11 @@ class AllGroupsTableVC: UITableViewController {
     let userId =  KeychainWrapper.standard.string(forKey: "userId")
     
     let searchBar = UISearchBar()
-    var allGroupsArray: Results<Group>!
+    lazy var allGroupsArray: Results<Group> = {
+        return Loader.loadData(object: Group()).filter("userId == ''")
+    }()
     var filteredArray: Results<Group>!
+    
     var isSearching = false
     var token: NotificationToken?
     
@@ -28,8 +31,8 @@ class AllGroupsTableVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         createSearchBar()
-        getNotification()
         GroupsRequests.getAllGroups(accessToken: accessToken!)
+        getNotification()
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

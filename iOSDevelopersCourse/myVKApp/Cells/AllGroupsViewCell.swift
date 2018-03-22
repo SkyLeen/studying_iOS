@@ -23,7 +23,7 @@ class AllGroupsViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        ImageSettingsHelper().setImageLayersSettings(for: allGroupImageView, mode: .forAvatarImages)
+        ImageSettingsHelper.setImageLayersSettings(for: allGroupImageView, mode: .forAvatarImages)
     }
     
     private func getAllGroupsProperties() {
@@ -39,7 +39,7 @@ class AllGroupsViewCell: UITableViewCell {
             let image = UIImage(data: data)
             DispatchQueue.main.async { [weak self] in
                guard let s = self else { return }
-                guard URL(string: (s.group?.photoGroupUrl)!) == response?.url else { return }
+               //guard URL(string: (s.group?.photoGroupUrl) ?? "") == response?.url else { return } //#ToDo: при наличии этой строки падает с ошибкой 'RLMException', reason: 'Object has been deleted or invalidated.' 
                s.allGroupImageView.image = image
             }
         }

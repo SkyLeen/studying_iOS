@@ -29,7 +29,7 @@ class GroupsRequests {
             switch response.result {
             case .success(let value):
                 let groups = JSON(value)["response"]["items"].flatMap({ Group(json: $0.1, userId: userId) })
-                Saver.saveUserGroups(groups: groups, userId: userId)
+                GroupsSaver.saveUserGroups(groups: groups, userId: userId)
             case .failure(let error):
                 print(error)
             }
@@ -50,7 +50,7 @@ class GroupsRequests {
             switch response.result {
             case .success(let value):
                 let groups = JSON(value)["response"]["items"].flatMap({ Group(json: $0.1) })
-                Saver.saveAllGroups(groups: groups)
+                GroupsSaver.saveAllGroups(groups: groups)
             case .failure(let error):
                 print(error)
             }

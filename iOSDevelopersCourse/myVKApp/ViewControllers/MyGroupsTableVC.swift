@@ -15,7 +15,9 @@ class MyGroupsTableVC: UITableViewController {
     private let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")
     private let userId =  KeychainWrapper.standard.string(forKey: "userId")
     
-    var myGroupsArray: Results<Group>!
+    lazy var myGroupsArray: Results<Group> = {
+        return Loader.loadData(object: Group()).filter("userId != ''")
+    }()
     var token: NotificationToken?
     
     deinit {
@@ -24,8 +26,8 @@ class MyGroupsTableVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getNotification()
         GroupsRequests.getUserGroups(userId: userId!, accessToken: accessToken!)
+        getNotification()
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -58,12 +60,12 @@ class MyGroupsTableVC: UITableViewController {
                 return false
             }
         }) else {
-            present(AlertHelper().showAlert(withTitle: "Warning", message: "There is a such Group in the list"), animated: true)
+            present(AlertHelper.showAlert(withTitle: "Warning", message: "There is a such Group in the list"), animated: true)
             return
         }
         
         GroupsRequests.joinGroup(accessToken: accessToken!, idGroup: newGroup.idGroup)
-        Saver.saveNewGroup(group: newGroup, userId: userId!)
+        GroupsSaver.saveNewGroup(group: newGroup, userId: userId!)
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {

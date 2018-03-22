@@ -11,6 +11,9 @@
 		040A2C972063C584004A43D0 /* ExtMyGroupsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040A2C962063C584004A43D0 /* ExtMyGroupsTableVC.swift */; };
 		040A2C992063C5B9004A43D0 /* ExtMyFriendCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040A2C982063C5B9004A43D0 /* ExtMyFriendCollectionVC.swift */; };
 		040A2C9B2063CC13004A43D0 /* ExtAllGroupsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040A2C9A2063CC13004A43D0 /* ExtAllGroupsTableVC.swift */; };
+		0410DB142064411F00FB3F4F /* ExtLoginWebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0410DB132064411F00FB3F4F /* ExtLoginWebVC.swift */; };
+		0410DB162064420E00FB3F4F /* RealmGroupsSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0410DB152064420E00FB3F4F /* RealmGroupsSaver.swift */; };
+		0410DB182064428600FB3F4F /* RealmUserSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0410DB172064428600FB3F4F /* RealmUserSaver.swift */; };
 		0416313A2040806800446639 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 041631392040806800446639 /* Assets.xcassets */; };
 		0416316420415E5000446639 /* MyFriendsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0416316320415E5000446639 /* MyFriendsViewCell.swift */; };
 		0416316620415EDE00446639 /* MyFriendsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0416316520415EDE00446639 /* MyFriendsTableVC.swift */; };
@@ -30,7 +33,7 @@
 		049CEBA32051AF28007ED7C2 /* FriendModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CEBA22051AF28007ED7C2 /* FriendModel.swift */; };
 		049CEBA52051D558007ED7C2 /* PhotosModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CEBA42051D558007ED7C2 /* PhotosModel.swift */; };
 		049CEBA72051E3D5007ED7C2 /* GroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CEBA62051E3D5007ED7C2 /* GroupModel.swift */; };
-		04D19B2D2060F1C700E1CADE /* RealmSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D19B2C2060F1C700E1CADE /* RealmSaver.swift */; };
+		04D19B2D2060F1C700E1CADE /* RealmFriendsSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D19B2C2060F1C700E1CADE /* RealmFriendsSaver.swift */; };
 		04D19B2F2060FC9B00E1CADE /* RealmLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D19B2E2060FC9B00E1CADE /* RealmLoader.swift */; };
 		04D21945204A8DF3001E5B26 /* AuthorizationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D21944204A8DF3001E5B26 /* AuthorizationRequest.swift */; };
 		04D21947204AA716001E5B26 /* LoginWebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D21946204AA716001E5B26 /* LoginWebVC.swift */; };
@@ -47,6 +50,9 @@
 		040A2C962063C584004A43D0 /* ExtMyGroupsTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtMyGroupsTableVC.swift; sourceTree = "<group>"; };
 		040A2C982063C5B9004A43D0 /* ExtMyFriendCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtMyFriendCollectionVC.swift; sourceTree = "<group>"; };
 		040A2C9A2063CC13004A43D0 /* ExtAllGroupsTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtAllGroupsTableVC.swift; sourceTree = "<group>"; };
+		0410DB132064411F00FB3F4F /* ExtLoginWebVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtLoginWebVC.swift; sourceTree = "<group>"; };
+		0410DB152064420E00FB3F4F /* RealmGroupsSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmGroupsSaver.swift; sourceTree = "<group>"; };
+		0410DB172064428600FB3F4F /* RealmUserSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmUserSaver.swift; sourceTree = "<group>"; };
 		041631392040806800446639 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0416316320415E5000446639 /* MyFriendsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendsViewCell.swift; sourceTree = "<group>"; };
 		0416316520415EDE00446639 /* MyFriendsTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendsTableVC.swift; sourceTree = "<group>"; };
@@ -66,7 +72,7 @@
 		049CEBA22051AF28007ED7C2 /* FriendModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendModel.swift; sourceTree = "<group>"; };
 		049CEBA42051D558007ED7C2 /* PhotosModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosModel.swift; sourceTree = "<group>"; };
 		049CEBA62051E3D5007ED7C2 /* GroupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupModel.swift; sourceTree = "<group>"; };
-		04D19B2C2060F1C700E1CADE /* RealmSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmSaver.swift; sourceTree = "<group>"; };
+		04D19B2C2060F1C700E1CADE /* RealmFriendsSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmFriendsSaver.swift; sourceTree = "<group>"; };
 		04D19B2E2060FC9B00E1CADE /* RealmLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmLoader.swift; sourceTree = "<group>"; };
 		04D21944204A8DF3001E5B26 /* AuthorizationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationRequest.swift; sourceTree = "<group>"; };
 		04D21946204AA716001E5B26 /* LoginWebVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWebVC.swift; sourceTree = "<group>"; };
@@ -97,6 +103,7 @@
 		040A2C932063C482004A43D0 /* Exnensions */ = {
 			isa = PBXGroup;
 			children = (
+				0410DB132064411F00FB3F4F /* ExtLoginWebVC.swift */,
 				040A2C942063C4B1004A43D0 /* ExtMyFriendsTableVC.swift */,
 				040A2C982063C5B9004A43D0 /* ExtMyFriendCollectionVC.swift */,
 				040A2C962063C584004A43D0 /* ExtMyGroupsTableVC.swift */,
@@ -119,7 +126,9 @@
 		04D19B2A2060F17400E1CADE /* RealmRequests */ = {
 			isa = PBXGroup;
 			children = (
-				04D19B2C2060F1C700E1CADE /* RealmSaver.swift */,
+				0410DB172064428600FB3F4F /* RealmUserSaver.swift */,
+				04D19B2C2060F1C700E1CADE /* RealmFriendsSaver.swift */,
+				0410DB152064420E00FB3F4F /* RealmGroupsSaver.swift */,
 				04D19B2E2060FC9B00E1CADE /* RealmLoader.swift */,
 				04886BD32063AFB300236E08 /* RealmDeleter.swift */,
 			);
@@ -362,6 +371,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0410DB182064428600FB3F4F /* RealmUserSaver.swift in Sources */,
 				040A2C9B2063CC13004A43D0 /* ExtAllGroupsTableVC.swift in Sources */,
 				04D37E6B20381B1100F958AF /* AppDelegate.swift in Sources */,
 				049CEBA72051E3D5007ED7C2 /* GroupModel.swift in Sources */,
@@ -379,13 +389,15 @@
 				04D2194B204B0AF6001E5B26 /* GroupsRequests.swift in Sources */,
 				04D37E7D2038445C00F958AF /* LoginVC.swift in Sources */,
 				0416316A20415FF600446639 /* MyFriendCollectionViewCell.swift in Sources */,
+				0410DB142064411F00FB3F4F /* ExtLoginWebVC.swift in Sources */,
+				0410DB162064420E00FB3F4F /* RealmGroupsSaver.swift in Sources */,
 				04163170204202F100446639 /* AllGroupsTableVC.swift in Sources */,
 				04163175204203E400446639 /* AllGroupsViewCell.swift in Sources */,
 				040A2C952063C4B1004A43D0 /* ExtMyFriendsTableVC.swift in Sources */,
 				0416317A2042133500446639 /* SettingsTableVC.swift in Sources */,
 				040A2C992063C5B9004A43D0 /* ExtMyFriendCollectionVC.swift in Sources */,
 				04D21945204A8DF3001E5B26 /* AuthorizationRequest.swift in Sources */,
-				04D19B2D2060F1C700E1CADE /* RealmSaver.swift in Sources */,
+				04D19B2D2060F1C700E1CADE /* RealmFriendsSaver.swift in Sources */,
 				0490992020580A05009C784A /* FriendsRequests.swift in Sources */,
 				04D19B2F2060FC9B00E1CADE /* RealmLoader.swift in Sources */,
 				049CEBA32051AF28007ED7C2 /* FriendModel.swift in Sources */,
