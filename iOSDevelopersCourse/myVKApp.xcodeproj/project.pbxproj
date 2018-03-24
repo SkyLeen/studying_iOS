@@ -14,7 +14,6 @@
 		0410DB142064411F00FB3F4F /* ExtLoginWebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0410DB132064411F00FB3F4F /* ExtLoginWebVC.swift */; };
 		0410DB162064420E00FB3F4F /* RealmGroupsSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0410DB152064420E00FB3F4F /* RealmGroupsSaver.swift */; };
 		0410DB182064428600FB3F4F /* RealmUserSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0410DB172064428600FB3F4F /* RealmUserSaver.swift */; };
-		0416313A2040806800446639 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 041631392040806800446639 /* Assets.xcassets */; };
 		0416316420415E5000446639 /* MyFriendsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0416316320415E5000446639 /* MyFriendsViewCell.swift */; };
 		0416316620415EDE00446639 /* MyFriendsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0416316520415EDE00446639 /* MyFriendsTableVC.swift */; };
 		0416316820415F7F00446639 /* MyFriendCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0416316720415F7F00446639 /* MyFriendCollectionVC.swift */; };
@@ -28,6 +27,9 @@
 		0416317C204213AA00446639 /* SettingsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0416317B204213AA00446639 /* SettingsViewCell.swift */; };
 		0445CD6C2052656900D48551 /* LogOutRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0445CD6B2052656900D48551 /* LogOutRequest.swift */; };
 		046DE624205D967200FEF668 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046DE623205D967200FEF668 /* UserModel.swift */; };
+		048714D62066BCB5003405B4 /* NewsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048714D52066BCB5003405B4 /* NewsTableVC.swift */; };
+		048714D82066BD34003405B4 /* NewsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048714D72066BD34003405B4 /* NewsViewCell.swift */; };
+		048714DA2066CF8C003405B4 /* ExtUIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048714D92066CF8C003405B4 /* ExtUIImage.swift */; };
 		04886BD42063AFB300236E08 /* RealmDeleter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04886BD32063AFB300236E08 /* RealmDeleter.swift */; };
 		0490992020580A05009C784A /* FriendsRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0490991F20580A05009C784A /* FriendsRequests.swift */; };
 		049CEBA32051AF28007ED7C2 /* FriendModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CEBA22051AF28007ED7C2 /* FriendModel.swift */; };
@@ -53,7 +55,6 @@
 		0410DB132064411F00FB3F4F /* ExtLoginWebVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtLoginWebVC.swift; sourceTree = "<group>"; };
 		0410DB152064420E00FB3F4F /* RealmGroupsSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmGroupsSaver.swift; sourceTree = "<group>"; };
 		0410DB172064428600FB3F4F /* RealmUserSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmUserSaver.swift; sourceTree = "<group>"; };
-		041631392040806800446639 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0416316320415E5000446639 /* MyFriendsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendsViewCell.swift; sourceTree = "<group>"; };
 		0416316520415EDE00446639 /* MyFriendsTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendsTableVC.swift; sourceTree = "<group>"; };
 		0416316720415F7F00446639 /* MyFriendCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendCollectionVC.swift; sourceTree = "<group>"; };
@@ -67,6 +68,9 @@
 		0416317B204213AA00446639 /* SettingsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewCell.swift; sourceTree = "<group>"; };
 		0445CD6B2052656900D48551 /* LogOutRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOutRequest.swift; sourceTree = "<group>"; };
 		046DE623205D967200FEF668 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		048714D52066BCB5003405B4 /* NewsTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableVC.swift; sourceTree = "<group>"; };
+		048714D72066BD34003405B4 /* NewsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewCell.swift; sourceTree = "<group>"; };
+		048714D92066CF8C003405B4 /* ExtUIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtUIImage.swift; sourceTree = "<group>"; };
 		04886BD32063AFB300236E08 /* RealmDeleter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDeleter.swift; sourceTree = "<group>"; };
 		0490991F20580A05009C784A /* FriendsRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsRequests.swift; sourceTree = "<group>"; };
 		049CEBA22051AF28007ED7C2 /* FriendModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendModel.swift; sourceTree = "<group>"; };
@@ -108,6 +112,7 @@
 				040A2C982063C5B9004A43D0 /* ExtMyFriendCollectionVC.swift */,
 				040A2C962063C584004A43D0 /* ExtMyGroupsTableVC.swift */,
 				040A2C9A2063CC13004A43D0 /* ExtAllGroupsTableVC.swift */,
+				048714D92066CF8C003405B4 /* ExtUIImage.swift */,
 			);
 			path = Exnensions;
 			sourceTree = "<group>";
@@ -155,6 +160,7 @@
 				0416316720415F7F00446639 /* MyFriendCollectionVC.swift */,
 				0416316B2042016500446639 /* MyGroupsTableVC.swift */,
 				0416316F204202F100446639 /* AllGroupsTableVC.swift */,
+				048714D52066BCB5003405B4 /* NewsTableVC.swift */,
 				041631792042133500446639 /* SettingsTableVC.swift */,
 			);
 			path = ViewControllers;
@@ -167,6 +173,7 @@
 				0416316920415FF600446639 /* MyFriendCollectionViewCell.swift */,
 				0416316D204201B800446639 /* MyGroupsViewCell.swift */,
 				04163174204203E400446639 /* AllGroupsViewCell.swift */,
+				048714D72066BD34003405B4 /* NewsViewCell.swift */,
 				0416317B204213AA00446639 /* SettingsViewCell.swift */,
 			);
 			path = Cells;
@@ -210,7 +217,6 @@
 				04D2193C20486D0B001E5B26 /* Cells */,
 				04D37E6A20381B1100F958AF /* AppDelegate.swift */,
 				04D37E6E20381B1100F958AF /* Main.storyboard */,
-				041631392040806800446639 /* Assets.xcassets */,
 				04D37E7620381B1100F958AF /* Info.plist */,
 				04EA44B5203C2F5E00074ACA /* Launch.storyboard */,
 			);
@@ -297,7 +303,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				04D37E7020381B1100F958AF /* Main.storyboard in Resources */,
-				0416313A2040806800446639 /* Assets.xcassets in Resources */,
 				04EA44B6203C2F5E00074ACA /* Launch.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -387,8 +392,11 @@
 				0416316C2042016500446639 /* MyGroupsTableVC.swift in Sources */,
 				046DE624205D967200FEF668 /* UserModel.swift in Sources */,
 				04D2194B204B0AF6001E5B26 /* GroupsRequests.swift in Sources */,
+				048714DA2066CF8C003405B4 /* ExtUIImage.swift in Sources */,
 				04D37E7D2038445C00F958AF /* LoginVC.swift in Sources */,
+				048714D62066BCB5003405B4 /* NewsTableVC.swift in Sources */,
 				0416316A20415FF600446639 /* MyFriendCollectionViewCell.swift in Sources */,
+				048714D82066BD34003405B4 /* NewsViewCell.swift in Sources */,
 				0410DB142064411F00FB3F4F /* ExtLoginWebVC.swift in Sources */,
 				0410DB162064420E00FB3F4F /* RealmGroupsSaver.swift in Sources */,
 				04163170204202F100446639 /* AllGroupsTableVC.swift in Sources */,
