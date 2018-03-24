@@ -6,19 +6,18 @@
 //  Copyright © 2018 Natalya Shikhalyova. All rights reserved.
 //
 
-import Foundation
 import SwiftKeychainWrapper
 import RealmSwift
 
 class LogOutRequest {
     
-    func logOut() {
+    static func logOut() {
         removeDefaults()
         removeCookies()
         removeDataBase()
     }
     
-    private func removeDefaults() {
+    private static func removeDefaults() {
         let userDefaults = UserDefaults.standard
         let keyChain = KeychainWrapper.standard
         userDefaults.removeObject(forKey: "isLogged")
@@ -26,7 +25,7 @@ class LogOutRequest {
         keyChain.removeObject(forKey: "userId")
     }
     
-    private func removeCookies() {
+    private static func removeCookies() {
         let storage = HTTPCookieStorage.shared
         for cookie in storage.cookies! {
             let domainName = cookie.domain
@@ -35,7 +34,7 @@ class LogOutRequest {
         }
     }
     
-    private func removeDataBase() {
+    private static func removeDataBase() {
         do {
             let realm = try Realm()
             try realm.write {

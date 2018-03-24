@@ -28,7 +28,7 @@ class LoginVC: UIViewController {
     }
     
     @IBAction func logOut(segue: UIStoryboardSegue) {
-        LogOutRequest().logOut()
+        LogOutRequest.logOut()
     }
     
     @IBAction func logIn(_ sender: UIButton) {
