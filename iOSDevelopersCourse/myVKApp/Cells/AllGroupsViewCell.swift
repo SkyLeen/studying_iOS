@@ -17,29 +17,27 @@ class AllGroupsViewCell: UITableViewCell {
     var task: URLSessionTask?
     var group: Group? {
         didSet {
-            getAllGroupsProperties()
+            allGroupNameLabel.text = group?.nameGroup
+            allGroupFollowersCountLabel.text = "\(group?.followers ?? 0) followers"
+            getAllGroupsImage()
         }
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        ImageSettingsHelper().setImageLayersSettings(for: allGroupImageView, mode: .forAvatarImages)
+        ImageSettingsHelper.setImageLayersSettings(for: allGroupImageView, mode: .forAvatarImages)
     }
     
-    private func getAllGroupsProperties() {
+    private func getAllGroupsImage() {
         allGroupImageView.image = nil
         task?.cancel()
         task = nil
-        allGroupNameLabel.text = group?.nameGroup
-        allGroupFollowersCountLabel.text = "\(group?.followers ?? 0) followers"
-        
-        guard let url = URL(string: (group?.photoGroupUrl)!) else { return }
+        guard let path = group?.photoGroupUrl, let url = URL(string: path) else { return }
         task = URLSession.shared.dataTask(with: url) { (data, response, _) in
             guard let data = data else { return }
             let image = UIImage(data: data)
             DispatchQueue.main.async { [weak self] in
-               guard let s = self else { return }
-                guard URL(string: (s.group?.photoGroupUrl)!) == response?.url else { return }
+               guard let s = self, let photoUrl = response?.url, photoUrl == url else { return }
                s.allGroupImageView.image = image
             }
         }

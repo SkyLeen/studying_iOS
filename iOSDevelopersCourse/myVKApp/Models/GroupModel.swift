@@ -11,7 +11,7 @@ import RealmSwift
 
 class Group: Object {
     
-    @objc dynamic var idGroup: Int = 0
+    @objc dynamic var idGroup: String = ""
     @objc dynamic var nameGroup: String = ""
     @objc dynamic var followers: Int = 0
     @objc dynamic var photoGroupUrl: String?
@@ -26,7 +26,7 @@ class Group: Object {
     
     convenience init(json: JSON, userId: String = "") {
         self.init()
-        self.idGroup = json["id"].intValue
+        self.idGroup = json["id"].stringValue
         self.nameGroup = json["name"].stringValue
         self.followers = json["members_count"].intValue
         self.photoGroupUrl = json["photo_50"].stringValue

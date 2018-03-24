@@ -16,27 +16,26 @@ class MyGroupsViewCell: UITableViewCell {
     var task: URLSessionTask?
     var group: Group? {
         didSet {
-            getCurrentGroupsProperties()
+            myGroupNameLabel.text = group?.nameGroup
+            getUserGroupImage()
         }
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        ImageSettingsHelper().setImageLayersSettings(for: myGroupImageView, mode: .forAvatarImages)
+        ImageSettingsHelper.setImageLayersSettings(for: myGroupImageView, mode: .forAvatarImages)
     }
     
-    private func getCurrentGroupsProperties() {
+    private func getUserGroupImage() {
         myGroupImageView.image = nil
         task?.cancel()
         task = nil
-        myGroupNameLabel.text = group?.nameGroup
-        guard let url = URL(string: (group?.photoGroupUrl)!) else { return }
+        guard let pathUrl = group?.photoGroupUrl, let url = URL(string: pathUrl) else { return }
         task = URLSession.shared.dataTask(with: url) { (data, response, _) in
             guard let data = data else { return }
             let image = UIImage(data: data)
             DispatchQueue.main.async { [weak self] in
-                guard let s = self else { return }
-                guard URL(string: (s.group?.photoGroupUrl)!) == response?.url else { return }
+                guard let s = self, let photoUrl = response?.url, photoUrl == url else { return }
                 s.myGroupImageView.image = image
             }
         }

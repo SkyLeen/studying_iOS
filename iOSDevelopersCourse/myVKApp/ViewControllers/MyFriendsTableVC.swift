@@ -28,7 +28,7 @@ class MyFriendsTableVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         FriendsRequests.getFriendsList(userId: userId!, accessToken: accessToken!)
-        token = Notificator.getNotificationForTableVC(for: myFriendsArray, tableView: self.tableView)
+        getNotification()
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

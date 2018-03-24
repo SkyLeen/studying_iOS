@@ -12,14 +12,22 @@ import RealmSwift
 
 class MyGroupsTableVC: UITableViewController {
 
-    let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")
-    let userId =  KeychainWrapper.standard.string(forKey: "userId")
+    private let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")
+    private let userId =  KeychainWrapper.standard.string(forKey: "userId")
     
-    var myGroupsArray = [Group]()
+    lazy var myGroupsArray: Results<Group> = {
+        return Loader.loadData(object: Group()).filter("userId != ''")
+    }()
+    var token: NotificationToken?
+    
+    deinit {
+        token?.invalidate()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getUserGroups()
+        GroupsRequests.getUserGroups(userId: userId!, accessToken: accessToken!)
+        getNotification()
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -52,29 +60,19 @@ class MyGroupsTableVC: UITableViewController {
                 return false
             }
         }) else {
-            present(AlertHelper().showAlert(withTitle: "Warning", message: "There is a such Group in the list"), animated: true)
+            present(AlertHelper.showAlert(withTitle: "Warning", message: "There is a such Group in the list"), animated: true)
             return
         }
         
-        GroupsRequests.joinGroup(accessToken: accessToken!, idGroup: newGroup.idGroup) { [weak self] in
-            self?.getUserGroups()
-        }
+        GroupsRequests.joinGroup(accessToken: accessToken!, idGroup: newGroup.idGroup)
+        GroupsSaver.saveNewGroup(group: newGroup, userId: userId!)
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         let idGroup = myGroupsArray[indexPath.row].idGroup
         if editingStyle == .delete {
-            GroupsRequests.leaveGroup(accessToken: accessToken!, idGroup: idGroup) { [weak self] in
-                self?.getUserGroups()
-            }
-        }
-    }
-    
-    private func getUserGroups() {
-        GroupsRequests.getUserGroups(userId: userId!, accessToken: accessToken!) { [weak self] in
-            let groups = Loader.loadData(object: Group()).filter("userId == %@", (self?.userId!)!)
-            self?.myGroupsArray = Array(groups)
-            self?.tableView.reloadData()
+            GroupsRequests.leaveGroup(accessToken: accessToken!, idGroup: idGroup)
+            Deleter.deleteData(object: myGroupsArray[indexPath.row])
         }
     }
 }

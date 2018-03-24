@@ -7,17 +7,16 @@
 //
 
 import SwiftKeychainWrapper
-import RealmSwift
 
 class AuthorizationRequest {
     
-    let userDefaults = UserDefaults.standard
-    let keyChain = KeychainWrapper.standard
-    let scheme = "https"
-    let baseHost = "oauth.vk.com"
-    let cliendId = "6389925"
+    static let userDefaults = UserDefaults.standard
+    static let keyChain = KeychainWrapper.standard
+    static let scheme = "https"
+    static let baseHost = "oauth.vk.com"
+    static let cliendId = "6389925"
     
-    func requestAuthorization() -> URLRequest {
+    static func requestAuthorization() -> URLRequest {
         let path = "/authorize"
         let urlRedirect = "https://oauth.vk.com/blank.html"
         
@@ -27,8 +26,8 @@ class AuthorizationRequest {
         urlComponents.path = path
         urlComponents.queryItems = [
             URLQueryItem(name: "client_id", value: cliendId),
-            URLQueryItem(name: "scope", value: "groups"),
-            URLQueryItem(name: "display", value: "page"),
+            URLQueryItem(name: "scope", value: "offline, photos, groups"),
+            URLQueryItem(name: "display", value: "mobile"),
             URLQueryItem(name: "redirect_uri", value: urlRedirect),
             URLQueryItem(name: "response_type", value: "token"),
             URLQueryItem(name: "v", value: "5.73")
@@ -38,7 +37,7 @@ class AuthorizationRequest {
         return request
     }
     
-    func setAuthorizationResult(url: URL) {
+    static func setAuthorizationResult(url: URL) {
         let urlFragment = url.fragment!
         let params = getParamsDictionary(urlFragment: urlFragment)
         
@@ -47,11 +46,13 @@ class AuthorizationRequest {
             keyChain.set(params["access_token"]!, forKey: "accessToken")
             keyChain.set(params["user_id"]!, forKey: "userId")
             
-            loadUserData(userId: String(params["user_id"]!))
+            UserSaver.createUser(userId: String(params["user_id"]!))
+            FriendsRequests.getFriendsList(userId: String(params["user_id"]!), accessToken: params["access_token"]!)
+            GroupsRequests.getUserGroups(userId: String(params["user_id"]!), accessToken: params["access_token"]!)
         }
     }
     
-    private func getParamsDictionary(urlFragment: String) -> Dictionary<String,String> {
+    private static func getParamsDictionary(urlFragment: String) -> Dictionary<String,String> {
         let params = urlFragment
                     .components(separatedBy: "&")
                     .map { $0.components(separatedBy: "=") }
@@ -63,25 +64,5 @@ class AuthorizationRequest {
                         return dict
                 }
         return params
-    }
-    
-    private func loadUserData(userId: String) {
-        createUser(userId: userId)
-    }
-    
-    private func createUser(userId: String) {
-        var configuration = Realm.Configuration()
-        configuration.deleteRealmIfMigrationNeeded = true
-        
-        let user = User(idUser: userId)
-        
-        do {
-            let realm = try Realm(configuration: configuration)
-            try realm.write {
-                realm.add(user, update: true)
-            }
-        } catch {
-            print(error.localizedDescription)
-        }
     }
 }

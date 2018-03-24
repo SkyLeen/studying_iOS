@@ -10,24 +10,30 @@ import UIKit
 import SwiftKeychainWrapper
 import RealmSwift
 
-class MyFriendCollectionVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class MyFriendCollectionVC: UICollectionViewController {
 
     let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")
     let userId =  KeychainWrapper.standard.string(forKey: "userId")
     
     var friendName = String()
-    var friendPhotos = [Photos]()
     let interItemSpace: CGFloat = 5
     var friendId = 0
     
+    lazy var friendPhotos: Results<Photos> = {
+        return Loader.loadData(object: Photos()).filter("idFriend == %@", friendId)
+    }()
+    
+    var token: NotificationToken?
+    
+    deinit {
+        token?.invalidate()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        FriendsRequests.getFriendPhotos(userId: userId!, accessToken: accessToken!, friendId: friendId) { [weak self]  in
-            let photos = Loader.loadData(object: Photos()).filter("idFriend == %@", (self?.friendId)!)
-            self?.friendPhotos = Array(photos)
-            self?.collectionView?.reloadData()
-        }
         navigationItem.title = friendName
+        FriendsRequests.getFriendPhotos(userId: userId!, accessToken: accessToken!, friendId: friendId)
+        getNotification()
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -40,23 +46,5 @@ class MyFriendCollectionVC: UICollectionViewController, UICollectionViewDelegate
         cell.photo = friendPhotos[indexPath.row]
     
         return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let itemsCount: CGFloat = 4
-        let screenWidth = collectionView.bounds.size.width
-        let itemWidth = (screenWidth - (interItemSpace * itemsCount))/itemsCount
-        
-        let cellSize = CGSize(width: itemWidth, height: itemWidth)
-
-        return cellSize
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return interItemSpace
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return interItemSpace
     }
 }

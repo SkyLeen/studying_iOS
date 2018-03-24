@@ -16,18 +16,23 @@ class AllGroupsTableVC: UITableViewController {
     let userId =  KeychainWrapper.standard.string(forKey: "userId")
     
     let searchBar = UISearchBar()
-    var allGroupsArray = [Group]()
-    var filteredArray = [Group]()
+    lazy var allGroupsArray: Results<Group> = {
+        return Loader.loadData(object: Group()).filter("userId == ''")
+    }()
+    var filteredArray: Results<Group>!
+    
     var isSearching = false
+    var token: NotificationToken?
+    
+    deinit {
+        token?.invalidate()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         createSearchBar()
-        
-         GroupsRequests.getAllGroups(accessToken: accessToken!) { [weak self] in
-            self?.loadGroupsData()
-            self?.tableView.reloadData()
-        }
+        GroupsRequests.getAllGroups(accessToken: accessToken!)
+        getNotification()
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -58,39 +63,5 @@ class AllGroupsTableVC: UITableViewController {
         searchBar.returnKeyType = .done
         searchBar.delegate = self
         navigationItem.titleView = searchBar
-    }
-    
-    private func loadGroupsData(filter: String = "") {
-        let groups = Loader.loadData(object: Group()).filter("userId == %@", "")
-        
-        switch isSearching {
-        case true:
-            filteredArray = Array(groups.filter("nameGroup CONTAINS[c] '\(filter)'"))
-        case false:
-            allGroupsArray = Array(groups)
-        }
-    }
-}
-
-extension AllGroupsTableVC: UISearchBarDelegate {
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchBar.text == nil || searchBar.text == "" {
-            isSearching = false
-            searchBar.endEditing(true)
-            tableView.reloadData()
-        } else {
-            isSearching = true
-            self.loadGroupsData(filter: searchText)
-            self.tableView.reloadData()
-        }
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.endEditing(true)
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.endEditing(true)
     }
 }

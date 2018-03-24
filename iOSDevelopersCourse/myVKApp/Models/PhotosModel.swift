@@ -13,7 +13,8 @@ class Photos: Object {
     
     @objc dynamic var idPhoto: Int = 0
     @objc dynamic var idFriend: Int = 0
-    @objc dynamic var photoUrl: String?
+    @objc dynamic var photo75Url: String?
+    @objc dynamic var photo604Url: String?
     @objc dynamic var compoundKey: String = ""
 
     var friend = LinkingObjects(fromType: Friend.self, property: "photos")
@@ -26,7 +27,8 @@ class Photos: Object {
         self.init()
         self.idPhoto = json["id"].intValue
         self.idFriend = json["owner_id"].intValue
-        self.photoUrl = json["photo_130"].stringValue
+        self.photo75Url = json["photo_75"].stringValue
+        self.photo604Url = json["photo_604"].stringValue
         self.compoundKey = "\(idPhoto)\(idFriend)"
     }
 }

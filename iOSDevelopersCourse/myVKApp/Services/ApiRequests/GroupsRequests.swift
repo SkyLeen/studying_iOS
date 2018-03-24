@@ -14,7 +14,7 @@ class GroupsRequests {
     static let baseUrl = "https://api.vk.com"
     static let path = "/method"
     
-    static func getUserGroups(userId: String, accessToken: String, completion: @escaping () -> ()) {
+    static func getUserGroups(userId: String, accessToken: String) {
         let pathMethod = "/groups.get"
         let url = baseUrl + path + pathMethod
         let parameters: Parameters = [
@@ -29,16 +29,14 @@ class GroupsRequests {
             switch response.result {
             case .success(let value):
                 let groups = JSON(value)["response"]["items"].flatMap({ Group(json: $0.1, userId: userId) })
-                Saver.loadUserGroups(groups: groups, userId: userId)
-                completion()
+                GroupsSaver.saveUserGroups(groups: groups, userId: userId)
             case .failure(let error):
                 print(error)
-                completion()
             }
         }
     }
     
-    static func getAllGroups(accessToken: String, completion: @escaping () -> ()) {
+    static func getAllGroups(accessToken: String) {
         let pathMethod = "/groups.getCatalog"
         let url = baseUrl + path + pathMethod
         let parameters: Parameters = [
@@ -52,16 +50,14 @@ class GroupsRequests {
             switch response.result {
             case .success(let value):
                 let groups = JSON(value)["response"]["items"].flatMap({ Group(json: $0.1) })
-                Saver.loadAllGroups(groups: groups)
-                completion()
+                GroupsSaver.saveAllGroups(groups: groups)
             case .failure(let error):
                 print(error)
-                completion()
             }
         }
     }
     
-    static func joinGroup (accessToken: String, idGroup: Int, completion: @escaping () -> ()) {
+    static func joinGroup (accessToken: String, idGroup: String) {
         let pathMethod = "/groups.join"
         let url = baseUrl + path + pathMethod
         let parameters: Parameters = [
@@ -74,15 +70,13 @@ class GroupsRequests {
             switch response.result {
             case .success(let value):
                 print(JSON(value))
-                completion()
             case .failure(let error):
                 print(error)
-                completion()
             }
         }
     }
     
-    static func leaveGroup (accessToken: String, idGroup: Int,completion: @escaping () -> ()) {
+    static func leaveGroup (accessToken: String, idGroup: String) {
         let pathMethod = "/groups.leave"
         let url = baseUrl + path + pathMethod
         let parameters: Parameters = [
@@ -91,15 +85,6 @@ class GroupsRequests {
             "v":"5.73"
         ]
         
-        Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON { response in
-            switch response.result {
-            case .success(let value):
-                print(JSON(value))
-                completion()
-            case .failure(let error):
-                print(error)
-                completion()
-            }
-        }
+        Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON { response in }
     }
 }

@@ -21,20 +21,19 @@ class MyFriendCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        ImageSettingsHelper().setImageLayersSettings(for: myFriendPhoto, mode: .forPhotos)
+        ImageSettingsHelper.setImageLayersSettings(for: myFriendPhoto, mode: .forPhotos)
     }
     
     private func getUserPhotos() {
         myFriendPhoto.image = nil
         task?.cancel()
         task = nil
-        guard let url = URL(string: (photo?.photoUrl)!) else { return }
+        guard let pathUrl = photo?.photo75Url, let url = URL(string: pathUrl) else { return }
         task = URLSession.shared.dataTask(with: url) { (data, response,_) in
             guard let data = data else { return }
             let image = UIImage(data: data)
             DispatchQueue.main.async { [weak self] in
-                guard let s = self else { return }
-                guard URL(string: (s.photo?.photoUrl)!) == response?.url else { return }
+                guard let s = self, let photoUrl = response?.url, photoUrl == url else { return }
                 s.myFriendPhoto.image = image
             }
         }
