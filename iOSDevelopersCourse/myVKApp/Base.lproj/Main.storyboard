@@ -121,11 +121,11 @@
                                         <exclude reference="EgS-Hr-02J"/>
                                         <exclude reference="gJz-1a-H9r"/>
                                         <include reference="u2k-fp-tWW"/>
-                                        <include reference="YMy-iH-krO"/>
                                         <exclude reference="2Nr-AZ-3ni"/>
                                         <exclude reference="7Ej-kX-xww"/>
                                         <include reference="lrr-EH-dUY"/>
                                         <include reference="m6W-2D-cD4"/>
+                                        <include reference="YMy-iH-krO"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular">
@@ -454,19 +454,57 @@
         <!--Messages-->
         <scene sceneID="dBL-cL-R3U">
             <objects>
-                <tableViewController id="7yb-Sx-JBs" sceneMemberID="viewController">
+                <tableViewController id="7yb-Sx-JBs" customClass="MessagesTableVC" customModule="myVKApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="dda-Tf-lTh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MessageCell" id="ulF-N1-LIx">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MessageCell" rowHeight="45" id="ulF-N1-LIx" customClass="MessagesViewCell" customModule="myVKApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="45"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ulF-N1-LIx" id="JMm-aT-ohG">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Pn3-ST-hRI">
+                                            <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="45" id="jg8-c4-Dfq"/>
+                                                <constraint firstAttribute="height" constant="45" id="yVC-1j-j0J"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q2v-bA-CVh">
+                                            <rect key="frame" x="65" y="0.0" width="310" height="20"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R8B-rR-a8I">
+                                            <rect key="frame" x="65" y="13" width="294" height="31.5"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Pn3-ST-hRI" firstAttribute="leading" secondItem="JMm-aT-ohG" secondAttribute="leading" id="49f-09-5qN"/>
+                                        <constraint firstItem="R8B-rR-a8I" firstAttribute="top" secondItem="JMm-aT-ohG" secondAttribute="topMargin" constant="2" id="8n6-2H-cpW"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="R8B-rR-a8I" secondAttribute="trailing" id="9B4-ym-7vc"/>
+                                        <constraint firstItem="Q2v-bA-CVh" firstAttribute="leading" secondItem="Pn3-ST-hRI" secondAttribute="trailing" constant="20" id="GDt-Xc-Zzf"/>
+                                        <constraint firstItem="R8B-rR-a8I" firstAttribute="bottom" secondItem="JMm-aT-ohG" secondAttribute="bottom" id="GhT-Dc-OaU"/>
+                                        <constraint firstItem="R8B-rR-a8I" firstAttribute="leading" secondItem="Pn3-ST-hRI" secondAttribute="trailing" constant="20" id="MBL-cQ-IpB"/>
+                                        <constraint firstItem="Pn3-ST-hRI" firstAttribute="top" secondItem="JMm-aT-ohG" secondAttribute="top" id="Uvp-kl-RTk"/>
+                                        <constraint firstAttribute="bottom" secondItem="Pn3-ST-hRI" secondAttribute="bottom" id="uGM-b9-BAq"/>
+                                        <constraint firstAttribute="trailing" secondItem="Q2v-bA-CVh" secondAttribute="trailing" id="vgU-nt-1fR"/>
+                                        <constraint firstItem="Q2v-bA-CVh" firstAttribute="top" secondItem="JMm-aT-ohG" secondAttribute="top" id="yc2-sK-ENf"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="messageFriendImage" destination="Pn3-ST-hRI" id="XND-m1-xrn"/>
+                                    <outlet property="messageFriendLabel" destination="Q2v-bA-CVh" id="Lf7-Dy-ryV"/>
+                                    <outlet property="messageTextLabel" destination="R8B-rR-a8I" id="Tj9-bP-Ell"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -478,7 +516,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rx5-3a-c1E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2344" y="692"/>
+            <point key="canvasLocation" x="2343.1999999999998" y="691.304347826087"/>
         </scene>
         <!--Messages-->
         <scene sceneID="AXi-Yp-i0Z">

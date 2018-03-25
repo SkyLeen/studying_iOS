@@ -30,7 +30,7 @@ class NewsViewCell: UITableViewCell {
                         """
 
         authorImage.image = UIImage(named: "friends")
-        authorNameLabel.text = "New`s author"
+        authorNameLabel.text = "News` author"
         newsLabel.text = text
         newsImage.image = photo
         likesLabel.text = "100500"
