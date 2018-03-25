@@ -22,21 +22,6 @@ class NewsViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         ImageSettingsHelper.setImageLayersSettings(for: authorImage, mode: .forAvatarImages)
-        
-        let canvasSize = newsImage.bounds.size.width
-        let photo = UIImage(named:"newsPhoto")?.resizeWithWidth(width: canvasSize)
-        let text = """
-                        Some news. Bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla. Bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla. Bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla
-                        """
-
-        authorImage.image = UIImage(named: "friends")
-        authorNameLabel.text = "News` author"
-        newsLabel.text = text
-        newsImage.image = photo
-        likesLabel.text = "100500"
-        commentsLabel.text = "150"
-        repostsLabel.text = "1000"
-        watchingsLabel.text = "200000"
     }
 }
 

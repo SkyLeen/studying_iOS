@@ -17,9 +17,5 @@ class MessagesViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         ImageSettingsHelper.setImageLayersSettings(for: messageFriendImage, mode: .forAvatarImages)
-        
-        messageFriendImage.image = UIImage(named: "friends")
-        messageFriendLabel.text = "Friend"
-        messageTextLabel.text = "First line of a message"
     }
 }
