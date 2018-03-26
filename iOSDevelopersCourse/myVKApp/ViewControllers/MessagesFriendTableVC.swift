@@ -13,8 +13,10 @@ import RealmSwift
 class MessagesFriendTableVC: UIViewController {
 
     @IBOutlet weak var messageTableView: UITableView!
-    @IBOutlet weak var messageView: UITextView!
     @IBOutlet weak var sendButton: UIButton!
+    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var messageView: UIView!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     var friendName = String()
     var friendId = Int()
@@ -29,46 +31,48 @@ class MessagesFriendTableVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = friendName
-        messageView.layer.cornerRadius = 10
+        textView.layer.cornerRadius = 10
         
-//        let hideKbGesture = UITapGestureRecognizer(target: self, action: #selector(self.hideKeyboard))
-//        self.scrollView?.addGestureRecognizer(hideKbGesture)
+        let hideKbGesture = UITapGestureRecognizer(target: self, action: #selector(self.hideKeyboard))
+        self.scrollView?.addGestureRecognizer(hideKbGesture)
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        //подписываемся на уведомления о появлении/скрытии клавиатуры
-//        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWasShown), name: .UIKeyboardWillShow, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillBeHidden), name: .UIKeyboardWillHide, object: nil)
-//    }
-//    
-//    override func viewWillDisappear(_ animated: Bool) {
-//        super.viewWillDisappear(animated)
-//        //отписываемся от уведомлений появления/скрытия клавиатуры
-//        NotificationCenter.default.removeObserver(self) 
-//    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        setMessageTableView()
+    }
     
-//    @objc func hideKeyboard() {
-//        self.scrollView?.endEditing(true)
-//    }
-//
-//    @objc func keyboardWasShown(notification: Notification) {
-//        let kbInfo = notification.userInfo! as NSDictionary
-//        let kbSize = (kbInfo.value(forKey: UIKeyboardFrameEndUserInfoKey) as! NSValue).cgRectValue.size
-//        let contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0)
-//
-//        scrollView?.contentInset = contentInsets
-//        scrollView?.scrollIndicatorInsets = contentInsets
-//    }
-//
-//    @objc func keyboardWillBeHidden(notification: Notification) {
-//        let contentInsets = UIEdgeInsets.zero
-//
-//        scrollView?.contentInset = contentInsets
-//        scrollView?.scrollIndicatorInsets = contentInsets
-//    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWasShown), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillBeHidden), name: .UIKeyboardWillHide, object: nil)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc func hideKeyboard() {
+        self.scrollView?.endEditing(true)
+    }
+
+    @objc func keyboardWasShown(notification: Notification) {
+        let kbInfo = notification.userInfo! as NSDictionary
+        let kbSize = (kbInfo.value(forKey: UIKeyboardFrameEndUserInfoKey) as! NSValue).cgRectValue.size
+        
+        self.view.frame.origin.y -= kbSize.height
+    }
+
+    @objc func keyboardWillBeHidden(notification: Notification) {
+        self.view.frame.origin.y = 0
+    }
     
     @IBAction func sendButtonPressed(_ sender: Any) {
+        hideKeyboard()
         sendMessage()
     }
 }
