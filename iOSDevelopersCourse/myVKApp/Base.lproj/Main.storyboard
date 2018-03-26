@@ -556,7 +556,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hRs-X3-lIU">
-                                                            <rect key="frame" x="65" y="5" width="597" height="56.5"/>
+                                                            <rect key="frame" x="65" y="5" width="305" height="56.5"/>
                                                             <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                                             <nil key="textColor"/>
@@ -584,6 +584,44 @@
                                                 <connections>
                                                     <outlet property="friendMessageImage" destination="jzi-Rk-Fbb" id="fC3-Bw-Qal"/>
                                                     <outlet property="friendMessageLabel" destination="hRs-X3-lIU" id="z23-tI-D5c"/>
+                                                </connections>
+                                            </tableViewCell>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserMessageCell" rowHeight="67" id="CXA-Jh-Knw" customClass="MessageUserViewCell" customModule="myVKApp" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="95" width="375" height="67"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CXA-Jh-Knw" id="JRW-JJ-0Iv">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="66.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="l0V-wP-UHk">
+                                                            <rect key="frame" x="320" y="10" width="45" height="45"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="45" id="AV8-VS-jTg"/>
+                                                                <constraint firstAttribute="width" constant="45" id="TaC-ge-x7h"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mAn-J5-2GK">
+                                                            <rect key="frame" x="5" y="5" width="305" height="56.5"/>
+                                                            <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="l0V-wP-UHk" firstAttribute="top" secondItem="JRW-JJ-0Iv" secondAttribute="top" constant="10" id="6xg-Pp-A01"/>
+                                                        <constraint firstItem="l0V-wP-UHk" firstAttribute="leading" secondItem="mAn-J5-2GK" secondAttribute="trailing" constant="10" id="8xR-hG-7wq"/>
+                                                        <constraint firstItem="mAn-J5-2GK" firstAttribute="leading" secondItem="JRW-JJ-0Iv" secondAttribute="leading" constant="5" id="BFc-zy-XjX"/>
+                                                        <constraint firstItem="mAn-J5-2GK" firstAttribute="top" secondItem="JRW-JJ-0Iv" secondAttribute="top" constant="5" id="FMq-ng-ZNi"/>
+                                                        <constraint firstAttribute="bottom" secondItem="mAn-J5-2GK" secondAttribute="bottom" constant="5" id="Oed-HG-Kz9"/>
+                                                        <constraint firstAttribute="trailing" secondItem="l0V-wP-UHk" secondAttribute="trailing" constant="10" id="gqZ-L2-oal"/>
+                                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="l0V-wP-UHk" secondAttribute="bottom" constant="10" id="rCE-Zq-Gn5"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <connections>
+                                                    <outlet property="friendMessageImage" destination="l0V-wP-UHk" id="hJD-eV-6EJ"/>
+                                                    <outlet property="friendMessageLabel" destination="mAn-J5-2GK" id="aNR-8a-SJ2"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>

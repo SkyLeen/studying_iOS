@@ -46,6 +46,7 @@
 		049CEBA72051E3D5007ED7C2 /* GroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CEBA62051E3D5007ED7C2 /* GroupModel.swift */; };
 		04CEE5CD20682AD600300107 /* ExtMessageFriendVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEE5CC20682AD600300107 /* ExtMessageFriendVC.swift */; };
 		04CEE5CF2068383A00300107 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04CEE5CE2068383900300107 /* Assets.xcassets */; };
+		04CEE5D120692AA600300107 /* MessageUserViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEE5D020692AA600300107 /* MessageUserViewCell.swift */; };
 		04D19B2D2060F1C700E1CADE /* RealmFriendsSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D19B2C2060F1C700E1CADE /* RealmFriendsSaver.swift */; };
 		04D19B2F2060FC9B00E1CADE /* RealmLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D19B2E2060FC9B00E1CADE /* RealmLoader.swift */; };
 		04D21945204A8DF3001E5B26 /* AuthorizationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D21944204A8DF3001E5B26 /* AuthorizationRequest.swift */; };
@@ -98,6 +99,7 @@
 		049CEBA62051E3D5007ED7C2 /* GroupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupModel.swift; sourceTree = "<group>"; };
 		04CEE5CC20682AD600300107 /* ExtMessageFriendVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtMessageFriendVC.swift; sourceTree = "<group>"; };
 		04CEE5CE2068383900300107 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		04CEE5D020692AA600300107 /* MessageUserViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageUserViewCell.swift; sourceTree = "<group>"; };
 		04D19B2C2060F1C700E1CADE /* RealmFriendsSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmFriendsSaver.swift; sourceTree = "<group>"; };
 		04D19B2E2060FC9B00E1CADE /* RealmLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmLoader.swift; sourceTree = "<group>"; };
 		04D21944204A8DF3001E5B26 /* AuthorizationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationRequest.swift; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 				048714D72066BD34003405B4 /* NewsViewCell.swift */,
 				0462E5EE20679ABF00E0038C /* MessagesViewCell.swift */,
 				0462E5F22067AE9F00E0038C /* MessagesFriendViewCell.swift */,
+				04CEE5D020692AA600300107 /* MessageUserViewCell.swift */,
 				0416317B204213AA00446639 /* SettingsViewCell.swift */,
 			);
 			path = Cells;
@@ -451,6 +454,7 @@
 				0462E5ED20679A1300E0038C /* MessagesTableVC.swift in Sources */,
 				0490992020580A05009C784A /* FriendsRequests.swift in Sources */,
 				0462E5E5206796CD00E0038C /* MessageModel.swift in Sources */,
+				04CEE5D120692AA600300107 /* MessageUserViewCell.swift in Sources */,
 				04D19B2F2060FC9B00E1CADE /* RealmLoader.swift in Sources */,
 				049CEBA32051AF28007ED7C2 /* FriendModel.swift in Sources */,
 				049CEBA52051D558007ED7C2 /* PhotosModel.swift in Sources */,

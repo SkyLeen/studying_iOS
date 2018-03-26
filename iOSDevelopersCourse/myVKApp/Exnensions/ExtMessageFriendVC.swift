@@ -19,12 +19,25 @@ extension MessagesFriendTableVC: UITableViewDataSource {
 extension MessagesFriendTableVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "FriendMessageCell", for: indexPath) as! MessagesFriendViewCell
+        var cell: UITableViewCell!
         
         let index = friendsMessageArray.index(where: {$0.friendId == friendId})
         
-        cell.friendMessageLabel.text = friendsMessageArray[index!].message
-        cell.friendMessageImage.image = UIImage(named: "friends")
+        if indexPath.row % 2 == 0  {
+            let cellFriend = tableView.dequeueReusableCell(withIdentifier: "FriendMessageCell", for: indexPath) as! MessagesFriendViewCell
+            cellFriend.friendMessageLabel.text = friendsMessageArray[index!].message
+            cellFriend.friendMessageImage.image = UIImage(named: "friends")
+        
+            cell = cellFriend
+        }
+        else {
+            let cellUser = tableView.dequeueReusableCell(withIdentifier: "UserMessageCell", for: indexPath) as! MessageUserViewCell
+            
+            cellUser.friendMessageLabel.text = friendsMessageArray[index!].message
+            cellUser.friendMessageImage.image = UIImage(named: "friends")
+            
+            cell = cellUser
+        }
         
         return cell
     }
