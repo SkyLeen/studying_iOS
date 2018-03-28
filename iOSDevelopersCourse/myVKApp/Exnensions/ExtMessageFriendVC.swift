@@ -44,7 +44,6 @@ extension MessagesFriendTableVC: UITableViewDelegate {
 }
 
 extension MessagesFriendTableVC {
-
     
     func sendMessage() {
         

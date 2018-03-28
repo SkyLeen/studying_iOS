@@ -8,7 +8,8 @@
 
 import RealmSwift
 
-class UserSaver {
+class RealmUserSaver {
+    
     private static let config = setConfiguration()
     
     private static func setConfiguration() -> Realm.Configuration {

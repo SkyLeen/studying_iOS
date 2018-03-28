@@ -8,7 +8,7 @@
 
 import RealmSwift
 
-class FriendsSaver {
+class RealmFriendsSaver {
     
     private static let config = setConfiguration()
     
@@ -24,9 +24,11 @@ class FriendsSaver {
             let realm = try Realm(configuration: config)
             let user = realm.object(ofType: User.self, forPrimaryKey: userId)
             let oldFriends = realm.objects(Friend.self)
+            let oldFriendsPhotos = realm.objects(Photos.self)
             try realm.write {
                 print(realm.configuration.fileURL!)
                 realm.delete(oldFriends)
+                realm.delete(oldFriendsPhotos)
                 user?.friends.append(objectsIn: friends)
             }
         } catch {

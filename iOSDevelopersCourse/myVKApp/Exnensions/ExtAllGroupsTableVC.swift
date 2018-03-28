@@ -32,7 +32,7 @@ extension AllGroupsTableVC: UISearchBarDelegate {
     }
     
     private func loadGroupsData(filter: String = "") {
-        let groups = Loader.loadData(object: Group()).filter("userId == %@", "")
+        let groups = RealmLoader.loadData(object: Group()).filter("userId == %@", "")
         
         switch isSearching {
         case true:

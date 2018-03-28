@@ -8,7 +8,7 @@
 
 import RealmSwift
 
-class Loader {
+class RealmLoader {
     
     private static let config = setConfiguration()
     

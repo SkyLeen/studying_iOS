@@ -1,14 +1,14 @@
 //
-//  RealmNewsSaver.swift
+//  RealmNewsAttachSaver.swift
 //  myVKApp
 //
-//  Created by Natalya on 25/03/2018.
+//  Created by Natalya on 28/03/2018.
 //  Copyright © 2018 Natalya Shikhalyova. All rights reserved.
 //
 
 import RealmSwift
 
-class RealmNewsSaver {
+class RealmNewsAttachSaver {
     
     private static let config = setConfiguration()
     
@@ -19,14 +19,14 @@ class RealmNewsSaver {
         return configuration
     }
     
-    static func saveUserNews(news: [News], userId: String) {
+    static func saveNewsAttach (attachs: [NewsAttachments], newsId: String, authorId: String) {
         do {
             let realm = try Realm(configuration: config)
-            let user = realm.object(ofType: User.self, forPrimaryKey: userId)
-            let oldNews = realm.objects(News.self)
+            let news = realm.object(ofType: News.self, forPrimaryKey: "\(newsId)\(authorId)")
+            let oldAttachs = realm.objects(NewsAttachments.self).filter("postId == %@", "\(newsId)\(authorId)")
             try realm.write {
-                realm.delete(oldNews)
-                user?.newsfeed.append(objectsIn: news)
+                realm.delete(oldAttachs)
+                news?.attachments.append(objectsIn: attachs)
             }
         } catch {
             print(error.localizedDescription)

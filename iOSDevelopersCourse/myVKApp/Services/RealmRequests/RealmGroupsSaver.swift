@@ -8,7 +8,7 @@
 
 import RealmSwift
 
-class GroupsSaver {
+class RealmGroupsSaver {
     
     private static let config = setConfiguration()
     

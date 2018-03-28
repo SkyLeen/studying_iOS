@@ -15,6 +15,7 @@ class User: Object {
     
     var friends = List<Friend>()
     var groups = List<Group>()
+    var newsfeed = List<News>()
     
     @objc override open class func primaryKey() -> String? {
         return "idUser"
