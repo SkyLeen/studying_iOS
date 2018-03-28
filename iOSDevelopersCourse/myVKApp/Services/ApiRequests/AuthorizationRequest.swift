@@ -26,7 +26,7 @@ class AuthorizationRequest {
         urlComponents.path = path
         urlComponents.queryItems = [
             URLQueryItem(name: "client_id", value: cliendId),
-            URLQueryItem(name: "scope", value: "offline, photos, groups, wall, friends"),
+            URLQueryItem(name: "scope", value: "offline, photos, groups, wall, friends, messages"),
             URLQueryItem(name: "display", value: "mobile"),
             URLQueryItem(name: "redirect_uri", value: urlRedirect),
             URLQueryItem(name: "response_type", value: "token"),

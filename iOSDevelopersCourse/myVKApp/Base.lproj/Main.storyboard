@@ -465,7 +465,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="separatorColor" red="0.4756349325" green="0.47564673419999998" blue="0.47564041610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="separatorColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MessageCell" rowHeight="75" id="ulF-N1-LIx" customClass="MessagesViewCell" customModule="myVKApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="75"/>
@@ -481,8 +481,11 @@
                                                 <constraint firstAttribute="height" constant="55" id="yVC-1j-j0J"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q2v-bA-CVh">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q2v-bA-CVh">
                                             <rect key="frame" x="85" y="5" width="290" height="19.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="20" id="IrO-R7-Vwf"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -510,6 +513,7 @@
                                     <outlet property="messageFriendImage" destination="Pn3-ST-hRI" id="XND-m1-xrn"/>
                                     <outlet property="messageFriendLabel" destination="Q2v-bA-CVh" id="Lf7-Dy-ryV"/>
                                     <outlet property="messageTextLabel" destination="R8B-rR-a8I" id="Tj9-bP-Ell"/>
+                                    <outlet property="messageView" destination="JMm-aT-ohG" id="0pa-E2-hwY"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

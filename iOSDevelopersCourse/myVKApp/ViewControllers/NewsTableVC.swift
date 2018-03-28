@@ -11,7 +11,7 @@ import SwiftKeychainWrapper
 import RealmSwift
 
 class NewsTableVC: UITableViewController {
-
+    
     let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")
     let userId =  KeychainWrapper.standard.string(forKey: "userId")
     
@@ -20,26 +20,27 @@ class NewsTableVC: UITableViewController {
     }()
     
     var token: NotificationToken?
-    let dispatchGroup = DispatchGroup()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         DispatchQueue.global(qos: .background).async {
             NewsRequests.getUserNews(userId: self.userId!, accessToken: self.accessToken!)
-       }
+        }
         
         getNotification()
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return newsArray.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsViewCell
         
-        cell.news = newsArray[indexPath.row]
+        let newsFeed = newsArray[indexPath.row]
+        
+        cell.news = newsFeed
         
         return cell
     }

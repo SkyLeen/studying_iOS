@@ -32,7 +32,7 @@ class NewsViewCell: UITableViewCell {
             commentsLabel.text = news?.commentsCount
             repostsLabel.text = news?.repostsCount
             viewsLabel.text = news?.viewsCount
-
+           
             getAuthorsImages()
             getNewsImages()
         }
@@ -44,7 +44,7 @@ class NewsViewCell: UITableViewCell {
     }
     
     private func getAuthorsImages() {
-        authorImage.image = nil
+        authorImage.image = UIImage(named: "friends")
         task?.cancel()
         task = nil
         guard let path = news?.authorImageUrl, let url = URL(string: path) else { return }
@@ -67,7 +67,7 @@ class NewsViewCell: UITableViewCell {
         newsImage.image = nil
         taskNewsImage?.cancel()
         taskNewsImage = nil
-        
+        //берем пока только один объект из аттача
         guard let attachments = news?.attachments, !attachments.isEmpty, let path = attachments[0].url, let url = URL(string: path) else { return }
         
         if let cachedImage = self.imageCache.object(forKey: path as NSString) as? UIImage {
@@ -78,11 +78,11 @@ class NewsViewCell: UITableViewCell {
         DispatchQueue.global().async {
             self.taskNewsImage = URLSession.shared.dataTask(with: url){ (data,response,error) in
                 guard let data = data, error == nil else { return }
+                let image = UIImage(data: data)
+                self.imageCache.setObject(image!, forKey: path as NSString)
                 DispatchQueue.main.async  { [weak self] in
-                    let image = UIImage(data: data)?.resizeWithWidth(width: canvasSize)
-                    self?.imageCache.setObject(image!, forKey: path as NSString)
                     guard let s = self, let responseUrl = response?.url, responseUrl == url else { return }
-                    s.newsImage.image = image
+                    s.newsImage.image = image?.resizeWithWidth(width: canvasSize)
                 }
             }
             self.taskNewsImage?.resume()
