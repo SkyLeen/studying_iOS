@@ -74,8 +74,6 @@ class NewsViewCell: UITableViewCell {
             self.newsImage.image = cachedImage
             return
         }
-        
-        DispatchQueue.global().async {
             self.taskNewsImage = URLSession.shared.dataTask(with: url){ (data,response,error) in
                 guard let data = data, error == nil else { return }
                 let image = UIImage(data: data)
@@ -86,7 +84,6 @@ class NewsViewCell: UITableViewCell {
                 }
             }
             self.taskNewsImage?.resume()
-        }
     }
 }
 

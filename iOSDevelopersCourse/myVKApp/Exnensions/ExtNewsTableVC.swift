@@ -35,12 +35,12 @@ extension NewsTableVC {
     }
     
     @objc func refreshView(sender: AnyObject) {
-        DispatchQueue.global().async {
-             NewsRequests.getUserNews(userId: self.userId!, accessToken: self.accessToken!)
-        }
-        DispatchQueue.main.async {
-            self.getNotification()
-            self.refreshControl?.endRefreshing()
+        DispatchQueue.global(qos: .utility).async {
+            NewsRequests.getUserNews(userId: self.userId!, accessToken: self.accessToken!)
+            DispatchQueue.main.async {
+                self.getNotification()
+                self.refreshControl?.endRefreshing()
+            }
         }
     }
 }

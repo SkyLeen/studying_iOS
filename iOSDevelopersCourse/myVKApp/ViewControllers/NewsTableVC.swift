@@ -29,7 +29,7 @@ class NewsTableVC: UITableViewController {
         
         addRefreshControl()
         
-        DispatchQueue.global(qos: .background).async {
+        DispatchQueue.global(qos: .utility).async {
             NewsRequests.getUserNews(userId: self.userId!, accessToken: self.accessToken!)
         }
         getNotification()

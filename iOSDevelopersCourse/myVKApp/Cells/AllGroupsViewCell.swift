@@ -33,7 +33,6 @@ class AllGroupsViewCell: UITableViewCell {
         task?.cancel()
         task = nil
         guard let path = group?.photoGroupUrl, let url = URL(string: path) else { return }
-        DispatchQueue.global().async {
             self.task = URLSession.shared.dataTask(with: url) { (data, response, _) in
                 guard let data = data else { return }
                 let image = UIImage(data: data)
@@ -43,6 +42,5 @@ class AllGroupsViewCell: UITableViewCell {
                 }
             }
             self.task?.resume()
-        }
     }
 }
