@@ -1,5 +1,5 @@
 //
-//  MessagesRequests.swift
+//  DialogsRequests.swift
 //  myVKApp
 //
 //  Created by Natalya on 25/03/2018.
@@ -9,7 +9,7 @@
 import Alamofire
 import SwiftyJSON
 
-class MessagesRequests {
+class DialogsRequests {
     
     static let baseUrl = "https://api.vk.com"
     static let path = "/method"

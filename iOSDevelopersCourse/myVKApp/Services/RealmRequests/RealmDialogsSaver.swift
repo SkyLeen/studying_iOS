@@ -24,10 +24,18 @@ class RealmDialogSaver {
             let realm = try Realm(configuration: config)
             let user = realm.object(ofType: User.self, forPrimaryKey: userId)
             let oldDialog = realm.objects(Dialog.self).filter("id == %@", dialog.id)
-            let friend = realm.object(ofType: Friend.self, forPrimaryKey: dialog.friendId)
             
-            dialog.friendName = friend?.name
-            dialog.friendPhotoUrl = friend?.photoUrl
+            let freiendId = dialog.friendId
+            
+            if freiendId > 0 {
+                let friend = realm.object(ofType: Friend.self, forPrimaryKey: freiendId)
+                dialog.friendName = friend?.name
+                dialog.friendPhotoUrl = friend?.photoUrl
+            } else {
+                let friend = realm.object(ofType: Group.self, forPrimaryKey: "\(freiendId)\(userId)")
+                dialog.friendName = friend?.nameGroup
+                dialog.friendPhotoUrl = friend?.photoGroupUrl
+            }
             
             try realm.write {
                 realm.delete(oldDialog)

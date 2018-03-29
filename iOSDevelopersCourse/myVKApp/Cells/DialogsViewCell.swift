@@ -1,5 +1,5 @@
 //
-//  MessagesViewCell.swift
+//  DialogsViewCell.swift
 //  myVKApp
 //
 //  Created by Natalya on 25/03/2018.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MessagesViewCell: UITableViewCell {
+class DialogsViewCell: UITableViewCell {
 
     @IBOutlet weak var messageFriendImage: UIImageView!
     @IBOutlet weak var messageFriendLabel: UILabel!

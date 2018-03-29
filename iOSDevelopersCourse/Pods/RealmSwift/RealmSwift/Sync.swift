@@ -837,6 +837,7 @@ public final class SyncPermissionValue { }
  `ObjectPrivileges` for details about what each of the properties mean when applied to
  that type.
  */
+@objc(RealmSwiftPermission)
 public class Permission: Object {
     /// The Role which this Permission applies to. All users within the Role are
     /// granted the permissions specified by the fields below any
@@ -897,6 +898,7 @@ public class Permission: Object {
  connect to the Realm are automatically added to it. Any other roles you wish to use are
  managed as normal Realm objects.
  */
+@objc(RealmSwiftPermissionRole)
 public class PermissionRole: Object {
     /// The name of the Role
     @objc dynamic public var name = ""
@@ -925,6 +927,7 @@ public class PermissionRole: Object {
  which has not yet connected to this Realm. When creating a PermissionUser manually, you
  must also manually add it to the "everyone" Role.
  */
+@objc(RealmSwiftPermissionUser)
 public class PermissionUser: Object {
     /// The unique Realm Object Server user ID string identifying this user. This will
     /// have the same value as `SyncUser.identity`
@@ -959,6 +962,7 @@ public class PermissionUser: Object {
 
  See `RealmPrivileges` for the meaning of permissions applied to a Realm.
  */
+@objc(RealmSwiftRealmPermission)
 public class RealmPermission: Object {
     @objc private var id = 0
 
@@ -981,6 +985,7 @@ public class RealmPermission: Object {
  An instance of this object is automatically created in the Realm for class in your schema,
  and should not be created manually.
  */
+@objc(RealmSwiftClassPermission)
 public class ClassPermission: Object {
     /// The name of the class which these permissions apply to.
     @objc dynamic public var name = ""
@@ -1273,6 +1278,39 @@ extension Realm {
     */
     public func getPrivileges(forClassNamed className: String) -> ClassPrivileges {
         return ClassPrivileges(rawValue: RLMGetComputedPermissions(rlmRealm, className))
+    }
+
+    /**
+    Returns the class-wide permissions for the given class.
+
+     - parameter cls: An Object subclass to get the permissions for.
+     - returns: The class-wide permissions for the given class.
+     - requires: This must only be called on a partially-synced Realm.
+    */
+    public func permissions<T: Object>(forType cls: T.Type) -> List<Permission> {
+        return permissions(forClassNamed: cls._realmObjectName() ?? cls.className())
+    }
+
+    /**
+    Returns the class-wide permissions for the named class.
+
+     - parameter cls: The name of an Object subclass to get the permissions for.
+     - returns: The class-wide permissions for the named class.
+     - requires: className must name a class in this Realm's schema.
+     - requires: This must only be called on a partially-synced Realm.
+    */
+    public func permissions(forClassNamed className: String) -> List<Permission> {
+        let classPermission = object(ofType: ClassPermission.self, forPrimaryKey: className)!
+        return classPermission.permissions
+    }
+
+    /**
+    Returns the Realm-wide permissions.
+
+     - requires: This must only be called on a partially-synced Realm.
+    */
+    public var permissions: List<Permission> {
+        return object(ofType: RealmPermission.self, forPrimaryKey: 0)!.permissions
     }
 }
 
