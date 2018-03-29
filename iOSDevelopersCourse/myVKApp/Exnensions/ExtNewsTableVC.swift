@@ -12,6 +12,7 @@ import UIKit
 extension NewsTableVC {
     
     func getNotification() {
+        newsArray = RealmLoader.loadData(object: News()).sorted(byKeyPath: "date", ascending: false)
         token = newsArray.observe({ [weak self] changes in
             guard let view = self?.tableView else { return }
             switch changes {
@@ -27,6 +28,20 @@ extension NewsTableVC {
                 print(error.localizedDescription)
             }
         })
+    }
+    
+    func addRefreshControl() {
+        self.refreshControl?.addTarget(self, action: #selector(self.refreshView), for: .valueChanged)
+    }
+    
+    @objc func refreshView(sender: AnyObject) {
+        DispatchQueue.global().async {
+             NewsRequests.getUserNews(userId: self.userId!, accessToken: self.accessToken!)
+        }
+        DispatchQueue.main.async {
+            self.getNotification()
+            self.refreshControl?.endRefreshing()
+        }
     }
 }
 

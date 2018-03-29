@@ -28,6 +28,7 @@ class DialogsRequests {
             switch response.result {
             case .success(let value):
                 let dialogs = JSON(value)["response"]["items"]
+                RealmDeleter.removeDialogs()
                 for item in dialogs {
                     let dialog = Dialog(json: item.1)
                     RealmDialogSaver.saveUserNews(dialog: dialog, userId: userId)

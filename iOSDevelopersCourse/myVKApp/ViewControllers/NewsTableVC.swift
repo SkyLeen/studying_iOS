@@ -12,22 +12,26 @@ import RealmSwift
 
 class NewsTableVC: UITableViewController {
     
+    @IBOutlet weak var loadLable: UILabel!
+    @IBOutlet weak var acivityIndicator: UIActivityIndicatorView!
+    
     let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")
     let userId =  KeychainWrapper.standard.string(forKey: "userId")
     
-    lazy var newsArray: Results<News> = {
-        return RealmLoader.loadData(object: News()).sorted(byKeyPath: "date", ascending: false)
-    }()
+    var newsArray: Results<News>!
     
     var token: NotificationToken?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.estimatedRowHeight = 1000
+        tableView.rowHeight = UITableViewAutomaticDimension
+        
+        addRefreshControl()
         
         DispatchQueue.global(qos: .background).async {
             NewsRequests.getUserNews(userId: self.userId!, accessToken: self.accessToken!)
         }
-        
         getNotification()
     }
     

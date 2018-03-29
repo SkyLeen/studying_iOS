@@ -15,14 +15,12 @@ class DialogsTableVC: UITableViewController {
     let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")
     let userId =  KeychainWrapper.standard.string(forKey: "userId")
     
-    lazy var dialogsArray: Results<Dialog> = {
-        return RealmLoader.loadData(object: Dialog()).sorted(byKeyPath: "date", ascending: false)
-    }()
+    var dialogsArray: Results<Dialog>!
     var token: NotificationToken?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        addRefreshControl()
         DispatchQueue.global(qos: .background).async {
             DialogsRequests.getUserDialogs(userId: self.userId!, accessToken: self.accessToken!)
         }
