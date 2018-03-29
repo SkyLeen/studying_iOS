@@ -12,6 +12,7 @@ import WebKit
 extension LoginWebVC: UIWebViewDelegate {
     
     func webViewDidFinishLoad(_ webView: UIWebView) {
+        
         guard let responseUrl = webView.request?.url, let _ = responseUrl.fragment else { return }
         AuthorizationRequest.setAuthorizationResult(url: responseUrl)
         

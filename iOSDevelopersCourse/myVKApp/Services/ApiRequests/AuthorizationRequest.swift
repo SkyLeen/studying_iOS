@@ -26,7 +26,7 @@ class AuthorizationRequest {
         urlComponents.path = path
         urlComponents.queryItems = [
             URLQueryItem(name: "client_id", value: cliendId),
-            URLQueryItem(name: "scope", value: "offline, photos, groups"),
+            URLQueryItem(name: "scope", value: "offline, photos, groups, wall, friends, messages"),
             URLQueryItem(name: "display", value: "mobile"),
             URLQueryItem(name: "redirect_uri", value: urlRedirect),
             URLQueryItem(name: "response_type", value: "token"),
@@ -46,7 +46,7 @@ class AuthorizationRequest {
             keyChain.set(params["access_token"]!, forKey: "accessToken")
             keyChain.set(params["user_id"]!, forKey: "userId")
             
-            UserSaver.createUser(userId: String(params["user_id"]!))
+            RealmUserSaver.createUser(userId: String(params["user_id"]!))
             FriendsRequests.getFriendsList(userId: String(params["user_id"]!), accessToken: params["access_token"]!)
             GroupsRequests.getUserGroups(userId: String(params["user_id"]!), accessToken: params["access_token"]!)
         }

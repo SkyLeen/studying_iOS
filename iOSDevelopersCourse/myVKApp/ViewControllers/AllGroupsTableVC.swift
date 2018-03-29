@@ -17,7 +17,7 @@ class AllGroupsTableVC: UITableViewController {
     
     let searchBar = UISearchBar()
     lazy var allGroupsArray: Results<Group> = {
-        return Loader.loadData(object: Group()).filter("userId == ''")
+        return RealmLoader.loadData(object: Group()).filter("userId == ''")
     }()
     var filteredArray: Results<Group>!
     
@@ -31,7 +31,11 @@ class AllGroupsTableVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         createSearchBar()
-        GroupsRequests.getAllGroups(accessToken: accessToken!)
+        
+        DispatchQueue.global(qos: .background).async {
+            GroupsRequests.getAllGroups(accessToken: self.accessToken!)
+        }
+        
         getNotification()
     }
 

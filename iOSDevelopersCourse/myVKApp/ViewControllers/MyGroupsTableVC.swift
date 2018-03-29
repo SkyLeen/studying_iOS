@@ -16,7 +16,7 @@ class MyGroupsTableVC: UITableViewController {
     private let userId =  KeychainWrapper.standard.string(forKey: "userId")
     
     lazy var myGroupsArray: Results<Group> = {
-        return Loader.loadData(object: Group()).filter("userId != ''")
+        return RealmLoader.loadData(object: Group()).filter("userId != ''")
     }()
     var token: NotificationToken?
     
@@ -26,7 +26,11 @@ class MyGroupsTableVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        GroupsRequests.getUserGroups(userId: userId!, accessToken: accessToken!)
+        
+        DispatchQueue.global(qos: .background).async {
+            GroupsRequests.getUserGroups(userId: self.userId!, accessToken: self.accessToken!)
+        }
+        
         getNotification()
     }
 
@@ -65,14 +69,14 @@ class MyGroupsTableVC: UITableViewController {
         }
         
         GroupsRequests.joinGroup(accessToken: accessToken!, idGroup: newGroup.idGroup)
-        GroupsSaver.saveNewGroup(group: newGroup, userId: userId!)
+        RealmGroupsSaver.saveNewGroup(group: newGroup, userId: userId!)
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         let idGroup = myGroupsArray[indexPath.row].idGroup
         if editingStyle == .delete {
             GroupsRequests.leaveGroup(accessToken: accessToken!, idGroup: idGroup)
-            Deleter.deleteData(object: myGroupsArray[indexPath.row])
+            RealmDeleter.deleteData(object: myGroupsArray[indexPath.row])
         }
     }
 }

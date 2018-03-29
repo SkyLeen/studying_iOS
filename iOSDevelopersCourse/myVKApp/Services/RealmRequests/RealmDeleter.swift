@@ -8,7 +8,7 @@
 
 import RealmSwift
 
-class Deleter {
+class RealmDeleter {
     
     static func deleteData<T: Object>(object: T){
         do {

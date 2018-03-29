@@ -24,7 +24,7 @@ class LoginVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loginButton.layer.cornerRadius = loginButton.frame.size.height / 2
+        loginButton.layer.cornerRadius = 10
     }
     
     @IBAction func logOut(segue: UIStoryboardSegue) {

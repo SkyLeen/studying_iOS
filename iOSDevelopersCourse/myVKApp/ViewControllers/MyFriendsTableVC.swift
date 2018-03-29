@@ -16,7 +16,7 @@ class MyFriendsTableVC: UITableViewController {
     let userId =  KeychainWrapper.standard.string(forKey: "userId")
     
     lazy var myFriendsArray: Results<Friend> = {
-        return Loader.loadData(object: Friend()).sorted(byKeyPath: "lastName")
+        return RealmLoader.loadData(object: Friend()).sorted(byKeyPath: "lastName")
     }()
     
     var token: NotificationToken?
@@ -27,7 +27,11 @@ class MyFriendsTableVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        FriendsRequests.getFriendsList(userId: userId!, accessToken: accessToken!)
+        
+        DispatchQueue.global(qos: .background).async {
+            FriendsRequests.getFriendsList(userId: self.userId!, accessToken: self.accessToken!)
+        }
+        
         getNotification()
     }
 
