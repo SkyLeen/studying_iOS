@@ -14,7 +14,7 @@ class News: Object {
     @objc dynamic var compoundKey: String = ""
     @objc dynamic var id: String = ""
     @objc dynamic var authorId: Int = 0
-    @objc dynamic var author: String = ""
+    @objc dynamic var author: String?
     @objc dynamic var authorImageUrl: String?
     @objc dynamic var date: Double = 0.0
     @objc dynamic var type: String = ""

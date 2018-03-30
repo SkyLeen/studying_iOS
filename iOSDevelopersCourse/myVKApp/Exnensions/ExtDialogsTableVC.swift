@@ -1,19 +1,19 @@
 //
-//  ExtNewsTableVC.swift
+//  ExtDialogsTableVC.swift
 //  myVKApp
 //
-//  Created by Natalya on 27/03/2018.
+//  Created by Natalya on 29/03/2018.
 //  Copyright © 2018 Natalya Shikhalyova. All rights reserved.
 //
 
 import RealmSwift
 import UIKit
 
-extension NewsTableVC {
+extension DialogsTableVC {
     
     func getNotification() {
-        newsArray = RealmLoader.loadData(object: News()).sorted(byKeyPath: "date", ascending: false)
-        token = newsArray.observe({ [weak self] changes in
+        dialogsArray =  RealmLoader.loadData(object: Dialog()).sorted(byKeyPath: "date", ascending: false)
+        token = dialogsArray.observe({ [weak self] changes in
             guard let view = self?.tableView else { return }
             switch changes {
             case .initial:
@@ -36,7 +36,7 @@ extension NewsTableVC {
     
     @objc func refreshView(sender: AnyObject) {
         DispatchQueue.global().async {
-             NewsRequests.getUserNews(userId: self.userId!, accessToken: self.accessToken!)
+             DialogsRequests.getUserDialogs(userId: self.userId!, accessToken: self.accessToken!)
         }
         DispatchQueue.main.async {
             self.getNotification()
@@ -44,4 +44,3 @@ extension NewsTableVC {
         }
     }
 }
-

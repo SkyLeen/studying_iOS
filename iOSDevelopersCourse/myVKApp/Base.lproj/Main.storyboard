@@ -452,6 +452,17 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="News" id="Nd3-sb-oas"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="0cj-ju-YjI">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <attributedString key="attributedTitle">
+                            <fragment content="Loading news ...">
+                                <attributes>
+                                    <font key="NSFont" size="16" name="HelveticaNeue"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                    </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l7f-0T-3Lh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -460,14 +471,14 @@
         <!--Messages-->
         <scene sceneID="dBL-cL-R3U">
             <objects>
-                <tableViewController id="7yb-Sx-JBs" customClass="MessagesTableVC" customModule="myVKApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="7yb-Sx-JBs" customClass="DialogsTableVC" customModule="myVKApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="dda-Tf-lTh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="separatorColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MessageCell" rowHeight="75" id="ulF-N1-LIx" customClass="MessagesViewCell" customModule="myVKApp" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MessageCell" rowHeight="75" id="ulF-N1-LIx" customClass="DialogsViewCell" customModule="myVKApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="75"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ulF-N1-LIx" id="JMm-aT-ohG">
@@ -525,6 +536,17 @@
                     <navigationItem key="navigationItem" title="Messages" id="EbY-OE-xHR">
                         <barButtonItem key="backBarButtonItem" title=" " id="ob9-sh-GxN"/>
                     </navigationItem>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="MTm-nO-jEB">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <attributedString key="attributedTitle">
+                            <fragment content="Loading dialogs ...">
+                                <attributes>
+                                    <font key="NSFont" size="16" name="HelveticaNeue"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                    </refreshControl>
                     <connections>
                         <segue destination="vvZ-34-ouP" kind="show" identifier="showMessages" id="tXn-Z0-pHB"/>
                     </connections>
@@ -536,7 +558,7 @@
         <!--Title-->
         <scene sceneID="qTp-CE-W6R">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="vvZ-34-ouP" customClass="MessagesFriendTableVC" customModule="myVKApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="vvZ-34-ouP" customClass="DialogMessagesTableVC" customModule="myVKApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0tv-9d-DU0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -562,7 +584,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="543"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendMessageCell" rowHeight="67" id="bk4-Ne-Cqr" customClass="MessagesFriendViewCell" customModule="myVKApp" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendMessageCell" rowHeight="67" id="bk4-Ne-Cqr" customClass="DialogFriendMessagesViewCell" customModule="myVKApp" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="375" height="67"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bk4-Ne-Cqr" id="Hl1-b2-TO5">
@@ -570,7 +592,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hRs-X3-lIU">
-                                                            <rect key="frame" x="65" y="5" width="597" height="56.5"/>
+                                                            <rect key="frame" x="65" y="5" width="305" height="56.5"/>
                                                             <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                                             <nil key="textColor"/>
@@ -600,7 +622,7 @@
                                                     <outlet property="friendMessageLabel" destination="hRs-X3-lIU" id="z23-tI-D5c"/>
                                                 </connections>
                                             </tableViewCell>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserMessageCell" rowHeight="67" id="CXA-Jh-Knw" customClass="MessageUserViewCell" customModule="myVKApp" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserMessageCell" rowHeight="67" id="CXA-Jh-Knw" customClass="DialogUserMessagesViewCell" customModule="myVKApp" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="95" width="375" height="67"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CXA-Jh-Knw" id="JRW-JJ-0Iv">
@@ -608,14 +630,14 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="l0V-wP-UHk">
-                                                            <rect key="frame" x="612" y="10" width="45" height="45"/>
+                                                            <rect key="frame" x="320" y="10" width="45" height="45"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="45" id="AV8-VS-jTg"/>
                                                                 <constraint firstAttribute="width" constant="45" id="TaC-ge-x7h"/>
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mAn-J5-2GK">
-                                                            <rect key="frame" x="5" y="5" width="597" height="56.5"/>
+                                                            <rect key="frame" x="5" y="5" width="305" height="56.5"/>
                                                             <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                                             <nil key="textColor"/>

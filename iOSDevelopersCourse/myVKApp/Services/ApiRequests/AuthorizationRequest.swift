@@ -47,8 +47,6 @@ class AuthorizationRequest {
             keyChain.set(params["user_id"]!, forKey: "userId")
             
             RealmUserSaver.createUser(userId: String(params["user_id"]!))
-            FriendsRequests.getFriendsList(userId: String(params["user_id"]!), accessToken: params["access_token"]!)
-            GroupsRequests.getUserGroups(userId: String(params["user_id"]!), accessToken: params["access_token"]!)
         }
     }
     

@@ -1,5 +1,5 @@
 //
-//  ExtMessageFriendVC.swift
+//  ExtDialogMessageFriendVC.swift
 //  myVKApp
 //
 //  Created by Natalya on 25/03/2018.
@@ -9,27 +9,27 @@
 import Foundation
 import UIKit
 
-extension MessagesFriendTableVC: UITableViewDataSource {
+extension DialogMessagesTableVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10
     }
 }
 
-extension MessagesFriendTableVC: UITableViewDelegate {
+extension DialogMessagesTableVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell: UITableViewCell!
         
         if indexPath.row % 2 == 0  {
-            let cellFriend = tableView.dequeueReusableCell(withIdentifier: "FriendMessageCell", for: indexPath) as! MessagesFriendViewCell
+            let cellFriend = tableView.dequeueReusableCell(withIdentifier: "FriendMessageCell", for: indexPath) as! DialogFriendMessagesViewCell
             cellFriend.friendMessageLabel.text = "message"
             cellFriend.friendMessageImage.image = UIImage(named: "friends")
         
             cell = cellFriend
         }
         else {
-            let cellUser = tableView.dequeueReusableCell(withIdentifier: "UserMessageCell", for: indexPath) as! MessageUserViewCell
+            let cellUser = tableView.dequeueReusableCell(withIdentifier: "UserMessageCell", for: indexPath) as! DialogUserMessagesViewCell
             
             cellUser.friendMessageLabel.text = "message"
             cellUser.friendMessageImage.image = UIImage(named: "friends")
@@ -41,7 +41,7 @@ extension MessagesFriendTableVC: UITableViewDelegate {
     }
 }
 
-extension MessagesFriendTableVC {
+extension DialogMessagesTableVC {
     
     func sendMessage() {
         

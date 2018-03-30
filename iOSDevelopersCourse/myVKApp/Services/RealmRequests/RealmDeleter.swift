@@ -21,4 +21,16 @@ class RealmDeleter {
             print(error.localizedDescription)
         }
     }
+    
+    static func removeDialogs() {
+        do {
+            let realm = try Realm()
+            let dialogs = realm.objects(Dialog.self)
+            try realm.write {
+                realm.delete(dialogs)
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
 }

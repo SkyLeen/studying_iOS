@@ -1,5 +1,5 @@
 //
-//  MessagesTableVC.swift
+//  DialogsTableVC.swift
 //  myVKApp
 //
 //  Created by Natalya on 25/03/2018.
@@ -10,31 +10,32 @@ import UIKit
 import SwiftKeychainWrapper
 import RealmSwift
 
-class MessagesTableVC: UITableViewController {
+class DialogsTableVC: UITableViewController {
     
     let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")
     let userId =  KeychainWrapper.standard.string(forKey: "userId")
     
-    lazy var friendsDialogsArray: Results<Dialog> = {
-        return RealmLoader.loadData(object: Dialog()).sorted(byKeyPath: "date", ascending: false)
-    }()
+    var dialogsArray: Results<Dialog>!
+    var token: NotificationToken?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        addRefreshControl()
         DispatchQueue.global(qos: .background).async {
-            MessagesRequests.getUserDialogs(userId: self.userId!, accessToken: self.accessToken!)
+            DialogsRequests.getUserDialogs(userId: self.userId!, accessToken: self.accessToken!)
         }
+        
+        getNotification()
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return friendsDialogsArray.count
+        return dialogsArray.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as! MessagesViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as! DialogsViewCell
         
-        cell.dialog = friendsDialogsArray[indexPath.row]
+        cell.dialog = dialogsArray[indexPath.row]
         
         return cell
     }
@@ -45,10 +46,10 @@ class MessagesTableVC: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "showMessages" else { return }
-        guard let destinationVC = segue.destination as? MessagesFriendTableVC else { return }
+        guard let destinationVC = segue.destination as? DialogMessagesTableVC else { return }
         guard let friend = sender as? IndexPath else { return }
         
-        destinationVC.friendName = friendsDialogsArray[friend.row].friendName ?? ""
-        destinationVC.friendId = friendsDialogsArray[friend.row].friendId
+        destinationVC.friendName = dialogsArray[friend.row].friendName ?? ""
+        destinationVC.friendId = dialogsArray[friend.row].friendId
     }
 }

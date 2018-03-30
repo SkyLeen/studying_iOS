@@ -10,7 +10,7 @@ import UIKit
 import SwiftKeychainWrapper
 import RealmSwift
 
-class MessagesFriendTableVC: UIViewController {
+class DialogMessagesTableVC: UIViewController {
 
     @IBOutlet weak var messageTableView: UITableView!
     @IBOutlet weak var sendButton: UIButton!

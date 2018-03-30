@@ -1,5 +1,5 @@
 //
-//  MessagesRequests.swift
+//  DialogsRequests.swift
 //  myVKApp
 //
 //  Created by Natalya on 25/03/2018.
@@ -9,7 +9,7 @@
 import Alamofire
 import SwiftyJSON
 
-class MessagesRequests {
+class DialogsRequests {
     
     static let baseUrl = "https://api.vk.com"
     static let path = "/method"
@@ -28,6 +28,7 @@ class MessagesRequests {
             switch response.result {
             case .success(let value):
                 let dialogs = JSON(value)["response"]["items"]
+                RealmDeleter.removeDialogs()
                 for item in dialogs {
                     let dialog = Dialog(json: item.1)
                     RealmDialogSaver.saveUserNews(dialog: dialog, userId: userId)
