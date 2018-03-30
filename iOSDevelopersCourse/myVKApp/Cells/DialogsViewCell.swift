@@ -17,13 +17,11 @@ class DialogsViewCell: UITableViewCell {
     
     private var task: URLSessionTask?
     
+    
     var dialog: Dialog? {
         didSet{
-            messageFriendLabel.text = dialog?.title == "" ? dialog?.friendName ?? "Not in the friend list" : dialog?.title
-            messageTextLabel.text = dialog?.body
-            
             setBackgroungColor()
-            getFriendImage()
+            getFriendProperties()
         }
     }
     
@@ -46,12 +44,16 @@ class DialogsViewCell: UITableViewCell {
         }
     }
     
-    private func getFriendImage() {
+    private func getFriendProperties() {
         self.messageFriendImage.image = UIImage(named: "friends")
         task?.cancel()
         task = nil
         
-        guard let path = dialog?.friendPhotoUrl, let url = URL(string: path) else { return }
+        guard let user: (name: String, photoUrl: String?) = RealmRequests.getFriendData(friend: "\(dialog?.friendId ?? 0)") else { return }
+        messageFriendLabel.text = dialog?.title == "" ? user.name : dialog?.title
+        messageTextLabel.text = dialog?.body
+        
+        guard let path = user.photoUrl, let url = URL(string: path) else { return }
         self.task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let data = data, error == nil else { return }
             let image = UIImage(data: data)

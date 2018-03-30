@@ -18,8 +18,7 @@ class DialogMessagesTableVC: UIViewController {
     @IBOutlet weak var messageView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     
-    var friendName = String()
-    var friendId = Int()
+    var friendId = 0
     
     var friendsMessageArray = [
         (friendId: 1, friend: "friendName1", message: "Message1Message1Message1"),
@@ -30,7 +29,7 @@ class DialogMessagesTableVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = friendName
+        getTitle()
         textView.layer.cornerRadius = 10
         
         let hideKbGesture = UITapGestureRecognizer(target: self, action: #selector(self.hideKeyboard))
@@ -74,5 +73,10 @@ class DialogMessagesTableVC: UIViewController {
     @IBAction func sendButtonPressed(_ sender: Any) {
         hideKeyboard()
         sendMessage()
+    }
+    
+    private func getTitle() {
+        guard let user: (name: String, photoUrl: String?) = RealmRequests.getFriendData(friend: "\(friendId)") else { return }
+        navigationItem.title = user.name
     }
 }

@@ -19,22 +19,10 @@ class RealmDialogSaver {
         return configuration
     }
     
-    static func saveUserNews(dialog: Dialog, userId: String) {
+    static func saveUserDialogs(dialog: Dialog, userId: String) {
         do {
             let realm = try Realm(configuration: config)
             let user = realm.object(ofType: User.self, forPrimaryKey: userId)
-            
-            let friendId = dialog.friendId
-            
-            if friendId > 0 {
-                let friend = realm.object(ofType: Friend.self, forPrimaryKey: friendId)
-                dialog.friendName = friend?.name
-                dialog.friendPhotoUrl = friend?.photoUrl
-            } else {
-                let friend = realm.object(ofType: Group.self, forPrimaryKey: "\(friendId)\(userId)")
-                dialog.friendName = friend?.nameGroup
-                dialog.friendPhotoUrl = friend?.photoGroupUrl
-            }
             
             try realm.write {
                 user?.dialogs.append(dialog)

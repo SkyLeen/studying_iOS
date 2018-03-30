@@ -17,7 +17,7 @@ class MyFriendCollectionVC: UICollectionViewController {
     
     var friendName = String()
     let interItemSpace: CGFloat = 5
-    var friendId = 0
+    var friendId = ""
     
     lazy var friendPhotos: Results<Photos> = {
         return RealmLoader.loadData(object: Photos()).filter("idFriend == %@", friendId)

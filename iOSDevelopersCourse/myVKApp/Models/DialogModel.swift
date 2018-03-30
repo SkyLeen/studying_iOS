@@ -17,8 +17,6 @@ class Dialog: Object {
     @objc dynamic var date: Double = 0.0
     @objc dynamic var title: String = ""
     @objc dynamic var friendId: Int = 0
-    @objc dynamic var friendName: String?
-    @objc dynamic var friendPhotoUrl: String?
     @objc dynamic var out: Int = 0
     
     //var attachments = List<MessageAttachments>()

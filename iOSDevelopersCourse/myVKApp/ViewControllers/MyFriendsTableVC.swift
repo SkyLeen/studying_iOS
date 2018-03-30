@@ -16,7 +16,7 @@ class MyFriendsTableVC: UITableViewController {
     let userId =  KeychainWrapper.standard.string(forKey: "userId")
     
     lazy var myFriendsArray: Results<Friend> = {
-        return RealmLoader.loadData(object: Friend()).sorted(byKeyPath: "lastName")
+        return RealmLoader.loadData(object: Friend()).filter("userId == %@", userId!).sorted(byKeyPath: "lastName")
     }()
     var token: NotificationToken?
     

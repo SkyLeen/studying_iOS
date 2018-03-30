@@ -12,6 +12,15 @@ import RealmSwift
 class User: Object {
     
     @objc dynamic var idUser: String = ""
+    @objc dynamic var lastName: String = ""
+    @objc dynamic var firstName: String = ""
+    @objc dynamic var photoUrl: String = ""
+    var name: String {
+        get {
+            let last = lastName == "" ? firstName : lastName
+            return last + " " + firstName
+        }
+    }
     
     var friends = List<Friend>()
     var groups = List<Group>()
@@ -22,9 +31,12 @@ class User: Object {
         return "idUser"
     }
     
-    convenience init(idUser: String) {
+    convenience init(json: JSON) {
         self.init()
-        self.idUser = idUser
+        self.idUser = json["id"].stringValue
+        self.lastName = json["last_name"].stringValue
+        self.firstName = json["first_name"].stringValue
+        self.photoUrl = json["photo_100"].stringValue
     }
 }
 

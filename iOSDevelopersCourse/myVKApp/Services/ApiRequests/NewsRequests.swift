@@ -32,7 +32,7 @@ class NewsRequests {
         Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON(queue: DispatchQueue.global(qos: .utility)) {  response in
             switch response.result {
             case .success(let value):
-                let profiles = JSON(value)["response"]["profiles"].compactMap({ Friend(json: $0.1) })
+                let profiles = JSON(value)["response"]["profiles"].compactMap({ Friend(json: $0.1, userId: userId) })
                 let groups = JSON(value)["response"]["groups"].compactMap({ Group(json: $0.1, userId: userId) })
                 let newsFeed = JSON(value)["response"]["items"]
                 let news = newsFeed.compactMap({ News(json: $0.1, userId: userId, groups: groups, friends: profiles) })

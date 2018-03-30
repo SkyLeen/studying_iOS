@@ -45,7 +45,7 @@ class News: Object {
         self.compoundKey = "\(id)\(authorId)"
         
         if authorId > 0 {
-            let friend = friends.filter({ $0.idFriend == authorId})
+            let friend = friends.filter({ $0.idFriend == "\(authorId)"})
             
             self.author = friend[0].name
             self.authorImageUrl = friend[0].photoUrl

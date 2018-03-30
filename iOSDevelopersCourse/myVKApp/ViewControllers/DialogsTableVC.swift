@@ -45,8 +45,7 @@ class DialogsTableVC: UITableViewController {
         guard segue.identifier == "showMessages" else { return }
         guard let destinationVC = segue.destination as? DialogMessagesTableVC else { return }
         guard let friend = sender as? IndexPath else { return }
-        
-        destinationVC.friendName = dialogsArray[friend.row].friendName ?? ""
-        destinationVC.friendId = dialogsArray[friend.row].friendId
+       
+        destinationVC.friendId = dialogsArray[friend.row].friendId        
     }
 }

@@ -28,7 +28,7 @@ class FriendsRequests {
     Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON(queue: DispatchQueue.global(qos: .utility)) { response in
             switch response.result {
             case .success(let value):
-                let users = JSON(value)["response"]["items"].compactMap({ Friend(json: $0.1) })
+                let users = JSON(value)["response"]["items"].compactMap({ Friend(json: $0.1, userId: userId) })
                 RealmFriendsSaver.saveFriendsData(friends: users, userId: userId)
             case .failure(let error):
                 print(error)
@@ -36,7 +36,7 @@ class FriendsRequests {
         }
     }
     
-    static func getFriendPhotos(userId: String, accessToken: String, friendId: Int) {
+    static func getFriendPhotos(userId: String, accessToken: String, friendId: String) {
         let pathMethod = "/photos.getAll"
         let url = baseUrl + path + pathMethod
         let parameters: Parameters = [

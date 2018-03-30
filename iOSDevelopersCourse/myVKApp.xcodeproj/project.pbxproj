@@ -61,6 +61,8 @@
 		04D37E7020381B1100F958AF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04D37E6E20381B1100F958AF /* Main.storyboard */; };
 		04D37E7D2038445C00F958AF /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D37E7C2038445C00F958AF /* LoginVC.swift */; };
 		04EA44B6203C2F5E00074ACA /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04EA44B5203C2F5E00074ACA /* Launch.storyboard */; };
+		04EB90B5206E891D001D95E6 /* UserRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB90B4206E891D001D95E6 /* UserRequests.swift */; };
+		04EB90B7206EB103001D95E6 /* RealmRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB90B6206EB103001D95E6 /* RealmRequests.swift */; };
 		BC3D90955834458BC2944F04 /* Pods_myVKApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FCF50A99A46AFA8D4241B66 /* Pods_myVKApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -121,6 +123,8 @@
 		04D37E7620381B1100F958AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04D37E7C2038445C00F958AF /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		04EA44B5203C2F5E00074ACA /* Launch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
+		04EB90B4206E891D001D95E6 /* UserRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequests.swift; sourceTree = "<group>"; };
+		04EB90B6206EB103001D95E6 /* RealmRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRequests.swift; sourceTree = "<group>"; };
 		40B8995E02CBB95866C66069 /* Pods-myVKApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myVKApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-myVKApp/Pods-myVKApp.release.xcconfig"; sourceTree = "<group>"; };
 		5FCF50A99A46AFA8D4241B66 /* Pods_myVKApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_myVKApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6485FB65E5A254A576B87BAF /* Pods-myVKApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myVKApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-myVKApp/Pods-myVKApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -179,6 +183,7 @@
 				04CEE5D8206BF56D00300107 /* RealmDialogsSaver.swift */,
 				04D19B2E2060FC9B00E1CADE /* RealmLoader.swift */,
 				04886BD32063AFB300236E08 /* RealmDeleter.swift */,
+				04EB90B6206EB103001D95E6 /* RealmRequests.swift */,
 			);
 			path = RealmRequests;
 			sourceTree = "<group>";
@@ -187,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				04D21944204A8DF3001E5B26 /* AuthorizationRequest.swift */,
+				04EB90B4206E891D001D95E6 /* UserRequests.swift */,
 				0490991F20580A05009C784A /* FriendsRequests.swift */,
 				04D2194A204B0AF6001E5B26 /* GroupsRequests.swift */,
 				0462E5E6206796FB00E0038C /* NewsRequests.swift */,
@@ -436,6 +442,7 @@
 				0416316820415F7F00446639 /* MyFriendCollectionVC.swift in Sources */,
 				04D21947204AA716001E5B26 /* LoginWebVC.swift in Sources */,
 				0416317C204213AA00446639 /* SettingsViewCell.swift in Sources */,
+				04EB90B5206E891D001D95E6 /* UserRequests.swift in Sources */,
 				0445CD6C2052656900D48551 /* LogOutRequest.swift in Sources */,
 				0416316E204201B800446639 /* MyGroupsViewCell.swift in Sources */,
 				040A2C972063C584004A43D0 /* ExtMyGroupsTableVC.swift in Sources */,
@@ -474,6 +481,7 @@
 				0462E5ED20679A1300E0038C /* DialogsTableVC.swift in Sources */,
 				0490992020580A05009C784A /* FriendsRequests.swift in Sources */,
 				0462E5E5206796CD00E0038C /* DialogModel.swift in Sources */,
+				04EB90B7206EB103001D95E6 /* RealmRequests.swift in Sources */,
 				04CEE5D120692AA600300107 /* DialogUserMessagesViewCell.swift in Sources */,
 				04D19B2F2060FC9B00E1CADE /* RealmLoader.swift in Sources */,
 				049CEBA32051AF28007ED7C2 /* FriendModel.swift in Sources */,

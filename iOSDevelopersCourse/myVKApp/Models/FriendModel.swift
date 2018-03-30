@@ -11,10 +11,13 @@ import RealmSwift
 
 class Friend: Object {
     
-    @objc dynamic var idFriend: Int = 0
+    @objc dynamic var idFriend: String = ""
     @objc dynamic private var firstName: String = ""
     @objc dynamic private var lastName: String = ""
     @objc dynamic var photoUrl: String?
+    @objc dynamic var userId: String = ""
+    @objc dynamic var compoundKey: String = ""
+    
     var name: String {
         get {
             let last = lastName == "" ? firstName : lastName
@@ -26,14 +29,16 @@ class Friend: Object {
     var user = LinkingObjects(fromType: User.self, property: "friends")
     
     @objc override open class func primaryKey() -> String? {
-        return "idFriend"
+        return "compoundKey"
     }
     
-    convenience init(json: JSON) {
+    convenience init(json: JSON, userId: String = "") {
         self.init()
-        self.idFriend = json["id"].intValue
+        self.idFriend = json["id"].stringValue
         self.firstName = json["first_name"].stringValue
         self.lastName = json["last_name"].stringValue
         self.photoUrl = json["photo_100"].stringValue
+        self.userId = userId
+        self.compoundKey = "\(idFriend)\(userId)"
     }
 }

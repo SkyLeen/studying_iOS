@@ -21,7 +21,7 @@ class NewsTableVC: UITableViewController {
     var newsArray: Results<News>!
     lazy var newsAttachArray: Results<NewsAttachments> = {
         return RealmLoader.loadData(object: NewsAttachments())
-    }()
+        }()
     
     var token: NotificationToken?
     var imageCache = NSCache<NSString, AnyObject>()
