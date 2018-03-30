@@ -21,10 +21,7 @@ class DialogsTableVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addRefreshControl()
-        DispatchQueue.global(qos: .background).async {
-            DialogsRequests.getUserDialogs(userId: self.userId!, accessToken: self.accessToken!)
-        }
-        
+        DialogsRequests.getUserDialogs(userId: self.userId!, accessToken: self.accessToken!)
         getNotification()
     }
 

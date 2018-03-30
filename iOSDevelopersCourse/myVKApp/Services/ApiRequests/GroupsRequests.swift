@@ -28,7 +28,7 @@ class GroupsRequests {
         Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON {  response in
             switch response.result {
             case .success(let value):
-                let groups = JSON(value)["response"]["items"].flatMap({ Group(json: $0.1, userId: userId) })
+                let groups = JSON(value)["response"]["items"].compactMap({ Group(json: $0.1, userId: userId) })
                 RealmGroupsSaver.saveUserGroups(groups: groups, userId: userId)
             case .failure(let error):
                 print(error)
@@ -46,10 +46,10 @@ class GroupsRequests {
             "v":"5.73"
         ]
         
-        Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON { response in
+        Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON(queue: DispatchQueue.global(qos: .utility)) { response in
             switch response.result {
             case .success(let value):
-                let groups = JSON(value)["response"]["items"].flatMap({ Group(json: $0.1) })
+                let groups = JSON(value)["response"]["items"].compactMap({ Group(json: $0.1) })
                 RealmGroupsSaver.saveAllGroups(groups: groups)
             case .failure(let error):
                 print(error)
@@ -66,7 +66,7 @@ class GroupsRequests {
             "v":"5.73"
         ]
         
-        Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON { response in
+        Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON(queue: DispatchQueue.global(qos: .utility)) { response in
             switch response.result {
             case .success(let value):
                 print(JSON(value))
@@ -85,6 +85,6 @@ class GroupsRequests {
             "v":"5.73"
         ]
         
-        Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON { response in }
+        Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON(queue: DispatchQueue.global(qos: .utility)) { response in }
     }
 }

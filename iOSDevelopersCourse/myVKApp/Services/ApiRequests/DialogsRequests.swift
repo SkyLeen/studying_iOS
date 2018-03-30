@@ -23,12 +23,13 @@ class DialogsRequests {
             //"start_message_id":0,
             "v":"5.73"
         ]
+       
         
         Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON {  response in
             switch response.result {
             case .success(let value):
-                let dialogs = JSON(value)["response"]["items"]
                 RealmDeleter.removeDialogs()
+                let dialogs = JSON(value)["response"]["items"]
                 for item in dialogs {
                     let dialog = Dialog(json: item.1)
                     RealmDialogSaver.saveUserNews(dialog: dialog, userId: userId)

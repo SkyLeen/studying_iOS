@@ -35,7 +35,7 @@ extension DialogsTableVC {
     }
     
     @objc func refreshView(sender: AnyObject) {
-        DispatchQueue.global().async {
+        DispatchQueue.global(qos: .utility).async {
             DialogsRequests.getUserDialogs(userId: self.userId!, accessToken: self.accessToken!)
             DispatchQueue.main.async {
                 self.getNotification()

@@ -27,10 +27,7 @@ class MyFriendsTableVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        DispatchQueue.global().async {
-            FriendsRequests.getFriendsList(userId: self.userId!, accessToken: self.accessToken!)
-        }
-        
+        FriendsRequests.getFriendsList(userId: self.userId!, accessToken: self.accessToken!)
         getNotification()
     }
 

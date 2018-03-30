@@ -21,7 +21,12 @@ class LoginWebVC: UIViewController {
     }
     
     func loadAuthtirozationRequest() {
-        let request = AuthorizationRequest.requestAuthorization()
-        webView.loadRequest(request)
+        DispatchQueue.global(qos: .utility).async {
+            let request = AuthorizationRequest.requestAuthorization()
+            DispatchQueue.main.async { [weak self] in
+                guard let s = self else { return }
+                s.webView.loadRequest(request)
+            }
+        }
     }
 }

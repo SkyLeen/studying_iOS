@@ -32,10 +32,7 @@ class AllGroupsTableVC: UITableViewController {
         super.viewDidLoad()
         createSearchBar()
         
-        DispatchQueue.global(qos: .background).async {
-            GroupsRequests.getAllGroups(accessToken: self.accessToken!)
-        }
-        
+        GroupsRequests.getAllGroups(accessToken: self.accessToken!)
         getNotification()
     }
 

@@ -33,10 +33,7 @@ class MyFriendCollectionVC: UICollectionViewController {
         super.viewDidLoad()
         navigationItem.title = friendName
         
-        DispatchQueue.global(qos: .background).async {
-            FriendsRequests.getFriendPhotos(userId: self.userId!, accessToken: self.accessToken!, friendId: self.friendId)
-        }
-        
+        FriendsRequests.getFriendPhotos(userId: self.userId!, accessToken: self.accessToken!, friendId: self.friendId)
         getNotification()
     }
 

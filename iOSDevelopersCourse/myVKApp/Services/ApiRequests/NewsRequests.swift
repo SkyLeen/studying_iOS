@@ -29,20 +29,20 @@ class NewsRequests {
             "v":"5.73"
         ]
         
-        Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON {  response in
+        Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON(queue: DispatchQueue.global(qos: .utility)) {  response in
             switch response.result {
             case .success(let value):
-                let profiles = JSON(value)["response"]["profiles"].flatMap({ Friend(json: $0.1) })
-                let groups = JSON(value)["response"]["groups"].flatMap({ Group(json: $0.1, userId: userId) })
+                let profiles = JSON(value)["response"]["profiles"].compactMap({ Friend(json: $0.1) })
+                let groups = JSON(value)["response"]["groups"].compactMap({ Group(json: $0.1, userId: userId) })
                 let newsFeed = JSON(value)["response"]["items"]
-                let news = newsFeed.flatMap({ News(json: $0.1, userId: userId, groups: groups, friends: profiles) })
+                let news = newsFeed.compactMap({ News(json: $0.1, userId: userId, groups: groups, friends: profiles) })
                 RealmNewsSaver.saveUserNews(news: news, userId: userId)
                 
-                DispatchQueue.global(qos: .background).async {
+                DispatchQueue.global(qos: .utility).async {
                     for (_,item) in newsFeed.enumerated() {
                         let postId = item.1["post_id"].stringValue
                         let authorId = item.1["source_id"].stringValue
-                        let attachments = item.1["attachments"].flatMap({ NewsAttachments(json: $0.1, postId: "\(postId)\(authorId)") })
+                        let attachments = item.1["attachments"].compactMap({ NewsAttachments(json: $0.1, postId: "\(postId)\(authorId)") })
                         RealmNewsAttachSaver.saveNewsAttach(attachs: attachments, newsId: postId, authorId: authorId)
                     }
                 }

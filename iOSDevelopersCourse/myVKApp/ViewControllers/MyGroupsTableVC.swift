@@ -27,10 +27,7 @@ class MyGroupsTableVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        DispatchQueue.global(qos: .background).async {
-            GroupsRequests.getUserGroups(userId: self.userId!, accessToken: self.accessToken!)
-        }
-        
+        GroupsRequests.getUserGroups(userId: self.userId!, accessToken: self.accessToken!)
         getNotification()
     }
 
