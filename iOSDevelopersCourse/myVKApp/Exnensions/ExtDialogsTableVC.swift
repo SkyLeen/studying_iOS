@@ -12,8 +12,6 @@ import UIKit
 extension DialogsTableVC {
     
     func getDialogsNotification() {
-        dialogsArray = RealmLoader.loadData(object: Dialog()).sorted(byKeyPath: "date", ascending: false)
-        
         dialogsToken = dialogsArray.observe({ [weak self] changes in
             guard let view = self?.tableView else { return }
             switch changes {

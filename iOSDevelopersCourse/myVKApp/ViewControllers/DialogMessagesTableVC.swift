@@ -74,9 +74,4 @@ class DialogMessagesTableVC: UIViewController {
         hideKeyboard()
         sendMessage()
     }
-    
-    private func getTitle() {
-        guard let user: (name: String, photoUrl: String?) = RealmRequests.getFriendData(friend: "\(friendId)") else { return }
-        navigationItem.title = user.name
-    }
 }

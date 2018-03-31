@@ -26,7 +26,7 @@ class MyGroupsTableVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navigationItem.title = "\(myGroupsArray.count) Communities"
         GroupsRequests.getUserGroups(userId: self.userId!, accessToken: self.accessToken!)
         getNotification()
     }

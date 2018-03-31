@@ -15,7 +15,9 @@ class DialogsTableVC: UITableViewController {
     let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")
     let userId =  KeychainWrapper.standard.string(forKey: "userId")
     
-    var dialogsArray: Results<Dialog>!
+    lazy var dialogsArray: Results<Dialog> = {
+        return RealmLoader.loadData(object: Dialog()).sorted(byKeyPath: "date", ascending: false)
+    }()
     
     var dialogsToken: NotificationToken?
     var usersToken: NotificationToken?
@@ -30,7 +32,7 @@ class DialogsTableVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addRefreshControl()
-        
+        navigationItem.title = "\(dialogsArray.count) Dialogs"
         DispatchQueue.global(qos: .utility).async {
             DialogsRequests.getUserDialogs(userId: self.userId!, accessToken: self.accessToken!)
         }

@@ -54,6 +54,11 @@ extension DialogMessagesTableVC {
             self.messageTableView.setContentOffset(offset, animated: true)
         }
     }
+    
+    func getTitle() {
+        guard let user = friendId > 0 ? RealmRequests.getFriendData(friend: "\(friendId)") : RealmRequests.getGroupData(group: "\(friendId.magnitude)") else { return }
+        navigationItem.title = user.name
+    }
 }
 
 
