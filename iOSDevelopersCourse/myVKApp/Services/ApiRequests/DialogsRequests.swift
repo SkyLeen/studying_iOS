@@ -31,9 +31,15 @@ class DialogsRequests {
                 let dialogs = JSON(value)["response"]["items"]
                 for item in dialogs {
                     let dialog = Dialog(json: item.1)
-                    if dialog.friendId > 0 {
-                        UserRequests.getUserById(userId: userId, accessToken: accessToken, requestUserId: String(dialog.friendId), main: false)
+                    
+                    if RealmRequests.getFriendData(friend: "\(dialog.friendId)") == nil {
+                        if dialog.friendId > 0 {
+                            UserRequests.getUserById(userId: userId, accessToken: accessToken, requestUserId: "\(dialog.friendId)", attribute: .fromDialogs)
+                        } else {
+                            GroupsRequests.getGroupById(accessToken: accessToken, idGroup: "\(dialog.friendId.magnitude)")
+                        }
                     }
+                    
                     RealmDialogSaver.saveUserDialogs(dialog: dialog, userId: userId)
                 }
             case .failure(let error):

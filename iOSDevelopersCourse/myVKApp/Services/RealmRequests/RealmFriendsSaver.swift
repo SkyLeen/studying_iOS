@@ -68,4 +68,16 @@ class RealmFriendsSaver {
             print(error.localizedDescription)
         }
     }
+    static func saveFriend (friends: Friend) {
+        do {
+            let realm = try Realm(configuration: config)
+            
+            try realm.write {
+                realm.add(friends, update: true)
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
 }

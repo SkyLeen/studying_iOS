@@ -87,4 +87,25 @@ class GroupsRequests {
         
         Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON(queue: DispatchQueue.global(qos: .utility)) { response in }
     }
+    
+    static func getGroupById(accessToken: String, idGroup: String) {
+        let pathMethod = "/groups.getById"
+        let url = baseUrl + path + pathMethod
+        let parameters: Parameters = [
+            "access_token":accessToken,
+            "group_ids":idGroup,
+            "fields":"members_count",
+            "v":"5.73"
+        ]
+        
+        Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON {  response in
+            switch response.result {
+            case .success(let value):
+                let groups = JSON(value)["response"].compactMap({ Group(json: $0.1) })
+                RealmGroupsSaver.saveAllGroups(groups: groups)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
 }

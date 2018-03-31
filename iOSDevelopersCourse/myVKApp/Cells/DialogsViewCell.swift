@@ -17,7 +17,6 @@ class DialogsViewCell: UITableViewCell {
     
     private var task: URLSessionTask?
     
-    
     var dialog: Dialog? {
         didSet{
             setBackgroungColor()
@@ -46,10 +45,13 @@ class DialogsViewCell: UITableViewCell {
     
     private func getFriendProperties() {
         self.messageFriendImage.image = UIImage(named: "friends")
+        self.messageFriendLabel.text = nil
+        self.messageTextLabel.text = nil
+        
         task?.cancel()
         task = nil
         
-        guard let user: (name: String, photoUrl: String?) = RealmRequests.getFriendData(friend: "\(dialog?.friendId ?? 0)") else { return }
+        guard let friendId = dialog?.friendId, let user = friendId > 0 ? RealmRequests.getFriendData(friend: "\(friendId)") : RealmRequests.getGroupData(group: "\(friendId.magnitude)") else { return }
         messageFriendLabel.text = dialog?.title == "" ? user.name : dialog?.title
         messageTextLabel.text = dialog?.body
         

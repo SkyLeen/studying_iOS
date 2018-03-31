@@ -21,4 +21,16 @@ class RealmRequests {
             return (name: name, photoUrl: photoUrl)
         } else { return nil }
     }
+    
+    static func getGroupData(group: String) -> (name: String, photoUrl: String?)? {
+        guard let realm = try? Realm() else { return nil }
+        
+        let group = realm.objects(Group.self).filter("idGroup == %@", group)
+        if !group.isEmpty {
+            let name = group[0].nameGroup
+            let photoUrl = group[0].photoGroupUrl
+            
+            return (name: name, photoUrl: photoUrl)
+        } else { return nil }
+    }
 }

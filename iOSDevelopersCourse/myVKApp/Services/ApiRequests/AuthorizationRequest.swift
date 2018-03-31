@@ -46,7 +46,7 @@ class AuthorizationRequest {
             keyChain.set(params["access_token"]!, forKey: "accessToken")
             keyChain.set(params["user_id"]!, forKey: "userId")
             
-            UserRequests.getUserById(userId: params["user_id"]!, accessToken: params["access_token"]!, requestUserId: params["user_id"]!, main: true)
+            UserRequests.getUserById(userId: params["user_id"]!, accessToken: params["access_token"]!, requestUserId: params["user_id"]!, attribute: .mainUser)
         }
     }
     

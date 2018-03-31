@@ -11,9 +11,10 @@ import UIKit
 
 extension DialogsTableVC {
     
-    func getNotification() {
-        dialogsArray =  RealmLoader.loadData(object: Dialog()).sorted(byKeyPath: "date", ascending: false)
-        token = dialogsArray.observe({ [weak self] changes in
+    func getDialogsNotification() {
+        dialogsArray = RealmLoader.loadData(object: Dialog()).sorted(byKeyPath: "date", ascending: false)
+        
+        dialogsToken = dialogsArray.observe({ [weak self] changes in
             guard let view = self?.tableView else { return }
             switch changes {
             case .initial:
@@ -30,6 +31,42 @@ extension DialogsTableVC {
         })
     }
     
+    func getUsersNotification() {
+        let usersArray = RealmLoader.loadData(object: Friend())
+        
+        usersToken = usersArray.observe({ [weak self] changes in
+            guard let view = self?.tableView else { return }
+            switch changes {
+            case .initial:
+                view.reloadData()
+            case .update(_, _, _, _):
+                view.beginUpdates()
+                view.reloadData()
+                view.endUpdates()
+            case .error(let error):
+                print(error.localizedDescription)
+            }
+        })
+    }
+    
+    func getGroupsNotification() {
+        let groupsArray = RealmLoader.loadData(object: Group())
+        
+        groupsToken = groupsArray.observe({ [weak self] changes in
+            guard let view = self?.tableView else { return }
+            switch changes {
+            case .initial:
+                view.reloadData()
+            case .update(_, _, _, _):
+                view.beginUpdates()
+                view.reloadData()
+                view.endUpdates()
+            case .error(let error):
+                print(error.localizedDescription)
+            }
+        })
+    }
+    
     func addRefreshControl() {
         self.refreshControl?.addTarget(self, action: #selector(self.refreshView), for: .valueChanged)
     }
@@ -38,9 +75,11 @@ extension DialogsTableVC {
         DispatchQueue.global(qos: .utility).async {
             DialogsRequests.getUserDialogs(userId: self.userId!, accessToken: self.accessToken!)
             DispatchQueue.main.async {
-                self.getNotification()
                 self.refreshControl?.endRefreshing()
             }
         }
+        getDialogsNotification()
+        getUsersNotification()
+        getGroupsNotification()
     }
 }
