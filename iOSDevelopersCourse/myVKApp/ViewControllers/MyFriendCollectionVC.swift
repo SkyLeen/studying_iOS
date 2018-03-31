@@ -23,10 +23,10 @@ class MyFriendCollectionVC: UICollectionViewController {
         return RealmLoader.loadData(object: Photos()).filter("idFriend == %@", friendId)
     }()
     
-    var token: NotificationToken?
+    var photoToken: NotificationToken?
     
     deinit {
-        token?.invalidate()
+        photoToken?.invalidate()
     }
     
     override func viewDidLoad() {

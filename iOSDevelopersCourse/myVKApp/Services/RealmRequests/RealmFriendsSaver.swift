@@ -36,10 +36,10 @@ class RealmFriendsSaver {
         }
     }
     
-    static func saveFriendsPhotos (photos: [Photos], friendId: String) {
+    static func saveFriendsPhotos (photos: [Photos], friendId: String, userId: String) {
         do {
             let realm = try Realm(configuration: config)
-            let friend = realm.object(ofType: Friend.self, forPrimaryKey: friendId)
+            let friend = realm.object(ofType: Friend.self, forPrimaryKey: "\(friendId)\(userId)")
             let oldPhotos = realm.objects(Photos.self).filter("idFriend == %@", friendId)
             try realm.write {
                 realm.delete(oldPhotos)

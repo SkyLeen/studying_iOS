@@ -51,7 +51,7 @@ class FriendsRequests {
             switch response.result {
             case .success(let value):
                 let photos = JSON(value)["response"]["items"].compactMap({ Photos(json: $0.1) })
-                RealmFriendsSaver.saveFriendsPhotos(photos: photos, friendId: friendId)
+                RealmFriendsSaver.saveFriendsPhotos(photos: photos, friendId: friendId, userId: userId)
             case .failure(let error):
                 print(error)
             }

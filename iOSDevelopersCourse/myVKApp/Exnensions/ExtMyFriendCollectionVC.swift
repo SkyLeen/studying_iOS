@@ -33,7 +33,7 @@ extension MyFriendCollectionVC: UICollectionViewDelegateFlowLayout {
 extension MyFriendCollectionVC {
     
     func getNotification() {
-        token = friendPhotos.observe({ [weak self] changes in
+        photoToken = friendPhotos.observe({ [weak self] changes in
             guard let collect = self?.collectionView else { return }
             switch changes {
             case .initial:

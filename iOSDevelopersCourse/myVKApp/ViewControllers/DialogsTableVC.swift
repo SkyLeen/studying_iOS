@@ -21,6 +21,12 @@ class DialogsTableVC: UITableViewController {
     var usersToken: NotificationToken?
     var groupsToken: NotificationToken?
     
+    deinit {
+        dialogsToken?.invalidate()
+        usersToken?.invalidate()
+        groupsToken?.invalidate()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addRefreshControl()
