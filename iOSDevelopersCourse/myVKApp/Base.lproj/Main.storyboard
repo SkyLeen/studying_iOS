@@ -609,7 +609,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hRs-X3-lIU">
-                                                            <rect key="frame" x="60" y="5" width="310" height="56.5"/>
+                                                            <rect key="frame" x="60" y="5" width="310" height="36"/>
                                                             <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                                             <nil key="textColor"/>
@@ -622,18 +622,31 @@
                                                                 <constraint firstAttribute="width" constant="45" id="kDr-ib-fNX"/>
                                                             </constraints>
                                                         </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FriendDateLabel" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QsD-Hm-fQY" userLabel="Date Label">
+                                                            <rect key="frame" x="60" y="41" width="310" height="25"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="25" id="tVY-Nr-fef"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                                                            <color key="textColor" red="0.4756349325" green="0.47564673419999998" blue="0.47564041610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="trailing" secondItem="hRs-X3-lIU" secondAttribute="trailing" constant="5" id="4LK-Lk-L8n"/>
+                                                        <constraint firstItem="QsD-Hm-fQY" firstAttribute="top" secondItem="hRs-X3-lIU" secondAttribute="bottom" id="1Xm-hr-5fV"/>
                                                         <constraint firstItem="hRs-X3-lIU" firstAttribute="left" secondItem="jzi-Rk-Fbb" secondAttribute="right" constant="10" id="5Yc-11-BBI"/>
                                                         <constraint firstItem="jzi-Rk-Fbb" firstAttribute="leading" secondItem="Hl1-b2-TO5" secondAttribute="leading" constant="5" id="HGl-Bn-CNg"/>
                                                         <constraint firstItem="hRs-X3-lIU" firstAttribute="top" secondItem="Hl1-b2-TO5" secondAttribute="top" constant="5" id="LH4-ay-roV"/>
+                                                        <constraint firstAttribute="trailing" secondItem="QsD-Hm-fQY" secondAttribute="trailing" constant="5" id="LXR-oK-yA3"/>
+                                                        <constraint firstAttribute="trailing" secondItem="hRs-X3-lIU" secondAttribute="trailing" constant="5" id="M2J-rY-7u3"/>
                                                         <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="jzi-Rk-Fbb" secondAttribute="bottom" constant="5" id="Txc-td-1bu"/>
+                                                        <constraint firstItem="QsD-Hm-fQY" firstAttribute="leading" secondItem="jzi-Rk-Fbb" secondAttribute="trailing" constant="10" id="Ufg-w2-xeF"/>
+                                                        <constraint firstAttribute="bottom" secondItem="QsD-Hm-fQY" secondAttribute="bottom" id="spC-3d-4rA"/>
                                                         <constraint firstItem="jzi-Rk-Fbb" firstAttribute="top" secondItem="Hl1-b2-TO5" secondAttribute="top" constant="5" id="tgs-mb-Dlf"/>
-                                                        <constraint firstAttribute="bottom" secondItem="hRs-X3-lIU" secondAttribute="bottom" constant="5" id="urh-38-WT7"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
+                                                    <outlet property="dateLabel" destination="QsD-Hm-fQY" id="95h-bw-Hdo"/>
                                                     <outlet property="friendMessageImage" destination="jzi-Rk-Fbb" id="fC3-Bw-Qal"/>
                                                     <outlet property="friendMessageLabel" destination="hRs-X3-lIU" id="z23-tI-D5c"/>
                                                 </connections>
@@ -653,10 +666,19 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mAn-J5-2GK">
-                                                            <rect key="frame" x="5" y="5" width="310" height="56.5"/>
+                                                            <rect key="frame" x="5" y="5" width="310" height="36"/>
                                                             <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                                             <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UserDateLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X4L-j0-qCf">
+                                                            <rect key="frame" x="5" y="41" width="310" height="25"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="25" id="lEp-fj-7ZI"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                                                            <color key="textColor" red="0.4756349325" green="0.47564673419999998" blue="0.47564041610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -664,8 +686,11 @@
                                                         <constraint firstItem="l0V-wP-UHk" firstAttribute="top" secondItem="JRW-JJ-0Iv" secondAttribute="top" constant="5" id="6xg-Pp-A01"/>
                                                         <constraint firstItem="l0V-wP-UHk" firstAttribute="leading" secondItem="mAn-J5-2GK" secondAttribute="trailing" constant="10" id="8xR-hG-7wq"/>
                                                         <constraint firstItem="mAn-J5-2GK" firstAttribute="leading" secondItem="JRW-JJ-0Iv" secondAttribute="leading" constant="5" id="BFc-zy-XjX"/>
+                                                        <constraint firstItem="X4L-j0-qCf" firstAttribute="top" secondItem="mAn-J5-2GK" secondAttribute="bottom" id="D1O-WQ-qrl"/>
                                                         <constraint firstItem="mAn-J5-2GK" firstAttribute="top" secondItem="JRW-JJ-0Iv" secondAttribute="top" constant="5" id="FMq-ng-ZNi"/>
-                                                        <constraint firstAttribute="bottom" secondItem="mAn-J5-2GK" secondAttribute="bottom" constant="5" id="Oed-HG-Kz9"/>
+                                                        <constraint firstItem="l0V-wP-UHk" firstAttribute="leading" secondItem="X4L-j0-qCf" secondAttribute="trailing" constant="10" id="IAg-Yt-FVa"/>
+                                                        <constraint firstAttribute="bottom" secondItem="X4L-j0-qCf" secondAttribute="bottom" id="JyV-9x-ubO"/>
+                                                        <constraint firstItem="X4L-j0-qCf" firstAttribute="leading" secondItem="JRW-JJ-0Iv" secondAttribute="leading" constant="5" id="ZwY-Vy-6w1"/>
                                                         <constraint firstAttribute="trailing" secondItem="l0V-wP-UHk" secondAttribute="trailing" constant="5" id="gqZ-L2-oal"/>
                                                         <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="l0V-wP-UHk" secondAttribute="bottom" constant="5" id="rCE-Zq-Gn5"/>
                                                     </constraints>

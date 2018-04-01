@@ -13,6 +13,7 @@ class DialogFriendMessagesViewCell: UITableViewCell {
 
     @IBOutlet weak var friendMessageImage: UIImageView!
     @IBOutlet weak var friendMessageLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     
     private var task: URLSessionTask?
     
@@ -41,7 +42,7 @@ class DialogFriendMessagesViewCell: UITableViewCell {
         } else {
             friendMessageLabel.text = message?.body
         }
-        //messageDateLabel.text = Date(timeIntervalSince1970: (dialog?.date)!).formatted
+        dateLabel.text = Date(timeIntervalSince1970: (message?.date)!).formatted
         
         guard let friendId = message?.friendId, let user = friendId > 0 ? RealmRequests.getFriendData(friend: "\(friendId)") : RealmRequests.getGroupData(group: "\(friendId.magnitude)") else { return }
         
