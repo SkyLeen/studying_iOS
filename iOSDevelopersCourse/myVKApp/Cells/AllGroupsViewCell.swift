@@ -18,8 +18,10 @@ class AllGroupsViewCell: UITableViewCell {
     var group: Group? {
         didSet {
             allGroupNameLabel.text = group?.nameGroup
-            allGroupFollowersCountLabel.text = "\(group?.followers ?? 0) followers"
             getAllGroupsImage()
+            
+            guard let followers = group?.followers else { return }
+            allGroupFollowersCountLabel.text = "\(followers.withSeparator) followers"
         }
     }
     

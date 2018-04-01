@@ -19,10 +19,10 @@ class News: Object {
     @objc dynamic var date: Double = 0.0
     @objc dynamic var type: String = ""
     @objc dynamic var text: String = ""
-    @objc dynamic var likesCount: String = ""
-    @objc dynamic var commentsCount: String = ""
-    @objc dynamic var repostsCount: String = ""
-    @objc dynamic var viewsCount: String = ""
+    @objc dynamic var likesCount: Int = 0
+    @objc dynamic var commentsCount: Int = 0
+    @objc dynamic var repostsCount: Int = 0
+    @objc dynamic var viewsCount: Int = 0
     
     var attachments = List<NewsAttachments>()
     var user = LinkingObjects(fromType: User.self, property: "newsfeed")
@@ -38,10 +38,10 @@ class News: Object {
         self.date = json["date"].doubleValue
         self.type = json["type"].stringValue
         self.text = json["text"].stringValue
-        self.likesCount = json["likes"]["count"].stringValue
-        self.commentsCount = json["comments"]["count"].stringValue
-        self.repostsCount = json["reposts"]["count"].stringValue
-        self.viewsCount = json["views"]["count"].stringValue
+        self.likesCount = json["likes"]["count"].intValue
+        self.commentsCount = json["comments"]["count"].intValue
+        self.repostsCount = json["reposts"]["count"].intValue
+        self.viewsCount = json["views"]["count"].intValue
         self.compoundKey = "\(id)\(authorId)"
         
         if authorId > 0 {

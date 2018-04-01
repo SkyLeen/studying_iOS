@@ -63,6 +63,8 @@
 		04EA44B6203C2F5E00074ACA /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04EA44B5203C2F5E00074ACA /* Launch.storyboard */; };
 		04EB90B5206E891D001D95E6 /* UserRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB90B4206E891D001D95E6 /* UserRequests.swift */; };
 		04EB90B7206EB103001D95E6 /* RealmRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB90B6206EB103001D95E6 /* RealmRequests.swift */; };
+		04EB90B9207131E1001D95E6 /* ExtFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB90B8207131E1001D95E6 /* ExtFormatter.swift */; };
+		04EB90BB20713252001D95E6 /* ExtInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB90BA20713252001D95E6 /* ExtInt.swift */; };
 		BC3D90955834458BC2944F04 /* Pods_myVKApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FCF50A99A46AFA8D4241B66 /* Pods_myVKApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -125,6 +127,8 @@
 		04EA44B5203C2F5E00074ACA /* Launch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
 		04EB90B4206E891D001D95E6 /* UserRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequests.swift; sourceTree = "<group>"; };
 		04EB90B6206EB103001D95E6 /* RealmRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRequests.swift; sourceTree = "<group>"; };
+		04EB90B8207131E1001D95E6 /* ExtFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtFormatter.swift; sourceTree = "<group>"; };
+		04EB90BA20713252001D95E6 /* ExtInt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtInt.swift; sourceTree = "<group>"; };
 		40B8995E02CBB95866C66069 /* Pods-myVKApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myVKApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-myVKApp/Pods-myVKApp.release.xcconfig"; sourceTree = "<group>"; };
 		5FCF50A99A46AFA8D4241B66 /* Pods_myVKApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_myVKApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6485FB65E5A254A576B87BAF /* Pods-myVKApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myVKApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-myVKApp/Pods-myVKApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -154,6 +158,8 @@
 				04CEE5DA206CD52200300107 /* ExtDialogsTableVC.swift */,
 				04CEE5CC20682AD600300107 /* ExtDialogMessageFriendVC.swift */,
 				048714D92066CF8C003405B4 /* ExtUIImage.swift */,
+				04EB90B8207131E1001D95E6 /* ExtFormatter.swift */,
+				04EB90BA20713252001D95E6 /* ExtInt.swift */,
 			);
 			path = Exnensions;
 			sourceTree = "<group>";
@@ -434,6 +440,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04EB90B9207131E1001D95E6 /* ExtFormatter.swift in Sources */,
 				0462E5F32067AE9F00E0038C /* DialogFriendMessagesViewCell.swift in Sources */,
 				0410DB182064428600FB3F4F /* RealmUserSaver.swift in Sources */,
 				040A2C9B2063CC13004A43D0 /* ExtAllGroupsTableVC.swift in Sources */,
@@ -462,6 +469,7 @@
 				0416316A20415FF600446639 /* MyFriendCollectionViewCell.swift in Sources */,
 				048714D82066BD34003405B4 /* NewsViewCell.swift in Sources */,
 				04CEE5CD20682AD600300107 /* ExtDialogMessageFriendVC.swift in Sources */,
+				04EB90BB20713252001D95E6 /* ExtInt.swift in Sources */,
 				04CEE5D7206AE96A00300107 /* RealmNewsAttachSaver.swift in Sources */,
 				04CEE5DB206CD52200300107 /* ExtDialogsTableVC.swift in Sources */,
 				0462E5EF20679ABF00E0038C /* DialogsViewCell.swift in Sources */,

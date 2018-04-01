@@ -27,10 +27,10 @@ class NewsViewCell: UITableViewCell {
         didSet {
             authorNameLabel.text = news?.author
             newsLabel.text = news?.text
-            likesLabel.text = news?.likesCount
-            commentsLabel.text = news?.commentsCount
-            repostsLabel.text = news?.repostsCount
-            viewsLabel.text = news?.viewsCount
+            likesLabel.text = news?.likesCount.withSeparator
+            commentsLabel.text = news?.commentsCount.withSeparator
+            repostsLabel.text = news?.repostsCount.withSeparator
+            viewsLabel.text = news?.viewsCount.withSeparator
            
             getAuthorsImages()
             getImages()
