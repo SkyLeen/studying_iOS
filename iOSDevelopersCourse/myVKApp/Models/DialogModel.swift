@@ -20,7 +20,8 @@ class Dialog: Object {
     @objc dynamic var out: Int = 0
     @objc dynamic var chatId: Int = 0
     @objc dynamic var attachments: String = ""
-    //var attachments = List<MessageAttachments>()
+    
+    //var attachments = List<DialogAttachments>()
     var user = LinkingObjects(fromType: User.self, property: "dialogs")
     
     @objc override open class func primaryKey() -> String? {
