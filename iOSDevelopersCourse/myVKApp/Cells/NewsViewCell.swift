@@ -18,6 +18,7 @@ class NewsViewCell: UITableViewCell {
     @IBOutlet weak var commentsLabel: UILabel!
     @IBOutlet weak var repostsLabel: UILabel!
     @IBOutlet weak var viewsLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     
     private var task: URLSessionTask?
     private var taskImage: URLSessionTask?
@@ -34,6 +35,9 @@ class NewsViewCell: UITableViewCell {
            
             getAuthorsImages()
             getImages()
+            
+            guard let date = news?.date else { return }
+            dateLabel.text = Date(timeIntervalSince1970: date).formatted
         }
     }
     

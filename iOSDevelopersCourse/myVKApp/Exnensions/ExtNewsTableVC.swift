@@ -35,8 +35,8 @@ extension NewsTableVC {
             guard let path = item.url, let url = URL(string: path) else { return }
             self.taskNewsImage = URLSession.shared.dataTask(with: url){ (data,response,error) in
                 guard let data = data, error == nil else { return }
-                let image = UIImage(data: data)
-                self.imageCache.setObject(image!, forKey: path as NSString)
+                guard let image = UIImage(data: data) else { return }
+                self.imageCache.setObject(image, forKey: path as NSString)
             }
             self.taskNewsImage?.resume()
         }

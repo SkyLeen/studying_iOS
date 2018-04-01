@@ -290,8 +290,8 @@
                                                 <constraint firstAttribute="height" constant="45" id="VXi-ar-oty"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jFP-2w-lvV">
-                                            <rect key="frame" x="70" y="0.0" width="305" height="50"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="AuthorLabel" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jFP-2w-lvV">
+                                            <rect key="frame" x="70" y="0.0" width="305" height="29.5"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -408,11 +408,18 @@
                                                 <constraint firstItem="eQ5-io-kE6" firstAttribute="height" secondItem="vPd-Eq-l2R" secondAttribute="height" id="tGt-nE-gQf"/>
                                             </constraints>
                                         </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DateLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pBD-k6-b9c">
+                                            <rect key="frame" x="70" y="34.5" width="289" height="15.5"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                                            <color key="textColor" red="0.4756349325" green="0.47564673419999998" blue="0.47564041610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="HIT-Q8-jLC" firstAttribute="top" secondItem="jFP-2w-lvV" secondAttribute="bottom" constant="5" id="5kd-3U-jWt"/>
+                                        <constraint firstItem="pBD-k6-b9c" firstAttribute="top" secondItem="jFP-2w-lvV" secondAttribute="bottom" constant="5" id="5kd-3U-jWt"/>
                                         <constraint firstItem="jFP-2w-lvV" firstAttribute="top" secondItem="sK6-MT-6Pu" secondAttribute="top" id="6mW-Kb-NKo"/>
-                                        <constraint firstItem="HIT-Q8-jLC" firstAttribute="top" secondItem="XVm-gW-eHU" secondAttribute="bottom" constant="5" id="QRl-Jx-D5t"/>
+                                        <constraint firstItem="pBD-k6-b9c" firstAttribute="leading" secondItem="XVm-gW-eHU" secondAttribute="trailing" constant="20" id="Gx8-WJ-l3W"/>
+                                        <constraint firstItem="HIT-Q8-jLC" firstAttribute="top" secondItem="pBD-k6-b9c" secondAttribute="bottom" constant="5" id="Obb-gb-qic"/>
                                         <constraint firstAttribute="bottom" secondItem="ybt-Ls-nOJ" secondAttribute="bottom" id="VZ1-6L-ICO"/>
                                         <constraint firstItem="HIT-Q8-jLC" firstAttribute="top" secondItem="XVm-gW-eHU" secondAttribute="bottom" constant="5" id="VZ1-6k-5AL"/>
                                         <constraint firstItem="ybt-Ls-nOJ" firstAttribute="leading" secondItem="sK6-MT-6Pu" secondAttribute="leading" id="ZBc-2Q-6TV"/>
@@ -420,6 +427,7 @@
                                         <constraint firstItem="XVm-gW-eHU" firstAttribute="leading" secondItem="sK6-MT-6Pu" secondAttribute="leading" constant="5" id="aca-wP-lmg"/>
                                         <constraint firstItem="jFP-2w-lvV" firstAttribute="leading" secondItem="XVm-gW-eHU" secondAttribute="trailing" constant="20" id="dNp-Ss-PiQ"/>
                                         <constraint firstAttribute="trailing" secondItem="jFP-2w-lvV" secondAttribute="trailing" id="fQ2-5S-W4P"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="pBD-k6-b9c" secondAttribute="trailing" id="i5a-d3-rId"/>
                                         <constraint firstAttribute="trailing" secondItem="HIT-Q8-jLC" secondAttribute="trailing" id="m3I-VS-Q0S"/>
                                         <constraint firstItem="ybt-Ls-nOJ" firstAttribute="top" secondItem="HIT-Q8-jLC" secondAttribute="bottom" constant="10" id="pyd-9m-hPy"/>
                                         <constraint firstAttribute="trailing" secondItem="ybt-Ls-nOJ" secondAttribute="trailing" id="thF-Dg-GI6"/>
@@ -430,6 +438,7 @@
                                     <outlet property="authorImage" destination="XVm-gW-eHU" id="lez-Bo-fRr"/>
                                     <outlet property="authorNameLabel" destination="jFP-2w-lvV" id="wgH-9w-ies"/>
                                     <outlet property="commentsLabel" destination="1bn-UQ-1jk" id="GE5-pu-1yz"/>
+                                    <outlet property="dateLabel" destination="pBD-k6-b9c" id="xep-Jg-9bN"/>
                                     <outlet property="likesLabel" destination="5nI-RW-2bI" id="tg3-TV-DX1"/>
                                     <outlet property="newsImage" destination="sdu-kC-URq" id="dCG-bn-UdG"/>
                                     <outlet property="newsLabel" destination="c6q-ph-KJ6" id="G0K-P3-ocO"/>
@@ -506,7 +515,7 @@
                                                 <constraint firstAttribute="width" constant="100" id="4po-Sm-WlP"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="textColor" red="0.4756349325" green="0.47564673419999998" blue="0.47564041610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>

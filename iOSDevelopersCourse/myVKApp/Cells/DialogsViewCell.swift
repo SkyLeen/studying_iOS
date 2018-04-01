@@ -53,7 +53,7 @@ class DialogsViewCell: UITableViewCell {
         task = nil
         
         messageTextLabel.text = dialog?.body
-        messageDateLabel.text = "\(Date(timeIntervalSince1970: (dialog?.date)!).formatted)"
+        messageDateLabel.text = Date(timeIntervalSince1970: (dialog?.date)!).formatted
         
         guard let friendId = dialog?.friendId, let user = friendId > 0 ? RealmRequests.getFriendData(friend: "\(friendId)") : RealmRequests.getGroupData(group: "\(friendId.magnitude)") else { return }
         messageFriendLabel.text = dialog?.title == "" ? user.name : dialog?.title
