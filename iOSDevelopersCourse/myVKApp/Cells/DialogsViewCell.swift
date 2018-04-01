@@ -14,6 +14,7 @@ class DialogsViewCell: UITableViewCell {
     @IBOutlet weak var messageFriendLabel: UILabel!
     @IBOutlet weak var messageTextLabel: UILabel!
     @IBOutlet weak var messageView: UIView!
+    @IBOutlet weak var messageDateLabel: UILabel!
     
     private var task: URLSessionTask?
     
@@ -51,9 +52,12 @@ class DialogsViewCell: UITableViewCell {
         task?.cancel()
         task = nil
         
+        messageTextLabel.text = dialog?.body
+        messageDateLabel.text = "\(Date(timeIntervalSince1970: (dialog?.date)!).formatted)"
+        
         guard let friendId = dialog?.friendId, let user = friendId > 0 ? RealmRequests.getFriendData(friend: "\(friendId)") : RealmRequests.getGroupData(group: "\(friendId.magnitude)") else { return }
         messageFriendLabel.text = dialog?.title == "" ? user.name : dialog?.title
-        messageTextLabel.text = dialog?.body
+        
         
         guard let path = user.photoUrl, let url = URL(string: path) else { return }
         self.task = URLSession.shared.dataTask(with: url) { (data, response, error) in

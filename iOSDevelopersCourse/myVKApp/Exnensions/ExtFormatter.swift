@@ -16,4 +16,10 @@ extension Formatter {
         formatter.numberStyle = .decimal
         return formatter
     }()
+    
+    static let formattedDate: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.yy HH:mm"
+        return formatter
+    }()
 }
