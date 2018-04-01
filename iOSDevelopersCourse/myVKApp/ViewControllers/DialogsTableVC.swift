@@ -35,6 +35,8 @@ class DialogsTableVC: UITableViewController {
         DispatchQueue.global(qos: .utility).async {
             DialogsRequests.getUserDialogs(userId: self.userId!, accessToken: self.accessToken!)
         }
+        DialogsRequests.getMessages(accessToken: accessToken!)
+        
         getDialogsNotification()
         getUsersNotification()
         getGroupsNotification()

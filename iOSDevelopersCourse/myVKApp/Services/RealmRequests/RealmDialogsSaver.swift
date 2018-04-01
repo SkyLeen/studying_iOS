@@ -31,4 +31,16 @@ class RealmDialogSaver {
             print(error.localizedDescription)
         }
     }
+    
+    static func saveMessages(messages: [Message]) {
+        do {
+            let realm = try Realm(configuration: config)
+            
+            try realm.write {
+                realm.add(messages, update: true)
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
 }

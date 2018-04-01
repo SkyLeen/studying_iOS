@@ -35,8 +35,6 @@ class DialogMessagesTableVC: UIViewController {
         getTitle()
         textView.layer.cornerRadius = 10
         
-        DialogsRequests.getMessages(userId: userId!, accessToken: accessToken!)
-        
         let hideKbGesture = UITapGestureRecognizer(target: self, action: #selector(self.hideKeyboard))
         self.scrollView?.addGestureRecognizer(hideKbGesture)
     }

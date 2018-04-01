@@ -48,7 +48,7 @@ class DialogsRequests {
         }
     }
     
-    static func getMessages(userId: String, accessToken: String) {
+    static func getMessages(accessToken: String) {
         let pathMethod = "/messages.get"
         let url = baseUrl + path + pathMethod
         let parameters: Parameters = [
@@ -62,8 +62,8 @@ class DialogsRequests {
             switch response.result {
             case .success(let value):
                 let _ = JSON(value)["response"]["count"]
-                let messagess = JSON(value)["response"]["items"]
-                print(messagess)
+                let messages = JSON(value)["response"]["items"].compactMap({ Message(json: $0.1) })
+                RealmDialogSaver.saveMessages(messages: messages)
             case .failure(let error):
                 print(error)
             }
