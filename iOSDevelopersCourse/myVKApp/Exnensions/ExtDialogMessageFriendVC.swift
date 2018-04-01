@@ -12,7 +12,7 @@ import UIKit
 extension DialogMessagesTableVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return friendsMessageArray.count
     }
 }
 
@@ -21,21 +21,22 @@ extension DialogMessagesTableVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell: UITableViewCell!
         
-        if indexPath.row % 2 == 0  {
+        let message = friendsMessageArray[indexPath.row]
+        
+//        if mes  {
             let cellFriend = tableView.dequeueReusableCell(withIdentifier: "FriendMessageCell", for: indexPath) as! DialogFriendMessagesViewCell
-            cellFriend.friendMessageLabel.text = "message"
-            cellFriend.friendMessageImage.image = UIImage(named: "friends")
+            cellFriend.message = message
         
             cell = cellFriend
-        }
-        else {
-            let cellUser = tableView.dequeueReusableCell(withIdentifier: "UserMessageCell", for: indexPath) as! DialogUserMessagesViewCell
-            
-            cellUser.friendMessageLabel.text = "message"
-            cellUser.friendMessageImage.image = UIImage(named: "friends")
-            
-            cell = cellUser
-        }
+//        }
+//        else {
+//            let cellUser = tableView.dequeueReusableCell(withIdentifier: "UserMessageCell", for: indexPath) as! DialogUserMessagesViewCell
+//
+//            cellUser.friendMessageLabel.text = "message"
+//            cellUser.friendMessageImage.image = UIImage(named: "friends")
+//
+//            cell = cellUser
+//        }
         
         return cell
     }
@@ -58,6 +59,25 @@ extension DialogMessagesTableVC {
     func getTitle() {
         guard let user = friendId > 0 ? RealmRequests.getFriendData(friend: "\(friendId)") : RealmRequests.getGroupData(group: "\(friendId.magnitude)") else { return }
         navigationItem.title = user.name
+    }
+    
+    func getMessageNotification() {
+        messageToken = friendsMessageArray.observe { [weak self] changes in
+            guard let view = self?.messageTableView else { return }
+            
+            switch changes {
+            case .initial:
+                view.reloadData()
+            case .update(_, let delete, let insert,let update):
+                view.beginUpdates()
+                view.deleteRows(at: delete.map({ IndexPath(row: $0, section: 0) }), with: .fade)
+                view.insertRows(at: insert.map({ IndexPath(row: $0, section: 0) }), with: .fade)
+                view.reloadRows(at: update.map({ IndexPath(row: $0, section: 0) }), with: .fade)
+                view.endUpdates()
+            case .error(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
 }
 

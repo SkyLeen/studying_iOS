@@ -633,7 +633,6 @@
                                                         <constraint firstAttribute="bottom" secondItem="hRs-X3-lIU" secondAttribute="bottom" constant="5" id="urh-38-WT7"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
-                                                <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
                                                     <outlet property="friendMessageImage" destination="jzi-Rk-Fbb" id="fC3-Bw-Qal"/>
                                                     <outlet property="friendMessageLabel" destination="hRs-X3-lIU" id="z23-tI-D5c"/>
@@ -671,7 +670,6 @@
                                                         <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="l0V-wP-UHk" secondAttribute="bottom" constant="5" id="rCE-Zq-Gn5"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
-                                                <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
                                                     <outlet property="friendMessageImage" destination="l0V-wP-UHk" id="hJD-eV-6EJ"/>
                                                     <outlet property="friendMessageLabel" destination="mAn-J5-2GK" id="aNR-8a-SJ2"/>
