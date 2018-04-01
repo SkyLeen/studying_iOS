@@ -47,4 +47,26 @@ class DialogsRequests {
             }
         }
     }
+    
+    static func getMessages(userId: String, accessToken: String) {
+        let pathMethod = "/messages.get"
+        let url = baseUrl + path + pathMethod
+        let parameters: Parameters = [
+            "access_token":accessToken,
+            "count":200,
+            //"start_message_id":0,
+            "v":"5.73"
+        ]
+        
+        Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON(queue: DispatchQueue.global(qos: .utility)) {  response in
+            switch response.result {
+            case .success(let value):
+                let _ = JSON(value)["response"]["count"]
+                let messagess = JSON(value)["response"]["items"]
+                print(messagess)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
 }

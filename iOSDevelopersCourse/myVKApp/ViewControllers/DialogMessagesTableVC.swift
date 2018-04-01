@@ -18,6 +18,9 @@ class DialogMessagesTableVC: UIViewController {
     @IBOutlet weak var messageView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     
+    let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")
+    let userId =  KeychainWrapper.standard.string(forKey: "userId")
+    
     var friendId = 0
     
     var friendsMessageArray = [
@@ -31,6 +34,8 @@ class DialogMessagesTableVC: UIViewController {
         super.viewDidLoad()
         getTitle()
         textView.layer.cornerRadius = 10
+        
+        DialogsRequests.getMessages(userId: userId!, accessToken: accessToken!)
         
         let hideKbGesture = UITapGestureRecognizer(target: self, action: #selector(self.hideKeyboard))
         self.scrollView?.addGestureRecognizer(hideKbGesture)
