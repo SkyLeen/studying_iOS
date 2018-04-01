@@ -52,7 +52,12 @@ class DialogsViewCell: UITableViewCell {
         task?.cancel()
         task = nil
         
-        messageTextLabel.text = dialog?.body
+
+        if dialog?.attachments != "" {
+            messageTextLabel.text = (dialog?.body)! + " [" + (dialog?.attachments)! + "]"
+        } else {
+             messageTextLabel.text = dialog?.body
+        }
         messageDateLabel.text = Date(timeIntervalSince1970: (dialog?.date)!).formatted
         
         guard let friendId = dialog?.friendId, let user = friendId > 0 ? RealmRequests.getFriendData(friend: "\(friendId)") : RealmRequests.getGroupData(group: "\(friendId.magnitude)") else { return }

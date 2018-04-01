@@ -18,7 +18,8 @@ class Dialog: Object {
     @objc dynamic var title: String = ""
     @objc dynamic var friendId: Int = 0
     @objc dynamic var out: Int = 0
-    
+    @objc dynamic var chatId: Int = 0
+    @objc dynamic var attachments: String = ""
     //var attachments = List<MessageAttachments>()
     var user = LinkingObjects(fromType: User.self, property: "dialogs")
     
@@ -28,7 +29,7 @@ class Dialog: Object {
     
     convenience init(json: JSON) {
         self.init()
-        
+
         self.id = json["message"]["id"].stringValue
         self.body = json["message"]["body"].stringValue
         self.readState = json["message"]["read_state"].intValue
@@ -36,5 +37,7 @@ class Dialog: Object {
         self.title = json["message"]["title"].stringValue
         self.friendId = json["message"]["user_id"].intValue
         self.out = json["message"]["out"].intValue
+        self.chatId = json["message"]["chat_id"].intValue
+        self.attachments = json["message"]["attachments"][0]["type"].stringValue
     }
 }

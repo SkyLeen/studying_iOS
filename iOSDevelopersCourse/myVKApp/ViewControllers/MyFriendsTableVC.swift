@@ -26,7 +26,6 @@ class MyFriendsTableVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "\(myFriendsArray.count) Friends" 
         FriendsRequests.getFriendsList(userId: self.userId!, accessToken: self.accessToken!)
         getNotification()
     }

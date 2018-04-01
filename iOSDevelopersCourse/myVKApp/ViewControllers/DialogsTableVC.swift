@@ -32,7 +32,6 @@ class DialogsTableVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addRefreshControl()
-        navigationItem.title = "\(dialogsArray.count) Dialogs"
         DispatchQueue.global(qos: .utility).async {
             DialogsRequests.getUserDialogs(userId: self.userId!, accessToken: self.accessToken!)
         }
