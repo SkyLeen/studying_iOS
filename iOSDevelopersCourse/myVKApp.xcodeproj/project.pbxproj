@@ -41,6 +41,8 @@
 		047363522073ED1600873B09 /* MyFriendPhotosReloadingOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047363512073ED1600873B09 /* MyFriendPhotosReloadingOperation.swift */; };
 		047363542073EEA300873B09 /* MyGroupsCellReloadingOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047363532073EEA300873B09 /* MyGroupsCellReloadingOperation.swift */; };
 		047363562073F17600873B09 /* AllGroupsCellReloadingOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047363552073F17600873B09 /* AllGroupsCellReloadingOperation.swift */; };
+		047363582073F32300873B09 /* NewsCellReloadingOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047363572073F32300873B09 /* NewsCellReloadingOperation.swift */; };
+		0473635A2073F3AF00873B09 /* NewsAuthorReloadingOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047363592073F3AF00873B09 /* NewsAuthorReloadingOperation.swift */; };
 		048714D62066BCB5003405B4 /* NewsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048714D52066BCB5003405B4 /* NewsTableVC.swift */; };
 		048714D82066BD34003405B4 /* NewsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048714D72066BD34003405B4 /* NewsViewCell.swift */; };
 		048714DA2066CF8C003405B4 /* ExtUIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048714D92066CF8C003405B4 /* ExtUIImage.swift */; };
@@ -110,6 +112,8 @@
 		047363512073ED1600873B09 /* MyFriendPhotosReloadingOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendPhotosReloadingOperation.swift; sourceTree = "<group>"; };
 		047363532073EEA300873B09 /* MyGroupsCellReloadingOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroupsCellReloadingOperation.swift; sourceTree = "<group>"; };
 		047363552073F17600873B09 /* AllGroupsCellReloadingOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupsCellReloadingOperation.swift; sourceTree = "<group>"; };
+		047363572073F32300873B09 /* NewsCellReloadingOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCellReloadingOperation.swift; sourceTree = "<group>"; };
+		047363592073F3AF00873B09 /* NewsAuthorReloadingOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsAuthorReloadingOperation.swift; sourceTree = "<group>"; };
 		048714D52066BCB5003405B4 /* NewsTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableVC.swift; sourceTree = "<group>"; };
 		048714D72066BD34003405B4 /* NewsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewCell.swift; sourceTree = "<group>"; };
 		048714D92066CF8C003405B4 /* ExtUIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtUIImage.swift; sourceTree = "<group>"; };
@@ -187,6 +191,8 @@
 				047363512073ED1600873B09 /* MyFriendPhotosReloadingOperation.swift */,
 				047363532073EEA300873B09 /* MyGroupsCellReloadingOperation.swift */,
 				047363552073F17600873B09 /* AllGroupsCellReloadingOperation.swift */,
+				047363572073F32300873B09 /* NewsCellReloadingOperation.swift */,
+				047363592073F3AF00873B09 /* NewsAuthorReloadingOperation.swift */,
 			);
 			path = Operations;
 			sourceTree = "<group>";
@@ -483,6 +489,7 @@
 				047363562073F17600873B09 /* AllGroupsCellReloadingOperation.swift in Sources */,
 				0445CD6C2052656900D48551 /* LogOutRequest.swift in Sources */,
 				0416316E204201B800446639 /* MyGroupsViewCell.swift in Sources */,
+				047363582073F32300873B09 /* NewsCellReloadingOperation.swift in Sources */,
 				040A2C972063C584004A43D0 /* ExtMyGroupsTableVC.swift in Sources */,
 				0416316420415E5000446639 /* MyFriendsViewCell.swift in Sources */,
 				04886BD42063AFB300236E08 /* RealmDeleter.swift in Sources */,
@@ -499,6 +506,7 @@
 				04D37E7D2038445C00F958AF /* LoginVC.swift in Sources */,
 				048714D62066BCB5003405B4 /* NewsTableVC.swift in Sources */,
 				0416316A20415FF600446639 /* MyFriendCollectionViewCell.swift in Sources */,
+				0473635A2073F3AF00873B09 /* NewsAuthorReloadingOperation.swift in Sources */,
 				048714D82066BD34003405B4 /* NewsViewCell.swift in Sources */,
 				04CEE5CD20682AD600300107 /* ExtDialogMessageFriendVC.swift in Sources */,
 				04EB90BB20713252001D95E6 /* ExtInt.swift in Sources */,
