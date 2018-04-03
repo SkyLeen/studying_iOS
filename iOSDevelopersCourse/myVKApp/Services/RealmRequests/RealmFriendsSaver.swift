@@ -10,18 +10,9 @@ import RealmSwift
 
 class RealmFriendsSaver {
     
-    private static let config = setConfiguration()
-    
-    private static func setConfiguration() -> Realm.Configuration {
-        var configuration = Realm.Configuration()
-        configuration.deleteRealmIfMigrationNeeded = true
-        
-        return configuration
-    }
-
     static func saveFriendsData(friends: [Friend], userId: String) {
         do {
-            let realm = try Realm(configuration: config)
+            let realm = try Realm()
             let user = realm.object(ofType: User.self, forPrimaryKey: userId)
             let oldFriends = realm.objects(Friend.self)
             let oldFriendsPhotos = realm.objects(Photos.self)
@@ -38,7 +29,7 @@ class RealmFriendsSaver {
     
     static func saveFriendsPhotos (photos: [Photos], friendId: String, userId: String) {
         do {
-            let realm = try Realm(configuration: config)
+            let realm = try Realm()
             let friend = realm.object(ofType: Friend.self, forPrimaryKey: "\(friendId)\(userId)")
             let oldPhotos = realm.objects(Photos.self).filter("idFriend == %@", friendId)
             try realm.write {
@@ -52,7 +43,7 @@ class RealmFriendsSaver {
     
     static func saveSingleFriend (friends: Friend, userId: String) {
         do {
-            let realm = try Realm(configuration: config)
+            let realm = try Realm()
             let user = realm.object(ofType: User.self, forPrimaryKey: userId)
             
             let oldFriend = realm.object(ofType: Friend.self, forPrimaryKey: friends.compoundKey)
@@ -70,7 +61,7 @@ class RealmFriendsSaver {
     }
     static func saveFriend (friends: Friend) {
         do {
-            let realm = try Realm(configuration: config)
+            let realm = try Realm()
             
             try realm.write {
                 realm.add(friends, update: true)

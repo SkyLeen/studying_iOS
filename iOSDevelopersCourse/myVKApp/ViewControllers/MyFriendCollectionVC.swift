@@ -25,6 +25,12 @@ class MyFriendCollectionVC: UICollectionViewController {
     
     var photoToken: NotificationToken?
     
+    var opQueue: OperationQueue = {
+        let q = OperationQueue()
+        q.qualityOfService = .userInteractive
+        return q
+    }()
+    
     deinit {
         photoToken?.invalidate()
     }
@@ -43,8 +49,14 @@ class MyFriendCollectionVC: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FriendPhotoCell", for: indexPath) as! MyFriendCollectionViewCell
-    
-        cell.photo = friendPhotos[indexPath.row]
+        let photo = friendPhotos[indexPath.row]
+        
+        guard let url = photo.photo75Url else { return cell }
+        let getImageOp = GetCashedImage(url: url, folderName: .Photos, userId: photo.idFriend)
+        let cellReloadedOp = MyFriendsPhotosReloaded(indexPath: indexPath, view: collectionView, cell: cell)
+        cellReloadedOp.addDependency(getImageOp)
+        opQueue.addOperation(getImageOp)
+        OperationQueue.main.addOperation(cellReloadedOp)
     
         return cell
     }
