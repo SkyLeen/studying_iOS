@@ -1,5 +1,5 @@
 //
-//  MyFriendsCellReloadedOperation.swift
+//  MyFriendsCellReloadingOperation.swift
 //  myVKApp
 //
 //  Created by Natalya on 03/04/2018.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MyFriendsCellReloaded: Operation {
+class MyFriendsCellReloading: Operation {
     
     private let indexPath: IndexPath
     private weak var view: UITableView?

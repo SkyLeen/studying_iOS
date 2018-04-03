@@ -1,5 +1,5 @@
 //
-//  MyFriendPhotosReloadedOperation.swift
+//  MyGroupsCellReloadingOperation.swift
 //  myVKApp
 //
 //  Created by Natalya on 03/04/2018.
@@ -8,13 +8,13 @@
 
 import UIKit
 
-class MyFriendsPhotosReloaded: Operation {
+class MyGroupsCellReloading: Operation {
     
     private let indexPath: IndexPath
-    private weak var view: UICollectionView?
-    private var cell: MyFriendCollectionViewCell?
+    private weak var view: UITableView?
+    private var cell: MyGroupsViewCell?
     
-    init(indexPath: IndexPath, view: UICollectionView, cell: MyFriendCollectionViewCell) {
+    init(indexPath: IndexPath, view: UITableView, cell: MyGroupsViewCell) {
         self.indexPath = indexPath
         self.view = view
         self.cell = cell
@@ -26,11 +26,11 @@ class MyFriendsPhotosReloaded: Operation {
             let getImageOperation = dependencies[0] as? GetCashedImage,
             let image = getImageOperation.outputImage
             else { return }
-        let canvasSize = cell.myFriendPhoto.frame.size.width
+        let canvasSize = cell.myGroupImageView.frame.size.width
         if let newIndexPath = view.indexPath(for: cell), newIndexPath == indexPath {
-            cell.myFriendPhoto.image = image.resizeWithWidth(width: canvasSize)
+            cell.myGroupImageView.image = image.resizeWithWidth(width: canvasSize)
         } else {
-            cell.myFriendPhoto.image = nil
+            cell.myGroupImageView.image = nil
         }
     }
 }

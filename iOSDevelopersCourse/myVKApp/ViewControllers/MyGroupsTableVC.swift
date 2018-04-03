@@ -20,6 +20,12 @@ class MyGroupsTableVC: UITableViewController {
     }()
     var token: NotificationToken?
     
+    var opQueue: OperationQueue = {
+        let q = OperationQueue()
+        q.qualityOfService = .userInteractive
+        return q
+    }()
+    
     deinit {
         token?.invalidate()
     }
@@ -37,7 +43,16 @@ class MyGroupsTableVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath) as! MyGroupsViewCell
-        cell.group = myGroupsArray[indexPath.row]
+        let group = myGroupsArray[indexPath.row]
+        cell.group = group
+        
+        guard let url = group.photoGroupUrl else { return cell }
+        let getImageOp = GetCashedImage(url: url, folderName: .Groups, userId: group.idGroup)
+        let cellReloadedOp = MyGroupsCellReloading(indexPath: indexPath, view: tableView, cell: cell)
+        cellReloadedOp.addDependency(getImageOp)
+        opQueue.addOperation(getImageOp)
+        OperationQueue.main.addOperation(cellReloadedOp)
+        
         return cell
     }
     

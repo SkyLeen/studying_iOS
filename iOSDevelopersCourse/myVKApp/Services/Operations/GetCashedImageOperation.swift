@@ -11,6 +11,7 @@ import UIKit
 enum Folders: String {
     case UserAvatars
     case Photos
+    case Groups
     case News
     case Dialogs
     case Others
@@ -33,7 +34,7 @@ class GetCashedImage: Operation {
         return filePath
     }()
     
-    init(url: String, folderName: Folders, userId: String) {
+    init(url: String, folderName: Folders, userId: String = "") {
         self.url = url
         self.folder = folderName
         self.userId = userId
@@ -50,7 +51,7 @@ class GetCashedImage: Operation {
     }
     
     private func getPathName() -> String {
-        let path = "\(folder.rawValue)/\(userId)"
+        let path = userId != "" ? "\(folder.rawValue)/\(userId)" : folder.rawValue
         
         guard let cashDir = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first
             else { return path }
