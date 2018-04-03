@@ -29,6 +29,12 @@ class DialogMessagesTableVC: UIViewController {
     
     var messageToken: NotificationToken?
     
+    var opQueue: OperationQueue = {
+        let q = OperationQueue()
+        q.qualityOfService = .userInteractive
+        return q
+    }()
+    
     deinit {
         messageToken?.invalidate()
     }
@@ -37,7 +43,7 @@ class DialogMessagesTableVC: UIViewController {
         super.viewDidLoad()
         getTitle()
         textView.layer.cornerRadius = 10
-        
+        DialogsRequests.getMessages(accessToken: accessToken!, friendId: friendId.description)
         getMessageNotification()
         
         let hideKbGesture = UITapGestureRecognizer(target: self, action: #selector(self.hideKeyboard))

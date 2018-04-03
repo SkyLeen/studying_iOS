@@ -27,7 +27,7 @@ class AllGroupsCellReloading: Operation {
             let image = getImageOperation.outputImage
             else { return }
         let canvasSize = cell.allGroupImageView.frame.size.width
-        if let newIndexPath = view.indexPath(for: cell), newIndexPath == indexPath {
+        if let currentIndexPath = view.indexPath(for: cell), currentIndexPath == indexPath {
             cell.allGroupImageView.image = image.resizeWithWidth(width: canvasSize)
         } else {
             cell.allGroupImageView.image = nil

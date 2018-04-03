@@ -696,6 +696,7 @@
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
+                                                    <outlet property="dateLabel" destination="X4L-j0-qCf" id="R0G-gd-nFk"/>
                                                     <outlet property="friendMessageImage" destination="l0V-wP-UHk" id="hJD-eV-6EJ"/>
                                                     <outlet property="friendMessageLabel" destination="mAn-J5-2GK" id="aNR-8a-SJ2"/>
                                                 </connections>

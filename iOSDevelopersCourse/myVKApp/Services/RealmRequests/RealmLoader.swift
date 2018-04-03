@@ -10,6 +10,8 @@ import RealmSwift
 
 class RealmLoader {
 
+    
+    
     static func loadData<T: Object> (object: T) -> Results<T> {
         var result: Results<T>?
         do {

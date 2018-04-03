@@ -33,4 +33,15 @@ class RealmRequests {
             return (name: name, photoUrl: photoUrl)
         } else { return nil }
     }
+    
+    static func getUserData() -> (name: String, photoUrl: String?)? {
+        guard let realm = try? Realm() else { return nil }
+        let user = realm.objects(User.self)
+        if !user.isEmpty {
+            let name = user[0].name
+            let photoUrl = user[0].photoUrl
+
+            return (name: name, photoUrl: photoUrl)
+        } else { return nil }
+    }
 }

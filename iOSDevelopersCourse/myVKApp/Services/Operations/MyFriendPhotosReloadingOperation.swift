@@ -27,7 +27,7 @@ class MyFriendsPhotosReloading: Operation {
             let image = getImageOperation.outputImage
             else { return }
         let canvasSize = cell.myFriendPhoto.frame.size.width
-        if let newIndexPath = view.indexPath(for: cell), newIndexPath == indexPath {
+        if let currentIndexPath = view.indexPath(for: cell), currentIndexPath == indexPath {
             cell.myFriendPhoto.image = image.resizeWithWidth(width: canvasSize)
         } else {
             cell.myFriendPhoto.image = nil

@@ -17,7 +17,6 @@ class RealmFriendsSaver {
             let oldFriends = realm.objects(Friend.self)
             let oldFriendsPhotos = realm.objects(Photos.self)
             try realm.write {
-                print(realm.configuration.fileURL!)
                 realm.delete(oldFriends)
                 realm.delete(oldFriendsPhotos)
                 user?.friends.append(objectsIn: friends)

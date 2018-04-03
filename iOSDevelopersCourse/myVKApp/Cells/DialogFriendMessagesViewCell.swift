@@ -15,11 +15,9 @@ class DialogFriendMessagesViewCell: UITableViewCell {
     @IBOutlet weak var friendMessageLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     
-    private var task: URLSessionTask?
-    
     var message: Message? {
         didSet{
-            getMessageProperties()
+            getMessage()
         }
     }
     
@@ -29,13 +27,8 @@ class DialogFriendMessagesViewCell: UITableViewCell {
         friendMessageLabel.layer.cornerRadius = 10
     }
     
-    private func getMessageProperties() {
-        self.friendMessageImage.image = UIImage(named: "friends")
+    private func getMessage() {
         self.friendMessageLabel.text = nil
-        
-        task?.cancel()
-        task = nil
-        
         
         if message?.attachments != "" {
             friendMessageLabel.text = (message?.body)! + " [" + (message?.attachments)! + "]"
@@ -43,18 +36,5 @@ class DialogFriendMessagesViewCell: UITableViewCell {
             friendMessageLabel.text = message?.body
         }
         dateLabel.text = Date(timeIntervalSince1970: (message?.date)!).formatted
-        
-        guard let friendId = message?.friendId, let user = friendId > 0 ? RealmRequests.getFriendData(friend: "\(friendId)") : RealmRequests.getGroupData(group: "\(friendId.magnitude)") else { return }
-        
-        guard let path = user.photoUrl, let url = URL(string: path) else { return }
-        self.task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-            guard let data = data, error == nil else { return }
-            let image = UIImage(data: data)
-            DispatchQueue.main.async { [weak self] in
-                guard let s = self, let responseUrl = response?.url, url == responseUrl else { return }
-                s.friendMessageImage.image = image
-            }
-        }
-        self.task?.resume()
     }
 }

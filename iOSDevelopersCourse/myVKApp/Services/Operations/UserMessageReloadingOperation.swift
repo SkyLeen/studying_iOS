@@ -1,5 +1,5 @@
 //
-//  NewsAuthorReloadingOperation.swift
+//  UserMessageReloadingOperation.swift
 //  myVKApp
 //
 //  Created by Natalya on 03/04/2018.
@@ -8,13 +8,13 @@
 
 import UIKit
 
-class NewsAuthorReloading: Operation {
+class UserMessageReloading: Operation {
     
     private let indexPath: IndexPath
     private weak var view: UITableView?
-    private var cell: NewsViewCell?
+    private var cell: DialogUserMessagesViewCell?
     
-    init(indexPath: IndexPath, view: UITableView, cell: NewsViewCell) {
+    init(indexPath: IndexPath, view: UITableView, cell: DialogUserMessagesViewCell) {
         self.indexPath = indexPath
         self.view = view
         self.cell = cell
@@ -26,11 +26,11 @@ class NewsAuthorReloading: Operation {
             let getImageOperation = dependencies[0] as? GetCashedImage,
             let image = getImageOperation.outputImage
             else { return }
-        let canvasSize = cell.authorImage.frame.size.width
+        let canvasSize = cell.friendMessageImage.frame.size.width
         if let currentIndexPath = view.indexPath(for: cell), currentIndexPath == indexPath {
-            cell.authorImage.image = image.resizeWithWidth(width: canvasSize)
+            cell.friendMessageImage.image = image.resizeWithWidth(width: canvasSize)
         } else {
-            cell.authorImage.image = nil
+            cell.friendMessageImage.image = nil
         }
     }
 }

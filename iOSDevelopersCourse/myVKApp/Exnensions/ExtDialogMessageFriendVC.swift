@@ -22,21 +22,37 @@ extension DialogMessagesTableVC: UITableViewDelegate {
         var cell: UITableViewCell!
         
         let message = friendsMessageArray[indexPath.row]
+        let userId = message.friendId
         
-//        if mes  {
+        if message.fromId.description != self.userId  {
             let cellFriend = tableView.dequeueReusableCell(withIdentifier: "FriendMessageCell", for: indexPath) as! DialogFriendMessagesViewCell
             cellFriend.message = message
-        
+            
+            guard let user = userId > 0 ? RealmRequests.getFriendData(friend: userId.description) :
+                RealmRequests.getGroupData(group: userId.magnitude.description),
+                let url = user.photoUrl
+                else { return cellFriend }
+            let getImageOp = friendId > 0 ? GetCashedImage(url: url, folderName: .UserAvatars, userId: userId.description) : GetCashedImage(url: url, folderName: .Groups, userId: userId.magnitude.description)
+            let cellReloadedOp = FriendMessageReloading(indexPath: indexPath, view: tableView, cell: cellFriend)
+            cellReloadedOp.addDependency(getImageOp)
+            opQueue.addOperation(getImageOp)
+            OperationQueue.main.addOperation(cellReloadedOp)
+            
             cell = cellFriend
-//        }
-//        else {
-//            let cellUser = tableView.dequeueReusableCell(withIdentifier: "UserMessageCell", for: indexPath) as! DialogUserMessagesViewCell
-//
-//            cellUser.friendMessageLabel.text = "message"
-//            cellUser.friendMessageImage.image = UIImage(named: "friends")
-//
-//            cell = cellUser
-//        }
+        }
+        else {
+            let cellUser = tableView.dequeueReusableCell(withIdentifier: "UserMessageCell", for: indexPath) as! DialogUserMessagesViewCell
+            cellUser.message = message
+            
+            guard let user = RealmRequests.getUserData(), let url = user.photoUrl else { return cellUser }
+            let getImageOp = GetCashedImage(url: url, folderName: .UserAvatars, userId: self.userId!)
+            let cellReloadedOp = UserMessageReloading(indexPath: indexPath, view: tableView, cell: cellUser)
+            cellReloadedOp.addDependency(getImageOp)
+            opQueue.addOperation(getImageOp)
+            OperationQueue.main.addOperation(cellReloadedOp)
+            
+            cell = cellUser
+        }
         
         return cell
     }
