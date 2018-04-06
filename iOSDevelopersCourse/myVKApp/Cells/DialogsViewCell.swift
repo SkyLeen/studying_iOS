@@ -29,16 +29,22 @@ class DialogsViewCell: UITableViewCell {
     }
     
     private func setBackgroungColor() {
+        let color = UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1)
         
         if dialog?.readState == 0 && dialog?.out == 0 {
-            messageView.backgroundColor = UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1)
-            messageTextLabel.backgroundColor = UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1)
+            messageView.backgroundColor = color
+            messageTextLabel.backgroundColor = color
+            messageDateLabel.backgroundColor = color
+            messageFriendLabel.backgroundColor = color
         } else if dialog?.readState == 0 && dialog?.out == 1 {
-            messageTextLabel.backgroundColor = UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1)
+            messageTextLabel.backgroundColor = color
+            messageDateLabel.backgroundColor = color
             messageView.backgroundColor = .white
         } else {
             messageTextLabel.backgroundColor = .white
             messageView.backgroundColor = .white
+            messageDateLabel.backgroundColor = .white
+            messageFriendLabel.backgroundColor = .white
         }
     }
     
