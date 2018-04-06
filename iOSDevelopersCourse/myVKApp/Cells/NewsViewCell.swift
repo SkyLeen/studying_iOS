@@ -20,10 +20,6 @@ class NewsViewCell: UITableViewCell {
     @IBOutlet weak var viewsLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     
-    private var task: URLSessionTask?
-    private var taskImage: URLSessionTask?
-    var imageCache = NSCache<NSString, AnyObject>()
-    
     var news: News? {
         didSet {
             authorNameLabel.text = news?.author

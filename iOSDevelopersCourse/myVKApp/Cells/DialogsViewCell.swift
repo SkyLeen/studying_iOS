@@ -16,8 +16,6 @@ class DialogsViewCell: UITableViewCell {
     @IBOutlet weak var messageView: UIView!
     @IBOutlet weak var messageDateLabel: UILabel!
     
-    private var task: URLSessionTask?
-    
     var dialog: Dialog? {
         didSet{
             setBackgroungColor()

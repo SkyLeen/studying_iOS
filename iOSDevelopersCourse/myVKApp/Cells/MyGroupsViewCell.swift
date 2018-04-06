@@ -13,7 +13,6 @@ class MyGroupsViewCell: UITableViewCell {
     @IBOutlet private weak var myGroupNameLabel: UILabel!
     @IBOutlet weak var myGroupImageView: UIImageView!
     
-    var task: URLSessionTask?
     var group: Group? {
         didSet {
             myGroupNameLabel.text = group?.nameGroup

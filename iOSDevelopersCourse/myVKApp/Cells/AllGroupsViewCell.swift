@@ -14,7 +14,6 @@ class AllGroupsViewCell: UITableViewCell {
     @IBOutlet weak var allGroupImageView: UIImageView!
     @IBOutlet private weak var allGroupFollowersCountLabel: UILabel!
     
-    var task: URLSessionTask?
     var group: Group? {
         didSet {
             allGroupNameLabel.text = group?.nameGroup
