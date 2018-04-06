@@ -47,7 +47,11 @@ class LogOutRequest {
     }
     
     private static func removeCash() {
-        guard var cashDir = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else { return }
-        cashDir.removeAllCachedResourceValues()
+        guard let cashDir = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else { return }
+        do {
+            try FileManager.default.removeItem(at: cashDir.asURL())
+        } catch {
+            print(error.localizedDescription)
+        }
     }
 }
