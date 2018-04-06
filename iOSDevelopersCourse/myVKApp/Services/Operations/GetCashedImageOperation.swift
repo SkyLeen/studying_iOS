@@ -71,9 +71,8 @@ class GetCashedImage: Operation {
             else { return false}
         let lifeTime = Date().timeIntervalSince(modificationDate)
         
-        if lifeTime <= cashLifeTime, let image = UIImage(contentsOfFile: fileName) {
-            self.outputImage = image
-        }
+        guard lifeTime <= cashLifeTime, let image = UIImage(contentsOfFile: fileName) else { return false }
+        self.outputImage = image
         
         return true
     }

@@ -49,7 +49,7 @@ class MyFriendsTableVC: UITableViewController {
         
         guard let url = user.photoUrl else { return cell }
         let getImageOp = GetCashedImage(url: url, folderName: .UserAvatars, userId: user.idFriend)
-        let cellReloadedOp = MyFriendsCellReloading(indexPath: indexPath, view: tableView, cell: cell)
+        let cellReloadedOp = TableCellReloading(indexPath: indexPath, view: tableView, cell: cell, imageView: cell.friendImageView)
         cellReloadedOp.addDependency(getImageOp)
         opQueue.addOperation(getImageOp)
         OperationQueue.main.addOperation(cellReloadedOp)

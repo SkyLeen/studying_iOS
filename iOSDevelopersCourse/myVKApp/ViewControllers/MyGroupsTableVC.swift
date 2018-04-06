@@ -48,7 +48,7 @@ class MyGroupsTableVC: UITableViewController {
         
         guard let url = group.photoGroupUrl else { return cell }
         let getImageOp = GetCashedImage(url: url, folderName: .Groups, userId: group.idGroup)
-        let cellReloadedOp = MyGroupsCellReloading(indexPath: indexPath, view: tableView, cell: cell)
+        let cellReloadedOp = TableCellReloading(indexPath: indexPath, view: tableView, cell: cell, imageView: cell.myGroupImageView)
         cellReloadedOp.addDependency(getImageOp)
         opQueue.addOperation(getImageOp)
         OperationQueue.main.addOperation(cellReloadedOp)

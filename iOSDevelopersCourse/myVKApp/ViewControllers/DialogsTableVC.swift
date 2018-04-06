@@ -63,7 +63,7 @@ class DialogsTableVC: UITableViewController {
             let url = user.photoUrl
             else { return cell }
         let getImageOp = friendId > 0 ? GetCashedImage(url: url, folderName: .UserAvatars, userId: friendId.description) : GetCashedImage(url: url, folderName: .Groups, userId: friendId.magnitude.description)
-        let cellReloadedOp = DialogCellReloading(indexPath: indexPath, view: tableView, cell: cell)
+        let cellReloadedOp = TableCellReloading(indexPath: indexPath, view: tableView, cell: cell, imageView: cell.messageFriendImage)
         cellReloadedOp.addDependency(getImageOp)
         opQueue.addOperation(getImageOp)
         OperationQueue.main.addOperation(cellReloadedOp)

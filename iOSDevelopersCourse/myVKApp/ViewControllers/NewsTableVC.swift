@@ -53,7 +53,7 @@ class NewsTableVC: UITableViewController {
         
         if let url = newsFeed.authorImageUrl {
             let getImageOp = newsFeed.authorId>0 ? GetCashedImage(url: url, folderName: .UserAvatars, userId: newsFeed.authorId.description) : GetCashedImage(url: url, folderName: .Groups, userId: newsFeed.authorId.magnitude.description)
-            let authorReloadedOp = NewsAuthorReloading(indexPath: indexPath, view: tableView, cell: cell)
+            let authorReloadedOp = TableCellReloading(indexPath: indexPath, view: tableView, cell: cell, imageView: cell.authorImage)
             authorReloadedOp.addDependency(getImageOp)
             opQueue.addOperation(getImageOp)
             OperationQueue.main.addOperation(authorReloadedOp)
@@ -61,7 +61,7 @@ class NewsTableVC: UITableViewController {
         
         guard !attachments.isEmpty, let url = newsFeed.attachments[0].url else { return cell }
         let getImageOp = GetCashedImage(url: url, folderName: .News)
-        let newsReloadedOp = NewsCellReloading(indexPath: indexPath, view: tableView, cell: cell)
+        let newsReloadedOp = TableCellReloading(indexPath: indexPath, view: tableView, cell: cell, imageView: cell.newsImage)
         newsReloadedOp.addDependency(getImageOp)
         opQueue.addOperation(getImageOp)
         OperationQueue.main.addOperation(newsReloadedOp)

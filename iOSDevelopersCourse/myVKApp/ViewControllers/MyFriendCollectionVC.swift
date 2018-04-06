@@ -53,7 +53,7 @@ class MyFriendCollectionVC: UICollectionViewController {
         
         guard let url = photo.photo75Url else { return cell }
         let getImageOp = GetCashedImage(url: url, folderName: .Photos, userId: photo.idFriend)
-        let cellReloadedOp = MyFriendsPhotosReloading(indexPath: indexPath, view: collectionView, cell: cell)
+        let cellReloadedOp = CollectionCellReloading(indexPath: indexPath, view: collectionView, cell: cell, imageView: cell.myFriendPhoto)
         cellReloadedOp.addDependency(getImageOp)
         opQueue.addOperation(getImageOp)
         OperationQueue.main.addOperation(cellReloadedOp)

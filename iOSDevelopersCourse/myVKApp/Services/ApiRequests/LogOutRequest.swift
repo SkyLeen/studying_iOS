@@ -15,6 +15,7 @@ class LogOutRequest {
         removeDefaults()
         removeCookies()
         removeDataBase()
+        removeCash()
     }
     
     private static func removeDefaults() {
@@ -43,5 +44,10 @@ class LogOutRequest {
         } catch {
             print(error.localizedDescription)
         }
+    }
+    
+    private static func removeCash() {
+        guard var cashDir = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else { return }
+        cashDir.removeAllCachedResourceValues()
     }
 }
