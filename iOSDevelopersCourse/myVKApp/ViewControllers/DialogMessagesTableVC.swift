@@ -22,6 +22,7 @@ class DialogMessagesTableVC: UIViewController {
     let userId =  KeychainWrapper.standard.string(forKey: "userId")
     
     var friendId = 0
+    var titleVC = ""
     
     lazy var friendsMessageArray: Results<Message> = {
         return RealmLoader.loadData(object: Message()).filter("friendId == %@", friendId).sorted(byKeyPath: "date", ascending: true)
@@ -41,7 +42,7 @@ class DialogMessagesTableVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getTitle()
+        navigationItem.title = titleVC
         textView.layer.cornerRadius = 10
         DialogsRequests.getMessages(accessToken: accessToken!, friendId: friendId.description)
         messageToken = Notifications.getTableViewToken(friendsMessageArray, view: self.messageTableView)
