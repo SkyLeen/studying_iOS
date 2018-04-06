@@ -40,7 +40,7 @@ class MyFriendCollectionVC: UICollectionViewController {
         navigationItem.title = friendName
         
         FriendsRequests.getFriendPhotos(userId: self.userId!, accessToken: self.accessToken!, friendId: self.friendId)
-        getNotification()
+        photoToken = Notifications.getCollectionViewToken(friendPhotos, view: self.collectionView)
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

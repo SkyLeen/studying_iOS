@@ -30,9 +30,9 @@ class TableCellReloading: Operation {
             let image = getImageOperation.outputImage
             else { return }
         let canvasSize = imageView.frame.size.width
-        if let currentIndexPath = view.indexPath(for: cell), currentIndexPath == indexPath {
+        if let currentIndexPath = view.indexPath(for: cell),  currentIndexPath == indexPath {
             imageView.image = image.resizeWithWidth(width: canvasSize)
-        } else {
+        } else if  view.indexPath(for: cell) == nil {
             imageView.image = nil
         }
     }

@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		040A2C952063C4B1004A43D0 /* ExtMyFriendsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040A2C942063C4B1004A43D0 /* ExtMyFriendsTableVC.swift */; };
-		040A2C972063C584004A43D0 /* ExtMyGroupsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040A2C962063C584004A43D0 /* ExtMyGroupsTableVC.swift */; };
 		040A2C992063C5B9004A43D0 /* ExtMyFriendCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040A2C982063C5B9004A43D0 /* ExtMyFriendCollectionVC.swift */; };
 		040A2C9B2063CC13004A43D0 /* ExtAllGroupsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040A2C9A2063CC13004A43D0 /* ExtAllGroupsTableVC.swift */; };
 		0410DB142064411F00FB3F4F /* ExtLoginWebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0410DB132064411F00FB3F4F /* ExtLoginWebVC.swift */; };
@@ -74,8 +72,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		040A2C942063C4B1004A43D0 /* ExtMyFriendsTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtMyFriendsTableVC.swift; sourceTree = "<group>"; };
-		040A2C962063C584004A43D0 /* ExtMyGroupsTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtMyGroupsTableVC.swift; sourceTree = "<group>"; };
 		040A2C982063C5B9004A43D0 /* ExtMyFriendCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtMyFriendCollectionVC.swift; sourceTree = "<group>"; };
 		040A2C9A2063CC13004A43D0 /* ExtAllGroupsTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtAllGroupsTableVC.swift; sourceTree = "<group>"; };
 		0410DB132064411F00FB3F4F /* ExtLoginWebVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtLoginWebVC.swift; sourceTree = "<group>"; };
@@ -160,9 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				0410DB132064411F00FB3F4F /* ExtLoginWebVC.swift */,
-				040A2C942063C4B1004A43D0 /* ExtMyFriendsTableVC.swift */,
 				040A2C982063C5B9004A43D0 /* ExtMyFriendCollectionVC.swift */,
-				040A2C962063C584004A43D0 /* ExtMyGroupsTableVC.swift */,
 				040A2C9A2063CC13004A43D0 /* ExtAllGroupsTableVC.swift */,
 				04CEE5D2206AC0FE00300107 /* ExtNewsTableVC.swift */,
 				04CEE5DA206CD52200300107 /* ExtDialogsTableVC.swift */,
@@ -476,7 +470,6 @@
 				04EB90B5206E891D001D95E6 /* UserRequests.swift in Sources */,
 				0445CD6C2052656900D48551 /* LogOutRequest.swift in Sources */,
 				0416316E204201B800446639 /* MyGroupsViewCell.swift in Sources */,
-				040A2C972063C584004A43D0 /* ExtMyGroupsTableVC.swift in Sources */,
 				0416316420415E5000446639 /* MyFriendsViewCell.swift in Sources */,
 				04886BD42063AFB300236E08 /* RealmDeleter.swift in Sources */,
 				0462E5F12067ADC900E0038C /* DialogMessagesTableVC.swift in Sources */,
@@ -507,7 +500,6 @@
 				04163170204202F100446639 /* AllGroupsTableVC.swift in Sources */,
 				04163175204203E400446639 /* AllGroupsViewCell.swift in Sources */,
 				04EB90BD207139C2001D95E6 /* ExtDate.swift in Sources */,
-				040A2C952063C4B1004A43D0 /* ExtMyFriendsTableVC.swift in Sources */,
 				0416317A2042133500446639 /* SettingsTableVC.swift in Sources */,
 				0462E5EB2067975F00E0038C /* RealmNewsSaver.swift in Sources */,
 				040A2C992063C5B9004A43D0 /* ExtMyFriendCollectionVC.swift in Sources */,

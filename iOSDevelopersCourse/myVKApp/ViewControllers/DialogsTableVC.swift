@@ -15,8 +15,16 @@ class DialogsTableVC: UITableViewController {
     let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")
     let userId =  KeychainWrapper.standard.string(forKey: "userId")
     
-    lazy var dialogsArray: Results<Dialog> = {
+    private lazy var dialogsArray: Results<Dialog> = {
         return RealmLoader.loadData(object: Dialog()).sorted(byKeyPath: "date", ascending: false)
+    }()
+    
+    private lazy var  usersArray: Results<Friend> = {
+        RealmLoader.loadData(object: Friend())
+    }()
+    
+    private lazy var groupsArray: Results<Group> = {
+        return RealmLoader.loadData(object: Group())
     }()
     
     var dialogsToken: NotificationToken?
@@ -42,9 +50,9 @@ class DialogsTableVC: UITableViewController {
             DialogsRequests.getUserDialogs(userId: self.userId!, accessToken: self.accessToken!)
         }
         
-        getDialogsNotification()
-        getUsersNotification()
-        getGroupsNotification()
+        dialogsToken = Notifications.getTableViewToken(dialogsArray, view: self.tableView)
+        usersToken = Notifications.getTableViewTokenLight(usersArray, view: self.tableView)
+        groupsToken = Notifications.getTableViewTokenLight(groupsArray, view: self.tableView)
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

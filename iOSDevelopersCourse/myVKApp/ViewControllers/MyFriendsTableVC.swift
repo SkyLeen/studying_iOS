@@ -33,7 +33,7 @@ class MyFriendsTableVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         FriendsRequests.getFriendsList(userId: self.userId!, accessToken: self.accessToken!)
-        getNotification()
+        token = Notifications.getTableViewToken(myFriendsArray, view: self.tableView)
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

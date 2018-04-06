@@ -35,7 +35,67 @@ class ImageSettingsHelper {
         case .forPhotos:
             view.layer.cornerRadius = 16
         }
-        
         view.layer.masksToBounds = true
+    }
+}
+
+class Notifications {
+    
+   static func getTableViewToken<T: Object>(_ array: Results<T>, view: UITableView?) -> NotificationToken {
+        let token = array.observe({ [weak view] changes in
+            guard let view = view else { return }
+            switch changes {
+            case .initial:
+                view.reloadData()
+            case .update(_, let delete, let insert, let update):
+                view.beginUpdates()
+                view.deleteRows(at: delete.map({ IndexPath(row: $0, section: 0) }), with: .fade)
+                view.insertRows(at: insert.map({ IndexPath(row: $0, section: 0) }), with: .fade)
+                view.reloadRows(at: update.map({ IndexPath(row: $0, section: 0) }), with: .fade)
+                view.endUpdates()
+            case .error(let error):
+                print(error.localizedDescription)
+            }
+        })
+        
+        return token
+    }
+    
+    static func getTableViewTokenLight<T: Object>(_ array: Results<T>, view: UITableView?) -> NotificationToken {
+        let token = array.observe({ [weak view] changes in
+            guard let view = view else { return }
+            switch changes {
+            case .initial:
+                view.reloadData()
+            case .update(_, _, _, _):
+                view.beginUpdates()
+                view.reloadData()
+                view.endUpdates()
+            case .error(let error):
+                print(error.localizedDescription)
+            }
+        })
+        
+        return token
+    }
+    
+   static func getCollectionViewToken<T: Object>(_ array: Results<T>, view: UICollectionView?) -> NotificationToken {
+        let token = array.observe({ [weak view] changes in
+            guard let view = view else { return }
+            switch changes {
+            case .initial:
+                view.reloadData()
+            case .update(_, let delete, let insert, let update):
+                view.performBatchUpdates({
+                    view.deleteItems(at: delete.map({ IndexPath(row: $0, section: 0) }))
+                    view.insertItems(at: insert.map({ IndexPath(row: $0, section: 0) }))
+                    view.reloadItems(at: update.map({ IndexPath(row: $0, section: 0) }))
+                }, completion: nil)
+            case .error(let error):
+                print(error.localizedDescription)
+            }
+        })
+        
+        return token
     }
 }

@@ -18,7 +18,9 @@ class NewsTableVC: UITableViewController {
     let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")
     let userId =  KeychainWrapper.standard.string(forKey: "userId")
     
-    var newsArray: Results<News>!
+    lazy var newsArray: Results<News> = {
+        return RealmLoader.loadData(object: News()).sorted(byKeyPath: "date", ascending: false)
+    }()
     lazy var newsAttachArray: Results<NewsAttachments> = {
         return RealmLoader.loadData(object: NewsAttachments())
         }()
@@ -37,7 +39,7 @@ class NewsTableVC: UITableViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         addRefreshControl()
         NewsRequests.getUserNews(userId: self.userId!, accessToken: self.accessToken!)
-        getNotification()
+        token = Notifications.getTableViewToken(newsArray, view: self.tableView)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

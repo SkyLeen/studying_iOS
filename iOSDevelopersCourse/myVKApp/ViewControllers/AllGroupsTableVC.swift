@@ -37,9 +37,8 @@ class AllGroupsTableVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         createSearchBar()
-        
         GroupsRequests.getAllGroups(accessToken: self.accessToken!)
-        getNotification()
+        token = Notifications.getTableViewToken(allGroupsArray, view: self.tableView)
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

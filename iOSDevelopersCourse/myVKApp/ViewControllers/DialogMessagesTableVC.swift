@@ -44,7 +44,8 @@ class DialogMessagesTableVC: UIViewController {
         getTitle()
         textView.layer.cornerRadius = 10
         DialogsRequests.getMessages(accessToken: accessToken!, friendId: friendId.description)
-        getMessageNotification()
+        messageToken = Notifications.getTableViewToken(friendsMessageArray, view: self.messageTableView)
+        
         let hideKbGesture = UITapGestureRecognizer(target: self, action: #selector(self.hideKeyboard))
         self.scrollView?.addGestureRecognizer(hideKbGesture)
     }
