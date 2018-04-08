@@ -35,8 +35,6 @@ class NewsTableVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.estimatedRowHeight = 1000
-        tableView.rowHeight = UITableViewAutomaticDimension
         addRefreshControl()
         NewsRequests.getUserNews(userId: self.userId!, accessToken: self.accessToken!)
         token = Notifications.getTableViewToken(newsArray, view: self.tableView)
@@ -67,6 +65,8 @@ class NewsTableVC: UITableViewController {
         newsReloadedOp.addDependency(getImageOp)
         opQueue.addOperation(getImageOp)
         OperationQueue.main.addOperation(newsReloadedOp)
+        
+        cell.setNewsImageFrame()
         
         return cell
     }
