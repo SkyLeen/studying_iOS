@@ -91,31 +91,36 @@ extension NewsViewCell {
     }
     
     func setNewsLabelFrame() {
-        guard let text = newsLabel.text, text != "" else {
-            newsLabel.frame = CGRect(x: 0.0, y: 0.0, width: 0.0, height: 0.0)
-            return
-        }
-        let labelSize = getLabelSize(text: text, font: newsLabel.font)
+        let labelSize = getLabelSize(text: newsLabel.text!, font: newsLabel.font)
         
         let positionX = insets
-        let positionY = insets + authorImage.bounds.height + insetsBtwElements
+        var positionY = insets
+        let labelsSize = dateLabel.bounds.maxY + authorNameLabel.bounds.maxY + insetsBtwElements
+        
+        if authorImage.bounds.maxY >= labelsSize {
+            positionY += authorImage.bounds.maxY + insetsBtwElements
+        } else {
+            positionY += labelsSize + insetsBtwElements
+        }
+        
         let origin = CGPoint(x: positionX, y: positionY)
         
         let frame = CGRect(origin: origin, size: labelSize)
 
         newsLabel.frame = frame
-        newsLabel.numberOfLines = 0
-        newsLabel.lineBreakMode = .byWordWrapping
+        newsLabel.numberOfLines = 5
+        newsLabel.lineBreakMode = .byTruncatingTail
         newsLabel.sizeToFit()
     }
     
     func setNewsImageFrame() {
-        let width = self.bounds.width
-        let height = newsImage.image?.size.height
-        let imageBlock = CGSize(width: width, height: height ?? 0.0)
+        let height = self.bounds.width / 2
+        let width = self.bounds.width - 40
+        let imageBlock = CGSize(width: width, height: height)
         
-        let positionX = insets
-        let positionY = insets + authorImage.bounds.height + insetsBtwElements + newsLabel.bounds.height + insetsBtwElements
+        let positionX = (self.bounds.midX - width / 2)
+        let positionY = (self.bounds.midY - height / 2) + newsLabel.bounds.height / 2 + insetsBtwElements
+        
         let origin = CGPoint(x: positionX, y: positionY)
         
         let frame = CGRect(origin: origin, size: imageBlock)
@@ -129,7 +134,7 @@ extension NewsViewCell {
         let viewSize = CGSize(width: maxWidth, height: maxHeight)
         
         let positionX = insets
-        let positionY = insets + authorImage.bounds.height + insetsBtwElements + newsLabel.bounds.height + insetsBtwElements + newsImage.bounds.height + insetsBtwElements
+        let positionY = self.bounds.height - insets - viewSize.height
         let origin = CGPoint(x: positionX, y: positionY)
         let frame = CGRect(origin: origin, size: viewSize)
 

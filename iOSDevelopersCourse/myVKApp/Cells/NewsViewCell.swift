@@ -58,13 +58,14 @@ class NewsViewCell: UITableViewCell {
     }
     
     override func layoutSubviews() {
-         super.layoutSubviews()
+        super.layoutSubviews()
         setAuthorImageFrame()
         setAuthorLabelFrame()
         setDateLabelFrame()
         setNewsLabelFrame()
         setNewsImageFrame()
         setFooterViewFrame()
+        super.layoutSubviews()
     }
 }
 

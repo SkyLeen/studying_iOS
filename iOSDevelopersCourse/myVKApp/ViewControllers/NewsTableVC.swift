@@ -48,7 +48,7 @@ class NewsTableVC: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsViewCell
         let newsFeed = newsArray[indexPath.row]
         let attachments = newsFeed.attachments
-        
+             
         cell.news = newsFeed
         
         if let url = newsFeed.authorImageUrl {
@@ -59,15 +59,29 @@ class NewsTableVC: UITableViewController {
             OperationQueue.main.addOperation(authorReloadedOp)
         }
         
-        guard !attachments.isEmpty, let url = newsFeed.attachments[0].url else { return cell }
-        let getImageOp = GetCashedImage(url: url, folderName: .News)
-        let newsReloadedOp = TableCellReloading(indexPath: indexPath, view: tableView, cell: cell, imageView: cell.newsImage)
-        newsReloadedOp.addDependency(getImageOp)
-        opQueue.addOperation(getImageOp)
-        OperationQueue.main.addOperation(newsReloadedOp)
-        
+        if !attachments.isEmpty, let url = newsFeed.attachments[0].url {
+            let getImageOp = GetCashedImage(url: url, folderName: .News)
+            let newsReloadedOp = TableCellReloading(indexPath: indexPath, view: tableView, cell: cell, imageView: cell.newsImage)
+            newsReloadedOp.addDependency(getImageOp)
+            opQueue.addOperation(getImageOp)
+            OperationQueue.main.addOperation(newsReloadedOp)
+        }
         cell.setNewsImageFrame()
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let newsFeed = newsArray[indexPath.row]
+        let attachments = newsFeed.attachments
+        var height: CGFloat = 200
+        
+        if !attachments.isEmpty, let _ = newsFeed.attachments[0].url, newsFeed.text != "" {
+            height = 385
+        } else if !attachments.isEmpty, let _ = newsFeed.attachments[0].url, newsFeed.text == "" {
+            height = 300
+        }
+        
+        return height
     }
 }
