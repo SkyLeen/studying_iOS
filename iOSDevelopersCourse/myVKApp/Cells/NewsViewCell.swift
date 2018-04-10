@@ -36,6 +36,7 @@ class NewsViewCell: UITableViewCell {
     
     weak var delegate: NewsCellHeightDelegate?
     var index: IndexPath?
+    var attachments: [NewsAttachments]?
     
     let insets: CGFloat = 5
     let insetsBtwElements: CGFloat = 5

@@ -86,6 +86,11 @@ extension NewsViewCell {
     }
     
     func setNewsImageFrame() {
+        if let attachments = attachments, attachments.isEmpty {
+            newsImage.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
+            return
+        }
+        
         let width = self.bounds.width - insets * 2
         let height = self.bounds.width + insetsBtwElements
         let imageBlock = CGSize(width: width, height: height)

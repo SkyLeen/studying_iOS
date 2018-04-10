@@ -51,7 +51,8 @@ class NewsTableVC: UITableViewController {
         
         let newsFeed = newsArray[indexPath.row]
         let attachments = newsFeed.attachments
-             
+        
+        cell.attachments = Array(attachments)
         cell.news = newsFeed
         
         if let url = newsFeed.authorImageUrl {
