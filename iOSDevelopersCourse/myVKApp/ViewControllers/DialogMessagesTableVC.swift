@@ -22,7 +22,9 @@ class DialogMessagesTableVC: UIViewController {
     let userId =  KeychainWrapper.standard.string(forKey: "userId")
     
     var friendId = 0
-    var titleVC = ""
+    var friendName = ""
+    var friendImage: UIImage?
+    var userImage: UIImage?
     
     lazy var friendsMessageArray: Results<Message> = {
         return RealmLoader.loadData(object: Message()).filter("friendId == %@", friendId).sorted(byKeyPath: "date", ascending: true)
@@ -42,18 +44,13 @@ class DialogMessagesTableVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = titleVC
+        setTitle()
         textView.layer.cornerRadius = 10
         DialogsRequests.getMessages(accessToken: accessToken!, friendId: friendId.description)
         messageToken = Notifications.getTableViewToken(friendsMessageArray, view: self.messageTableView)
         
         let hideKbGesture = UITapGestureRecognizer(target: self, action: #selector(self.hideKeyboard))
         self.scrollView?.addGestureRecognizer(hideKbGesture)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        setMessageTableView()
     }
     
     override func viewWillAppear(_ animated: Bool) {

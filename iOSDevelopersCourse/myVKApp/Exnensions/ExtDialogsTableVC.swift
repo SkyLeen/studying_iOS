@@ -25,4 +25,37 @@ extension DialogsTableVC {
             }
         }
     }
+    
+    func setFriendNameForTitle(dialog: Dialog, to vc: UIViewController) {
+        guard let controller = vc as? DialogMessagesTableVC else { return }
+        let friendId = dialog.friendId
+        controller.friendId = friendId
+        
+        if dialog.title == ""  {
+            guard let user = friendId > 0 ? RealmRequests.getFriendData(friend: friendId.description) :
+                RealmRequests.getGroupData(group: friendId.magnitude.description)
+                else { return }
+            controller.friendName = user.name
+            
+            guard let url = user.photoUrl else { return }
+            let getImageOp = friendId > 0 ? GetCashedImage(url: url, folderName: .UserAvatars, userId: friendId.description) : GetCashedImage(url: url, folderName: .Groups, userId: friendId.magnitude.description)
+            
+            getImageOp.completionBlock = {
+                controller.friendImage = getImageOp.outputImage
+            }
+            opQueue.addOperation(getImageOp)
+        } else  {
+            controller.friendName = dialog.title
+        }
+    }
+    
+    func getMainUserData(to vc: UIViewController) {
+        guard let controller = vc as? DialogMessagesTableVC else { return }
+        guard let user = RealmRequests.getUserData(), let url = user.photoUrl else { return }
+        let getImageOp = GetCashedImage(url: url, folderName: .UserAvatars, userId: self.userId!)
+        getImageOp.completionBlock = {
+            controller.userImage = getImageOp.outputImage
+        }
+        opQueue.addOperation(getImageOp)
+    }
 }

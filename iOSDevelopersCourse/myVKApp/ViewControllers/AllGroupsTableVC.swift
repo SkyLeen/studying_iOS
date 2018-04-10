@@ -71,15 +71,4 @@ class AllGroupsTableVC: UITableViewController {
     override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         searchBar.endEditing(true)
     }
-    
-    private func createSearchBar() {
-        searchBar.barTintColor = .white
-        searchBar.tintColor = .white
-        searchBar.showsCancelButton = true
-        searchBar.keyboardType = .alphabet
-        searchBar.placeholder = "Search"
-        searchBar.returnKeyType = .done
-        searchBar.delegate = self
-        navigationItem.titleView = searchBar
-    }
 }

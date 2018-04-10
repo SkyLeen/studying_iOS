@@ -9,6 +9,7 @@
 import UIKit
 import SwiftKeychainWrapper
 import RealmSwift
+import Alamofire
 
 class DialogsTableVC: UITableViewController {
     
@@ -87,15 +88,9 @@ class DialogsTableVC: UITableViewController {
         guard segue.identifier == "showMessages" else { return }
         guard let destinationVC = segue.destination as? DialogMessagesTableVC else { return }
         guard let friend = sender as? IndexPath else { return }
-        
         let dialog = dialogsArray[friend.row]
         
-        destinationVC.friendId = dialog.friendId
-        if dialog.title == "", let user = RealmRequests.getFriendData(friend: dialog.friendId.description)  {
-            destinationVC.titleVC = user.name
-        } else if dialog.title != "" {
-            destinationVC.titleVC = dialog.title
-        }
-        
+        setFriendNameForTitle(dialog: dialog, to: destinationVC)
+        getMainUserData(to: destinationVC)
     }
 }

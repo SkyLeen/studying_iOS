@@ -29,7 +29,7 @@ class DialogFriendMessagesViewCell: UITableViewCell {
     
     private func getMessage() {
         self.friendMessageLabel.text = nil
-        
+
         if message?.attachments != "" {
             friendMessageLabel.text = (message?.body)! + " [" + (message?.attachments)! + "]"
         } else {

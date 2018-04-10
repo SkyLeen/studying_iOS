@@ -156,11 +156,11 @@
             </objects>
             <point key="canvasLocation" x="-1271" y="12"/>
         </scene>
-        <!--Friends-->
+        <!--Navigation Controller-->
         <scene sceneID="fiF-AY-gHb">
             <objects>
                 <navigationController id="ZxJ-KV-cPA" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Friends" image="friends" id="xbl-D6-6v8"/>
+                    <tabBarItem key="tabBarItem" title="" image="friends" selectedImage="friends" id="xbl-D6-6v8"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="blackTranslucent" translucent="NO" id="PSF-WS-phG">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -168,7 +168,7 @@
                         <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="barTintColor" red="0.93725490199999995" green="0.76078431369999999" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <textAttributes key="titleTextAttributes">
-                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
                             <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </textAttributes>
                     </navigationBar>
@@ -245,11 +245,11 @@
             </objects>
             <point key="canvasLocation" x="2343.1999999999998" y="-1328.1859070464768"/>
         </scene>
-        <!--Communities-->
+        <!--Navigation Controller-->
         <scene sceneID="zng-bu-U58">
             <objects>
                 <navigationController id="s0l-z0-AxT" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Communities" image="groups" id="OW4-YF-Lt6"/>
+                    <tabBarItem key="tabBarItem" title="" image="groups" id="OW4-YF-Lt6"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="blackTranslucent" translucent="NO" id="cUy-r8-wUv">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -257,7 +257,7 @@
                         <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="barTintColor" red="0.93725490199999995" green="0.76078431369999999" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <textAttributes key="titleTextAttributes">
-                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
                             <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </textAttributes>
                     </navigationBar>
@@ -747,11 +747,11 @@
             </objects>
             <point key="canvasLocation" x="3068" y="690.40479760119945"/>
         </scene>
-        <!--Dialogs-->
+        <!--Navigation Controller-->
         <scene sceneID="AXi-Yp-i0Z">
             <objects>
                 <navigationController id="VLd-Nf-Mdw" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Dialogs" image="messages" id="cDz-tn-0t4">
+                    <tabBarItem key="tabBarItem" title="" image="messages" id="cDz-tn-0t4">
                         <color key="badgeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="blackTranslucent" translucent="NO" id="AVE-eS-4cr">
@@ -760,7 +760,7 @@
                         <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="barTintColor" red="0.93725490196078431" green="0.76078431369999999" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <textAttributes key="titleTextAttributes">
-                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
                             <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </textAttributes>
                     </navigationBar>
@@ -772,17 +772,17 @@
             </objects>
             <point key="canvasLocation" x="1581" y="692"/>
         </scene>
-        <!--News-->
+        <!--Navigation Controller-->
         <scene sceneID="g7i-bN-vCM">
             <objects>
                 <navigationController id="ZGi-or-z2q" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="News" image="news" id="t3v-Vr-4L9"/>
+                    <tabBarItem key="tabBarItem" title="" image="news" id="t3v-Vr-4L9"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="blackTranslucent" translucent="NO" id="nlf-7g-yTB">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.93725490199999995" green="0.76078431369999999" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <textAttributes key="titleTextAttributes">
-                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
                             <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </textAttributes>
                     </navigationBar>
@@ -794,7 +794,7 @@
             </objects>
             <point key="canvasLocation" x="1581" y="12"/>
         </scene>
-        <!--Settings-->
+        <!--Settings TableVC-->
         <scene sceneID="GC8-GP-YMg">
             <objects>
                 <tableViewController id="rg8-QG-3at" customClass="SettingsTableVC" customModule="myVKApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -835,7 +835,7 @@
                             <outlet property="delegate" destination="rg8-QG-3at" id="wvE-7b-pNG"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Settings" image="settings" id="MbL-a9-sPB"/>
+                    <tabBarItem key="tabBarItem" title="" image="settings" id="MbL-a9-sPB"/>
                     <connections>
                         <segue destination="luP-4T-gON" kind="unwind" identifier="logOut" unwindAction="logOutWithSegue:" id="Iy4-2z-JRh"/>
                     </connections>
@@ -931,7 +931,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="FriendPhotoCell" id="26I-P6-wye" customClass="MyFriendCollectionViewCell" customModule="myVKApp" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="FriendPhotoCell" id="26I-P6-wye" customClass="MyFriendCollectionViewCell" customModule="myVKApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -939,7 +939,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WU7-61-0Rb">
-                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="49"/>
                                         </imageView>
                                     </subviews>
                                 </view>
@@ -1080,7 +1080,7 @@
             <objects>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="fAW-te-Zjk" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="Kk7-9c-fZW">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" itemPositioning="centered" id="Kk7-9c-fZW">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.93725490196078431" green="0.76078431372549016" blue="0.26666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
