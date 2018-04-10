@@ -25,3 +25,10 @@ extension NewsTableVC {
     }
 }
 
+extension NewsTableVC: NewsCellHeightDelegate {
+    
+    func setCellHeight(_ height: CGFloat, at index: IndexPath) {
+        heightCellCash[index] = height
+    }
+}
+

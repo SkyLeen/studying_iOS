@@ -2,16 +2,21 @@
 //  NewsViewCell.swift
 //  myVKApp
 //
-//  Created by Natalya on 24/03/2018.
+//  Created by Natalya on 10/04/2018.
 //  Copyright © 2018 Natalya Shikhalyova. All rights reserved.
 //
 
 import UIKit
 
-class NewsViewCell: UITableViewCell {
+protocol NewsCellHeightDelegate: class {
+    func setCellHeight(_ height: CGFloat, at index: IndexPath)
+}
 
+class NewsViewCell: UITableViewCell {
+    
     @IBOutlet weak var authorImage: UIImageView!
     @IBOutlet weak var authorNameLabel: UILabel!
+    
     @IBOutlet weak var dateLabel: UILabel!
     
     @IBOutlet weak var newsLabel: UILabel!
@@ -20,12 +25,17 @@ class NewsViewCell: UITableViewCell {
     @IBOutlet weak var footerView: UIView!
     @IBOutlet weak var likesImage: UIImageView!
     @IBOutlet weak var likesLabel: UILabel!
+    
     @IBOutlet weak var commentImage: UIImageView!
     @IBOutlet weak var commentsLabel: UILabel!
     @IBOutlet weak var repostsImage: UIImageView!
     @IBOutlet weak var repostsLabel: UILabel!
+    
     @IBOutlet weak var viewsImage: UIImageView!
     @IBOutlet weak var viewsLabel: UILabel!
+    
+    weak var delegate: NewsCellHeightDelegate?
+    var index: IndexPath?
     
     let insets: CGFloat = 5
     let insetsBtwElements: CGFloat = 5
@@ -42,6 +52,7 @@ class NewsViewCell: UITableViewCell {
             
             newsLabel.text = news?.text
             setNewsLabelFrame()
+            newsImage.image = nil
             
             likesLabel.text = news?.likesCount.withSeparator
             commentsLabel.text = news?.commentsCount.withSeparator

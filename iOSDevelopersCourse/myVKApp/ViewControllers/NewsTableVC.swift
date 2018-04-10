@@ -12,9 +12,6 @@ import RealmSwift
 
 class NewsTableVC: UITableViewController {
     
-    @IBOutlet weak var loadLable: UILabel!
-    @IBOutlet weak var acivityIndicator: UIActivityIndicatorView!
-    
     let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")
     let userId =  KeychainWrapper.standard.string(forKey: "userId")
     
@@ -23,9 +20,11 @@ class NewsTableVC: UITableViewController {
     }()
     lazy var newsAttachArray: Results<NewsAttachments> = {
         return RealmLoader.loadData(object: NewsAttachments())
-        }()
+    }()
     
     var token: NotificationToken?
+    
+    var heightCellCash: [IndexPath : CGFloat] = [:]
     
     var opQueue: OperationQueue = {
         let q = OperationQueue()
@@ -35,6 +34,7 @@ class NewsTableVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.register(UINib(nibName: "NewsViewCell", bundle: nil), forCellReuseIdentifier: "NewsViewCell")
         addRefreshControl()
         NewsRequests.getUserNews(userId: self.userId!, accessToken: self.accessToken!)
         token = Notifications.getTableViewToken(newsArray, view: self.tableView)
@@ -45,7 +45,10 @@ class NewsTableVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "NewsViewCell", for: indexPath) as! NewsViewCell
+        cell.delegate = self
+        cell.index = indexPath
+        
         let newsFeed = newsArray[indexPath.row]
         let attachments = newsFeed.attachments
              
@@ -68,20 +71,12 @@ class NewsTableVC: UITableViewController {
         }
         cell.setNewsImageFrame()
         
+        cell.updateHeight()
         return cell
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let newsFeed = newsArray[indexPath.row]
-        let attachments = newsFeed.attachments
-        var height: CGFloat = 200
-        
-        if !attachments.isEmpty, let _ = newsFeed.attachments[0].url, newsFeed.text != "" {
-            height = 385
-        } else if !attachments.isEmpty, let _ = newsFeed.attachments[0].url, newsFeed.text == "" {
-            height = 300
-        }
-        
+        guard let height = heightCellCash[indexPath] else { return 120 }
         return height
     }
 }

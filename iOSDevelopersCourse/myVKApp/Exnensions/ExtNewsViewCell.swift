@@ -27,26 +27,12 @@ extension NewsViewCell {
         viewsLabel.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    private func getHeaderLabelSize(text: String, font: UIFont) -> CGSize {
-        let maxWidth = self.bounds.width - authorImage.bounds.width - insetsBtwElements - insets * 2
-        let maxHeight = CGFloat.greatestFiniteMagnitude
-        let textBlock = CGSize(width: maxWidth, height: maxHeight)
-        
-        let rect = text.boundingRect(with: textBlock, attributes: [NSAttributedStringKey.font: font], context: nil)
-        let width = rect.size.width
-        let height = rect.size.height
-        
-        let labelSize = CGSize(width: ceil(width), height: ceil(height))
-        return labelSize
-    }
-    
     func setAuthorImageFrame() {
         let rectSide: CGFloat = 45
         let size = CGSize(width: rectSide, height: rectSide)
         
         let position = insets
         let origin = CGPoint(x: position, y: position)
-        
         let frame = CGRect(origin: origin, size: size)
 
         authorImage.frame = frame
@@ -77,19 +63,6 @@ extension NewsViewCell {
         dateLabel.frame = frame
     }
     
-    private func getLabelSize(text: String, font: UIFont) -> CGSize {
-        let maxWidth = self.bounds.width
-        let maxHeight = CGFloat.greatestFiniteMagnitude
-        let textBlock = CGSize(width: maxWidth, height: maxHeight)
-        
-        let rect = text.boundingRect(with: textBlock, attributes: [NSAttributedStringKey.font: font], context: nil)
-        let width = rect.size.width
-        let height = rect.size.height
-        
-        let labelSize = CGSize(width: ceil(width), height: ceil(height))
-        return labelSize
-    }
-    
     func setNewsLabelFrame() {
         let labelSize = getLabelSize(text: newsLabel.text!, font: newsLabel.font)
         
@@ -104,25 +77,22 @@ extension NewsViewCell {
         }
         
         let origin = CGPoint(x: positionX, y: positionY)
-        
         let frame = CGRect(origin: origin, size: labelSize)
 
         newsLabel.frame = frame
-        newsLabel.numberOfLines = 5
-        newsLabel.lineBreakMode = .byTruncatingTail
+        newsLabel.numberOfLines = 0
+        newsLabel.lineBreakMode = .byWordWrapping
         newsLabel.sizeToFit()
     }
     
     func setNewsImageFrame() {
-        let height = self.bounds.width / 2
-        let width = self.bounds.width - 40
+        let width = self.bounds.width - insets * 2
+        let height = self.bounds.width + insetsBtwElements
         let imageBlock = CGSize(width: width, height: height)
         
-        let positionX = (self.bounds.midX - width / 2)
-        let positionY = (self.bounds.midY - height / 2) + newsLabel.bounds.height / 2 + insetsBtwElements
-        
+        let positionX = insets
+        let positionY = newsLabel.frame.origin.y + newsLabel.bounds.height + insetsBtwElements
         let origin = CGPoint(x: positionX, y: positionY)
-        
         let frame = CGRect(origin: origin, size: imageBlock)
 
         newsImage.frame = frame
@@ -134,7 +104,7 @@ extension NewsViewCell {
         let viewSize = CGSize(width: maxWidth, height: maxHeight)
         
         let positionX = insets
-        let positionY = self.bounds.height - insets - viewSize.height
+        let positionY = self.frame.height - insets - viewSize.height
         let origin = CGPoint(x: positionX, y: positionY)
         let frame = CGRect(origin: origin, size: viewSize)
 
@@ -150,6 +120,39 @@ extension NewsViewCell {
         setViewsImages()
     }
     
+    func updateHeight() {
+        let height = getCellHeight()
+        guard let index = index
+            , self.bounds.height != height else { return }
+        delegate?.setCellHeight(height, at: index)
+    }
+    
+    private func getHeaderLabelSize(text: String, font: UIFont) -> CGSize {
+        let maxWidth = self.bounds.width - authorImage.bounds.width - insetsBtwElements - insets * 2
+        let maxHeight = CGFloat.greatestFiniteMagnitude
+        let textBlock = CGSize(width: maxWidth, height: maxHeight)
+        
+        let rect = text.boundingRect(with: textBlock, attributes: [NSAttributedStringKey.font: font], context: nil)
+        let width = rect.size.width
+        let height = rect.size.height
+        
+        let labelSize = CGSize(width: ceil(width), height: ceil(height))
+        return labelSize
+    }
+    
+    private func getLabelSize(text: String, font: UIFont) -> CGSize {
+        let maxWidth = self.bounds.width
+        let maxHeight = CGFloat.greatestFiniteMagnitude
+        let textBlock = CGSize(width: maxWidth, height: maxHeight)
+        
+        let rect = text.boundingRect(with: textBlock, attributes: [NSAttributedStringKey.font: font], context: nil)
+        let width = rect.size.width
+        let height = rect.size.height
+        
+        let labelSize = CGSize(width: ceil(width), height: ceil(height))
+        return labelSize
+    }
+    
     private func setLikesImages() {
         let rectSide: CGFloat = 20
         let size = CGSize(width: rectSide, height: rectSide)
@@ -157,8 +160,8 @@ extension NewsViewCell {
         let positionX = footerView.bounds.origin.x
         let positionY = footerView.bounds.origin.y
         let origin = CGPoint(x: positionX, y: positionY)
-        
         let frame = CGRect(origin: origin, size: size)
+        
         likesImage.frame = frame
     }
     
@@ -168,8 +171,8 @@ extension NewsViewCell {
         let positionX = likesImage.bounds.width + insetsBtwElements
         let positionY = footerView.bounds.origin.y
         let origin = CGPoint(x: positionX, y: positionY)
-        
         let frame = CGRect(origin: origin, size: labelSize)
+        
         likesLabel.frame = frame
     }
     
@@ -180,8 +183,8 @@ extension NewsViewCell {
         let positionX = likesImage.bounds.width + insetsBtwElements + likesLabel.bounds.width + insetsBtwElements
         let positionY = footerView.bounds.origin.y
         let origin = CGPoint(x: positionX, y: positionY)
-        
         let frame = CGRect(origin: origin, size: size)
+        
         commentImage.frame = frame
     }
     
@@ -191,8 +194,8 @@ extension NewsViewCell {
         let positionX = likesImage.bounds.width + insetsBtwElements + likesLabel.bounds.width + insetsBtwElements + commentImage.bounds.width + insetsBtwElements
         let positionY = footerView.bounds.origin.y
         let origin = CGPoint(x: positionX, y: positionY)
-        
         let frame = CGRect(origin: origin, size: labelSize)
+        
         commentsLabel.frame = frame
     }
     
@@ -203,8 +206,8 @@ extension NewsViewCell {
         let positionX = likesImage.bounds.width + insetsBtwElements + likesLabel.bounds.width + insetsBtwElements + commentImage.bounds.width + insetsBtwElements + commentsLabel.bounds.width + insetsBtwElements
         let positionY = footerView.bounds.origin.y
         let origin = CGPoint(x: positionX, y: positionY)
-        
         let frame = CGRect(origin: origin, size: size)
+        
         repostsImage.frame = frame
     }
     
@@ -214,8 +217,8 @@ extension NewsViewCell {
         let positionX = likesImage.bounds.width + insetsBtwElements + likesLabel.bounds.width + insetsBtwElements + commentImage.bounds.width + insetsBtwElements + commentsLabel.bounds.width + insetsBtwElements + repostsImage.bounds.width + insetsBtwElements
         let positionY = footerView.bounds.origin.y
         let origin = CGPoint(x: positionX, y: positionY)
-        
         let frame = CGRect(origin: origin, size: labelSize)
+        
         repostsLabel.frame = frame
     }
     
@@ -225,8 +228,8 @@ extension NewsViewCell {
         let positionX = footerView.bounds.width - labelSize.width
         let positionY = footerView.bounds.origin.y
         let origin = CGPoint(x: positionX, y: positionY)
-        
         let frame = CGRect(origin: origin, size: labelSize)
+        
         viewsLabel.frame = frame
     }
     
@@ -237,8 +240,14 @@ extension NewsViewCell {
         let positionX = footerView.bounds.width  - viewsLabel.bounds.width - insetsBtwElements - size.width
         let positionY = footerView.bounds.origin.y
         let origin = CGPoint(x: positionX, y: positionY)
-        
         let frame = CGRect(origin: origin, size: size)
+        
         viewsImage.frame = frame
+    }
+
+    private func getCellHeight() -> CGFloat {
+        let height = insets * 2 + insetsBtwElements * 3 + authorImage.frame.height + newsLabel.frame.height + newsImage.frame.height + footerView.frame.height
+        
+        return height
     }
 }
