@@ -1,5 +1,5 @@
 //
-//  ExtDialogMessagesTableVC.swift
+//  ExtMessagesTableVC.swift
 //  myVKApp
 //
 //  Created by Natalya on 25/03/2018.
@@ -9,40 +9,51 @@
 import Foundation
 import UIKit
 
-extension DialogMessagesTableVC: UITableViewDataSource {
+extension MessagesTableVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return friendsMessageArray.count
     }
 }
 
-extension DialogMessagesTableVC: UITableViewDelegate {
+extension MessagesTableVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: UITableViewCell!
-        
         let message = friendsMessageArray[indexPath.row]
         
         if message.fromId.description != self.userId  {
-            let cellFriend = tableView.dequeueReusableCell(withIdentifier: "FriendMessageCell", for: indexPath) as! DialogFriendMessagesViewCell
-            cellFriend.message = message
-            cellFriend.friendMessageImage.image = friendImage
+            let cellFriend = tableView.dequeueReusableCell(withIdentifier: "IncomingMsgViewCell", for: indexPath) as! IncomingMsgViewCell
+            cellFriend.delegate = self
+            cellFriend.index = indexPath
             
-            cell = cellFriend
+            cellFriend.message = message
+
+            cellFriend.updateHeight()
+            
+            return cellFriend
         }
         else {
             let cellUser = tableView.dequeueReusableCell(withIdentifier: "UserMessageCell", for: indexPath) as! DialogUserMessagesViewCell
             cellUser.message = message
-            cellUser.friendMessageImage.image = userImage
             
-            cell = cellUser
+            return cellUser
         }
-        
-        return cell
+    }
+    
+   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        guard let height = heightCellCash[indexPath] else { return 120 }
+        return height
     }
 }
 
-extension DialogMessagesTableVC {
+extension MessagesTableVC: CellHeightDelegate {
+    
+    func setCellHeight(_ height: CGFloat, at index: IndexPath) {
+        heightCellCash[index] = height
+    }
+}
+
+extension MessagesTableVC {
     
     func sendMessage() {
         
@@ -63,7 +74,7 @@ extension DialogMessagesTableVC {
     
     private func setTitleLabel(for label: UILabel) {
         label.text = friendName
-        label.textAlignment = NSTextAlignment.left
+        label.textAlignment = .left
         label.lineBreakMode = .byTruncatingTail
         label.font = UIFont(name: "HelveticaNeue", size: 16.0)
         label.textColor = .white

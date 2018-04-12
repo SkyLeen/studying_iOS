@@ -8,10 +8,6 @@
 
 import UIKit
 
-protocol NewsCellHeightDelegate: class {
-    func setCellHeight(_ height: CGFloat, at index: IndexPath)
-}
-
 class NewsViewCell: UITableViewCell {
     
     @IBOutlet weak var authorImage: UIImageView!
@@ -34,7 +30,7 @@ class NewsViewCell: UITableViewCell {
     @IBOutlet weak var viewsImage: UIImageView!
     @IBOutlet weak var viewsLabel: UILabel!
     
-    weak var delegate: NewsCellHeightDelegate?
+    weak var delegate: CellHeightDelegate?
     var index: IndexPath?
     var attachments: [NewsAttachments]?
     
@@ -43,7 +39,7 @@ class NewsViewCell: UITableViewCell {
     
     var news: News? {
         didSet {
-            setAuthorImageFrame()
+            setAvatarImageFrame()
             
             authorNameLabel.text = news?.author
             setAuthorLabelFrame()
@@ -71,13 +67,12 @@ class NewsViewCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        setAuthorImageFrame()
+        setAvatarImageFrame()
         setAuthorLabelFrame()
         setDateLabelFrame()
         setNewsLabelFrame()
         setNewsImageFrame()
         setFooterViewFrame()
-        super.layoutSubviews()
     }
 }
 

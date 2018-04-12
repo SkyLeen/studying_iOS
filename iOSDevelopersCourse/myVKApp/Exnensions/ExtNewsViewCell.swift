@@ -27,24 +27,16 @@ extension NewsViewCell {
         viewsLabel.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    func setAuthorImageFrame() {
-        let rectSide: CGFloat = 45
-        let size = CGSize(width: rectSide, height: rectSide)
-        
-        let position = insets
-        let origin = CGPoint(x: position, y: position)
-        let frame = CGRect(origin: origin, size: size)
-
+    func setAvatarImageFrame() {
+        let frame = Layers.getAvatarImageFrame(insets: insets)
         authorImage.frame = frame
     }
     
     func setAuthorLabelFrame() {
-        let labelSize = getHeaderLabelSize(text: authorNameLabel.text!, font: authorNameLabel.font)
-        
-        let positionX = self.bounds.origin.x + insets + authorImage.bounds.width + insetsBtwElements
-        let positionY = insets
-        let origin = CGPoint(x: positionX, y: positionY)
-        let frame = CGRect(origin: origin, size: labelSize)
+        let insetsX = insets + self.bounds.origin.x + authorImage.bounds.width + insetsBtwElements
+        let insetsY = insets
+        let labelSize = Layers.getLabelSize(text: authorNameLabel.text!, font: authorNameLabel.font, in: self, insets: insetsX)
+        let frame = Layers.getLabelFrame(fromX: insetsX, fromY: insetsY, labelSize: labelSize)
 
         authorNameLabel.frame = frame
         authorNameLabel.numberOfLines = 0
@@ -53,35 +45,30 @@ extension NewsViewCell {
     }
     
     func setDateLabelFrame() {
-        let labelSize = getHeaderLabelSize(text: dateLabel.text!, font: dateLabel.font)
+        let insetsX = self.bounds.origin.x + authorImage.bounds.width + insets + insetsBtwElements
+        let insetsY = authorNameLabel.frame.height + insetsBtwElements
+        let labelSize = Layers.getLabelSize(text: dateLabel.text!, font: dateLabel.font, in: self, insets: insetsX)
         
-        let positionX = insets + authorImage.bounds.width + insetsBtwElements
-        let positionY = insets + authorNameLabel.bounds.height + insetsBtwElements
-        let origin = CGPoint(x: positionX, y: positionY)
-        let frame = CGRect(origin: origin, size: labelSize)
+        let frame = Layers.getLabelFrame(fromX: insetsX, fromY: insetsY, labelSize: labelSize)
 
         dateLabel.frame = frame
     }
     
     func setNewsLabelFrame() {
-        let labelSize = getLabelSize(text: newsLabel.text!, font: newsLabel.font)
+        let insetsX = insets
+        var insetsY = insets
+        let labelSize = Layers.getLabelSize(text: newsLabel.text!, font: newsLabel.font, in: self, insets: insetsX)
+        let labelsHeight = dateLabel.bounds.maxY + authorNameLabel.bounds.maxY + insetsBtwElements
         
-        let positionX = insets
-        var positionY = insets
-        let labelsSize = dateLabel.bounds.maxY + authorNameLabel.bounds.maxY + insetsBtwElements
-        
-        if authorImage.bounds.maxY >= labelsSize {
-            positionY += authorImage.bounds.maxY + insetsBtwElements
+        if authorImage.bounds.maxY >= labelsHeight {
+            insetsY += authorImage.bounds.maxY + insetsBtwElements
         } else {
-            positionY += labelsSize + insetsBtwElements
+            insetsY += labelsHeight + insetsBtwElements
         }
-        
-        let origin = CGPoint(x: positionX, y: positionY)
-        let frame = CGRect(origin: origin, size: labelSize)
+
+        let frame = Layers.getLabelFrame(fromX: insetsX, fromY: insetsY, labelSize: labelSize)
 
         newsLabel.frame = frame
-        newsLabel.numberOfLines = 0
-        newsLabel.lineBreakMode = .byWordWrapping
         newsLabel.sizeToFit()
     }
     
@@ -132,32 +119,6 @@ extension NewsViewCell {
         delegate?.setCellHeight(height, at: index)
     }
     
-    private func getHeaderLabelSize(text: String, font: UIFont) -> CGSize {
-        let maxWidth = self.bounds.width - authorImage.bounds.width - insetsBtwElements - insets * 2
-        let maxHeight = CGFloat.greatestFiniteMagnitude
-        let textBlock = CGSize(width: maxWidth, height: maxHeight)
-        
-        let rect = text.boundingRect(with: textBlock, attributes: [NSAttributedStringKey.font: font], context: nil)
-        let width = rect.size.width
-        let height = rect.size.height
-        
-        let labelSize = CGSize(width: ceil(width), height: ceil(height))
-        return labelSize
-    }
-    
-    private func getLabelSize(text: String, font: UIFont) -> CGSize {
-        let maxWidth = self.bounds.width
-        let maxHeight = CGFloat.greatestFiniteMagnitude
-        let textBlock = CGSize(width: maxWidth, height: maxHeight)
-        
-        let rect = text.boundingRect(with: textBlock, attributes: [NSAttributedStringKey.font: font], context: nil)
-        let width = rect.size.width
-        let height = rect.size.height
-        
-        let labelSize = CGSize(width: ceil(width), height: ceil(height))
-        return labelSize
-    }
-    
     private func setLikesImages() {
         let rectSide: CGFloat = 20
         let size = CGSize(width: rectSide, height: rectSide)
@@ -171,12 +132,11 @@ extension NewsViewCell {
     }
     
     private func setLikesLabel() {
-        let labelSize = getLabelSize(text: likesLabel.text!, font: likesLabel.font)
+        let insetsX = likesImage.bounds.width + insetsBtwElements
+        let insetsY = footerView.bounds.origin.y
+        let labelSize = Layers.getLabelSize(text: likesLabel.text!, font: likesLabel.font, in: self, insets: insetsX)
         
-        let positionX = likesImage.bounds.width + insetsBtwElements
-        let positionY = footerView.bounds.origin.y
-        let origin = CGPoint(x: positionX, y: positionY)
-        let frame = CGRect(origin: origin, size: labelSize)
+        let frame = Layers.getLabelFrame(fromX: insetsX, fromY: insetsY, labelSize: labelSize)
         
         likesLabel.frame = frame
     }
@@ -194,12 +154,12 @@ extension NewsViewCell {
     }
     
     private func setCommentsLabel() {
-        let labelSize = getLabelSize(text: commentsLabel.text!, font: commentsLabel.font)
+        let insetsX = likesImage.bounds.width + insetsBtwElements + likesLabel.bounds.width + insetsBtwElements + commentImage.bounds.width + insetsBtwElements
+        let insetsY = footerView.bounds.origin.y
         
-        let positionX = likesImage.bounds.width + insetsBtwElements + likesLabel.bounds.width + insetsBtwElements + commentImage.bounds.width + insetsBtwElements
-        let positionY = footerView.bounds.origin.y
-        let origin = CGPoint(x: positionX, y: positionY)
-        let frame = CGRect(origin: origin, size: labelSize)
+         let labelSize = Layers.getLabelSize(text: commentsLabel.text!, font: commentsLabel.font, in: self, insets: insetsX)
+        
+        let frame = Layers.getLabelFrame(fromX: insetsX, fromY: insetsY, labelSize: labelSize)
         
         commentsLabel.frame = frame
     }
@@ -217,23 +177,21 @@ extension NewsViewCell {
     }
     
     private func setRepostsLabel() {
-        let labelSize = getLabelSize(text: repostsLabel.text!, font: repostsLabel.font)
+        let insetsX = likesImage.bounds.width + insetsBtwElements + likesLabel.bounds.width + insetsBtwElements + commentImage.bounds.width + insetsBtwElements + commentsLabel.bounds.width + insetsBtwElements + repostsImage.bounds.width + insetsBtwElements
+        let insetsY = footerView.bounds.origin.y
         
-        let positionX = likesImage.bounds.width + insetsBtwElements + likesLabel.bounds.width + insetsBtwElements + commentImage.bounds.width + insetsBtwElements + commentsLabel.bounds.width + insetsBtwElements + repostsImage.bounds.width + insetsBtwElements
-        let positionY = footerView.bounds.origin.y
-        let origin = CGPoint(x: positionX, y: positionY)
-        let frame = CGRect(origin: origin, size: labelSize)
+         let labelSize = Layers.getLabelSize(text: repostsLabel.text!, font: repostsLabel.font, in: self, insets: insetsX)
+        
+        let frame = Layers.getLabelFrame(fromX: insetsX, fromY: insetsY, labelSize: labelSize)
         
         repostsLabel.frame = frame
     }
     
     private func setViewsLabel() {
-        let labelSize = getLabelSize(text: viewsLabel.text!, font: viewsLabel.font)
-        
-        let positionX = footerView.bounds.width - labelSize.width
-        let positionY = footerView.bounds.origin.y
-        let origin = CGPoint(x: positionX, y: positionY)
-        let frame = CGRect(origin: origin, size: labelSize)
+        let labelSize = Layers.getLabelSize(text: viewsLabel.text!, font: viewsLabel.font, in: self, insets: CGFloat(0.0))
+        let insetsX = footerView.bounds.width - labelSize.width
+        let insetsY = footerView.bounds.origin.y
+        let frame = Layers.getLabelFrame(fromX: insetsX, fromY: insetsY, labelSize: labelSize)
         
         viewsLabel.frame = frame
     }

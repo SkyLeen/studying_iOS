@@ -36,6 +36,7 @@ class AllGroupsTableVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.rowHeight = 55
         createSearchBar()
         GroupsRequests.getAllGroups(accessToken: self.accessToken!)
         token = Notifications.getTableViewToken(allGroupsArray, view: self.tableView)

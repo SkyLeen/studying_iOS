@@ -14,6 +14,12 @@ class MyFriendCollectionViewCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        cancelAutoConstraints()
         ImageSettingsHelper.setImageLayersSettings(for: myFriendPhoto, mode: .forPhotos)
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        setImageFrame()
     }
 }

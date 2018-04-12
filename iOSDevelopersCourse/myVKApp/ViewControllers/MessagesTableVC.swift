@@ -10,7 +10,7 @@ import UIKit
 import SwiftKeychainWrapper
 import RealmSwift
 
-class DialogMessagesTableVC: UIViewController {
+class MessagesTableVC: UIViewController {
 
     @IBOutlet weak var messageTableView: UITableView!
     @IBOutlet weak var sendButton: UIButton!
@@ -24,7 +24,8 @@ class DialogMessagesTableVC: UIViewController {
     var friendId = 0
     var friendName = ""
     var friendImage: UIImage?
-    var userImage: UIImage?
+    
+    var heightCellCash: [IndexPath : CGFloat] = [:]
     
     lazy var friendsMessageArray: Results<Message> = {
         return RealmLoader.loadData(object: Message()).filter("friendId == %@", friendId).sorted(byKeyPath: "date", ascending: true)

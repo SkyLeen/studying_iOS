@@ -32,8 +32,7 @@
 		0462E5EB2067975F00E0038C /* RealmNewsSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0462E5EA2067975F00E0038C /* RealmNewsSaver.swift */; };
 		0462E5ED20679A1300E0038C /* DialogsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0462E5EC20679A1300E0038C /* DialogsTableVC.swift */; };
 		0462E5EF20679ABF00E0038C /* DialogsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0462E5EE20679ABF00E0038C /* DialogsViewCell.swift */; };
-		0462E5F12067ADC900E0038C /* DialogMessagesTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0462E5F02067ADC900E0038C /* DialogMessagesTableVC.swift */; };
-		0462E5F32067AE9F00E0038C /* DialogFriendMessagesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0462E5F22067AE9F00E0038C /* DialogFriendMessagesViewCell.swift */; };
+		0462E5F12067ADC900E0038C /* MessagesTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0462E5F02067ADC900E0038C /* MessagesTableVC.swift */; };
 		046DE624205D967200FEF668 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046DE623205D967200FEF668 /* UserModel.swift */; };
 		0473634E2073C7B600873B09 /* GetCashedImageOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0473634D2073C7B600873B09 /* GetCashedImageOperation.swift */; };
 		0473636220775D8000873B09 /* TableCellReloading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0473636120775D8000873B09 /* TableCellReloading.swift */; };
@@ -47,7 +46,16 @@
 		049CEBA72051E3D5007ED7C2 /* GroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CEBA62051E3D5007ED7C2 /* GroupModel.swift */; };
 		04A360C2207CCAAA00684090 /* NewsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A360C0207CCAAA00684090 /* NewsViewCell.swift */; };
 		04A360C3207CCAAA00684090 /* NewsViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04A360C1207CCAAA00684090 /* NewsViewCell.xib */; };
-		04CEE5CD20682AD600300107 /* ExtDialogMessagesTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEE5CC20682AD600300107 /* ExtDialogMessagesTableVC.swift */; };
+		04A360C7207F44E500684090 /* Layers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A360C6207F44E500684090 /* Layers.swift */; };
+		04A360C9207F532F00684090 /* ExtMyFriendsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A360C8207F532F00684090 /* ExtMyFriendsViewCell.swift */; };
+		04A360CB207F5E2F00684090 /* ExtMyGroupsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A360CA207F5E2F00684090 /* ExtMyGroupsViewCell.swift */; };
+		04A360CD207F5FEA00684090 /* ExtAllGroupsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A360CC207F5FEA00684090 /* ExtAllGroupsViewCell.swift */; };
+		04A360CF207F64D700684090 /* ExtMyFriendCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A360CE207F64D700684090 /* ExtMyFriendCollectionViewCell.swift */; };
+		04A360D1207F6B4300684090 /* ExtDialogViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A360D0207F6B4300684090 /* ExtDialogViewCell.swift */; };
+		04A360D6207F731700684090 /* IncomingMsgViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A360D4207F731700684090 /* IncomingMsgViewCell.swift */; };
+		04A360D9207F73AA00684090 /* ExtIncomingMsgViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A360D8207F73AA00684090 /* ExtIncomingMsgViewCell.swift */; };
+		04A360DC207F7A1000684090 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A360DB207F7A1000684090 /* Protocols.swift */; };
+		04CEE5CD20682AD600300107 /* ExtMessagesTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEE5CC20682AD600300107 /* ExtMessagesTableVC.swift */; };
 		04CEE5CF2068383A00300107 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04CEE5CE2068383900300107 /* Assets.xcassets */; };
 		04CEE5D120692AA600300107 /* DialogUserMessagesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEE5D020692AA600300107 /* DialogUserMessagesViewCell.swift */; };
 		04CEE5D3206AC0FE00300107 /* ExtNewsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEE5D2206AC0FE00300107 /* ExtNewsTableVC.swift */; };
@@ -99,8 +107,7 @@
 		0462E5EA2067975F00E0038C /* RealmNewsSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmNewsSaver.swift; sourceTree = "<group>"; };
 		0462E5EC20679A1300E0038C /* DialogsTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogsTableVC.swift; sourceTree = "<group>"; };
 		0462E5EE20679ABF00E0038C /* DialogsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogsViewCell.swift; sourceTree = "<group>"; };
-		0462E5F02067ADC900E0038C /* DialogMessagesTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogMessagesTableVC.swift; sourceTree = "<group>"; };
-		0462E5F22067AE9F00E0038C /* DialogFriendMessagesViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogFriendMessagesViewCell.swift; sourceTree = "<group>"; };
+		0462E5F02067ADC900E0038C /* MessagesTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesTableVC.swift; sourceTree = "<group>"; };
 		046DE623205D967200FEF668 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		0473634D2073C7B600873B09 /* GetCashedImageOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCashedImageOperation.swift; sourceTree = "<group>"; };
 		0473636120775D8000873B09 /* TableCellReloading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCellReloading.swift; sourceTree = "<group>"; };
@@ -114,7 +121,16 @@
 		049CEBA62051E3D5007ED7C2 /* GroupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupModel.swift; sourceTree = "<group>"; };
 		04A360C0207CCAAA00684090 /* NewsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewCell.swift; sourceTree = "<group>"; };
 		04A360C1207CCAAA00684090 /* NewsViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsViewCell.xib; sourceTree = "<group>"; };
-		04CEE5CC20682AD600300107 /* ExtDialogMessagesTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtDialogMessagesTableVC.swift; sourceTree = "<group>"; };
+		04A360C6207F44E500684090 /* Layers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layers.swift; sourceTree = "<group>"; };
+		04A360C8207F532F00684090 /* ExtMyFriendsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtMyFriendsViewCell.swift; sourceTree = "<group>"; };
+		04A360CA207F5E2F00684090 /* ExtMyGroupsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtMyGroupsViewCell.swift; sourceTree = "<group>"; };
+		04A360CC207F5FEA00684090 /* ExtAllGroupsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtAllGroupsViewCell.swift; sourceTree = "<group>"; };
+		04A360CE207F64D700684090 /* ExtMyFriendCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtMyFriendCollectionViewCell.swift; sourceTree = "<group>"; };
+		04A360D0207F6B4300684090 /* ExtDialogViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtDialogViewCell.swift; sourceTree = "<group>"; };
+		04A360D4207F731700684090 /* IncomingMsgViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomingMsgViewCell.swift; sourceTree = "<group>"; };
+		04A360D8207F73AA00684090 /* ExtIncomingMsgViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtIncomingMsgViewCell.swift; sourceTree = "<group>"; };
+		04A360DB207F7A1000684090 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		04CEE5CC20682AD600300107 /* ExtMessagesTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtMessagesTableVC.swift; sourceTree = "<group>"; };
 		04CEE5CE2068383900300107 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04CEE5D020692AA600300107 /* DialogUserMessagesViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogUserMessagesViewCell.swift; sourceTree = "<group>"; };
 		04CEE5D2206AC0FE00300107 /* ExtNewsTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtNewsTableVC.swift; sourceTree = "<group>"; };
@@ -160,12 +176,18 @@
 			isa = PBXGroup;
 			children = (
 				0410DB132064411F00FB3F4F /* ExtLoginWebVC.swift */,
+				04A360C8207F532F00684090 /* ExtMyFriendsViewCell.swift */,
 				040A2C982063C5B9004A43D0 /* ExtMyFriendCollectionVC.swift */,
+				04A360CE207F64D700684090 /* ExtMyFriendCollectionViewCell.swift */,
+				04A360CA207F5E2F00684090 /* ExtMyGroupsViewCell.swift */,
 				040A2C9A2063CC13004A43D0 /* ExtAllGroupsTableVC.swift */,
+				04A360CC207F5FEA00684090 /* ExtAllGroupsViewCell.swift */,
 				04CEE5D2206AC0FE00300107 /* ExtNewsTableVC.swift */,
 				0414D2D0207A4B4300ECB0AA /* ExtNewsViewCell.swift */,
 				04CEE5DA206CD52200300107 /* ExtDialogsTableVC.swift */,
-				04CEE5CC20682AD600300107 /* ExtDialogMessagesTableVC.swift */,
+				04A360D0207F6B4300684090 /* ExtDialogViewCell.swift */,
+				04CEE5CC20682AD600300107 /* ExtMessagesTableVC.swift */,
+				04A360D8207F73AA00684090 /* ExtIncomingMsgViewCell.swift */,
 				048714D92066CF8C003405B4 /* ExtUIImage.swift */,
 				04EB90B8207131E1001D95E6 /* ExtFormatter.swift */,
 				04EB90BA20713252001D95E6 /* ExtInt.swift */,
@@ -202,11 +224,27 @@
 		04A360C4207CD2B800684090 /* Interface */ = {
 			isa = PBXGroup;
 			children = (
-				04A360C1207CCAAA00684090 /* NewsViewCell.xib */,
-				04D37E6E20381B1100F958AF /* Main.storyboard */,
 				04EA44B5203C2F5E00074ACA /* Launch.storyboard */,
+				04D37E6E20381B1100F958AF /* Main.storyboard */,
+				04A360C1207CCAAA00684090 /* NewsViewCell.xib */,
 			);
 			path = Interface;
+			sourceTree = "<group>";
+		};
+		04A360C5207F446500684090 /* Layers */ = {
+			isa = PBXGroup;
+			children = (
+				04A360C6207F44E500684090 /* Layers.swift */,
+			);
+			path = Layers;
+			sourceTree = "<group>";
+		};
+		04A360DA207F79CA00684090 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				04A360DB207F7A1000684090 /* Protocols.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		04D19B2A2060F17400E1CADE /* RealmRequests */ = {
@@ -250,7 +288,7 @@
 				0416316F204202F100446639 /* AllGroupsTableVC.swift */,
 				048714D52066BCB5003405B4 /* NewsTableVC.swift */,
 				0462E5EC20679A1300E0038C /* DialogsTableVC.swift */,
-				0462E5F02067ADC900E0038C /* DialogMessagesTableVC.swift */,
+				0462E5F02067ADC900E0038C /* MessagesTableVC.swift */,
 				041631792042133500446639 /* SettingsTableVC.swift */,
 			);
 			path = ViewControllers;
@@ -265,7 +303,7 @@
 				04163174204203E400446639 /* AllGroupsViewCell.swift */,
 				04A360C0207CCAAA00684090 /* NewsViewCell.swift */,
 				0462E5EE20679ABF00E0038C /* DialogsViewCell.swift */,
-				0462E5F22067AE9F00E0038C /* DialogFriendMessagesViewCell.swift */,
+				04A360D4207F731700684090 /* IncomingMsgViewCell.swift */,
 				04CEE5D020692AA600300107 /* DialogUserMessagesViewCell.swift */,
 				0416317B204213AA00446639 /* SettingsViewCell.swift */,
 			);
@@ -279,6 +317,7 @@
 				04D19B2B2060F18000E1CADE /* ApiRequests */,
 				04D19B2A2060F17400E1CADE /* RealmRequests */,
 				0473634C2073C74800873B09 /* Operations */,
+				04A360C5207F446500684090 /* Layers */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -304,13 +343,14 @@
 		04D37E6920381B1100F958AF /* myVKApp */ = {
 			isa = PBXGroup;
 			children = (
+				04D37E6A20381B1100F958AF /* AppDelegate.swift */,
+				04A360C4207CD2B800684090 /* Interface */,
 				0490991D2056F4D7009C784A /* Models */,
 				04D2193D20486D16001E5B26 /* Services */,
 				04D2193B20486CEB001E5B26 /* ViewControllers */,
-				040A2C932063C482004A43D0 /* Exnensions */,
 				04D2193C20486D0B001E5B26 /* Cells */,
-				04A360C4207CD2B800684090 /* Interface */,
-				04D37E6A20381B1100F958AF /* AppDelegate.swift */,
+				040A2C932063C482004A43D0 /* Exnensions */,
+				04A360DA207F79CA00684090 /* Protocols */,
 				04D37E7620381B1100F958AF /* Info.plist */,
 				04CEE5CE2068383900300107 /* Assets.xcassets */,
 			);
@@ -472,10 +512,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04A360D1207F6B4300684090 /* ExtDialogViewCell.swift in Sources */,
 				04EB90B9207131E1001D95E6 /* ExtFormatter.swift in Sources */,
-				0462E5F32067AE9F00E0038C /* DialogFriendMessagesViewCell.swift in Sources */,
 				0410DB182064428600FB3F4F /* RealmUserSaver.swift in Sources */,
 				040A2C9B2063CC13004A43D0 /* ExtAllGroupsTableVC.swift in Sources */,
+				04A360D9207F73AA00684090 /* ExtIncomingMsgViewCell.swift in Sources */,
 				0473636220775D8000873B09 /* TableCellReloading.swift in Sources */,
 				04D37E6B20381B1100F958AF /* AppDelegate.swift in Sources */,
 				0414D2D1207A4B4300ECB0AA /* ExtNewsViewCell.swift in Sources */,
@@ -489,11 +530,14 @@
 				0416316E204201B800446639 /* MyGroupsViewCell.swift in Sources */,
 				0416316420415E5000446639 /* MyFriendsViewCell.swift in Sources */,
 				04886BD42063AFB300236E08 /* RealmDeleter.swift in Sources */,
-				0462E5F12067ADC900E0038C /* DialogMessagesTableVC.swift in Sources */,
+				04A360D6207F731700684090 /* IncomingMsgViewCell.swift in Sources */,
+				0462E5F12067ADC900E0038C /* MessagesTableVC.swift in Sources */,
 				0462E5E32067968E00E0038C /* NewsModel.swift in Sources */,
 				0473634E2073C7B600873B09 /* GetCashedImageOperation.swift in Sources */,
+				04A360CF207F64D700684090 /* ExtMyFriendCollectionViewCell.swift in Sources */,
 				04CEE5D5206AD18100300107 /* NewsAttachmentsModel.swift in Sources */,
 				041631772042109300446639 /* Helpers.swift in Sources */,
+				04A360CD207F5FEA00684090 /* ExtAllGroupsViewCell.swift in Sources */,
 				0416316C2042016500446639 /* MyGroupsTableVC.swift in Sources */,
 				046DE624205D967200FEF668 /* UserModel.swift in Sources */,
 				04D2194B204B0AF6001E5B26 /* GroupsRequests.swift in Sources */,
@@ -502,26 +546,30 @@
 				04D37E7D2038445C00F958AF /* LoginVC.swift in Sources */,
 				048714D62066BCB5003405B4 /* NewsTableVC.swift in Sources */,
 				0416316A20415FF600446639 /* MyFriendCollectionViewCell.swift in Sources */,
-				04CEE5CD20682AD600300107 /* ExtDialogMessagesTableVC.swift in Sources */,
+				04CEE5CD20682AD600300107 /* ExtMessagesTableVC.swift in Sources */,
 				047363642077625000873B09 /* CollectionCellReloading.swift in Sources */,
 				04EB90BB20713252001D95E6 /* ExtInt.swift in Sources */,
 				04CEE5D7206AE96A00300107 /* RealmNewsAttachSaver.swift in Sources */,
 				04EB90BF20714A42001D95E6 /* MessageModel.swift in Sources */,
 				04CEE5DB206CD52200300107 /* ExtDialogsTableVC.swift in Sources */,
 				0462E5EF20679ABF00E0038C /* DialogsViewCell.swift in Sources */,
+				04A360C9207F532F00684090 /* ExtMyFriendsViewCell.swift in Sources */,
 				0410DB142064411F00FB3F4F /* ExtLoginWebVC.swift in Sources */,
 				0410DB162064420E00FB3F4F /* RealmGroupsSaver.swift in Sources */,
 				0462E5E7206796FB00E0038C /* NewsRequests.swift in Sources */,
 				0462E5E92067973100E0038C /* DialogsRequests.swift in Sources */,
 				04163170204202F100446639 /* AllGroupsTableVC.swift in Sources */,
 				04163175204203E400446639 /* AllGroupsViewCell.swift in Sources */,
+				04A360C7207F44E500684090 /* Layers.swift in Sources */,
 				04EB90BD207139C2001D95E6 /* ExtDate.swift in Sources */,
 				0416317A2042133500446639 /* SettingsTableVC.swift in Sources */,
 				0462E5EB2067975F00E0038C /* RealmNewsSaver.swift in Sources */,
 				040A2C992063C5B9004A43D0 /* ExtMyFriendCollectionVC.swift in Sources */,
+				04A360DC207F7A1000684090 /* Protocols.swift in Sources */,
 				04D21945204A8DF3001E5B26 /* AuthorizationRequest.swift in Sources */,
 				04CEE5D3206AC0FE00300107 /* ExtNewsTableVC.swift in Sources */,
 				04D19B2D2060F1C700E1CADE /* RealmFriendsSaver.swift in Sources */,
+				04A360CB207F5E2F00684090 /* ExtMyGroupsViewCell.swift in Sources */,
 				0462E5ED20679A1300E0038C /* DialogsTableVC.swift in Sources */,
 				0490992020580A05009C784A /* FriendsRequests.swift in Sources */,
 				0462E5E5206796CD00E0038C /* DialogModel.swift in Sources */,

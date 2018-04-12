@@ -27,7 +27,7 @@ extension DialogsTableVC {
     }
     
     func setFriendNameForTitle(dialog: Dialog, to vc: UIViewController) {
-        guard let controller = vc as? DialogMessagesTableVC else { return }
+        guard let controller = vc as? MessagesTableVC else { return }
         let friendId = dialog.friendId
         controller.friendId = friendId
         
@@ -47,15 +47,5 @@ extension DialogsTableVC {
         } else  {
             controller.friendName = dialog.title
         }
-    }
-    
-    func getMainUserData(to vc: UIViewController) {
-        guard let controller = vc as? DialogMessagesTableVC else { return }
-        guard let user = RealmRequests.getUserData(), let url = user.photoUrl else { return }
-        let getImageOp = GetCashedImage(url: url, folderName: .UserAvatars, userId: self.userId!)
-        getImageOp.completionBlock = {
-            controller.userImage = getImageOp.outputImage
-        }
-        opQueue.addOperation(getImageOp)
     }
 }

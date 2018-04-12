@@ -10,7 +10,6 @@ import UIKit
 
 class DialogUserMessagesViewCell: UITableViewCell {
 
-    @IBOutlet weak var friendMessageImage: UIImageView!
     @IBOutlet weak var friendMessageLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     
@@ -22,7 +21,6 @@ class DialogUserMessagesViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        ImageSettingsHelper.setImageLayersSettings(for: friendMessageImage, mode: .forAvatarImages)
         friendMessageLabel.layer.cornerRadius = 10
     }
     

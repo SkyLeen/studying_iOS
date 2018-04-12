@@ -46,6 +46,7 @@ class DialogsTableVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.rowHeight = 55
         addRefreshControl()
         DispatchQueue.global(qos: .utility).async {
             DialogsRequests.getUserDialogs(userId: self.userId!, accessToken: self.accessToken!)
@@ -86,11 +87,10 @@ class DialogsTableVC: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "showMessages" else { return }
-        guard let destinationVC = segue.destination as? DialogMessagesTableVC else { return }
+        guard let destinationVC = segue.destination as? MessagesTableVC else { return }
         guard let friend = sender as? IndexPath else { return }
         let dialog = dialogsArray[friend.row]
         
         setFriendNameForTitle(dialog: dialog, to: destinationVC)
-        getMainUserData(to: destinationVC)
     }
 }
