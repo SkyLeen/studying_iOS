@@ -55,9 +55,10 @@
 		04A360D6207F731700684090 /* IncomingMsgViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A360D4207F731700684090 /* IncomingMsgViewCell.swift */; };
 		04A360D9207F73AA00684090 /* ExtIncomingMsgViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A360D8207F73AA00684090 /* ExtIncomingMsgViewCell.swift */; };
 		04A360DC207F7A1000684090 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A360DB207F7A1000684090 /* Protocols.swift */; };
+		04A360DE207FAFFB00684090 /* ExtOutcomingMsgViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A360DD207FAFFB00684090 /* ExtOutcomingMsgViewCell.swift */; };
 		04CEE5CD20682AD600300107 /* ExtMessagesTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEE5CC20682AD600300107 /* ExtMessagesTableVC.swift */; };
 		04CEE5CF2068383A00300107 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04CEE5CE2068383900300107 /* Assets.xcassets */; };
-		04CEE5D120692AA600300107 /* DialogUserMessagesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEE5D020692AA600300107 /* DialogUserMessagesViewCell.swift */; };
+		04CEE5D120692AA600300107 /* OutcomingMsgViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEE5D020692AA600300107 /* OutcomingMsgViewCell.swift */; };
 		04CEE5D3206AC0FE00300107 /* ExtNewsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEE5D2206AC0FE00300107 /* ExtNewsTableVC.swift */; };
 		04CEE5D5206AD18100300107 /* NewsAttachmentsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEE5D4206AD18100300107 /* NewsAttachmentsModel.swift */; };
 		04CEE5D7206AE96A00300107 /* RealmNewsAttachSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEE5D6206AE96A00300107 /* RealmNewsAttachSaver.swift */; };
@@ -130,9 +131,10 @@
 		04A360D4207F731700684090 /* IncomingMsgViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomingMsgViewCell.swift; sourceTree = "<group>"; };
 		04A360D8207F73AA00684090 /* ExtIncomingMsgViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtIncomingMsgViewCell.swift; sourceTree = "<group>"; };
 		04A360DB207F7A1000684090 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		04A360DD207FAFFB00684090 /* ExtOutcomingMsgViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtOutcomingMsgViewCell.swift; sourceTree = "<group>"; };
 		04CEE5CC20682AD600300107 /* ExtMessagesTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtMessagesTableVC.swift; sourceTree = "<group>"; };
 		04CEE5CE2068383900300107 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		04CEE5D020692AA600300107 /* DialogUserMessagesViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogUserMessagesViewCell.swift; sourceTree = "<group>"; };
+		04CEE5D020692AA600300107 /* OutcomingMsgViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutcomingMsgViewCell.swift; sourceTree = "<group>"; };
 		04CEE5D2206AC0FE00300107 /* ExtNewsTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtNewsTableVC.swift; sourceTree = "<group>"; };
 		04CEE5D4206AD18100300107 /* NewsAttachmentsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsAttachmentsModel.swift; sourceTree = "<group>"; };
 		04CEE5D6206AE96A00300107 /* RealmNewsAttachSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmNewsAttachSaver.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 				04A360D0207F6B4300684090 /* ExtDialogViewCell.swift */,
 				04CEE5CC20682AD600300107 /* ExtMessagesTableVC.swift */,
 				04A360D8207F73AA00684090 /* ExtIncomingMsgViewCell.swift */,
+				04A360DD207FAFFB00684090 /* ExtOutcomingMsgViewCell.swift */,
 				048714D92066CF8C003405B4 /* ExtUIImage.swift */,
 				04EB90B8207131E1001D95E6 /* ExtFormatter.swift */,
 				04EB90BA20713252001D95E6 /* ExtInt.swift */,
@@ -304,7 +307,7 @@
 				04A360C0207CCAAA00684090 /* NewsViewCell.swift */,
 				0462E5EE20679ABF00E0038C /* DialogsViewCell.swift */,
 				04A360D4207F731700684090 /* IncomingMsgViewCell.swift */,
-				04CEE5D020692AA600300107 /* DialogUserMessagesViewCell.swift */,
+				04CEE5D020692AA600300107 /* OutcomingMsgViewCell.swift */,
 				0416317B204213AA00446639 /* SettingsViewCell.swift */,
 			);
 			path = Cells;
@@ -564,6 +567,7 @@
 				04EB90BD207139C2001D95E6 /* ExtDate.swift in Sources */,
 				0416317A2042133500446639 /* SettingsTableVC.swift in Sources */,
 				0462E5EB2067975F00E0038C /* RealmNewsSaver.swift in Sources */,
+				04A360DE207FAFFB00684090 /* ExtOutcomingMsgViewCell.swift in Sources */,
 				040A2C992063C5B9004A43D0 /* ExtMyFriendCollectionVC.swift in Sources */,
 				04A360DC207F7A1000684090 /* Protocols.swift in Sources */,
 				04D21945204A8DF3001E5B26 /* AuthorizationRequest.swift in Sources */,
@@ -574,7 +578,7 @@
 				0490992020580A05009C784A /* FriendsRequests.swift in Sources */,
 				0462E5E5206796CD00E0038C /* DialogModel.swift in Sources */,
 				04EB90B7206EB103001D95E6 /* RealmRequests.swift in Sources */,
-				04CEE5D120692AA600300107 /* DialogUserMessagesViewCell.swift in Sources */,
+				04CEE5D120692AA600300107 /* OutcomingMsgViewCell.swift in Sources */,
 				04D19B2F2060FC9B00E1CADE /* RealmLoader.swift in Sources */,
 				049CEBA32051AF28007ED7C2 /* FriendModel.swift in Sources */,
 				049CEBA52051D558007ED7C2 /* PhotosModel.swift in Sources */,

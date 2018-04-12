@@ -25,7 +25,8 @@ class MessagesTableVC: UIViewController {
     var friendName = ""
     var friendImage: UIImage?
     
-    var heightCellCash: [IndexPath : CGFloat] = [:]
+    var heightInCellCash: [IndexPath : CGFloat] = [:]
+    var heightOutCellCash: [IndexPath : CGFloat] = [:]
     
     lazy var friendsMessageArray: Results<Message> = {
         return RealmLoader.loadData(object: Message()).filter("friendId == %@", friendId).sorted(byKeyPath: "date", ascending: true)

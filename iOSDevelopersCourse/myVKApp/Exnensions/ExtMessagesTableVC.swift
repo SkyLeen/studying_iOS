@@ -6,7 +6,6 @@
 //  Copyright © 2018 Natalya Shikhalyova. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 extension MessagesTableVC: UITableViewDataSource {
@@ -25,31 +24,44 @@ extension MessagesTableVC: UITableViewDelegate {
             let cellFriend = tableView.dequeueReusableCell(withIdentifier: "IncomingMsgViewCell", for: indexPath) as! IncomingMsgViewCell
             cellFriend.delegate = self
             cellFriend.index = indexPath
-            
             cellFriend.message = message
-
             cellFriend.updateHeight()
-            
+
             return cellFriend
         }
         else {
-            let cellUser = tableView.dequeueReusableCell(withIdentifier: "UserMessageCell", for: indexPath) as! DialogUserMessagesViewCell
+            let cellUser = tableView.dequeueReusableCell(withIdentifier: "OutcomingMsgViewCell", for: indexPath) as! OutcomingMsgViewCell
+            cellUser.delegate = self
+            cellUser.index = indexPath
             cellUser.message = message
-            
+            cellUser.updateHeight()
+
             return cellUser
         }
     }
     
-   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        guard let height = heightCellCash[indexPath] else { return 120 }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        var height: CGFloat = 70
+        
+        if  let h = heightInCellCash[indexPath] {
+            height = h
+        } else if let h = heightOutCellCash[indexPath] {
+            height = h
+        }
+        
         return height
     }
 }
 
 extension MessagesTableVC: CellHeightDelegate {
     
-    func setCellHeight(_ height: CGFloat, at index: IndexPath) {
-        heightCellCash[index] = height
+    func setCellHeight(_ height: CGFloat, at index: IndexPath, cell: UITableViewCell) {
+        if let _ = cell as? IncomingMsgViewCell {
+            heightInCellCash[index] = height
+        } else if let _ = cell as? OutcomingMsgViewCell {
+            heightOutCellCash[index] = height
+        }
     }
 }
 

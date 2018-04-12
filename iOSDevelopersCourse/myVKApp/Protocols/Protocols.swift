@@ -9,5 +9,5 @@
 import UIKit
 
 protocol CellHeightDelegate: class {
-    func setCellHeight(_ height: CGFloat, at index: IndexPath)
+    func setCellHeight(_ height: CGFloat, at index: IndexPath, cell: UITableViewCell)
 }

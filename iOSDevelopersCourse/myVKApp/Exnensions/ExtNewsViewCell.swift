@@ -116,7 +116,7 @@ extension NewsViewCell {
         let height = getCellHeight()
         guard let index = index
             , self.bounds.height != height else { return }
-        delegate?.setCellHeight(height, at: index)
+        delegate?.setCellHeight(height, at: index, cell: self)
     }
     
     private func setLikesImages() {

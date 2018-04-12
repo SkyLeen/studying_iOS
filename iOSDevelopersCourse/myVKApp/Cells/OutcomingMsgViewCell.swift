@@ -1,14 +1,14 @@
 //
-//  IncomingMsgViewCell.swift
+//  OutcomingMessagesViewCell.swift
 //  myVKApp
 //
-//  Created by Natalya on 12/04/2018.
+//  Created by Natalya on 26/03/2018.
 //  Copyright © 2018 Natalya Shikhalyova. All rights reserved.
 //
 
 import UIKit
 
-class IncomingMsgViewCell: UITableViewCell {
+class OutcomingMsgViewCell: UITableViewCell {
     
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
@@ -28,10 +28,7 @@ class IncomingMsgViewCell: UITableViewCell {
             } else {
                 messageLabel.text = message?.body
             }
-            setMsgLabelFrame()
-            
             dateLabel.text = Date(timeIntervalSince1970: (message?.date)!).formatted
-            setDateLabelFrame()
         }
     }
     

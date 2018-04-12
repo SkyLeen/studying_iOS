@@ -1,5 +1,5 @@
 //
-//  ExtIncomingMsgViewCell.swift
+//  ExtOutcomingMsgViewCell.swift
 //  myVKApp
 //
 //  Created by Natalya on 12/04/2018.
@@ -8,17 +8,16 @@
 
 import UIKit
 
-extension IncomingMsgViewCell {
-
+extension OutcomingMsgViewCell {
+    
     func cancelAutoConstraints() {
         messageLabel.translatesAutoresizingMaskIntoConstraints = false
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
     }
-
+    
     func setMsgLabelFrame() {
         let insetsX = insets
         let insetsY = insets
-        
         let labelSize = Layers.getLabelSize(text: messageLabel.text!, font: messageLabel.font, in: self, insets: insetsX * 2)
         
         let frame = Layers.getLabelFrame(fromX: insetsX, fromY: insetsY, labelSize: labelSize)
@@ -31,7 +30,7 @@ extension IncomingMsgViewCell {
         let insetsX = insets
         let insetsY = insets + messageLabel.frame.height
         let labelSize = Layers.getLabelSize(text: dateLabel.text!, font: dateLabel.font, in: self, insets: insetsX * 2)
-        let fromX = self.frame.width - labelSize.width
+        let fromX = self.frame.width - labelSize.width - insets
         
         let frame = Layers.getLabelFrame(fromX: fromX, fromY: insetsY, labelSize: labelSize)
         
