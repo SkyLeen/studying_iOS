@@ -12,9 +12,11 @@ class OutcomingMsgViewCell: UITableViewCell {
     
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var bubbleImage: UIImageView!
     
     let insets: CGFloat = 5
     let msgInset: CGFloat = 70
+    let bubbleTail: CGFloat = 35
     
     weak var delegate: CellHeightDelegate?
     var index: IndexPath?
@@ -29,6 +31,9 @@ class OutcomingMsgViewCell: UITableViewCell {
                 messageLabel.text = message?.body
             }
             dateLabel.text = Date(timeIntervalSince1970: (message?.date)!).formatted
+            setMsgLabelFrame()
+            setDateLabelFrame()
+            setBubbleImage()
         }
     }
     
@@ -41,5 +46,6 @@ class OutcomingMsgViewCell: UITableViewCell {
         super.layoutSubviews()
         setMsgLabelFrame()
         setDateLabelFrame()
+        setBubbleImage()
     }
 }

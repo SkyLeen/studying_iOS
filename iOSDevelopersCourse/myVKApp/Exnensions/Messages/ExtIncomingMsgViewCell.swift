@@ -16,10 +16,10 @@ extension IncomingMsgViewCell {
     }
 
     func setMsgLabelFrame() {
-        let insetsX = insets
+        let insetsX = insets * 2 + bubbleTail
         let insetsY = insets
         
-        let labelSize = Layers.getLabelSize(text: messageLabel.text!, font: messageLabel.font, in: self, insets: insetsX * 2)
+        let labelSize = Layers.getLabelSize(text: messageLabel.text!, font: messageLabel.font, in: self, insets: insetsX + msgInset)
         
         let frame = Layers.getLabelFrame(fromX: insetsX, fromY: insetsY, labelSize: labelSize)
         
@@ -28,15 +28,30 @@ extension IncomingMsgViewCell {
     }
     
     func setDateLabelFrame() {
-        let insetsX = insets
-        let insetsY = insets + messageLabel.frame.height
-        let labelSize = Layers.getLabelSize(text: dateLabel.text!, font: dateLabel.font, in: self, insets: insetsX * 2)
-        let fromX = self.frame.width - labelSize.width
+        let insetsX = insets * 2 + bubbleTail
+        let insetsY = insets + messageLabel.frame.height + insets
+        let labelSize = Layers.getLabelSize(text: dateLabel.text!, font: dateLabel.font, in: self, insets: insetsX + msgInset)
+        let fromX = messageLabel.frame.origin.x
         
         let frame = Layers.getLabelFrame(fromX: fromX, fromY: insetsY, labelSize: labelSize)
         
         dateLabel.frame = frame
         messageLabel.sizeToFit()
+    }
+    
+    func setBubbleImage() {
+        let posX = CGFloat(0)
+        let posY = CGFloat(0)
+        let origin = CGPoint(x: posX, y: posY)
+        
+        let contentWidth = messageLabel.frame.width > dateLabel.frame.width ? messageLabel.frame.width : dateLabel.frame.width
+        let width = contentWidth + insets * 2 + bubbleTail
+        let height = messageLabel.frame.height  + dateLabel.frame.height + insets * 4
+        
+        let size = CGSize(width: width, height: height)
+        let frame = CGRect(origin: origin, size: size)
+        
+        bubbleImage.frame = frame
     }
     
     func updateHeight() {
@@ -47,7 +62,7 @@ extension IncomingMsgViewCell {
     }
     
     private func getCellHeight() -> CGFloat {
-        let height = insets * 4 + messageLabel.frame.height  + dateLabel.frame.height
+        let height = insets * 2 + bubbleImage.frame.height
         return height
     }
 }

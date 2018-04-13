@@ -177,26 +177,82 @@
 		040A2C932063C482004A43D0 /* Exnensions */ = {
 			isa = PBXGroup;
 			children = (
-				0410DB132064411F00FB3F4F /* ExtLoginWebVC.swift */,
+				043DA298208106C7005F494F /* Login */,
+				043DA29220810637005F494F /* Friends */,
+				043DA2932081064D005F494F /* Groups */,
+				043DA2942081066A005F494F /* NewsFeed */,
+				043DA2952081067C005F494F /* Dialogs */,
+				043DA2962081068B005F494F /* Messages */,
+				043DA297208106AD005F494F /* System */,
+			);
+			path = Exnensions;
+			sourceTree = "<group>";
+		};
+		043DA29220810637005F494F /* Friends */ = {
+			isa = PBXGroup;
+			children = (
 				04A360C8207F532F00684090 /* ExtMyFriendsViewCell.swift */,
 				040A2C982063C5B9004A43D0 /* ExtMyFriendCollectionVC.swift */,
 				04A360CE207F64D700684090 /* ExtMyFriendCollectionViewCell.swift */,
+			);
+			path = Friends;
+			sourceTree = "<group>";
+		};
+		043DA2932081064D005F494F /* Groups */ = {
+			isa = PBXGroup;
+			children = (
 				04A360CA207F5E2F00684090 /* ExtMyGroupsViewCell.swift */,
 				040A2C9A2063CC13004A43D0 /* ExtAllGroupsTableVC.swift */,
 				04A360CC207F5FEA00684090 /* ExtAllGroupsViewCell.swift */,
+			);
+			path = Groups;
+			sourceTree = "<group>";
+		};
+		043DA2942081066A005F494F /* NewsFeed */ = {
+			isa = PBXGroup;
+			children = (
 				04CEE5D2206AC0FE00300107 /* ExtNewsTableVC.swift */,
 				0414D2D0207A4B4300ECB0AA /* ExtNewsViewCell.swift */,
+			);
+			path = NewsFeed;
+			sourceTree = "<group>";
+		};
+		043DA2952081067C005F494F /* Dialogs */ = {
+			isa = PBXGroup;
+			children = (
 				04CEE5DA206CD52200300107 /* ExtDialogsTableVC.swift */,
 				04A360D0207F6B4300684090 /* ExtDialogViewCell.swift */,
+			);
+			path = Dialogs;
+			sourceTree = "<group>";
+		};
+		043DA2962081068B005F494F /* Messages */ = {
+			isa = PBXGroup;
+			children = (
 				04CEE5CC20682AD600300107 /* ExtMessagesTableVC.swift */,
 				04A360D8207F73AA00684090 /* ExtIncomingMsgViewCell.swift */,
 				04A360DD207FAFFB00684090 /* ExtOutcomingMsgViewCell.swift */,
-				048714D92066CF8C003405B4 /* ExtUIImage.swift */,
+			);
+			path = Messages;
+			sourceTree = "<group>";
+		};
+		043DA297208106AD005F494F /* System */ = {
+			isa = PBXGroup;
+			children = (
 				04EB90B8207131E1001D95E6 /* ExtFormatter.swift */,
+				048714D92066CF8C003405B4 /* ExtUIImage.swift */,
 				04EB90BA20713252001D95E6 /* ExtInt.swift */,
 				04EB90BC207139C2001D95E6 /* ExtDate.swift */,
 			);
-			path = Exnensions;
+			path = System;
+			sourceTree = "<group>";
+		};
+		043DA298208106C7005F494F /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				0410DB132064411F00FB3F4F /* ExtLoginWebVC.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		0473634C2073C74800873B09 /* Operations */ = {
