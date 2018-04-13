@@ -78,11 +78,11 @@ extension NewsViewCell {
             return
         }
         
-        let width = self.bounds.width - insets * 2
+        let width = self.bounds.width
         let height = self.bounds.width + insetsBtwElements
         let imageBlock = CGSize(width: width, height: height)
         
-        let positionX = insets
+        let positionX = self.frame.origin.x
         let positionY = newsLabel.frame.origin.y + newsLabel.bounds.height + insetsBtwElements
         let origin = CGPoint(x: positionX, y: positionY)
         let frame = CGRect(origin: origin, size: imageBlock)

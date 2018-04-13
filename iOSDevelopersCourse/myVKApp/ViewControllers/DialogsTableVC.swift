@@ -52,7 +52,7 @@ class DialogsTableVC: UITableViewController {
             DialogsRequests.getUserDialogs(userId: self.userId!, accessToken: self.accessToken!)
         }
         
-        dialogsToken = Notifications.getTableViewToken(dialogsArray, view: self.tableView)
+        dialogsToken = Notifications.getTableViewTokenRows(dialogsArray, view: self.tableView)
         usersToken = Notifications.getTableViewTokenLight(usersArray, view: self.tableView)
         groupsToken = Notifications.getTableViewTokenLight(groupsArray, view: self.tableView)
     }

@@ -47,9 +47,9 @@ class MessagesTableVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setTitle()
-        textView.layer.cornerRadius = 10
+        setTextView()
         DialogsRequests.getMessages(accessToken: accessToken!, friendId: friendId.description)
-        messageToken = Notifications.getTableViewToken(friendsMessageArray, view: self.messageTableView)
+        messageToken = Notifications.getTableViewTokenRows(friendsMessageArray, view: self.messageTableView)
         
         let hideKbGesture = UITapGestureRecognizer(target: self, action: #selector(self.hideKeyboard))
         self.scrollView?.addGestureRecognizer(hideKbGesture)

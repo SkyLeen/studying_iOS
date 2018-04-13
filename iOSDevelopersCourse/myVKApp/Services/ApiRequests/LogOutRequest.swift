@@ -14,8 +14,8 @@ class LogOutRequest {
     static func logOut() {
         removeDefaults()
         removeCookies()
-        removeDataBase()
         removeCash()
+        removeDataBase()
     }
     
     private static func removeDefaults() {
@@ -36,11 +36,9 @@ class LogOutRequest {
     }
     
     private static func removeDataBase() {
+        guard let docDir = Realm.Configuration.defaultConfiguration.fileURL else { return }
         do {
-            let realm = try Realm()
-            try realm.write {
-                realm.deleteAll()
-            }
+            try FileManager.default.removeItem(at: docDir)
         } catch {
             print(error.localizedDescription)
         }

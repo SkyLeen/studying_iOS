@@ -34,7 +34,7 @@ class MyFriendsTableVC: UITableViewController {
         super.viewDidLoad()
         tableView.rowHeight = 55
         FriendsRequests.getFriendsList(userId: self.userId!, accessToken: self.accessToken!)
-        token = Notifications.getTableViewToken(myFriendsArray, view: self.tableView)
+        token = Notifications.getTableViewTokenRows(myFriendsArray, view: self.tableView)
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -126,6 +126,12 @@ extension MessagesTableVC {
         navigationItem.titleView = navView
         navView.sizeToFit()
     }
+    
+    func setTextView() {
+        textView.layer.cornerRadius = 10
+        textView.layer.borderWidth = 1
+        textView.layer.borderColor = UIColor.darkGray.cgColor
+    }
 }
 
 
