@@ -38,5 +38,4 @@ class DialogsViewCell: UITableViewCell {
         setNameLabelFrame()
         setTextLabelFrame()
     }
-    
 }

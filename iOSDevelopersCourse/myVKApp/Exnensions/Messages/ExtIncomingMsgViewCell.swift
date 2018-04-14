@@ -11,8 +11,9 @@ import UIKit
 extension IncomingMsgViewCell {
 
     func cancelAutoConstraints() {
-        messageLabel.translatesAutoresizingMaskIntoConstraints = false
-        dateLabel.translatesAutoresizingMaskIntoConstraints = false
+        [messageLabel, messageLabel].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
     }
 
     func setMsgLabelFrame() {

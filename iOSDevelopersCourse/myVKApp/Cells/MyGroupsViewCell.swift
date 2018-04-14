@@ -17,15 +17,15 @@ class MyGroupsViewCell: UITableViewCell {
     
     var group: Group? {
         didSet {
-            setImageFrame()
             myGroupNameLabel.text = group?.nameGroup
+            setImageFrame()
             setLabelFrame()
         }
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        cancelAutoConstraints() 
+        cancelAutoConstraints()
         ImageSettingsHelper.setImageLayersSettings(for: myGroupImageView, mode: .forAvatarImages)
     }
     

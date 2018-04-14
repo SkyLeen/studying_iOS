@@ -17,15 +17,15 @@ class MyFriendsViewCell: UITableViewCell {
     
     var user: Friend? {
         didSet {
-            setImageFrame()
             friendNameLabel.text = user?.name
+            setImageFrame()
             setLabelFrame()
         }
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        cancelAutoConstraints() 
+        cancelAutoConstraints()
         ImageSettingsHelper.setImageLayersSettings(for: friendImageView, mode: .forAvatarImages)
     }
     

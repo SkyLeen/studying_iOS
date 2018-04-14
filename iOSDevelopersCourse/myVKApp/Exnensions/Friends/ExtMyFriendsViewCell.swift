@@ -11,8 +11,9 @@ import UIKit
 extension MyFriendsViewCell {
     
     func cancelAutoConstraints() {
-        friendImageView.translatesAutoresizingMaskIntoConstraints = false
-        friendNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        [friendImageView, friendNameLabel].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
     }
     
     func setImageFrame() {

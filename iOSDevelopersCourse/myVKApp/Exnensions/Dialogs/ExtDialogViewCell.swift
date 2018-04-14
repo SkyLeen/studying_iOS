@@ -55,10 +55,9 @@ extension DialogsViewCell {
     }
     
     func cancelAutoConstraints() {
-        messageFriendImage.translatesAutoresizingMaskIntoConstraints = false
-        messageFriendLabel.translatesAutoresizingMaskIntoConstraints = false
-        messageTextLabel.translatesAutoresizingMaskIntoConstraints = false
-        messageDateLabel.translatesAutoresizingMaskIntoConstraints = false
+        [messageFriendImage,messageFriendLabel,messageTextLabel,messageDateLabel].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
     }
     
     func setImageFrame() {

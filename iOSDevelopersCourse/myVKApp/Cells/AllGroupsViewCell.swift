@@ -18,9 +18,8 @@ class AllGroupsViewCell: UITableViewCell {
     
     var group: Group? {
         didSet {
-            setImageFrame()
-            
             allGroupNameLabel.text = group?.nameGroup
+            setImageFrame()
             setNameLabelFrame()
             
             guard let followers = group?.followers else { return }
@@ -31,7 +30,7 @@ class AllGroupsViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        cancelAutoConstraints() 
+        cancelAutoConstraints()
         ImageSettingsHelper.setImageLayersSettings(for: allGroupImageView, mode: .forAvatarImages)
     }
     

@@ -11,20 +11,13 @@ import UIKit
 extension NewsViewCell {
 
     func cancelAutoConstraints() {
-        authorImage.translatesAutoresizingMaskIntoConstraints = false
-        authorNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        dateLabel.translatesAutoresizingMaskIntoConstraints = false
-        newsLabel.translatesAutoresizingMaskIntoConstraints = false
-        newsImage.translatesAutoresizingMaskIntoConstraints = false
-        footerView.translatesAutoresizingMaskIntoConstraints = false
-        likesImage.translatesAutoresizingMaskIntoConstraints = false
-        likesLabel.translatesAutoresizingMaskIntoConstraints = false
-        commentImage.translatesAutoresizingMaskIntoConstraints = false
-        commentsLabel.translatesAutoresizingMaskIntoConstraints = false
-        repostsImage.translatesAutoresizingMaskIntoConstraints = false
-        repostsLabel.translatesAutoresizingMaskIntoConstraints = false
-        viewsImage.translatesAutoresizingMaskIntoConstraints = false
-        viewsLabel.translatesAutoresizingMaskIntoConstraints = false
+        [
+         authorImage, authorNameLabel, dateLabel,newsLabel, newsImage,
+         footerView, likesImage,likesLabel, commentImage, commentsLabel,
+         repostsImage,repostsLabel, viewsImage, viewsLabel
+        ].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
     }
     
     func setAvatarImageFrame() {

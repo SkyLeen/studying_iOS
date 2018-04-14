@@ -11,9 +11,9 @@ import UIKit
 extension OutcomingMsgViewCell {
     
     func cancelAutoConstraints() {
-        messageLabel.translatesAutoresizingMaskIntoConstraints = false
-        dateLabel.translatesAutoresizingMaskIntoConstraints = false
-        bubbleImage.translatesAutoresizingMaskIntoConstraints = false
+        [messageLabel,dateLabel,bubbleImage].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
     }
     
     func setMsgLabelFrame() {
@@ -47,7 +47,6 @@ extension OutcomingMsgViewCell {
         let posY = CGFloat(0)
         let origin = CGPoint(x: posX, y: posY)
         
-       
         let width = self.frame.width - content + insets * 2
         let height = messageLabel.frame.height  + dateLabel.frame.height + insets * 4
         let size = CGSize(width: width, height: height)

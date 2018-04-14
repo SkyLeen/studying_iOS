@@ -11,8 +11,9 @@ import UIKit
 extension MyGroupsViewCell {
     
     func cancelAutoConstraints() {
-        myGroupImageView.translatesAutoresizingMaskIntoConstraints = false
-        myGroupNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        [myGroupImageView, myGroupNameLabel].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
     }
     
     func setImageFrame() {
