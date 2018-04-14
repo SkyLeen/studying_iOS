@@ -88,3 +88,26 @@ class NewsTableVC: UITableViewController {
         return height
     }
 }
+
+extension NewsTableVC {
+    
+    private func addRefreshControl() {
+        self.refreshControl?.addTarget(self, action: #selector(self.refreshView), for: .valueChanged)
+    }
+    
+    @objc func refreshView(sender: AnyObject) {
+        NewsRequests.getUserNews(userId: self.userId!, accessToken: self.accessToken!)
+        DispatchQueue.main.async { [weak self] in
+            guard let s = self else { return }
+            s.refreshControl?.endRefreshing()
+            s.tableView.reloadData()
+        }
+    }
+}
+
+extension NewsTableVC: CellHeightDelegate {
+    
+    func setCellHeight(_ height: CGFloat, at index: IndexPath, cell: UITableViewCell) {
+        heightCellCash[index] = height
+    }
+}
