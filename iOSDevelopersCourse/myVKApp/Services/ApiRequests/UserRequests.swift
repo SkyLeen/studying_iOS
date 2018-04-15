@@ -8,6 +8,7 @@
 
 import Alamofire
 import SwiftyJSON
+import FirebaseDatabase
 
 enum Attributes {
     case mainUser
@@ -16,6 +17,9 @@ enum Attributes {
 }
 
 class UserRequests {
+    
+    static let dbLink = Database.database().reference()
+    static let dbPath = "VKApp/User"
     
     static let baseUrl = "https://api.vk.com"
     static let path = "/method"
@@ -39,6 +43,10 @@ class UserRequests {
                     for user in users {
                         RealmUserSaver.createUser(user: user)
                     }
+                    
+                    let data = users.map { $0.makeAny }
+                    dbLink.child(dbPath).setValue(data)
+                    
                 case .fromDialogs:
                     let users = JSON(value)["response"].compactMap({ Friend(json: $0.1) })
                     for user in users {
