@@ -29,7 +29,6 @@ class User: Object {
     
     var makeAny: Any {
         return [
-            "id": idUser,
             "lastName": lastName,
             "firstName": firstName,
             "photoUrl": photoUrl,

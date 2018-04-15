@@ -36,7 +36,7 @@ class DialogsRequests {
                         if dialog.friendId > 0 {
                             UserRequests.getUserById(userId: userId, accessToken: accessToken, requestUserId: "\(dialog.friendId)", attribute: .fromDialogs)
                         } else {
-                            GroupsRequests.getGroupById(accessToken: accessToken, idGroup: "\(dialog.friendId.magnitude)")
+                            GroupsRequests.getGroupById(idGroup: "\(dialog.friendId.magnitude)")
                         }
                     }
                     

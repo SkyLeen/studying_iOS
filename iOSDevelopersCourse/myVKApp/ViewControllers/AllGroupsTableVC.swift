@@ -12,9 +12,6 @@ import RealmSwift
 
 class AllGroupsTableVC: UITableViewController {
     
-    let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")
-    let userId =  KeychainWrapper.standard.string(forKey: "userId")
-    
     let searchBar = UISearchBar()
     lazy var allGroupsArray: Results<Group> = {
         return RealmLoader.loadData(object: Group()).filter("userId == ''")
@@ -38,7 +35,7 @@ class AllGroupsTableVC: UITableViewController {
         super.viewDidLoad()
         tableView.rowHeight = 55
         createSearchBar()
-        GroupsRequests.getAllGroups(accessToken: self.accessToken!)
+        GroupsRequests.getAllGroups()
         token = Notifications.getTableViewTokenRows(allGroupsArray, view: self.tableView)
     }
 

@@ -7,14 +7,18 @@
 //
 
 import RealmSwift
+import SwiftKeychainWrapper
 
 class RealmGroupsSaver {
     
-    static func saveUserGroups(groups: [Group], userId: String) {
+    static private let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")
+    static private let userId =  KeychainWrapper.standard.string(forKey: "userId")
+    
+    static func saveUserGroups(groups: [Group]) {
         do {
             let realm = try Realm()
             let user = realm.object(ofType: User.self, forPrimaryKey: userId)
-            let oldGroups = realm.objects(Group.self).filter("userId == %@", userId)
+            let oldGroups = realm.objects(Group.self).filter("userId == %@", userId!)
             try realm.write {
                 realm.delete(oldGroups)
                 user?.groups.append(objectsIn: groups)
@@ -24,12 +28,12 @@ class RealmGroupsSaver {
         }
     }
     
-    static func saveNewGroup(group: Group, userId: String) {
+    static func saveNewGroup(group: Group) {
         do {
             let realm = try Realm()
             let user = realm.object(ofType: User.self, forPrimaryKey: userId)
             try realm.write {
-                group.userId = userId
+                group.userId = userId!
                 user?.groups.append(group)
             }
         } catch {

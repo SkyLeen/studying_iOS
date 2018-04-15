@@ -11,9 +11,6 @@ import SwiftKeychainWrapper
 import RealmSwift
 
 class MyGroupsTableVC: UITableViewController {
-
-    private let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")
-    private let userId =  KeychainWrapper.standard.string(forKey: "userId")
     
     lazy var myGroupsArray: Results<Group> = {
         return RealmLoader.loadData(object: Group()).filter("userId != ''")
@@ -33,7 +30,7 @@ class MyGroupsTableVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = 55
-        GroupsRequests.getUserGroups(userId: self.userId!, accessToken: self.accessToken!)
+        GroupsRequests.getUserGroups()
         token = Notifications.getTableViewTokenRows(myGroupsArray, view: self.tableView)
     }
 
@@ -80,14 +77,14 @@ class MyGroupsTableVC: UITableViewController {
             return
         }
         
-        GroupsRequests.joinGroup(accessToken: accessToken!, idGroup: newGroup.idGroup)
-        RealmGroupsSaver.saveNewGroup(group: newGroup, userId: userId!)
+        GroupsRequests.joinGroup(idGroup: newGroup.idGroup)
+        RealmGroupsSaver.saveNewGroup(group: newGroup)
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         let idGroup = myGroupsArray[indexPath.row].idGroup
         if editingStyle == .delete {
-            GroupsRequests.leaveGroup(accessToken: accessToken!, idGroup: idGroup)
+            GroupsRequests.leaveGroup(idGroup: idGroup)
             RealmDeleter.deleteData(object: myGroupsArray[indexPath.row])
         }
     }

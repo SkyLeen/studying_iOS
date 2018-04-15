@@ -21,7 +21,6 @@ class Group: Object {
     var user = LinkingObjects(fromType: User.self, property: "groups")
     var makeAny: Any  {
        return [
-        "id": idGroup,
         "name": nameGroup,
         "followers": followers,
         "photo": photoGroupUrl ?? "",

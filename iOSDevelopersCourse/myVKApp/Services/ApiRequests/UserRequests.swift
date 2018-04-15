@@ -18,8 +18,7 @@ enum Attributes {
 
 class UserRequests {
     
-    static let dbLink = Database.database().reference()
-    static let dbPath = "VKApp/User"
+    static let dbLink = Database.database().reference().child("VKApp/Users")
     
     static let baseUrl = "https://api.vk.com"
     static let path = "/method"
@@ -42,10 +41,10 @@ class UserRequests {
                     let users = JSON(value)["response"].compactMap({ User(json: $0.1) })
                     for user in users {
                         RealmUserSaver.createUser(user: user)
+                        
+                        let data = user.makeAny
+                        dbLink.child(user.idUser).setValue(data)
                     }
-                    
-                    let data = users.map { $0.makeAny }
-                    dbLink.child(dbPath).setValue(data)
                     
                 case .fromDialogs:
                     let users = JSON(value)["response"].compactMap({ Friend(json: $0.1) })
