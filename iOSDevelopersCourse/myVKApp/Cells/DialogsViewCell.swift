@@ -63,10 +63,10 @@ extension DialogsViewCell {
     }
     
     private func getDialogProperties() {
-        self.messageFriendLabel.text = nil
-        self.messageTextLabel.text = nil
-        self.messageDateLabel.text = nil
-        
+        messageFriendLabel.text = nil
+        messageTextLabel.text = nil
+        messageDateLabel.text = nil
+        messageFriendImage.image = nil
         setImageFrame()
         
         messageDateLabel.text = Date(timeIntervalSince1970: (dialog?.date)!).formatted

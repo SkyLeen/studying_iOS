@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SwiftKeychainWrapper
 import RealmSwift
 
 class AllGroupsTableVC: UITableViewController {

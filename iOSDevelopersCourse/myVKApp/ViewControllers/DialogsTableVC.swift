@@ -13,9 +13,6 @@ import Alamofire
 
 class DialogsTableVC: UITableViewController {
     
-    let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")
-    let userId =  KeychainWrapper.standard.string(forKey: "userId")
-    
     private lazy var dialogsArray: Results<Dialog> = {
         return RealmLoader.loadData(object: Dialog()).sorted(byKeyPath: "date", ascending: false)
     }()
@@ -48,9 +45,7 @@ class DialogsTableVC: UITableViewController {
         super.viewDidLoad()
         tableView.rowHeight = 55
         addRefreshControl()
-        DispatchQueue.global(qos: .utility).async {
-            DialogsRequests.getUserDialogs(userId: self.userId!, accessToken: self.accessToken!)
-        }
+        DialogsRequests.getUserDialogs()
         
         dialogsToken = Notifications.getTableViewTokenRows(dialogsArray, view: self.tableView)
         usersToken = Notifications.getTableViewTokenLight(usersArray, view: self.tableView)
@@ -103,7 +98,7 @@ extension DialogsTableVC {
     
     @objc func refreshView(sender: AnyObject) {
         DispatchQueue.global(qos: .utility).async {
-            DialogsRequests.getUserDialogs(userId: self.userId!, accessToken: self.accessToken!)
+            DialogsRequests.getUserDialogs()
             DispatchQueue.main.async { [weak self] in
                 guard let s = self else { return }
                 s.refreshControl?.endRefreshing()

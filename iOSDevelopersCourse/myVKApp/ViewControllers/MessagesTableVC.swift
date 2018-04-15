@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SwiftKeychainWrapper
 import RealmSwift
 
 class MessagesTableVC: UIViewController {
@@ -17,9 +16,6 @@ class MessagesTableVC: UIViewController {
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var messageView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
-    
-    let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")
-    let userId =  KeychainWrapper.standard.string(forKey: "userId")
     
     var friendId = 0
     var friendName = ""
@@ -48,7 +44,7 @@ class MessagesTableVC: UIViewController {
         super.viewDidLoad()
         setTitle()
         setTextView()
-        DialogsRequests.getMessages(accessToken: accessToken!, friendId: friendId.description)
+        DialogsRequests.getMessages(friendId: friendId.description)
         messageToken = Notifications.getTableViewTokenRows(friendsMessageArray, view: self.messageTableView)
         
         let hideKbGesture = UITapGestureRecognizer(target: self, action: #selector(self.hideKeyboard))
@@ -77,7 +73,9 @@ class MessagesTableVC: UIViewController {
     }
 
     @objc func keyboardWillBeHidden(notification: Notification) {
-        self.view.frame.origin.y = 0
+        let kbInfo = notification.userInfo! as NSDictionary
+        let kbSize = (kbInfo.value(forKey: UIKeyboardFrameEndUserInfoKey) as! NSValue).cgRectValue.size
+        self.view.frame.origin.y += kbSize.height
     }
     
     @IBAction func sendButtonPressed(_ sender: Any) {
@@ -86,7 +84,8 @@ class MessagesTableVC: UIViewController {
     }
     
     private func sendMessage() {
-        
+        let text = textView.text
+        print(text ?? "")
     }
 }
 
@@ -102,7 +101,7 @@ extension MessagesTableVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let message = friendsMessageArray[indexPath.row]
         
-        if message.fromId.description != self.userId  {
+        if message.out == 0 {
             let cellFriend = tableView.dequeueReusableCell(withIdentifier: "IncomingMsgViewCell", for: indexPath) as! IncomingMsgViewCell
             cellFriend.delegate = self
             cellFriend.index = indexPath

@@ -39,6 +39,7 @@ class NewsViewCell: UITableViewCell {
     
     var news: News? {
         didSet {
+            authorImage.image = nil
             setAvatarImageFrame()
             
             authorNameLabel.text = news?.author
@@ -153,11 +154,11 @@ extension NewsViewCell {
     
     private func setFooterViewFrame() {
         let maxWidth = self.bounds.width - insets * 2
-        let maxHeight: CGFloat = 20
+        let maxHeight: CGFloat = 30
         let viewSize = CGSize(width: maxWidth, height: maxHeight)
         
         let positionX = insets
-        let positionY = self.frame.height - insets - viewSize.height
+        let positionY = self.frame.height  - viewSize.height
         let origin = CGPoint(x: positionX, y: positionY)
         let frame = CGRect(origin: origin, size: viewSize)
         
@@ -178,6 +179,12 @@ extension NewsViewCell {
         guard let index = index
             , self.bounds.height != height else { return }
         delegate?.setCellHeight(height, at: index, cell: self)
+    }
+    
+    private func getCellHeight() -> CGFloat {
+        let height = insets * 3 + insetsBtwElements * 3 + authorImage.frame.height + newsLabel.frame.height + newsImage.frame.height + footerView.frame.height
+        
+        return height
     }
     
     private func setLikesImages() {
@@ -267,12 +274,6 @@ extension NewsViewCell {
         let frame = CGRect(origin: origin, size: size)
         
         viewsImage.frame = frame
-    }
-    
-    private func getCellHeight() -> CGFloat {
-        let height = insets * 2 + insetsBtwElements * 3 + authorImage.frame.height + newsLabel.frame.height + newsImage.frame.height + footerView.frame.height
-        
-        return height
     }
 }
 

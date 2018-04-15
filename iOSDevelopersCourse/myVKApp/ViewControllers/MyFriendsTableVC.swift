@@ -12,7 +12,6 @@ import RealmSwift
 
 class MyFriendsTableVC: UITableViewController {
     
-    let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")
     let userId =  KeychainWrapper.standard.string(forKey: "userId")
     
     lazy var myFriendsArray: Results<Friend> = {
@@ -34,7 +33,7 @@ class MyFriendsTableVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = 55
-        FriendsRequests.getFriendsList(userId: self.userId!, accessToken: self.accessToken!)
+        FriendsRequests.getFriendsList()
         token = Notifications.getTableViewTokenRows(myFriendsArray, view: self.tableView)
     }
 

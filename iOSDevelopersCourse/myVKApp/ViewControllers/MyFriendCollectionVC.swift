@@ -7,13 +7,9 @@
 //
 
 import UIKit
-import SwiftKeychainWrapper
 import RealmSwift
 
 class MyFriendCollectionVC: UICollectionViewController {
-
-    let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")
-    let userId =  KeychainWrapper.standard.string(forKey: "userId")
     
     var friendName = String()
     let interItemSpace: CGFloat = 5
@@ -39,7 +35,7 @@ class MyFriendCollectionVC: UICollectionViewController {
         super.viewDidLoad()
         navigationItem.title = friendName
         
-        FriendsRequests.getFriendPhotos(userId: self.userId!, accessToken: self.accessToken!, friendId: self.friendId)
+        FriendsRequests.getFriendPhotos(friendId: self.friendId)
         photoToken = Notifications.getCollectionViewToken(friendPhotos, view: self.collectionView)
     }
 
