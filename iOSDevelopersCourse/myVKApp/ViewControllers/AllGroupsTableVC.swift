@@ -14,7 +14,7 @@ class AllGroupsTableVC: UITableViewController {
     
     let searchBar = UISearchBar()
     lazy var allGroupsArray: Results<Group> = {
-        return RealmLoader.loadData(object: Group()).filter("userId == ''")
+        return RealmLoader.loadData(object: Group()).sorted(byKeyPath: "followers", ascending: false)
     }()
     var filteredArray: Results<Group>!
     
@@ -105,7 +105,7 @@ extension AllGroupsTableVC: UISearchBarDelegate {
     }
     
     private func loadGroupsData(filter: String = "") {
-        let groups = RealmLoader.loadData(object: Group()).filter("userId == %@", "")
+        let groups = RealmLoader.loadData(object: Group())
         
         switch isSearching {
         case true:

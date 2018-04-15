@@ -7,13 +7,12 @@
 //
 
 import UIKit
-import SwiftKeychainWrapper
 import RealmSwift
 
 class MyGroupsTableVC: UITableViewController {
     
     lazy var myGroupsArray: Results<Group> = {
-        return RealmLoader.loadData(object: Group()).filter("userId != ''")
+        return RealmRequests.getUserGroups()
     }()
     var token: NotificationToken?
     

@@ -35,7 +35,7 @@ class GroupsRequests {
         Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON {  response in
             switch response.result {
             case .success(let value):
-                let groups = JSON(value)["response"]["items"].compactMap({ Group(json: $0.1, userId: userId!) })
+                let groups = JSON(value)["response"]["items"].compactMap({ Group(json: $0.1) })
                 RealmGroupsSaver.saveUserGroups(groups: groups)
             case .failure(let error):
                 print(error)

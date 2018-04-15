@@ -50,7 +50,7 @@ class News: Object {
             self.author = friend[0].name
             self.authorImageUrl = friend[0].photoUrl
         } else {
-            let group = groups.filter({$0.compoundKey == "\(authorId.magnitude)\(userId)"})
+            let group = groups.filter({$0.idGroup == "\(authorId.magnitude)"})
             
             self.author = group[0].nameGroup
             self.authorImageUrl = group[0].photoGroupUrl
