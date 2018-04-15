@@ -16,7 +16,6 @@ class IncomingMsgViewCell: UITableViewCell {
     
     let insets: CGFloat = 5
     let msgInset: CGFloat = 70
-    let bubbleTail: CGFloat = 35
     
     weak var delegate: CellHeightDelegate?
     var index: IndexPath?
@@ -68,8 +67,8 @@ extension IncomingMsgViewCell {
     }
     
     private func setMsgLabelFrame() {
-        let insetsX = insets * 2 + bubbleTail
-        let insetsY = insets
+        let insetsX = insets * 3
+        let insetsY = insets * 2
         
         let labelSize = Layers.getLabelSize(text: messageLabel.text!, font: messageLabel.font, in: self, insets: insetsX + msgInset)
         
@@ -80,7 +79,7 @@ extension IncomingMsgViewCell {
     }
     
     private func setDateLabelFrame() {
-        let insetsX = insets * 2 + bubbleTail
+        let insetsX = insets * 2
         let insetsY = insets + messageLabel.frame.height + insets
         let labelSize = Layers.getLabelSize(text: dateLabel.text!, font: dateLabel.font, in: self, insets: insetsX + msgInset)
         let fromX = messageLabel.frame.origin.x
@@ -92,12 +91,12 @@ extension IncomingMsgViewCell {
     }
     
     private func setBubbleImage() {
-        let posX = CGFloat(0)
+        let posX = insets
         let posY = CGFloat(0)
         let origin = CGPoint(x: posX, y: posY)
         
         let contentWidth = messageLabel.frame.width > dateLabel.frame.width ? messageLabel.frame.width : dateLabel.frame.width
-        let width = contentWidth + insets * 2 + bubbleTail
+        let width = contentWidth + insets * 4
         let height = messageLabel.frame.height  + dateLabel.frame.height + insets * 4
         
         let size = CGSize(width: width, height: height)

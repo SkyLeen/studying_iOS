@@ -416,7 +416,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="86"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="chat_left" translatesAutoresizingMaskIntoConstraints="NO" id="YCk-FM-1vd">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="chat_in" translatesAutoresizingMaskIntoConstraints="NO" id="YCk-FM-1vd">
                                                             <rect key="frame" x="0.0" y="11" width="240" height="64"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                         </imageView>
@@ -450,7 +450,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="78"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="chat_right" translatesAutoresizingMaskIntoConstraints="NO" id="z42-Ci-LyQ">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="chat_out" translatesAutoresizingMaskIntoConstraints="NO" id="z42-Ci-LyQ">
                                                             <rect key="frame" x="120" y="0.0" width="255" height="78"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                         </imageView>
@@ -887,8 +887,8 @@
     </scenes>
     <resources>
         <image name="add" width="33" height="33"/>
-        <image name="chat_left" width="200" height="83"/>
-        <image name="chat_right" width="200" height="83"/>
+        <image name="chat_in" width="175" height="83"/>
+        <image name="chat_out" width="175" height="82"/>
         <image name="friends" width="33" height="33"/>
         <image name="groups" width="33" height="33"/>
         <image name="messages" width="33" height="33"/>

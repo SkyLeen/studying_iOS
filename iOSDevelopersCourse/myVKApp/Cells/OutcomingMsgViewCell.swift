@@ -16,7 +16,6 @@ class OutcomingMsgViewCell: UITableViewCell {
     
     let insets: CGFloat = 5
     let msgInset: CGFloat = 70
-    let bubbleTail: CGFloat = 35
     
     weak var delegate: CellHeightDelegate?
     var index: IndexPath?
@@ -66,10 +65,10 @@ extension OutcomingMsgViewCell {
     }
     
     private func setMsgLabelFrame() {
-        let maxInsets = insets * 2 + msgInset + bubbleTail
+        let maxInsets = insets * 3 + msgInset
         let labelSize = Layers.getLabelSize(text: messageLabel.text!, font: messageLabel.font, in: self, insets: maxInsets)
         
-        let insetsX = self.frame.width - insets - bubbleTail - labelSize.width
+        let insetsX = self.frame.width - insets * 2 - labelSize.width
         let insetsY = insets * 2
         let frame = Layers.getLabelFrame(fromX: insetsX, fromY: insetsY, labelSize: labelSize)
         
@@ -78,11 +77,11 @@ extension OutcomingMsgViewCell {
     }
     
     private func setDateLabelFrame() {
-        let insetsX = self.frame.origin.x + insets * 2 + msgInset
+        let insetsX = self.frame.origin.x + insets * 3 + msgInset
         let insetsY = insets + messageLabel.frame.height + insets
-        let labelSize = Layers.getLabelSize(text: dateLabel.text!, font: dateLabel.font, in: self, insets: insetsX + bubbleTail)
+        let labelSize = Layers.getLabelSize(text: dateLabel.text!, font: dateLabel.font, in: self, insets: insetsX)
         
-        let fromX = self.frame.width - labelSize.width - insets * 2 - bubbleTail
+        let fromX = self.frame.width - labelSize.width - insets * 2
         let frame = Layers.getLabelFrame(fromX: fromX, fromY: insetsY, labelSize: labelSize)
         
         dateLabel.frame = frame
@@ -96,7 +95,7 @@ extension OutcomingMsgViewCell {
         let posY = CGFloat(0)
         let origin = CGPoint(x: posX, y: posY)
         
-        let width = self.frame.width - content + insets * 2
+        let width = self.frame.width - content + insets
         let height = messageLabel.frame.height  + dateLabel.frame.height + insets * 4
         let size = CGSize(width: width, height: height)
         

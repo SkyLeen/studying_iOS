@@ -42,13 +42,13 @@ class UserRequests {
                     for user in users {
                         RealmUserSaver.createUser(user: user)
                     }
-                    let data = users.first?.makeAny
+                    guard let data = users.first else { return }
+                    let any = data.makeAny
                     let _ = dbLink.observe(.value) { snapshot in
                         guard let value = snapshot.value else { return }
                         let json = JSON(value).compactMap({ User(json: $0.1) })
                         if json.isEmpty || !json.contains(where: { $0.idUser == userId }) {
-                            print(json)
-                            dbLink.child(userId).setValue(data)
+                            dbLink.child(userId).setValue(any)
                         }
                     }
                 case .fromDialogs:
