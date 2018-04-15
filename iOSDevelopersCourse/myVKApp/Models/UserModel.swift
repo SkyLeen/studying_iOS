@@ -27,6 +27,16 @@ class User: Object {
     var newsfeed = List<News>()
     var dialogs = List<Dialog>()
     
+    var makeAny: Any {
+        return [
+            "id": idUser,
+            "lastName": lastName,
+            "firstName": firstName,
+            "photoUrl": photoUrl,
+            "grous": Array(groups).map { $0.makeAny }
+        ]
+    }
+    
     @objc override open class func primaryKey() -> String? {
         return "idUser"
     }

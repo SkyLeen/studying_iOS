@@ -19,6 +19,15 @@ class Group: Object {
     @objc dynamic var compoundKey: String = ""
    
     var user = LinkingObjects(fromType: User.self, property: "groups")
+    var makeAny: Any  {
+       return [
+        "id": idGroup,
+        "name": nameGroup,
+        "followers": followers,
+        "photo": photoGroupUrl ?? "",
+        "compoundKey":compoundKey
+        ]
+    }
     
     @objc override open class func primaryKey() -> String? {
         return "compoundKey"
