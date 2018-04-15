@@ -77,9 +77,11 @@ class GroupsRequests {
             switch response.result {
             case .success(let value):
                 let _ = dbLink.observe(.value) { snapshot in
-                    let data = RealmLoader.loadData(object: Group()).filter("idGroup == %@", "\(idGroup)")
-                    let group = data[0].makeAny
-                    dbLink.child("groups/\(data[0].idGroup)").setValue(group)
+                    let data = RealmRequests.getUserGroups().filter("idGroup == %@", "\(idGroup)")
+                    guard let group = data.first else { return }
+                    let any = group.makeAny
+                    let id = group.idGroup
+                    dbLink.child("groups/\(id)").setValue(any)
                 }
                 
                 print(JSON(value))

@@ -41,11 +41,16 @@ class UserRequests {
                     let users = JSON(value)["response"].compactMap({ User(json: $0.1) })
                     for user in users {
                         RealmUserSaver.createUser(user: user)
-                        
-                        let data = user.makeAny
-                        dbLink.child(user.idUser).setValue(data)
                     }
-                    
+                    let data = users.first?.makeAny
+                    let _ = dbLink.observe(.value) { snapshot in
+                        guard let value = snapshot.value else { return }
+                        let json = JSON(value).compactMap({ User(json: $0.1) })
+                        if json.isEmpty || !json.contains(where: { $0.idUser == userId }) {
+                            print(json)
+                            dbLink.child(userId).setValue(data)
+                        }
+                    }
                 case .fromDialogs:
                     let users = JSON(value)["response"].compactMap({ Friend(json: $0.1) })
                     for user in users {

@@ -29,10 +29,10 @@ class User: Object {
     
     var makeAny: Any {
         return [
-            "lastName": lastName,
-            "firstName": firstName,
-            "photoUrl": photoUrl,
-            "grous": Array(groups).map { $0.makeAny }
+            "id":idUser,
+            "last_name": lastName,
+            "first_name": firstName,
+            "photo_100": photoUrl
         ]
     }
     

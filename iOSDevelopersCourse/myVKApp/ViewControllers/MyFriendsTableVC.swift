@@ -17,6 +17,7 @@ class MyFriendsTableVC: UITableViewController {
     
     lazy var myFriendsArray: Results<Friend> = {
         return RealmLoader.loadData(object: Friend()).filter("userId == %@", userId!).sorted(byKeyPath: "lastName")
+
     }()
     var token: NotificationToken?
     
