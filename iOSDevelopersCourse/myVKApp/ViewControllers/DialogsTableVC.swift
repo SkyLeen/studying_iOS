@@ -63,7 +63,8 @@ class DialogsTableVC: UITableViewController {
         
         cell.dialog = dialog
         
-        guard let user = friendId > 0 ? RealmRequests.getFriendData(friend: friendId.description) :
+        guard dialog.chatId == 0,
+            let user = friendId > 0 ? RealmRequests.getFriendData(friend: friendId.description) :
             RealmRequests.getGroupData(group: friendId.magnitude.description),
             let url = user.photoUrl
             else { return cell }
@@ -86,6 +87,8 @@ class DialogsTableVC: UITableViewController {
         guard let friend = sender as? IndexPath else { return }
         let dialog = dialogsArray[friend.row]
         
+        destinationVC.dialogId = dialog.id
+        destinationVC.chatId = dialog.chatId
         setFriendNameForTitle(dialog: dialog, to: destinationVC)
     }
 }

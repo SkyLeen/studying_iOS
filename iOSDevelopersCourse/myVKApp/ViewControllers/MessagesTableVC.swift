@@ -23,6 +23,8 @@ class MessagesTableVC: UIViewController {
     var friendId = 0
     var friendName = ""
     var friendImage: UIImage?
+    var dialogId = ""
+    var chatId = 0
     
     var heightInCellCash: [IndexPath : CGFloat] = [:]
     var heightOutCellCash: [IndexPath : CGFloat] = [:]
@@ -90,8 +92,18 @@ class MessagesTableVC: UIViewController {
         textView.resignFirstResponder()
         
         guard let text = textView.text, !text.isEmpty else { return }
-        let destination = friendId
-        DialogsRequests.sendMessage(to: destination, text: text)
+        let destination = chatId > 0 ? 2_000_000_000 + chatId : friendId
+        DialogsRequests.sendMessage(to: destination, chatId: chatId, text: text)
+        
+        let message = Message()
+        message.body = text
+        message.date = Date().timeIntervalSince1970
+        message.friendId = destination
+        message.fromId = Int(userId!)!
+        message.readState = 0
+        message.out = 1
+        message.id = ""
+        print(message)
         self.textView.text.removeAll()
     }
 }

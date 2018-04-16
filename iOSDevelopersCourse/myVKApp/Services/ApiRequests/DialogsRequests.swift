@@ -79,7 +79,6 @@ class DialogsRequests {
         let url = baseUrl + path + pathMethod
         let parameters: Parameters = [
             "access_token":accessToken!,
-            //"user_id":userId!,
             "peer_id":friendId,
             "chat_id":chatId,
             "message":text,

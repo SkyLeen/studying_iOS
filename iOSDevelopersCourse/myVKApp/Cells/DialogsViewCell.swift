@@ -52,7 +52,8 @@ extension DialogsViewCell {
             messageFriendLabel.backgroundColor = color
         } else if dialog?.readState == 0 && dialog?.out == 1 {
             messageTextLabel.backgroundColor = color
-            messageDateLabel.backgroundColor = color
+            messageDateLabel.backgroundColor = .white
+            messageFriendLabel.backgroundColor = .white
             messageView.backgroundColor = .white
         } else {
             messageTextLabel.backgroundColor = .white
