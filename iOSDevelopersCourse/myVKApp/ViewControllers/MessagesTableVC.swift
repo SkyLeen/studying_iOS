@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import SwiftKeychainWrapper
 
 class MessagesTableVC: UIViewController {
 
@@ -16,6 +17,8 @@ class MessagesTableVC: UIViewController {
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var messageView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
+    
+    private let userId =  KeychainWrapper.standard.string(forKey: "userId")
     
     var friendId = 0
     var friendName = ""
@@ -84,8 +87,12 @@ class MessagesTableVC: UIViewController {
     }
     
     private func sendMessage() {
-        let text = textView.text
-        print(text ?? "")
+        textView.resignFirstResponder()
+        
+        guard let text = textView.text, !text.isEmpty else { return }
+        let destination = friendId
+        DialogsRequests.sendMessage(to: destination, text: text)
+        self.textView.text.removeAll()
     }
 }
 
@@ -140,6 +147,15 @@ extension MessagesTableVC: CellHeightDelegate {
         } else if let _ = cell as? OutcomingMsgViewCell {
             heightOutCellCash[index] = height
         }
+    }
+}
+
+extension MessagesTableVC: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        sendMessage()
+        
+        return true
     }
 }
 

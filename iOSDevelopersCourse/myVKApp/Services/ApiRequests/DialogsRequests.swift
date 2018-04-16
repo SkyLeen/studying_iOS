@@ -17,6 +17,7 @@ class DialogsRequests {
     
     static let baseUrl = "https://api.vk.com"
     static let path = "/method"
+    static let version = "5.74"
     
     static func getUserDialogs() {
         let pathMethod = "/messages.getDialogs"
@@ -25,7 +26,7 @@ class DialogsRequests {
             "access_token":accessToken!,
             "count":200,
             //"start_message_id":0,
-            "v":"5.73"
+            "v":version
         ]
                
         Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON(queue: DispatchQueue.global(qos: .utility)) {  response in
@@ -58,7 +59,7 @@ class DialogsRequests {
             "user_id":friendId,
             "count":200,
             //"start_message_id":0,
-            "v":"5.73"
+            "v":version
         ]
         
         Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON(queue: DispatchQueue.global(qos: .utility)) {  response in
@@ -67,6 +68,42 @@ class DialogsRequests {
                 let _ = JSON(value)["response"]["count"]
                 let messages = JSON(value)["response"]["items"].compactMap({ Message(json: $0.1) })
                 RealmDialogSaver.saveMessages(messages: messages)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    static func sendMessage(to friendId: Int, chatId: Int = 0, text: String = "", attachment: String = "") {
+        let pathMethod = "/messages.send"
+        let url = baseUrl + path + pathMethod
+        let parameters: Parameters = [
+            "access_token":accessToken!,
+            //"user_id":userId!,
+            "peer_id":friendId,
+            "chat_id":chatId,
+            "message":text,
+            "attachment":attachment,
+            "v":version
+        ]
+        
+        Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON {  response in
+            switch response.result {
+            case .success(let value):
+                let id = JSON(value)["response"].stringValue
+                if id != "" {
+                    var messages: [Message] = []
+                    let message = Message()
+                    message.body = text
+                    message.date = Date().timeIntervalSince1970
+                    message.friendId = friendId
+                    message.fromId = Int(userId!)!
+                    message.readState = 0
+                    message.out = 1
+                    message.id = id
+                    messages.append(message)
+                    RealmDialogSaver.saveMessages(messages: messages)
+                }
             case .failure(let error):
                 print(error)
             }

@@ -97,14 +97,12 @@ extension DialogsTableVC {
     }
     
     @objc func refreshView(sender: AnyObject) {
-        DispatchQueue.global(qos: .utility).async {
             DialogsRequests.getUserDialogs()
             DispatchQueue.main.async { [weak self] in
                 guard let s = self else { return }
                 s.refreshControl?.endRefreshing()
                 s.tableView.reloadData()
             }
-        }
     }
     
     private func setFriendNameForTitle(dialog: Dialog, to vc: UIViewController) {
