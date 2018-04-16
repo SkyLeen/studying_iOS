@@ -43,8 +43,36 @@ class DialogsRequests {
                             GroupsRequests.getGroupById(idGroup: "\(dialog.friendId.magnitude)")
                         }
                     }
+                    
+                    if dialog.chatId > 0 {
+                        DialogsRequests.getChatUsers(chatId: dialog.chatId)
+                    }
                 }
                 RealmDialogSaver.saveUserDialogs(dialog: dialogs.compactMap({ Dialog(json: $0.1)}), userId: userId!)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    static func getChatUsers(chatId: Int) {
+        let pathMethod = "/messages.getChatUsers"
+        let url = baseUrl + path + pathMethod
+        let parameters: Parameters = [
+            "access_token":accessToken!,
+            "chat_id":chatId,
+            "fields":"photo_100",
+            "v":version
+        ]
+        
+        Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON(queue: DispatchQueue.global(qos: .utility)) {  response in
+            switch response.result {
+            case .success(let value):
+                let chatUsers = JSON(value)["response"].compactMap( { Friend(json: $0.1) })
+                for user in chatUsers {
+                    guard RealmRequests.getFriendData(friend: "\(user.idFriend)") == nil else { continue }
+                    RealmFriendsSaver.saveFriend(friends: user)
+                }
             case .failure(let error):
                 print(error)
             }

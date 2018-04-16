@@ -94,16 +94,6 @@ class MessagesTableVC: UIViewController {
         guard let text = textView.text, !text.isEmpty else { return }
         let destination = chatId > 0 ? 2_000_000_000 + chatId : friendId
         DialogsRequests.sendMessage(to: destination, chatId: chatId, text: text)
-        
-        let message = Message()
-        message.body = text
-        message.date = Date().timeIntervalSince1970
-        message.friendId = destination
-        message.fromId = Int(userId!)!
-        message.readState = 0
-        message.out = 1
-        message.id = ""
-        print(message)
         self.textView.text.removeAll()
     }
 }
