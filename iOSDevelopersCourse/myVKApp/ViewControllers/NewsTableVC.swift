@@ -66,7 +66,7 @@ class NewsTableVC: UITableViewController {
             OperationQueue.main.addOperation(authorReloadedOp)
         }
         
-        if !attachments.isEmpty, let url = newsFeed.attachments[0].url {
+        if !attachments.isEmpty, let url = attachments[0].url {
             let getImageOp = GetCashedImage(url: url, folderName: .News)
             let newsReloadedOp = TableCellReloading(indexPath: indexPath, view: tableView, cell: cell, imageView: cell.newsImage)
             newsReloadedOp.addDependency(getImageOp)

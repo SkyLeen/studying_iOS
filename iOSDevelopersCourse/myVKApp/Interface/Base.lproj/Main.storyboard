@@ -421,69 +421,81 @@
                                         <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="sectionIndexTrackingBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="IncomingMsgViewCell" rowHeight="86" id="HzW-I1-Mv3" customClass="IncomingMsgViewCell" customModule="myVKApp" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="375" height="86"/>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="IncomingMsgViewCell" rowHeight="155" id="HzW-I1-Mv3" customClass="IncomingMsgViewCell" customModule="myVKApp" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28" width="375" height="155"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HzW-I1-Mv3" id="JRE-ng-bwT">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="86"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="155"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="chat_in" translatesAutoresizingMaskIntoConstraints="NO" id="YCk-FM-1vd">
-                                                            <rect key="frame" x="0.0" y="11" width="240" height="64"/>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YCk-FM-1vd">
+                                                            <rect key="frame" x="0.0" y="11" width="240" height="99"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                            <color key="backgroundColor" red="0.83921568629999999" green="0.83921568629999999" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="IncomingMsgLabel" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nbh-Cw-hdD">
-                                                            <rect key="frame" x="40" y="19" width="148" height="25"/>
+                                                            <rect key="frame" x="15" y="20" width="148" height="25"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="IncomingDateLabel" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oOw-91-rPY">
-                                                            <rect key="frame" x="111" y="44" width="123" height="24"/>
+                                                            <rect key="frame" x="111" y="93" width="123" height="24"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
                                                             <color key="textColor" red="0.4756349325" green="0.47564673419999998" blue="0.47564041610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <imageView userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8dI-2J-ogq">
+                                                            <rect key="frame" x="15" y="42" width="219" height="49"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                        </imageView>
                                                     </subviews>
                                                 </tableViewCellContentView>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <connections>
+                                                    <outlet property="attachedImage" destination="8dI-2J-ogq" id="9Kk-Oz-aP9"/>
                                                     <outlet property="bubbleImage" destination="YCk-FM-1vd" id="f03-Jy-MKU"/>
                                                     <outlet property="dateLabel" destination="oOw-91-rPY" id="TFa-UX-876"/>
                                                     <outlet property="messageLabel" destination="nbh-Cw-hdD" id="ZjH-ow-aQj"/>
                                                 </connections>
                                             </tableViewCell>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="OutcomingMsgViewCell" rowHeight="78" id="CXA-Jh-Knw" customClass="OutcomingMsgViewCell" customModule="myVKApp" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="114" width="375" height="78"/>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="OutcomingMsgViewCell" rowHeight="152" id="CXA-Jh-Knw" customClass="OutcomingMsgViewCell" customModule="myVKApp" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="183" width="375" height="152"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CXA-Jh-Knw" id="JRW-JJ-0Iv">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="78"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="152"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="chat_out" translatesAutoresizingMaskIntoConstraints="NO" id="z42-Ci-LyQ">
-                                                            <rect key="frame" x="120" y="0.0" width="255" height="78"/>
+                                                        <imageView userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z42-Ci-LyQ">
+                                                            <rect key="frame" x="120" y="0.0" width="255" height="141"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                            <color key="backgroundColor" red="1" green="0.83234566450000003" blue="0.47320586440000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="OutcomingDateLabel" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X4L-j0-qCf">
-                                                            <rect key="frame" x="206" y="48" width="132" height="27"/>
+                                                            <rect key="frame" x="206" y="118" width="132" height="27"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="OutcomingMsgLabel" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mAn-J5-2GK">
-                                                            <rect key="frame" x="129" y="11" width="194" height="40"/>
+                                                            <rect key="frame" x="130" y="11" width="194" height="40"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <imageView userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YdF-cc-gFm">
+                                                            <rect key="frame" x="130" y="42" width="230" height="80"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                        </imageView>
                                                     </subviews>
                                                 </tableViewCellContentView>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <connections>
+                                                    <outlet property="attachedImage" destination="YdF-cc-gFm" id="v6E-Rf-1BZ"/>
                                                     <outlet property="bubbleImage" destination="z42-Ci-LyQ" id="w1z-zk-C2t"/>
                                                     <outlet property="dateLabel" destination="X4L-j0-qCf" id="R0G-gd-nFk"/>
                                                     <outlet property="messageLabel" destination="mAn-J5-2GK" id="aNR-8a-SJ2"/>
@@ -899,8 +911,6 @@
     </scenes>
     <resources>
         <image name="add" width="16" height="16"/>
-        <image name="chat_in" width="175" height="83"/>
-        <image name="chat_out" width="175" height="82"/>
         <image name="friends" width="25" height="25"/>
         <image name="groups" width="25" height="25"/>
         <image name="messages" width="25" height="25"/>

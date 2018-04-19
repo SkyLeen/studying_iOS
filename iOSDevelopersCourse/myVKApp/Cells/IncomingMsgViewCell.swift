@@ -13,28 +13,24 @@ class IncomingMsgViewCell: UITableViewCell {
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var bubbleImage: UIImageView!
+    @IBOutlet weak var attachedImage: UIImageView!
     
     let insets: CGFloat = 5
     let msgInset: CGFloat = 70
     
     weak var delegate: CellHeightDelegate?
     var index: IndexPath?
+    var attachments: [MessageAttachments]?
     
     var message: Message? {
         didSet{
-            self.messageLabel.text = nil
-            
-            if message?.attachmentType != "" {
-                messageLabel.text = (message?.body)! + " [" + (message?.attachmentType)! + "]"
-            } else {
-                messageLabel.text = message?.body
-            }
-            
+            messageLabel.text = nil
+            attachedImage.image = nil
+            messageLabel.text = message?.body
             dateLabel.text = Date(timeIntervalSince1970: (message?.date)!).formatted
             
             setMsgLabelFrame()
             setDateLabelFrame()
-            setBubbleImage()
         }
     }
     
@@ -46,6 +42,8 @@ class IncomingMsgViewCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         setMsgLabelFrame()
+        setDateLabelFrame()
+        setAttachedImageFrame()
         setDateLabelFrame()
         setBubbleImage()
     }
@@ -61,12 +59,17 @@ extension IncomingMsgViewCell {
     }
     
     private func cancelAutoConstraints() {
-        [messageLabel, messageLabel].forEach {
+        [messageLabel, messageLabel, attachedImage].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
     }
     
     private func setMsgLabelFrame() {
+        if let msg = messageLabel.text, msg == "" {
+            messageLabel.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
+            return
+        }
+        
         let insetsX = insets * 3
         let insetsY = insets * 2
         
@@ -79,30 +82,50 @@ extension IncomingMsgViewCell {
     }
     
     private func setDateLabelFrame() {
-        let insetsX = insets * 2
-        let insetsY = insets + messageLabel.frame.height + insets
+        let insetsX = insets * 3
         let labelSize = Layers.getLabelSize(text: dateLabel.text!, font: dateLabel.font, in: self, insets: insetsX + msgInset)
-        let fromX = messageLabel.frame.origin.x
-        
-        let frame = Layers.getLabelFrame(fromX: fromX, fromY: insetsY, labelSize: labelSize)
+        //let fromX = attachedImage.image != nil ? attachedImage.frame.origin.x : messageLabel.frame.origin.x
+        let insetsY = self.frame.height - labelSize.height - insets * 3
+        let frame = Layers.getLabelFrame(fromX: insets, fromY: insetsY, labelSize: labelSize)
         
         dateLabel.frame = frame
-        messageLabel.sizeToFit()
+        dateLabel.sizeToFit()
     }
     
-    private func setBubbleImage() {
+   func setAttachedImageFrame() {
+        if let attachments = attachments, attachments.isEmpty {
+            attachedImage.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
+            return
+        }
+    
+        let width = self.bounds.width - insets * 3 - msgInset
+        let height = width
+        let imageBlock = CGSize(width: width, height: height)
+        
+        let positionX = insets * 3
+        let positionY = messageLabel.frame.origin.y + messageLabel.bounds.height + insets * 2
+        let origin = CGPoint(x: positionX, y: positionY)
+        let frame = CGRect(origin: origin, size: imageBlock)
+        
+        attachedImage.frame = frame
+    }
+    
+    func setBubbleImage() {
         let posX = insets
         let posY = CGFloat(0)
         let origin = CGPoint(x: posX, y: posY)
         
-        let contentWidth = messageLabel.frame.width > dateLabel.frame.width ? messageLabel.frame.width : dateLabel.frame.width
+        var contentWidth = messageLabel.frame.width > dateLabel.frame.width ? messageLabel.frame.width : dateLabel.frame.width
+        contentWidth = attachedImage.frame.width > contentWidth ? attachedImage.frame.width : contentWidth
+        
         let width = contentWidth + insets * 4
-        let height = messageLabel.frame.height  + dateLabel.frame.height + insets * 4
+        let height = messageLabel.frame.height + attachedImage.frame.height + dateLabel.frame.height + insets * 4
         
         let size = CGSize(width: width, height: height)
         let frame = CGRect(origin: origin, size: size)
         
         bubbleImage.frame = frame
+        bubbleImage.layer.cornerRadius = 16
     }
     
     private func getCellHeight() -> CGFloat {

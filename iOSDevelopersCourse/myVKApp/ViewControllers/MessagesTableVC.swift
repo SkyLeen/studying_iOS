@@ -118,12 +118,24 @@ extension MessagesTableVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let message = friendsMessageArray[indexPath.row]
-        
+        let attachments = message.attachments
         if message.out == 0 {
             let cellFriend = tableView.dequeueReusableCell(withIdentifier: "IncomingMsgViewCell", for: indexPath) as! IncomingMsgViewCell
+            
             cellFriend.delegate = self
             cellFriend.index = indexPath
             cellFriend.message = message
+            cellFriend.attachments = Array(attachments)
+            
+            if !attachments.isEmpty, let url = attachments[0].url {
+                let getImageOp = GetCashedImage(url: url, folderName: .Dialogs)
+                let newsReloadedOp = TableCellReloading(indexPath: indexPath, view: tableView, cell: cellFriend, imageView: cellFriend.attachedImage)
+                newsReloadedOp.addDependency(getImageOp)
+                opQueue.addOperation(getImageOp)
+                OperationQueue.main.addOperation(newsReloadedOp)
+            }
+            cellFriend.setAttachedImageFrame()
+            cellFriend.setBubbleImage()
             cellFriend.updateHeight()
             
             return cellFriend
@@ -133,6 +145,7 @@ extension MessagesTableVC: UITableViewDelegate {
             cellUser.delegate = self
             cellUser.index = indexPath
             cellUser.message = message
+            
             cellUser.updateHeight()
             
             return cellUser

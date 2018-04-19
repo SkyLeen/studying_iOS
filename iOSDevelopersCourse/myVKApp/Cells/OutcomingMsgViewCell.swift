@@ -13,12 +13,14 @@ class OutcomingMsgViewCell: UITableViewCell {
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var bubbleImage: UIImageView!
+    @IBOutlet weak var attachedImage: UIImageView!
     
     let insets: CGFloat = 5
     let msgInset: CGFloat = 70
     
     weak var delegate: CellHeightDelegate?
     var index: IndexPath?
+    var attachments: [MessageAttachments]?
     
     var message: Message? {
         didSet{
@@ -102,6 +104,7 @@ extension OutcomingMsgViewCell {
         let frame = CGRect(origin: origin, size: size)
         
         bubbleImage.frame = frame
+        bubbleImage.layer.cornerRadius = 16
     }
     
     private func getCellHeight() -> CGFloat {
