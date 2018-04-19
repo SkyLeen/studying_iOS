@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="yellow" translatesAutoresizingMaskIntoConstraints="NO" id="aLV-7x-db6">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vk" translatesAutoresizingMaskIntoConstraints="NO" id="KWZ-Bg-E6d">
                                 <rect key="frame" x="60" y="220" width="255" height="247"/>
@@ -28,13 +28,13 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="4DC-24-eEk" firstAttribute="trailing" secondItem="KWZ-Bg-E6d" secondAttribute="trailing" constant="60" id="3f2-UX-Z2p"/>
-                            <constraint firstItem="4DC-24-eEk" firstAttribute="trailing" secondItem="aLV-7x-db6" secondAttribute="trailing" id="A8h-t2-Flb"/>
                             <constraint firstItem="4DC-24-eEk" firstAttribute="bottom" secondItem="aLV-7x-db6" secondAttribute="bottom" id="Dsm-cl-Oal"/>
                             <constraint firstItem="KWZ-Bg-E6d" firstAttribute="leading" secondItem="4DC-24-eEk" secondAttribute="leading" constant="60" id="UaI-nJ-OVn"/>
                             <constraint firstItem="4DC-24-eEk" firstAttribute="bottom" secondItem="KWZ-Bg-E6d" secondAttribute="bottom" constant="200" id="jfg-VQ-lEu"/>
                             <constraint firstItem="aLV-7x-db6" firstAttribute="leading" secondItem="4DC-24-eEk" secondAttribute="leading" id="p0X-le-ir4"/>
+                            <constraint firstItem="aLV-7x-db6" firstAttribute="trailing" secondItem="4DC-24-eEk" secondAttribute="trailing" id="pkO-y9-zb3"/>
                             <constraint firstItem="KWZ-Bg-E6d" firstAttribute="top" secondItem="4DC-24-eEk" secondAttribute="top" constant="200" id="wZV-A0-m7i"/>
-                            <constraint firstItem="aLV-7x-db6" firstAttribute="top" secondItem="d3y-Yi-ily" secondAttribute="top" id="z8R-bA-ely"/>
+                            <constraint firstItem="aLV-7x-db6" firstAttribute="top" secondItem="4DC-24-eEk" secondAttribute="top" id="waY-kv-9u9"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4DC-24-eEk"/>
                     </view>

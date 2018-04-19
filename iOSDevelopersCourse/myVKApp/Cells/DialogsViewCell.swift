@@ -15,6 +15,7 @@ class DialogsViewCell: UITableViewCell {
     @IBOutlet weak var messageTextLabel: UILabel!
     @IBOutlet weak var messageView: UIView!
     @IBOutlet weak var messageDateLabel: UILabel!
+    @IBOutlet weak var stateImage: UIImageView!
     
     let insets: CGFloat = 5
     
@@ -35,6 +36,7 @@ class DialogsViewCell: UITableViewCell {
         super.layoutSubviews()
         setImageFrame()
         setDateLabelFrame()
+        setStateImage()
         setNameLabelFrame()
         setTextLabelFrame()
     }
@@ -43,23 +45,12 @@ class DialogsViewCell: UITableViewCell {
 extension DialogsViewCell {
     
     private func setBackgroungColor() {
-        let color = UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1)
+        let color = UIColor(red: 239/255, green: 194/255, blue: 68/255, alpha: 1.0)
         
-        if dialog?.readState == 0 && dialog?.out == 0 {
-            messageView.backgroundColor = color
-            messageTextLabel.backgroundColor = color
-            messageDateLabel.backgroundColor = color
-            messageFriendLabel.backgroundColor = color
-        } else if dialog?.readState == 0 && dialog?.out == 1 {
-            messageTextLabel.backgroundColor = color
-            messageDateLabel.backgroundColor = .white
-            messageFriendLabel.backgroundColor = .white
-            messageView.backgroundColor = .white
+        if dialog?.readState == 0 {
+            stateImage.backgroundColor = color
         } else {
-            messageTextLabel.backgroundColor = .white
-            messageView.backgroundColor = .white
-            messageDateLabel.backgroundColor = .white
-            messageFriendLabel.backgroundColor = .white
+            stateImage.backgroundColor = .white
         }
     }
     
@@ -72,6 +63,7 @@ extension DialogsViewCell {
         
         messageDateLabel.text = Date(timeIntervalSince1970: (dialog?.date)!).formatted
         setDateLabelFrame()
+        setStateImage()
         
         if dialog?.attachments != "" {
             messageTextLabel.text = (dialog?.body)! + " [" + (dialog?.attachments)! + "]"
@@ -119,9 +111,23 @@ extension DialogsViewCell {
     private func setTextLabelFrame() {
         let insetsX = insets + messageFriendImage.frame.width + insets
         let insetsY = messageFriendLabel.frame.maxY + insets
-        let labelSize = Layers.getLabelSize(text: messageTextLabel.text!, font: messageTextLabel.font, in: self, insets: insetsX)
+        let labelSize = Layers.getLabelSize(text: messageTextLabel.text!, font: messageTextLabel.font, in: self, insets: insetsX + insets + stateImage.frame.width)
         let frame = Layers.getLabelFrame(fromX: insetsX, fromY: insetsY, labelSize: labelSize)
         
         messageTextLabel.frame = frame
+    }
+    
+    private func setStateImage() {
+        let rectSide: CGFloat = 7
+        let size = CGSize(width: ceil(rectSide), height: ceil(rectSide))
+        
+        let insetsX = messageDateLabel.frame.maxX - insets
+        let insetsY = messageDateLabel.frame.maxY + insets
+        
+        let origin = CGPoint(x: insetsX, y: insetsY)
+        let frame = CGRect(origin: origin, size: size)
+        
+        stateImage.frame = frame
+        stateImage.layer.cornerRadius = stateImage.frame.width/2
     }
 }

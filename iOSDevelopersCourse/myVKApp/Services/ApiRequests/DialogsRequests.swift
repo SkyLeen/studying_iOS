@@ -43,10 +43,6 @@ class DialogsRequests {
                             GroupsRequests.getGroupById(idGroup: "\(dialog.friendId.magnitude)")
                         }
                     }
-                    
-                    if dialog.chatId > 0 {
-                        DialogsRequests.getChatUsers(chatId: dialog.chatId)
-                    }
                 }
                 RealmDialogSaver.saveUserDialogs(dialog: dialogs.compactMap({ Dialog(json: $0.1)}), userId: userId!)
             case .failure(let error):
@@ -70,8 +66,10 @@ class DialogsRequests {
             case .success(let value):
                 let chatUsers = JSON(value)["response"].compactMap( { Friend(json: $0.1) })
                 for user in chatUsers {
-                    guard RealmRequests.getFriendData(friend: "\(user.idFriend)") == nil else { continue }
-                    RealmFriendsSaver.saveFriend(friends: user)
+                    if RealmRequests.getFriendData(friend: "\(user.idFriend)") == nil  {
+                        RealmFriendsSaver.saveFriend(friends: user)
+                    }
+                    DialogsRequests.getMessages(friendId: user.idFriend.description)
                 }
             case .failure(let error):
                 print(error)
@@ -96,6 +94,15 @@ class DialogsRequests {
                 let _ = JSON(value)["response"]["count"]
                 let messages = JSON(value)["response"]["items"].compactMap({ Message(json: $0.1) })
                 RealmDialogSaver.saveMessages(messages: messages)
+                
+                let attachments = JSON(value)["response"]["items"]
+                DispatchQueue.global(qos: .utility).async {
+                    for (_,item) in attachments.enumerated() {
+                        let msgId = item.1["id"].stringValue
+                        let attachments = item.1["attachments"].compactMap({ MessageAttachments(json: $0.1, msgId: "\(msgId)") })
+                        RealmDialogSaver.saveMsgsAttach(attachs: attachments, msgId: msgId)
+                    }
+                }
             case .failure(let error):
                 print(error)
             }

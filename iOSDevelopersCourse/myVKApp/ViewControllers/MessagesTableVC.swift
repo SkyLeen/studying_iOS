@@ -19,7 +19,7 @@ class MessagesTableVC: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     
     private let userId =  KeychainWrapper.standard.string(forKey: "userId")
-    
+
     var friendId = 0
     var friendName = ""
     var friendImage: UIImage?
@@ -49,7 +49,11 @@ class MessagesTableVC: UIViewController {
         super.viewDidLoad()
         setTitle()
         setTextView()
-        DialogsRequests.getMessages(friendId: friendId.description)
+        if chatId > 0 {
+            DialogsRequests.getChatUsers(chatId: chatId)
+        } else {
+            DialogsRequests.getMessages(friendId: friendId.description)
+        }
         messageToken = Notifications.getTableViewTokenRows(friendsMessageArray, view: self.messageTableView)
         
         let hideKbGesture = UITapGestureRecognizer(target: self, action: #selector(self.hideKeyboard))
@@ -60,6 +64,11 @@ class MessagesTableVC: UIViewController {
         super.viewWillAppear(animated)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWasShown), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillBeHidden), name: .UIKeyboardWillHide, object: nil)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        goToBottom()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -162,6 +171,14 @@ extension MessagesTableVC: UITextFieldDelegate {
 }
 
 extension MessagesTableVC {
+    
+    private func goToBottom() {
+        DispatchQueue.main.async {
+            guard self.friendsMessageArray.count > 0 else { return }
+            let indexPath = IndexPath(row: self.friendsMessageArray.count - 1, section: 0)
+            self.messageTableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
+        }
+    }
     
     private func setTitle() {
         let navView = UIView()

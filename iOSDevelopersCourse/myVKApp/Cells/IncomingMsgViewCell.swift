@@ -24,8 +24,8 @@ class IncomingMsgViewCell: UITableViewCell {
         didSet{
             self.messageLabel.text = nil
             
-            if message?.attachments != "" {
-                messageLabel.text = (message?.body)! + " [" + (message?.attachments)! + "]"
+            if message?.attachmentType != "" {
+                messageLabel.text = (message?.body)! + " [" + (message?.attachmentType)! + "]"
             } else {
                 messageLabel.text = message?.body
             }

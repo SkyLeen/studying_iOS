@@ -18,9 +18,9 @@ class Message: Object {
     @objc dynamic var friendId: Int = 0
     @objc dynamic var fromId: Int = 0
     @objc dynamic var out: Int = 0
-    @objc dynamic var attachments: String = ""
+    @objc dynamic var attachmentType: String = ""
     
-    //var attachments = List<MessageAttachments>()
+    var attachments = List<MessageAttachments>()
     
     @objc override open class func primaryKey() -> String? {
         return "id"
@@ -36,6 +36,6 @@ class Message: Object {
         self.fromId = json["from_id"].intValue
         self.friendId = json["user_id"].intValue
         self.out = json["out"].intValue
-        self.attachments = json["attachments"][0]["type"].stringValue
+        self.attachmentType = json["attachments"][0]["type"].stringValue
     }
 }

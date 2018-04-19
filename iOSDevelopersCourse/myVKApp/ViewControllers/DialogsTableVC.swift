@@ -46,7 +46,6 @@ class DialogsTableVC: UITableViewController {
         tableView.rowHeight = 55
         addRefreshControl()
         DialogsRequests.getUserDialogs()
-        
         dialogsToken = Notifications.getTableViewTokenRows(dialogsArray, view: self.tableView)
         usersToken = Notifications.getTableViewTokenLight(usersArray, view: self.tableView)
         groupsToken = Notifications.getTableViewTokenLight(groupsArray, view: self.tableView)
@@ -110,7 +109,7 @@ extension DialogsTableVC {
     
     private func setFriendNameForTitle(dialog: Dialog, to vc: UIViewController) {
         guard let controller = vc as? MessagesTableVC else { return }
-        let friendId = dialog.friendId
+        let friendId = dialog.chatId == 0 ? dialog.friendId : 0
         controller.friendId = friendId
         
         if dialog.title == ""  {
