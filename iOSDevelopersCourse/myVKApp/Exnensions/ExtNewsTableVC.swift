@@ -11,34 +11,16 @@ import UIKit
 
 extension NewsTableVC {
     
-    func getNotification() {
-        newsArray = RealmLoader.loadData(object: News()).sorted(byKeyPath: "date", ascending: false)
-        token = newsArray.observe({ [weak self] changes in
-            guard let view = self?.tableView else { return }
-            switch changes {
-            case .initial:
-                view.reloadData()
-            case .update(_, let delete, let insert, let update):
-                view.beginUpdates()
-                view.deleteRows(at: delete.map({ IndexPath(row: $0, section: 0) }), with: .fade)
-                view.insertRows(at: insert.map({ IndexPath(row: $0, section: 0) }), with: .fade)
-                view.reloadRows(at: update.map({ IndexPath(row: $0, section: 0) }), with: .fade)
-                view.endUpdates()
-            case .error(let error):
-                print(error.localizedDescription)
-            }
-        })
-    }
-    
     func addRefreshControl() {
         self.refreshControl?.addTarget(self, action: #selector(self.refreshView), for: .valueChanged)
     }
     
     @objc func refreshView(sender: AnyObject) {
         NewsRequests.getUserNews(userId: self.userId!, accessToken: self.accessToken!)
-        DispatchQueue.main.async {
-            self.getNotification()
-            self.refreshControl?.endRefreshing()
+        DispatchQueue.main.async { [weak self] in
+            guard let s = self else { return }
+            s.refreshControl?.endRefreshing()
+            s.tableView.reloadData()
         }
     }
 }

@@ -33,7 +33,7 @@ class MyGroupsTableVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         GroupsRequests.getUserGroups(userId: self.userId!, accessToken: self.accessToken!)
-        getNotification()
+        token = Notifications.getTableViewToken(myGroupsArray, view: self.tableView)
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

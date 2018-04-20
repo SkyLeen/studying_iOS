@@ -18,7 +18,9 @@ class NewsTableVC: UITableViewController {
     let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")
     let userId =  KeychainWrapper.standard.string(forKey: "userId")
     
-    var newsArray: Results<News>!
+    lazy var newsArray: Results<News> = {
+        return RealmLoader.loadData(object: News()).sorted(byKeyPath: "date", ascending: false)
+    }()
     lazy var newsAttachArray: Results<NewsAttachments> = {
         return RealmLoader.loadData(object: NewsAttachments())
         }()
@@ -33,11 +35,9 @@ class NewsTableVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.estimatedRowHeight = 1000
-        tableView.rowHeight = UITableViewAutomaticDimension
         addRefreshControl()
         NewsRequests.getUserNews(userId: self.userId!, accessToken: self.accessToken!)
-        getNotification()
+        token = Notifications.getTableViewToken(newsArray, view: self.tableView)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -48,7 +48,7 @@ class NewsTableVC: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsViewCell
         let newsFeed = newsArray[indexPath.row]
         let attachments = newsFeed.attachments
-        
+             
         cell.news = newsFeed
         
         if let url = newsFeed.authorImageUrl {
@@ -59,13 +59,29 @@ class NewsTableVC: UITableViewController {
             OperationQueue.main.addOperation(authorReloadedOp)
         }
         
-        guard !attachments.isEmpty, let url = newsFeed.attachments[0].url else { return cell }
-        let getImageOp = GetCashedImage(url: url, folderName: .News)
-        let newsReloadedOp = TableCellReloading(indexPath: indexPath, view: tableView, cell: cell, imageView: cell.newsImage)
-        newsReloadedOp.addDependency(getImageOp)
-        opQueue.addOperation(getImageOp)
-        OperationQueue.main.addOperation(newsReloadedOp)
+        if !attachments.isEmpty, let url = newsFeed.attachments[0].url {
+            let getImageOp = GetCashedImage(url: url, folderName: .News)
+            let newsReloadedOp = TableCellReloading(indexPath: indexPath, view: tableView, cell: cell, imageView: cell.newsImage)
+            newsReloadedOp.addDependency(getImageOp)
+            opQueue.addOperation(getImageOp)
+            OperationQueue.main.addOperation(newsReloadedOp)
+        }
+        cell.setNewsImageFrame()
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let newsFeed = newsArray[indexPath.row]
+        let attachments = newsFeed.attachments
+        var height: CGFloat = 200
+        
+        if !attachments.isEmpty, let _ = newsFeed.attachments[0].url, newsFeed.text != "" {
+            height = 385
+        } else if !attachments.isEmpty, let _ = newsFeed.attachments[0].url, newsFeed.text == "" {
+            height = 300
+        }
+        
+        return height
     }
 }

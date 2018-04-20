@@ -12,35 +12,60 @@ class NewsViewCell: UITableViewCell {
 
     @IBOutlet weak var authorImage: UIImageView!
     @IBOutlet weak var authorNameLabel: UILabel!
-    @IBOutlet weak var newsLabel: UILabel!
-    @IBOutlet weak var newsImage: UIImageView!
-    @IBOutlet weak var likesLabel: UILabel!
-    @IBOutlet weak var commentsLabel: UILabel!
-    @IBOutlet weak var repostsLabel: UILabel!
-    @IBOutlet weak var viewsLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     
-    private var task: URLSessionTask?
-    private var taskImage: URLSessionTask?
-    var imageCache = NSCache<NSString, AnyObject>()
+    @IBOutlet weak var newsLabel: UILabel!
+    @IBOutlet weak var newsImage: UIImageView!
+    
+    @IBOutlet weak var footerView: UIView!
+    @IBOutlet weak var likesImage: UIImageView!
+    @IBOutlet weak var likesLabel: UILabel!
+    @IBOutlet weak var commentImage: UIImageView!
+    @IBOutlet weak var commentsLabel: UILabel!
+    @IBOutlet weak var repostsImage: UIImageView!
+    @IBOutlet weak var repostsLabel: UILabel!
+    @IBOutlet weak var viewsImage: UIImageView!
+    @IBOutlet weak var viewsLabel: UILabel!
+    
+    let insets: CGFloat = 5
+    let insetsBtwElements: CGFloat = 5
     
     var news: News? {
         didSet {
+            setAuthorImageFrame()
+            
             authorNameLabel.text = news?.author
+            setAuthorLabelFrame()
+            
+            dateLabel.text = Date(timeIntervalSince1970: (news?.date)!).formatted
+            setDateLabelFrame()
+            
             newsLabel.text = news?.text
+            setNewsLabelFrame()
+            
             likesLabel.text = news?.likesCount.withSeparator
             commentsLabel.text = news?.commentsCount.withSeparator
             repostsLabel.text = news?.repostsCount.withSeparator
             viewsLabel.text = news?.viewsCount.withSeparator
-            
-            guard let date = news?.date else { return }
-            dateLabel.text = Date(timeIntervalSince1970: date).formatted
+            setFooterViewFrame()
         }
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        cancelAutoConstraints()
         ImageSettingsHelper.setImageLayersSettings(for: authorImage, mode: .forAvatarImages)
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        setAuthorImageFrame()
+        setAuthorLabelFrame()
+        setDateLabelFrame()
+        setNewsLabelFrame()
+        setNewsImageFrame()
+        setFooterViewFrame()
+        super.layoutSubviews()
     }
 }
 
