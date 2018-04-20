@@ -36,11 +36,11 @@ extension DialogsTableVC {
     
     @objc func refreshView(sender: AnyObject) {
         DispatchQueue.global().async {
-             DialogsRequests.getUserDialogs(userId: self.userId!, accessToken: self.accessToken!)
-        }
-        DispatchQueue.main.async {
-            self.getNotification()
-            self.refreshControl?.endRefreshing()
+            DialogsRequests.getUserDialogs(userId: self.userId!, accessToken: self.accessToken!)
+            DispatchQueue.main.async {
+                self.getNotification()
+                self.refreshControl?.endRefreshing()
+            }
         }
     }
 }

@@ -52,7 +52,6 @@ class DialogsViewCell: UITableViewCell {
         task = nil
         
         guard let path = dialog?.friendPhotoUrl, let url = URL(string: path) else { return }
-        DispatchQueue.global(qos: .background).async {
             self.task = URLSession.shared.dataTask(with: url) { (data, response, error) in
                 guard let data = data, error == nil else { return }
                 let image = UIImage(data: data)
@@ -62,6 +61,5 @@ class DialogsViewCell: UITableViewCell {
                 }
             }
         self.task?.resume()
-        }
     }
 }
