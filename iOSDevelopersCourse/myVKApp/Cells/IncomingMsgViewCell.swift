@@ -59,7 +59,7 @@ extension IncomingMsgViewCell {
     }
     
     private func cancelAutoConstraints() {
-        [messageLabel, messageLabel, attachedImage].forEach {
+        [messageLabel, messageLabel,bubbleImage, attachedImage].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
     }
@@ -84,7 +84,6 @@ extension IncomingMsgViewCell {
     private func setDateLabelFrame() {
         let insetsX = insets * 3
         let labelSize = Layers.getLabelSize(text: dateLabel.text!, font: dateLabel.font, in: self, insets: insetsX + msgInset)
-        //let fromX = attachedImage.image != nil ? attachedImage.frame.origin.x : messageLabel.frame.origin.x
         let insetsY = self.frame.height - labelSize.height - insets * 3
         let frame = Layers.getLabelFrame(fromX: insets, fromY: insetsY, labelSize: labelSize)
         

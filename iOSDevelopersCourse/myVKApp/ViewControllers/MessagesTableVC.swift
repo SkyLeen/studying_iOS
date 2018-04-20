@@ -58,17 +58,14 @@ class MessagesTableVC: UIViewController {
         
         let hideKbGesture = UITapGestureRecognizer(target: self, action: #selector(self.hideKeyboard))
         self.scrollView?.addGestureRecognizer(hideKbGesture)
+        
+        goToBottom()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWasShown), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillBeHidden), name: .UIKeyboardWillHide, object: nil)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        goToBottom()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -119,6 +116,7 @@ extension MessagesTableVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let message = friendsMessageArray[indexPath.row]
         let attachments = message.attachments
+        
         if message.out == 0 {
             let cellFriend = tableView.dequeueReusableCell(withIdentifier: "IncomingMsgViewCell", for: indexPath) as! IncomingMsgViewCell
             
@@ -145,7 +143,18 @@ extension MessagesTableVC: UITableViewDelegate {
             cellUser.delegate = self
             cellUser.index = indexPath
             cellUser.message = message
+            cellUser.attachments = Array(attachments)
             
+            if !attachments.isEmpty, let url = attachments[0].url {
+                let getImageOp = GetCashedImage(url: url, folderName: .Dialogs)
+                let newsReloadedOp = TableCellReloading(indexPath: indexPath, view: tableView, cell: cellUser, imageView: cellUser.attachedImage)
+                newsReloadedOp.addDependency(getImageOp)
+                opQueue.addOperation(getImageOp)
+                OperationQueue.main.addOperation(newsReloadedOp)
+            }
+            
+            cellUser.setAttachedImageFrame()
+            cellUser.setBubbleImage()
             cellUser.updateHeight()
             
             return cellUser
