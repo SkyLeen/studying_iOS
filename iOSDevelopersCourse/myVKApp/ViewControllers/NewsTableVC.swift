@@ -24,18 +24,19 @@ class NewsTableVC: UITableViewController {
         }()
     
     var token: NotificationToken?
-    var imageCache = NSCache<NSString, AnyObject>()
-    var taskNewsImage: URLSessionTask?
+    
+    var opQueue: OperationQueue = {
+        let q = OperationQueue()
+        q.qualityOfService = .userInteractive
+        return q
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.estimatedRowHeight = 1000
         tableView.rowHeight = UITableViewAutomaticDimension
-        
         addRefreshControl()
-        
         NewsRequests.getUserNews(userId: self.userId!, accessToken: self.accessToken!)
-        loadNewsImages()
         getNotification()
     }
     
@@ -46,10 +47,25 @@ class NewsTableVC: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsViewCell
         let newsFeed = newsArray[indexPath.row]
+        let attachments = newsFeed.attachments
         
-        cell.imageCache = imageCache
         cell.news = newsFeed
-
+        
+        if let url = newsFeed.authorImageUrl {
+            let getImageOp = newsFeed.authorId>0 ? GetCashedImage(url: url, folderName: .UserAvatars, userId: newsFeed.authorId.description) : GetCashedImage(url: url, folderName: .Groups, userId: newsFeed.authorId.magnitude.description)
+            let authorReloadedOp = TableCellReloading(indexPath: indexPath, view: tableView, cell: cell, imageView: cell.authorImage)
+            authorReloadedOp.addDependency(getImageOp)
+            opQueue.addOperation(getImageOp)
+            OperationQueue.main.addOperation(authorReloadedOp)
+        }
+        
+        guard !attachments.isEmpty, let url = newsFeed.attachments[0].url else { return cell }
+        let getImageOp = GetCashedImage(url: url, folderName: .News)
+        let newsReloadedOp = TableCellReloading(indexPath: indexPath, view: tableView, cell: cell, imageView: cell.newsImage)
+        newsReloadedOp.addDependency(getImageOp)
+        opQueue.addOperation(getImageOp)
+        OperationQueue.main.addOperation(newsReloadedOp)
+        
         return cell
     }
 }

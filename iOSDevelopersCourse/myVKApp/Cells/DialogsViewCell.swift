@@ -21,7 +21,7 @@ class DialogsViewCell: UITableViewCell {
     var dialog: Dialog? {
         didSet{
             setBackgroungColor()
-            getFriendProperties()
+            getDialogProperties()
         }
     }
     
@@ -44,14 +44,10 @@ class DialogsViewCell: UITableViewCell {
         }
     }
     
-    private func getFriendProperties() {
-        self.messageFriendImage.image = UIImage(named: "friends")
+    private func getDialogProperties() {
         self.messageFriendLabel.text = nil
         self.messageTextLabel.text = nil
-        
-        task?.cancel()
-        task = nil
-        
+        self.messageDateLabel.text = nil
 
         if dialog?.attachments != "" {
             messageTextLabel.text = (dialog?.body)! + " [" + (dialog?.attachments)! + "]"
@@ -60,19 +56,10 @@ class DialogsViewCell: UITableViewCell {
         }
         messageDateLabel.text = Date(timeIntervalSince1970: (dialog?.date)!).formatted
         
-        guard let friendId = dialog?.friendId, let user = friendId > 0 ? RealmRequests.getFriendData(friend: "\(friendId)") : RealmRequests.getGroupData(group: "\(friendId.magnitude)") else { return }
+        guard let friendId = dialog?.friendId,
+            let user = friendId > 0 ? RealmRequests.getFriendData(friend: "\(friendId)") : RealmRequests.getGroupData(group: "\(friendId.magnitude)")
+            else { return }
         messageFriendLabel.text = dialog?.title == "" ? user.name : dialog?.title
-        
-        
-        guard let path = user.photoUrl, let url = URL(string: path) else { return }
-        self.task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-            guard let data = data, error == nil else { return }
-            let image = UIImage(data: data)
-            DispatchQueue.main.async { [weak self] in
-                guard let s = self, let responseUrl = response?.url, url == responseUrl else { return }
-                s.messageFriendImage.image = image
-            }
-        }
-        self.task?.resume()
+
     }
 }

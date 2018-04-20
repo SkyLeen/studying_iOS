@@ -48,11 +48,12 @@ class DialogsRequests {
         }
     }
     
-    static func getMessages(accessToken: String) {
-        let pathMethod = "/messages.get"
+    static func getMessages(accessToken: String, friendId: String) {
+        let pathMethod = "/messages.getHistory"
         let url = baseUrl + path + pathMethod
         let parameters: Parameters = [
             "access_token":accessToken,
+            "user_id":friendId,
             "count":200,
             //"start_message_id":0,
             "v":"5.73"

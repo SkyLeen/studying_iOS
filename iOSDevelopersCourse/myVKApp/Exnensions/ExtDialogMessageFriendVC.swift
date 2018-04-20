@@ -19,24 +19,40 @@ extension DialogMessagesTableVC: UITableViewDataSource {
 extension DialogMessagesTableVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell: UITableViewCell!
+        let cell: UITableViewCell!
         
         let message = friendsMessageArray[indexPath.row]
+        let userId = message.friendId
         
-//        if mes  {
+        if message.fromId.description != self.userId  {
             let cellFriend = tableView.dequeueReusableCell(withIdentifier: "FriendMessageCell", for: indexPath) as! DialogFriendMessagesViewCell
             cellFriend.message = message
-        
+            
+            guard let user = userId > 0 ? RealmRequests.getFriendData(friend: userId.description) :
+                RealmRequests.getGroupData(group: userId.magnitude.description),
+                let url = user.photoUrl
+                else { return cellFriend }
+            let getImageOp = friendId > 0 ? GetCashedImage(url: url, folderName: .UserAvatars, userId: userId.description) : GetCashedImage(url: url, folderName: .Groups, userId: userId.magnitude.description)
+            let cellReloadedOp = TableCellReloading(indexPath: indexPath, view: tableView, cell: cellFriend, imageView: cellFriend.friendMessageImage)
+            cellReloadedOp.addDependency(getImageOp)
+            opQueue.addOperation(getImageOp)
+            OperationQueue.main.addOperation(cellReloadedOp)
+            
             cell = cellFriend
-//        }
-//        else {
-//            let cellUser = tableView.dequeueReusableCell(withIdentifier: "UserMessageCell", for: indexPath) as! DialogUserMessagesViewCell
-//
-//            cellUser.friendMessageLabel.text = "message"
-//            cellUser.friendMessageImage.image = UIImage(named: "friends")
-//
-//            cell = cellUser
-//        }
+        }
+        else {
+            let cellUser = tableView.dequeueReusableCell(withIdentifier: "UserMessageCell", for: indexPath) as! DialogUserMessagesViewCell
+            cellUser.message = message
+            
+            guard let user = RealmRequests.getUserData(), let url = user.photoUrl else { return cellUser }
+            let getImageOp = GetCashedImage(url: url, folderName: .UserAvatars, userId: self.userId!)
+            let cellReloadedOp = TableCellReloading(indexPath: indexPath, view: tableView, cell: cellUser, imageView: cellUser.friendMessageImage)
+            cellReloadedOp.addDependency(getImageOp)
+            opQueue.addOperation(getImageOp)
+            OperationQueue.main.addOperation(cellReloadedOp)
+            
+            cell = cellUser
+        }
         
         return cell
     }

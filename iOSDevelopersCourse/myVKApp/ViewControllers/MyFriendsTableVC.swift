@@ -20,6 +20,12 @@ class MyFriendsTableVC: UITableViewController {
     }()
     var token: NotificationToken?
     
+    var opQueue: OperationQueue = {
+        let q = OperationQueue()
+        q.qualityOfService = .userInteractive
+        return q
+    }()
+    
     deinit {
         token?.invalidate()
     }
@@ -37,7 +43,17 @@ class MyFriendsTableVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FriendCell", for: indexPath) as! MyFriendsViewCell
-        cell.user = myFriendsArray[indexPath.row]
+        
+        let user = myFriendsArray[indexPath.row]
+        cell.user = user
+        
+        guard let url = user.photoUrl else { return cell }
+        let getImageOp = GetCashedImage(url: url, folderName: .UserAvatars, userId: user.idFriend)
+        let cellReloadedOp = TableCellReloading(indexPath: indexPath, view: tableView, cell: cell, imageView: cell.friendImageView)
+        cellReloadedOp.addDependency(getImageOp)
+        opQueue.addOperation(getImageOp)
+        OperationQueue.main.addOperation(cellReloadedOp)
+        
         return cell
     }
  

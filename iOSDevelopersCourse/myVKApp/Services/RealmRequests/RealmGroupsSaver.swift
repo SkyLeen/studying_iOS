@@ -10,18 +10,9 @@ import RealmSwift
 
 class RealmGroupsSaver {
     
-    private static let config = setConfiguration()
-    
-    private static func setConfiguration() -> Realm.Configuration {
-        var configuration = Realm.Configuration()
-        configuration.deleteRealmIfMigrationNeeded = true
-        
-        return configuration
-    }
-    
     static func saveUserGroups(groups: [Group], userId: String) {
         do {
-            let realm = try Realm(configuration: config)
+            let realm = try Realm()
             let user = realm.object(ofType: User.self, forPrimaryKey: userId)
             let oldGroups = realm.objects(Group.self).filter("userId == %@", userId)
             try realm.write {
@@ -35,7 +26,7 @@ class RealmGroupsSaver {
     
     static func saveNewGroup(group: Group, userId: String) {
         do {
-            let realm = try Realm(configuration: config)
+            let realm = try Realm()
             let user = realm.object(ofType: User.self, forPrimaryKey: userId)
             try realm.write {
                 group.userId = userId
@@ -48,7 +39,7 @@ class RealmGroupsSaver {
     
     static func saveAllGroups(groups: [Group]) {
         do {
-            let realm = try Realm(configuration: config)
+            let realm = try Realm()
             try realm.write {
                 realm.add(groups,update: true)
             }

@@ -15,8 +15,8 @@ class Message: Object {
     @objc dynamic var body: String = ""
     @objc dynamic var readState: Int = 0
     @objc dynamic var date: Double = 0.0
-    @objc dynamic var title: String = ""
     @objc dynamic var friendId: Int = 0
+    @objc dynamic var fromId: Int = 0
     @objc dynamic var out: Int = 0
     @objc dynamic var attachments: String = ""
     
@@ -33,7 +33,7 @@ class Message: Object {
         self.body = json["body"].stringValue
         self.readState = json["read_state"].intValue
         self.date = json["date"].doubleValue
-        self.title = json["title"].stringValue
+        self.fromId = json["from_id"].intValue
         self.friendId = json["user_id"].intValue
         self.out = json["out"].intValue
         self.attachments = json["attachments"][0]["type"].stringValue

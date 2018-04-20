@@ -23,6 +23,12 @@ class DialogsTableVC: UITableViewController {
     var usersToken: NotificationToken?
     var groupsToken: NotificationToken?
     
+    var opQueue: OperationQueue = {
+        let q = OperationQueue()
+        q.qualityOfService = .userInteractive
+        return q
+    }()
+    
     deinit {
         dialogsToken?.invalidate()
         usersToken?.invalidate()
@@ -35,7 +41,6 @@ class DialogsTableVC: UITableViewController {
         DispatchQueue.global(qos: .utility).async {
             DialogsRequests.getUserDialogs(userId: self.userId!, accessToken: self.accessToken!)
         }
-        DialogsRequests.getMessages(accessToken: accessToken!)
         
         getDialogsNotification()
         getUsersNotification()
@@ -48,8 +53,20 @@ class DialogsTableVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as! DialogsViewCell
+        let dialog = dialogsArray[indexPath.row]
+        let friendId = dialog.friendId
         
-        cell.dialog = dialogsArray[indexPath.row]
+        cell.dialog = dialog
+        
+        guard let user = friendId > 0 ? RealmRequests.getFriendData(friend: friendId.description) :
+            RealmRequests.getGroupData(group: friendId.magnitude.description),
+            let url = user.photoUrl
+            else { return cell }
+        let getImageOp = friendId > 0 ? GetCashedImage(url: url, folderName: .UserAvatars, userId: friendId.description) : GetCashedImage(url: url, folderName: .Groups, userId: friendId.magnitude.description)
+        let cellReloadedOp = TableCellReloading(indexPath: indexPath, view: tableView, cell: cell, imageView: cell.messageFriendImage)
+        cellReloadedOp.addDependency(getImageOp)
+        opQueue.addOperation(getImageOp)
+        OperationQueue.main.addOperation(cellReloadedOp)
         
         return cell
     }

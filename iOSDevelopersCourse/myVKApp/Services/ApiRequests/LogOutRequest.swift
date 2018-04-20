@@ -15,6 +15,7 @@ class LogOutRequest {
         removeDefaults()
         removeCookies()
         removeDataBase()
+        removeCash()
     }
     
     private static func removeDefaults() {
@@ -40,6 +41,15 @@ class LogOutRequest {
             try realm.write {
                 realm.deleteAll()
             }
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    private static func removeCash() {
+        guard let cashDir = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else { return }
+        do {
+            try FileManager.default.removeItem(at: cashDir.asURL())
         } catch {
             print(error.localizedDescription)
         }

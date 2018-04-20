@@ -24,6 +24,12 @@ class AllGroupsTableVC: UITableViewController {
     var isSearching = false
     var token: NotificationToken?
     
+    var opQueue: OperationQueue = {
+        let q = OperationQueue()
+        q.qualityOfService = .userInteractive
+        return q
+    }()
+    
     deinit {
         token?.invalidate()
     }
@@ -43,11 +49,23 @@ class AllGroupsTableVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewGroupCell", for: indexPath) as! AllGroupsViewCell
+        let group: Group!
+        
         if isSearching {
-            cell.group = filteredArray[indexPath.row]
+            group = filteredArray[indexPath.row]
         } else {
-            cell.group = allGroupsArray[indexPath.row]
+            group = allGroupsArray[indexPath.row]
         }
+        
+        cell.group = group
+        
+        guard let url = group.photoGroupUrl else { return cell }
+        let getImageOp = GetCashedImage(url: url, folderName: .Groups, userId: group.idGroup)
+        let cellReloadedOp = TableCellReloading(indexPath: indexPath, view: tableView, cell: cell, imageView: cell.allGroupImageView)
+        cellReloadedOp.addDependency(getImageOp)
+        opQueue.addOperation(getImageOp)
+        OperationQueue.main.addOperation(cellReloadedOp)
+        
         return cell
     }
     
