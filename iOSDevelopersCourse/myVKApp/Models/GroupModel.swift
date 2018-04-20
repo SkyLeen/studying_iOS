@@ -29,7 +29,7 @@ class Group: Object {
         self.idGroup = json["id"].stringValue
         self.nameGroup = json["name"].stringValue
         self.followers = json["members_count"].intValue
-        self.photoGroupUrl = json["photo_50"].stringValue
+        self.photoGroupUrl = json["photo_100"].stringValue
         self.userId = userId
         self.compoundKey = "\(idGroup)\(userId)"
     }

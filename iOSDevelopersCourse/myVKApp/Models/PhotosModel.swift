@@ -12,7 +12,7 @@ import RealmSwift
 class Photos: Object {
     
     @objc dynamic var idPhoto: Int = 0
-    @objc dynamic var idFriend: Int = 0
+    @objc dynamic var idFriend: String = ""
     @objc dynamic var photo75Url: String?
     @objc dynamic var photo604Url: String?
     @objc dynamic var compoundKey: String = ""
@@ -26,7 +26,7 @@ class Photos: Object {
     convenience init(json: JSON) {
         self.init()
         self.idPhoto = json["id"].intValue
-        self.idFriend = json["owner_id"].intValue
+        self.idFriend = json["owner_id"].stringValue
         self.photo75Url = json["photo_75"].stringValue
         self.photo604Url = json["photo_604"].stringValue
         self.compoundKey = "\(idPhoto)\(idFriend)"

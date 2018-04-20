@@ -19,8 +19,7 @@ class RealmUserSaver {
         return configuration
     }
     
-    static func createUser(userId: String) {
-        let user = User(idUser: userId)
+    static func createUser(user: User) {
         
         do {
             let realm = try Realm(configuration: config)

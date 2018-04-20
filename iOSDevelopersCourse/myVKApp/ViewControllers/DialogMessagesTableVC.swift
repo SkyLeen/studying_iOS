@@ -18,20 +18,27 @@ class DialogMessagesTableVC: UIViewController {
     @IBOutlet weak var messageView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     
-    var friendName = String()
-    var friendId = Int()
+    let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")
+    let userId =  KeychainWrapper.standard.string(forKey: "userId")
     
-    var friendsMessageArray = [
-        (friendId: 1, friend: "friendName1", message: "Message1Message1Message1"),
-        (friendId: 2, friend: "friendName2", message:"Message2  Message2Message2Message2 Message2 Message2Message2Message2Message2"),
-        (friendId: 3, friend: "friendName3", message:"Message3Message3Message3Message3Message3Message3 Message3Message3Message3 Message3"),
-        (friendId: 4, friend: "friendName4", message:"Message4 Message4 Message4 Message4 Message4 Message4 Message4 Message4 Message4 Message4 Message4 Message4 Message4 Message4 Message4 Message4 Message4 Message4 Message4 Message4 Message4 Message4Message4Message4"),
-        ]
+    var friendId = 0
+    
+    lazy var friendsMessageArray: Results<Message> = {
+        return RealmLoader.loadData(object: Message()).filter("friendId == %@", friendId).sorted(byKeyPath: "date", ascending: true)
+    }()
+    
+    var messageToken: NotificationToken?
+    
+    deinit {
+        messageToken?.invalidate()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = friendName
+        getTitle()
         textView.layer.cornerRadius = 10
+        
+        getMessageNotification()
         
         let hideKbGesture = UITapGestureRecognizer(target: self, action: #selector(self.hideKeyboard))
         self.scrollView?.addGestureRecognizer(hideKbGesture)

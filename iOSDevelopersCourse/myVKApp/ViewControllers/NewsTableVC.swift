@@ -19,8 +19,13 @@ class NewsTableVC: UITableViewController {
     let userId =  KeychainWrapper.standard.string(forKey: "userId")
     
     var newsArray: Results<News>!
+    lazy var newsAttachArray: Results<NewsAttachments> = {
+        return RealmLoader.loadData(object: NewsAttachments())
+        }()
     
     var token: NotificationToken?
+    var imageCache = NSCache<NSString, AnyObject>()
+    var taskNewsImage: URLSessionTask?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,9 +34,8 @@ class NewsTableVC: UITableViewController {
         
         addRefreshControl()
         
-        DispatchQueue.global(qos: .utility).async {
-            NewsRequests.getUserNews(userId: self.userId!, accessToken: self.accessToken!)
-        }
+        NewsRequests.getUserNews(userId: self.userId!, accessToken: self.accessToken!)
+        loadNewsImages()
         getNotification()
     }
     
@@ -41,11 +45,11 @@ class NewsTableVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsViewCell
-        
         let newsFeed = newsArray[indexPath.row]
         
+        cell.imageCache = imageCache
         cell.news = newsFeed
-        
+
         return cell
     }
 }

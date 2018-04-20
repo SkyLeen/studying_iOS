@@ -17,26 +17,23 @@ class MyFriendCollectionVC: UICollectionViewController {
     
     var friendName = String()
     let interItemSpace: CGFloat = 5
-    var friendId = 0
+    var friendId = ""
     
     lazy var friendPhotos: Results<Photos> = {
         return RealmLoader.loadData(object: Photos()).filter("idFriend == %@", friendId)
     }()
     
-    var token: NotificationToken?
+    var photoToken: NotificationToken?
     
     deinit {
-        token?.invalidate()
+        photoToken?.invalidate()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = friendName
         
-        DispatchQueue.global(qos: .background).async {
-            FriendsRequests.getFriendPhotos(userId: self.userId!, accessToken: self.accessToken!, friendId: self.friendId)
-        }
-        
+        FriendsRequests.getFriendPhotos(userId: self.userId!, accessToken: self.accessToken!, friendId: self.friendId)
         getNotification()
     }
 

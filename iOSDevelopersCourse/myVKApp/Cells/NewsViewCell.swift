@@ -18,23 +18,26 @@ class NewsViewCell: UITableViewCell {
     @IBOutlet weak var commentsLabel: UILabel!
     @IBOutlet weak var repostsLabel: UILabel!
     @IBOutlet weak var viewsLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     
     private var task: URLSessionTask?
-    private var taskNewsImage: URLSessionTask?
-    
-    private let imageCache = NSCache<NSString, AnyObject>()
+    private var taskImage: URLSessionTask?
+    var imageCache = NSCache<NSString, AnyObject>()
     
     var news: News? {
         didSet {
             authorNameLabel.text = news?.author
             newsLabel.text = news?.text
-            likesLabel.text = news?.likesCount
-            commentsLabel.text = news?.commentsCount
-            repostsLabel.text = news?.repostsCount
-            viewsLabel.text = news?.viewsCount
+            likesLabel.text = news?.likesCount.withSeparator
+            commentsLabel.text = news?.commentsCount.withSeparator
+            repostsLabel.text = news?.repostsCount.withSeparator
+            viewsLabel.text = news?.viewsCount.withSeparator
            
             getAuthorsImages()
-            getNewsImages()
+            getImages()
+            
+            guard let date = news?.date else { return }
+            dateLabel.text = Date(timeIntervalSince1970: date).formatted
         }
     }
     
@@ -48,42 +51,40 @@ class NewsViewCell: UITableViewCell {
         task?.cancel()
         task = nil
         guard let path = news?.authorImageUrl, let url = URL(string: path) else { return }
-        DispatchQueue.global(qos: .background).async {
-            self.task = URLSession.shared.dataTask(with: url){ (data,response,error) in
-                guard let data = data, error == nil else { return }
-                let image = UIImage(data: data)
-                DispatchQueue.main.async  { [weak self] in
-                    guard let s = self, let responseUrl = response?.url, responseUrl == url else { return }
-                    s.authorImage.image = image
-                }
+        self.task = URLSession.shared.dataTask(with: url){ (data,response,error) in
+            guard let data = data, error == nil else { return }
+            let image = UIImage(data: data)
+            DispatchQueue.main.async  { [weak self] in
+                guard let s = self, let responseUrl = response?.url, responseUrl == url else { return }
+                s.authorImage.image = image
             }
-            self.task?.resume()
         }
+        self.task?.resume()
     }
     
-    private func getNewsImages() {
+    private func getImages() {
         let canvasSize = newsImage.frame.size.width
-       
         newsImage.image = nil
-        taskNewsImage?.cancel()
-        taskNewsImage = nil
+        taskImage?.cancel()
+        taskImage = nil
         //берем пока только один объект из аттача
-        guard let attachments = news?.attachments, !attachments.isEmpty, let path = attachments[0].url, let url = URL(string: path) else { return }
+        guard let attachments = news?.attachments,  !attachments.isEmpty, let path = attachments[0].url, let url = URL(string: path) else { return }
         
-        if let cachedImage = self.imageCache.object(forKey: path as NSString) as? UIImage {
-            self.newsImage.image = cachedImage
+        if  let cachedImage =  imageCache.object(forKey: path as NSString) as? UIImage {
+            self.newsImage.image = cachedImage.resizeWithWidth(width: canvasSize)
             return
         }
-            self.taskNewsImage = URLSession.shared.dataTask(with: url){ (data,response,error) in
-                guard let data = data, error == nil else { return }
-                let image = UIImage(data: data)
-                self.imageCache.setObject(image!, forKey: path as NSString)
-                DispatchQueue.main.async  { [weak self] in
-                    guard let s = self, let responseUrl = response?.url, responseUrl == url else { return }
-                    s.newsImage.image = image?.resizeWithWidth(width: canvasSize)
-                }
+        
+        self.taskImage = URLSession.shared.dataTask(with: url){ (data,response,error) in
+            guard let data = data, error == nil else { return }
+            let image = UIImage(data: data)
+            self.imageCache.setObject(image!, forKey: path as NSString)
+            DispatchQueue.main.async  { [weak self] in
+                guard let s = self, let responseUrl = response?.url, responseUrl == url else { return }
+                s.newsImage.image = image?.resizeWithWidth(width: canvasSize)
             }
-            self.taskNewsImage?.resume()
+        }
+        self.taskImage?.resume()
     }
 }
 

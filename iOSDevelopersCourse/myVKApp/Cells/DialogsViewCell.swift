@@ -14,16 +14,14 @@ class DialogsViewCell: UITableViewCell {
     @IBOutlet weak var messageFriendLabel: UILabel!
     @IBOutlet weak var messageTextLabel: UILabel!
     @IBOutlet weak var messageView: UIView!
+    @IBOutlet weak var messageDateLabel: UILabel!
     
     private var task: URLSessionTask?
     
     var dialog: Dialog? {
         didSet{
-            messageFriendLabel.text = dialog?.title == "" ? dialog?.friendName ?? "Not in the friend list" : dialog?.title
-            messageTextLabel.text = dialog?.body
-            
             setBackgroungColor()
-            getFriendImage()
+            getFriendProperties()
         }
     }
     
@@ -46,20 +44,35 @@ class DialogsViewCell: UITableViewCell {
         }
     }
     
-    private func getFriendImage() {
+    private func getFriendProperties() {
         self.messageFriendImage.image = UIImage(named: "friends")
+        self.messageFriendLabel.text = nil
+        self.messageTextLabel.text = nil
+        
         task?.cancel()
         task = nil
         
-        guard let path = dialog?.friendPhotoUrl, let url = URL(string: path) else { return }
-            self.task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-                guard let data = data, error == nil else { return }
-                let image = UIImage(data: data)
-                DispatchQueue.main.async { [weak self] in
-                    guard let s = self, let responseUrl = response?.url, url == responseUrl else { return }
-                    s.messageFriendImage.image = image
-                }
+
+        if dialog?.attachments != "" {
+            messageTextLabel.text = (dialog?.body)! + " [" + (dialog?.attachments)! + "]"
+        } else {
+             messageTextLabel.text = dialog?.body
+        }
+        messageDateLabel.text = Date(timeIntervalSince1970: (dialog?.date)!).formatted
+        
+        guard let friendId = dialog?.friendId, let user = friendId > 0 ? RealmRequests.getFriendData(friend: "\(friendId)") : RealmRequests.getGroupData(group: "\(friendId.magnitude)") else { return }
+        messageFriendLabel.text = dialog?.title == "" ? user.name : dialog?.title
+        
+        
+        guard let path = user.photoUrl, let url = URL(string: path) else { return }
+        self.task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            guard let data = data, error == nil else { return }
+            let image = UIImage(data: data)
+            DispatchQueue.main.async { [weak self] in
+                guard let s = self, let responseUrl = response?.url, url == responseUrl else { return }
+                s.messageFriendImage.image = image
             }
+        }
         self.task?.resume()
     }
 }

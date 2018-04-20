@@ -15,17 +15,31 @@ class DialogsTableVC: UITableViewController {
     let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")
     let userId =  KeychainWrapper.standard.string(forKey: "userId")
     
-    var dialogsArray: Results<Dialog>!
-    var token: NotificationToken?
+    lazy var dialogsArray: Results<Dialog> = {
+        return RealmLoader.loadData(object: Dialog()).sorted(byKeyPath: "date", ascending: false)
+    }()
+    
+    var dialogsToken: NotificationToken?
+    var usersToken: NotificationToken?
+    var groupsToken: NotificationToken?
+    
+    deinit {
+        dialogsToken?.invalidate()
+        usersToken?.invalidate()
+        groupsToken?.invalidate()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         addRefreshControl()
-        DispatchQueue.global(qos: .background).async {
+        DispatchQueue.global(qos: .utility).async {
             DialogsRequests.getUserDialogs(userId: self.userId!, accessToken: self.accessToken!)
         }
+        DialogsRequests.getMessages(accessToken: accessToken!)
         
-        getNotification()
+        getDialogsNotification()
+        getUsersNotification()
+        getGroupsNotification()
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -48,8 +62,7 @@ class DialogsTableVC: UITableViewController {
         guard segue.identifier == "showMessages" else { return }
         guard let destinationVC = segue.destination as? DialogMessagesTableVC else { return }
         guard let friend = sender as? IndexPath else { return }
-        
-        destinationVC.friendName = dialogsArray[friend.row].friendName ?? ""
+       
         destinationVC.friendId = dialogsArray[friend.row].friendId
     }
 }

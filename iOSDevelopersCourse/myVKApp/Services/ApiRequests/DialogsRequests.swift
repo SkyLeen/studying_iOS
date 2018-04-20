@@ -23,16 +23,47 @@ class DialogsRequests {
             //"start_message_id":0,
             "v":"5.73"
         ]
-        
+               
         Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON {  response in
             switch response.result {
             case .success(let value):
-                let dialogs = JSON(value)["response"]["items"]
                 RealmDeleter.removeDialogs()
+                let dialogs = JSON(value)["response"]["items"]
                 for item in dialogs {
                     let dialog = Dialog(json: item.1)
-                    RealmDialogSaver.saveUserNews(dialog: dialog, userId: userId)
+                    
+                    if RealmRequests.getFriendData(friend: "\(dialog.friendId)") == nil {
+                        if dialog.friendId > 0 {
+                            UserRequests.getUserById(userId: userId, accessToken: accessToken, requestUserId: "\(dialog.friendId)", attribute: .fromDialogs)
+                        } else {
+                            GroupsRequests.getGroupById(accessToken: accessToken, idGroup: "\(dialog.friendId.magnitude)")
+                        }
+                    }
+                    
+                    RealmDialogSaver.saveUserDialogs(dialog: dialog, userId: userId)
                 }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    static func getMessages(accessToken: String) {
+        let pathMethod = "/messages.get"
+        let url = baseUrl + path + pathMethod
+        let parameters: Parameters = [
+            "access_token":accessToken,
+            "count":200,
+            //"start_message_id":0,
+            "v":"5.73"
+        ]
+        
+        Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON(queue: DispatchQueue.global(qos: .utility)) {  response in
+            switch response.result {
+            case .success(let value):
+                let _ = JSON(value)["response"]["count"]
+                let messages = JSON(value)["response"]["items"].compactMap({ Message(json: $0.1) })
+                RealmDialogSaver.saveMessages(messages: messages)
             case .failure(let error):
                 print(error)
             }
