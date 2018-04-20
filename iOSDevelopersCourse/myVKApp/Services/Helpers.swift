@@ -41,7 +41,7 @@ class ImageSettingsHelper {
 
 class Notifications {
     
-   static func getTableViewToken<T: Object>(_ array: Results<T>, view: UITableView?) -> NotificationToken {
+   static func getTableViewTokenRows<T: Object>(_ array: Results<T>, view: UITableView?) -> NotificationToken {
         let token = array.observe({ [weak view] changes in
             guard let view = view else { return }
             switch changes {
@@ -49,9 +49,29 @@ class Notifications {
                 view.reloadData()
             case .update(_, let delete, let insert, let update):
                 view.beginUpdates()
-                view.deleteRows(at: delete.map({ IndexPath(row: $0, section: 0) }), with: .fade)
-                view.insertRows(at: insert.map({ IndexPath(row: $0, section: 0) }), with: .fade)
-                view.reloadRows(at: update.map({ IndexPath(row: $0, section: 0) }), with: .fade)
+                view.deleteRows(at: delete.map({ IndexPath(row: $0, section: 0) }), with: .none)
+                view.insertRows(at: insert.map({ IndexPath(row: $0, section: 0) }), with: .none)
+                view.reloadRows(at: update.map({ IndexPath(row: $0, section: 0) }), with: .none)
+                view.endUpdates()
+            case .error(let error):
+                print(error.localizedDescription)
+            }
+        })
+        
+        return token
+    }
+    
+    static func getTableViewTokenSections<T: Object>(_ array: Results<T>, view: UITableView?) -> NotificationToken {
+        let token = array.observe({ [weak view] changes in
+            guard let view = view else { return }
+            switch changes {
+            case .initial:
+                view.reloadData()
+            case .update(_, let delete, let insert, let update):
+                view.beginUpdates()
+                view.reloadSections(IndexSet(delete), with: .none)
+                view.reloadSections(IndexSet(insert), with: .none)
+                view.reloadSections(IndexSet(update), with: .none)
                 view.endUpdates()
             case .error(let error):
                 print(error.localizedDescription)
@@ -67,7 +87,7 @@ class Notifications {
             switch changes {
             case .initial:
                 view.reloadData()
-            case .update(_, _, _, _):
+            case .update:
                 view.beginUpdates()
                 view.reloadData()
                 view.endUpdates()

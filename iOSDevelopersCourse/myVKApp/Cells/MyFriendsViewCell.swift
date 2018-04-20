@@ -13,14 +13,25 @@ class MyFriendsViewCell: UITableViewCell {
     @IBOutlet weak var friendNameLabel: UILabel!
     @IBOutlet weak var friendImageView: UIImageView!
     
+    let insets: CGFloat = 5
+    
     var user: Friend? {
         didSet {
+            setImageFrame()
             friendNameLabel.text = user?.name
+            setLabelFrame()
         }
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        cancelAutoConstraints() 
         ImageSettingsHelper.setImageLayersSettings(for: friendImageView, mode: .forAvatarImages)
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        setImageFrame()
+        setLabelFrame()
     }
 }

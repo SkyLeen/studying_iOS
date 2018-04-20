@@ -10,21 +10,35 @@ import UIKit
 
 class AllGroupsViewCell: UITableViewCell {
     
-    @IBOutlet private weak var allGroupNameLabel: UILabel!
+    @IBOutlet weak var allGroupNameLabel: UILabel!
     @IBOutlet weak var allGroupImageView: UIImageView!
-    @IBOutlet private weak var allGroupFollowersCountLabel: UILabel!
+    @IBOutlet weak var allGroupFollowersCountLabel: UILabel!
+    
+    let insets: CGFloat = 5
     
     var group: Group? {
         didSet {
+            setImageFrame()
+            
             allGroupNameLabel.text = group?.nameGroup
+            setNameLabelFrame()
             
             guard let followers = group?.followers else { return }
             allGroupFollowersCountLabel.text = "\(followers.withSeparator) followers"
+            setFollowersFrame()
         }
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        cancelAutoConstraints() 
         ImageSettingsHelper.setImageLayersSettings(for: allGroupImageView, mode: .forAvatarImages)
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        setImageFrame()
+        setNameLabelFrame()
+        setFollowersFrame()
     }
 }

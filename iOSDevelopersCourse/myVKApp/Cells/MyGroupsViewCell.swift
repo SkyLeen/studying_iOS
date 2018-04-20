@@ -10,17 +10,28 @@ import UIKit
 
 class MyGroupsViewCell: UITableViewCell {
     
-    @IBOutlet private weak var myGroupNameLabel: UILabel!
+    @IBOutlet weak var myGroupNameLabel: UILabel!
     @IBOutlet weak var myGroupImageView: UIImageView!
+    
+     let insets: CGFloat = 5
     
     var group: Group? {
         didSet {
+            setImageFrame()
             myGroupNameLabel.text = group?.nameGroup
+            setLabelFrame()
         }
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        cancelAutoConstraints() 
         ImageSettingsHelper.setImageLayersSettings(for: myGroupImageView, mode: .forAvatarImages)
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        setImageFrame()
+        setLabelFrame()
     }
 }

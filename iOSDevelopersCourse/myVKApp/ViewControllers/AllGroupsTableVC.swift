@@ -36,9 +36,10 @@ class AllGroupsTableVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.rowHeight = 55
         createSearchBar()
         GroupsRequests.getAllGroups(accessToken: self.accessToken!)
-        token = Notifications.getTableViewToken(allGroupsArray, view: self.tableView)
+        token = Notifications.getTableViewTokenRows(allGroupsArray, view: self.tableView)
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -70,16 +71,5 @@ class AllGroupsTableVC: UITableViewController {
     
     override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         searchBar.endEditing(true)
-    }
-    
-    private func createSearchBar() {
-        searchBar.barTintColor = .white
-        searchBar.tintColor = .white
-        searchBar.showsCancelButton = true
-        searchBar.keyboardType = .alphabet
-        searchBar.placeholder = "Search"
-        searchBar.returnKeyType = .done
-        searchBar.delegate = self
-        navigationItem.titleView = searchBar
     }
 }

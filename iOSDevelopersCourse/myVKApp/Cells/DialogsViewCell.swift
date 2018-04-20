@@ -16,6 +16,8 @@ class DialogsViewCell: UITableViewCell {
     @IBOutlet weak var messageView: UIView!
     @IBOutlet weak var messageDateLabel: UILabel!
     
+    let insets: CGFloat = 5
+    
     var dialog: Dialog? {
         didSet{
             setBackgroungColor()
@@ -25,45 +27,16 @@ class DialogsViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        cancelAutoConstraints()
         ImageSettingsHelper.setImageLayersSettings(for: messageFriendImage, mode: .forAvatarImages)
     }
     
-    private func setBackgroungColor() {
-        let color = UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1)
-        
-        if dialog?.readState == 0 && dialog?.out == 0 {
-            messageView.backgroundColor = color
-            messageTextLabel.backgroundColor = color
-            messageDateLabel.backgroundColor = color
-            messageFriendLabel.backgroundColor = color
-        } else if dialog?.readState == 0 && dialog?.out == 1 {
-            messageTextLabel.backgroundColor = color
-            messageDateLabel.backgroundColor = color
-            messageView.backgroundColor = .white
-        } else {
-            messageTextLabel.backgroundColor = .white
-            messageView.backgroundColor = .white
-            messageDateLabel.backgroundColor = .white
-            messageFriendLabel.backgroundColor = .white
-        }
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        setImageFrame()
+        setDateLabelFrame()
+        setNameLabelFrame()
+        setTextLabelFrame()
     }
     
-    private func getDialogProperties() {
-        self.messageFriendLabel.text = nil
-        self.messageTextLabel.text = nil
-        self.messageDateLabel.text = nil
-
-        if dialog?.attachments != "" {
-            messageTextLabel.text = (dialog?.body)! + " [" + (dialog?.attachments)! + "]"
-        } else {
-             messageTextLabel.text = dialog?.body
-        }
-        messageDateLabel.text = Date(timeIntervalSince1970: (dialog?.date)!).formatted
-        
-        guard let friendId = dialog?.friendId,
-            let user = friendId > 0 ? RealmRequests.getFriendData(friend: "\(friendId)") : RealmRequests.getGroupData(group: "\(friendId.magnitude)")
-            else { return }
-        messageFriendLabel.text = dialog?.title == "" ? user.name : dialog?.title
-
-    }
 }

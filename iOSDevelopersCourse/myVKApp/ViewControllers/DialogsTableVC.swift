@@ -9,6 +9,7 @@
 import UIKit
 import SwiftKeychainWrapper
 import RealmSwift
+import Alamofire
 
 class DialogsTableVC: UITableViewController {
     
@@ -45,12 +46,13 @@ class DialogsTableVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.rowHeight = 55
         addRefreshControl()
         DispatchQueue.global(qos: .utility).async {
             DialogsRequests.getUserDialogs(userId: self.userId!, accessToken: self.accessToken!)
         }
         
-        dialogsToken = Notifications.getTableViewToken(dialogsArray, view: self.tableView)
+        dialogsToken = Notifications.getTableViewTokenRows(dialogsArray, view: self.tableView)
         usersToken = Notifications.getTableViewTokenLight(usersArray, view: self.tableView)
         groupsToken = Notifications.getTableViewTokenLight(groupsArray, view: self.tableView)
     }
@@ -85,17 +87,10 @@ class DialogsTableVC: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "showMessages" else { return }
-        guard let destinationVC = segue.destination as? DialogMessagesTableVC else { return }
+        guard let destinationVC = segue.destination as? MessagesTableVC else { return }
         guard let friend = sender as? IndexPath else { return }
-        
         let dialog = dialogsArray[friend.row]
         
-        destinationVC.friendId = dialog.friendId
-        if dialog.title == "", let user = RealmRequests.getFriendData(friend: dialog.friendId.description)  {
-            destinationVC.titleVC = user.name
-        } else if dialog.title != "" {
-            destinationVC.titleVC = dialog.title
-        }
-        
+        setFriendNameForTitle(dialog: dialog, to: destinationVC)
     }
 }

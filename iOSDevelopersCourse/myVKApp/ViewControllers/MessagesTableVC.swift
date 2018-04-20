@@ -10,7 +10,7 @@ import UIKit
 import SwiftKeychainWrapper
 import RealmSwift
 
-class DialogMessagesTableVC: UIViewController {
+class MessagesTableVC: UIViewController {
 
     @IBOutlet weak var messageTableView: UITableView!
     @IBOutlet weak var sendButton: UIButton!
@@ -22,7 +22,11 @@ class DialogMessagesTableVC: UIViewController {
     let userId =  KeychainWrapper.standard.string(forKey: "userId")
     
     var friendId = 0
-    var titleVC = ""
+    var friendName = ""
+    var friendImage: UIImage?
+    
+    var heightInCellCash: [IndexPath : CGFloat] = [:]
+    var heightOutCellCash: [IndexPath : CGFloat] = [:]
     
     lazy var friendsMessageArray: Results<Message> = {
         return RealmLoader.loadData(object: Message()).filter("friendId == %@", friendId).sorted(byKeyPath: "date", ascending: true)
@@ -42,18 +46,13 @@ class DialogMessagesTableVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = titleVC
-        textView.layer.cornerRadius = 10
+        setTitle()
+        setTextView()
         DialogsRequests.getMessages(accessToken: accessToken!, friendId: friendId.description)
-        messageToken = Notifications.getTableViewToken(friendsMessageArray, view: self.messageTableView)
+        messageToken = Notifications.getTableViewTokenRows(friendsMessageArray, view: self.messageTableView)
         
         let hideKbGesture = UITapGestureRecognizer(target: self, action: #selector(self.hideKeyboard))
         self.scrollView?.addGestureRecognizer(hideKbGesture)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        setMessageTableView()
     }
     
     override func viewWillAppear(_ animated: Bool) {

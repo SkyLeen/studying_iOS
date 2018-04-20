@@ -42,3 +42,17 @@ extension AllGroupsTableVC: UISearchBarDelegate {
         }
     }
 }
+
+extension AllGroupsTableVC {
+    
+    func createSearchBar() {
+        searchBar.barTintColor = .white
+        searchBar.tintColor = .white
+        searchBar.showsCancelButton = true
+        searchBar.keyboardType = .alphabet
+        searchBar.placeholder = "Search"
+        searchBar.returnKeyType = .done
+        searchBar.delegate = self
+        navigationItem.titleView = searchBar
+    }
+}

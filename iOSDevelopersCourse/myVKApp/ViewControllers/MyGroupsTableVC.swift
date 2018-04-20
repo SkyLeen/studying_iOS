@@ -32,8 +32,9 @@ class MyGroupsTableVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.rowHeight = 55
         GroupsRequests.getUserGroups(userId: self.userId!, accessToken: self.accessToken!)
-        token = Notifications.getTableViewToken(myGroupsArray, view: self.tableView)
+        token = Notifications.getTableViewTokenRows(myGroupsArray, view: self.tableView)
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

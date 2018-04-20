@@ -12,20 +12,16 @@ import RealmSwift
 
 class NewsTableVC: UITableViewController {
     
-    @IBOutlet weak var loadLable: UILabel!
-    @IBOutlet weak var acivityIndicator: UIActivityIndicatorView!
-    
     let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")
     let userId =  KeychainWrapper.standard.string(forKey: "userId")
     
     lazy var newsArray: Results<News> = {
         return RealmLoader.loadData(object: News()).sorted(byKeyPath: "date", ascending: false)
     }()
-    lazy var newsAttachArray: Results<NewsAttachments> = {
-        return RealmLoader.loadData(object: NewsAttachments())
-        }()
     
     var token: NotificationToken?
+    
+    var heightCellCash: [IndexPath : CGFloat] = [:]
     
     var opQueue: OperationQueue = {
         let q = OperationQueue()
@@ -33,22 +29,37 @@ class NewsTableVC: UITableViewController {
         return q
     }()
     
+    deinit {
+        token?.invalidate()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.register(UINib(nibName: "NewsViewCell", bundle: nil), forCellReuseIdentifier: "NewsViewCell")
         addRefreshControl()
         NewsRequests.getUserNews(userId: self.userId!, accessToken: self.accessToken!)
-        token = Notifications.getTableViewToken(newsArray, view: self.tableView)
+        token = Notifications.getTableViewTokenSections(newsArray, view: self.tableView)
+    }
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        let count = !newsArray.isEmpty ? newsArray.count : 100
+        return count
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return newsArray.count
+        let count = !newsArray.isEmpty ? 1 : 0
+        return count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsViewCell
-        let newsFeed = newsArray[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "NewsViewCell", for: indexPath) as! NewsViewCell
+        cell.delegate = self
+        cell.index = indexPath
+        
+        let newsFeed = newsArray[indexPath.section]
         let attachments = newsFeed.attachments
-             
+        
+        cell.attachments = Array(attachments)
         cell.news = newsFeed
         
         if let url = newsFeed.authorImageUrl {
@@ -68,20 +79,12 @@ class NewsTableVC: UITableViewController {
         }
         cell.setNewsImageFrame()
         
+        cell.updateHeight()
         return cell
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let newsFeed = newsArray[indexPath.row]
-        let attachments = newsFeed.attachments
-        var height: CGFloat = 200
-        
-        if !attachments.isEmpty, let _ = newsFeed.attachments[0].url, newsFeed.text != "" {
-            height = 385
-        } else if !attachments.isEmpty, let _ = newsFeed.attachments[0].url, newsFeed.text == "" {
-            height = 300
-        }
-        
+        guard let height = heightCellCash[indexPath] else { return 120 }
         return height
     }
 }
