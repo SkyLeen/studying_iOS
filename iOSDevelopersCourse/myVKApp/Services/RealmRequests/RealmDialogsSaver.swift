@@ -10,13 +10,14 @@ import RealmSwift
 
 class RealmDialogSaver {
 
-    static func saveUserDialogs(dialog: Dialog, userId: String) {
+    static func saveUserDialogs(dialog: [Dialog], userId: String) {
         do {
             let realm = try Realm()
             let user = realm.object(ofType: User.self, forPrimaryKey: userId)
             
             try realm.write {
-                user?.dialogs.append(dialog)
+                if  let oldDialogs = user?.dialogs.filter("id != ''"), !oldDialogs.isEmpty { realm.delete(oldDialogs) }
+                user?.dialogs.append(objectsIn: dialog)
             }
         } catch {
             print(error.localizedDescription)

@@ -7,5 +7,8 @@ pod 'Alamofire'
 pod 'SwiftyJSON'
 pod 'RealmSwift'
 pod 'SwiftKeychainWrapper'
+pod 'Firebase/Core'
+pod 'Firebase/Auth'
+pod 'Firebase/Database'
 
 end

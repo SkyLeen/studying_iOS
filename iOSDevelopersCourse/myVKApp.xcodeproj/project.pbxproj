@@ -7,12 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		040A2C992063C5B9004A43D0 /* ExtMyFriendCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040A2C982063C5B9004A43D0 /* ExtMyFriendCollectionVC.swift */; };
-		040A2C9B2063CC13004A43D0 /* ExtAllGroupsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040A2C9A2063CC13004A43D0 /* ExtAllGroupsTableVC.swift */; };
-		0410DB142064411F00FB3F4F /* ExtLoginWebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0410DB132064411F00FB3F4F /* ExtLoginWebVC.swift */; };
 		0410DB162064420E00FB3F4F /* RealmGroupsSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0410DB152064420E00FB3F4F /* RealmGroupsSaver.swift */; };
 		0410DB182064428600FB3F4F /* RealmUserSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0410DB172064428600FB3F4F /* RealmUserSaver.swift */; };
-		0414D2D1207A4B4300ECB0AA /* ExtNewsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0414D2D0207A4B4300ECB0AA /* ExtNewsViewCell.swift */; };
+		0413B22D2082197E0045A40C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0413B22C2082197E0045A40C /* GoogleService-Info.plist */; };
 		0416316420415E5000446639 /* MyFriendsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0416316320415E5000446639 /* MyFriendsViewCell.swift */; };
 		0416316620415EDE00446639 /* MyFriendsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0416316520415EDE00446639 /* MyFriendsTableVC.swift */; };
 		0416316820415F7F00446639 /* MyFriendCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0416316720415F7F00446639 /* MyFriendCollectionVC.swift */; };
@@ -47,23 +44,13 @@
 		04A360C2207CCAAA00684090 /* NewsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A360C0207CCAAA00684090 /* NewsViewCell.swift */; };
 		04A360C3207CCAAA00684090 /* NewsViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04A360C1207CCAAA00684090 /* NewsViewCell.xib */; };
 		04A360C7207F44E500684090 /* Layers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A360C6207F44E500684090 /* Layers.swift */; };
-		04A360C9207F532F00684090 /* ExtMyFriendsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A360C8207F532F00684090 /* ExtMyFriendsViewCell.swift */; };
-		04A360CB207F5E2F00684090 /* ExtMyGroupsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A360CA207F5E2F00684090 /* ExtMyGroupsViewCell.swift */; };
-		04A360CD207F5FEA00684090 /* ExtAllGroupsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A360CC207F5FEA00684090 /* ExtAllGroupsViewCell.swift */; };
-		04A360CF207F64D700684090 /* ExtMyFriendCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A360CE207F64D700684090 /* ExtMyFriendCollectionViewCell.swift */; };
-		04A360D1207F6B4300684090 /* ExtDialogViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A360D0207F6B4300684090 /* ExtDialogViewCell.swift */; };
 		04A360D6207F731700684090 /* IncomingMsgViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A360D4207F731700684090 /* IncomingMsgViewCell.swift */; };
-		04A360D9207F73AA00684090 /* ExtIncomingMsgViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A360D8207F73AA00684090 /* ExtIncomingMsgViewCell.swift */; };
 		04A360DC207F7A1000684090 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A360DB207F7A1000684090 /* Protocols.swift */; };
-		04A360DE207FAFFB00684090 /* ExtOutcomingMsgViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A360DD207FAFFB00684090 /* ExtOutcomingMsgViewCell.swift */; };
-		04CEE5CD20682AD600300107 /* ExtMessagesTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEE5CC20682AD600300107 /* ExtMessagesTableVC.swift */; };
 		04CEE5CF2068383A00300107 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04CEE5CE2068383900300107 /* Assets.xcassets */; };
 		04CEE5D120692AA600300107 /* OutcomingMsgViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEE5D020692AA600300107 /* OutcomingMsgViewCell.swift */; };
-		04CEE5D3206AC0FE00300107 /* ExtNewsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEE5D2206AC0FE00300107 /* ExtNewsTableVC.swift */; };
 		04CEE5D5206AD18100300107 /* NewsAttachmentsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEE5D4206AD18100300107 /* NewsAttachmentsModel.swift */; };
 		04CEE5D7206AE96A00300107 /* RealmNewsAttachSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEE5D6206AE96A00300107 /* RealmNewsAttachSaver.swift */; };
 		04CEE5D9206BF56D00300107 /* RealmDialogsSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEE5D8206BF56D00300107 /* RealmDialogsSaver.swift */; };
-		04CEE5DB206CD52200300107 /* ExtDialogsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEE5DA206CD52200300107 /* ExtDialogsTableVC.swift */; };
 		04D19B2D2060F1C700E1CADE /* RealmFriendsSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D19B2C2060F1C700E1CADE /* RealmFriendsSaver.swift */; };
 		04D19B2F2060FC9B00E1CADE /* RealmLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D19B2E2060FC9B00E1CADE /* RealmLoader.swift */; };
 		04D21945204A8DF3001E5B26 /* AuthorizationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D21944204A8DF3001E5B26 /* AuthorizationRequest.swift */; };
@@ -83,12 +70,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		040A2C982063C5B9004A43D0 /* ExtMyFriendCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtMyFriendCollectionVC.swift; sourceTree = "<group>"; };
-		040A2C9A2063CC13004A43D0 /* ExtAllGroupsTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtAllGroupsTableVC.swift; sourceTree = "<group>"; };
-		0410DB132064411F00FB3F4F /* ExtLoginWebVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtLoginWebVC.swift; sourceTree = "<group>"; };
 		0410DB152064420E00FB3F4F /* RealmGroupsSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmGroupsSaver.swift; sourceTree = "<group>"; };
 		0410DB172064428600FB3F4F /* RealmUserSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmUserSaver.swift; sourceTree = "<group>"; };
-		0414D2D0207A4B4300ECB0AA /* ExtNewsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtNewsViewCell.swift; sourceTree = "<group>"; };
+		0413B22C2082197E0045A40C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0416316320415E5000446639 /* MyFriendsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendsViewCell.swift; sourceTree = "<group>"; };
 		0416316520415EDE00446639 /* MyFriendsTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendsTableVC.swift; sourceTree = "<group>"; };
 		0416316720415F7F00446639 /* MyFriendCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendCollectionVC.swift; sourceTree = "<group>"; };
@@ -123,23 +107,13 @@
 		04A360C0207CCAAA00684090 /* NewsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewCell.swift; sourceTree = "<group>"; };
 		04A360C1207CCAAA00684090 /* NewsViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsViewCell.xib; sourceTree = "<group>"; };
 		04A360C6207F44E500684090 /* Layers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layers.swift; sourceTree = "<group>"; };
-		04A360C8207F532F00684090 /* ExtMyFriendsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtMyFriendsViewCell.swift; sourceTree = "<group>"; };
-		04A360CA207F5E2F00684090 /* ExtMyGroupsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtMyGroupsViewCell.swift; sourceTree = "<group>"; };
-		04A360CC207F5FEA00684090 /* ExtAllGroupsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtAllGroupsViewCell.swift; sourceTree = "<group>"; };
-		04A360CE207F64D700684090 /* ExtMyFriendCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtMyFriendCollectionViewCell.swift; sourceTree = "<group>"; };
-		04A360D0207F6B4300684090 /* ExtDialogViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtDialogViewCell.swift; sourceTree = "<group>"; };
 		04A360D4207F731700684090 /* IncomingMsgViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomingMsgViewCell.swift; sourceTree = "<group>"; };
-		04A360D8207F73AA00684090 /* ExtIncomingMsgViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtIncomingMsgViewCell.swift; sourceTree = "<group>"; };
 		04A360DB207F7A1000684090 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
-		04A360DD207FAFFB00684090 /* ExtOutcomingMsgViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtOutcomingMsgViewCell.swift; sourceTree = "<group>"; };
-		04CEE5CC20682AD600300107 /* ExtMessagesTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtMessagesTableVC.swift; sourceTree = "<group>"; };
 		04CEE5CE2068383900300107 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04CEE5D020692AA600300107 /* OutcomingMsgViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutcomingMsgViewCell.swift; sourceTree = "<group>"; };
-		04CEE5D2206AC0FE00300107 /* ExtNewsTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtNewsTableVC.swift; sourceTree = "<group>"; };
 		04CEE5D4206AD18100300107 /* NewsAttachmentsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsAttachmentsModel.swift; sourceTree = "<group>"; };
 		04CEE5D6206AE96A00300107 /* RealmNewsAttachSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmNewsAttachSaver.swift; sourceTree = "<group>"; };
 		04CEE5D8206BF56D00300107 /* RealmDialogsSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDialogsSaver.swift; sourceTree = "<group>"; };
-		04CEE5DA206CD52200300107 /* ExtDialogsTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtDialogsTableVC.swift; sourceTree = "<group>"; };
 		04D19B2C2060F1C700E1CADE /* RealmFriendsSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmFriendsSaver.swift; sourceTree = "<group>"; };
 		04D19B2E2060FC9B00E1CADE /* RealmLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmLoader.swift; sourceTree = "<group>"; };
 		04D21944204A8DF3001E5B26 /* AuthorizationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationRequest.swift; sourceTree = "<group>"; };
@@ -177,82 +151,12 @@
 		040A2C932063C482004A43D0 /* Exnensions */ = {
 			isa = PBXGroup;
 			children = (
-				043DA298208106C7005F494F /* Login */,
-				043DA29220810637005F494F /* Friends */,
-				043DA2932081064D005F494F /* Groups */,
-				043DA2942081066A005F494F /* NewsFeed */,
-				043DA2952081067C005F494F /* Dialogs */,
-				043DA2962081068B005F494F /* Messages */,
-				043DA297208106AD005F494F /* System */,
-			);
-			path = Exnensions;
-			sourceTree = "<group>";
-		};
-		043DA29220810637005F494F /* Friends */ = {
-			isa = PBXGroup;
-			children = (
-				04A360C8207F532F00684090 /* ExtMyFriendsViewCell.swift */,
-				040A2C982063C5B9004A43D0 /* ExtMyFriendCollectionVC.swift */,
-				04A360CE207F64D700684090 /* ExtMyFriendCollectionViewCell.swift */,
-			);
-			path = Friends;
-			sourceTree = "<group>";
-		};
-		043DA2932081064D005F494F /* Groups */ = {
-			isa = PBXGroup;
-			children = (
-				04A360CA207F5E2F00684090 /* ExtMyGroupsViewCell.swift */,
-				040A2C9A2063CC13004A43D0 /* ExtAllGroupsTableVC.swift */,
-				04A360CC207F5FEA00684090 /* ExtAllGroupsViewCell.swift */,
-			);
-			path = Groups;
-			sourceTree = "<group>";
-		};
-		043DA2942081066A005F494F /* NewsFeed */ = {
-			isa = PBXGroup;
-			children = (
-				04CEE5D2206AC0FE00300107 /* ExtNewsTableVC.swift */,
-				0414D2D0207A4B4300ECB0AA /* ExtNewsViewCell.swift */,
-			);
-			path = NewsFeed;
-			sourceTree = "<group>";
-		};
-		043DA2952081067C005F494F /* Dialogs */ = {
-			isa = PBXGroup;
-			children = (
-				04CEE5DA206CD52200300107 /* ExtDialogsTableVC.swift */,
-				04A360D0207F6B4300684090 /* ExtDialogViewCell.swift */,
-			);
-			path = Dialogs;
-			sourceTree = "<group>";
-		};
-		043DA2962081068B005F494F /* Messages */ = {
-			isa = PBXGroup;
-			children = (
-				04CEE5CC20682AD600300107 /* ExtMessagesTableVC.swift */,
-				04A360D8207F73AA00684090 /* ExtIncomingMsgViewCell.swift */,
-				04A360DD207FAFFB00684090 /* ExtOutcomingMsgViewCell.swift */,
-			);
-			path = Messages;
-			sourceTree = "<group>";
-		};
-		043DA297208106AD005F494F /* System */ = {
-			isa = PBXGroup;
-			children = (
 				04EB90B8207131E1001D95E6 /* ExtFormatter.swift */,
 				048714D92066CF8C003405B4 /* ExtUIImage.swift */,
 				04EB90BA20713252001D95E6 /* ExtInt.swift */,
 				04EB90BC207139C2001D95E6 /* ExtDate.swift */,
 			);
-			path = System;
-			sourceTree = "<group>";
-		};
-		043DA298208106C7005F494F /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				0410DB132064411F00FB3F4F /* ExtLoginWebVC.swift */,
-			);
-			path = Login;
+			path = Exnensions;
 			sourceTree = "<group>";
 		};
 		0473634C2073C74800873B09 /* Operations */ = {
@@ -411,6 +315,7 @@
 				040A2C932063C482004A43D0 /* Exnensions */,
 				04A360DA207F79CA00684090 /* Protocols */,
 				04D37E7620381B1100F958AF /* Info.plist */,
+				0413B22C2082197E0045A40C /* GoogleService-Info.plist */,
 				04CEE5CE2068383900300107 /* Assets.xcassets */,
 			);
 			path = myVKApp;
@@ -497,6 +402,7 @@
 			files = (
 				04A360C3207CCAAA00684090 /* NewsViewCell.xib in Resources */,
 				04D37E7020381B1100F958AF /* Main.storyboard in Resources */,
+				0413B22D2082197E0045A40C /* GoogleService-Info.plist in Resources */,
 				04CEE5CF2068383A00300107 /* Assets.xcassets in Resources */,
 				04EA44B6203C2F5E00074ACA /* Launch.storyboard in Resources */,
 			);
@@ -531,18 +437,26 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-myVKApp/Pods-myVKApp-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftKeychainWrapper/SwiftKeychainWrapper.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftKeychainWrapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -571,14 +485,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04A360D1207F6B4300684090 /* ExtDialogViewCell.swift in Sources */,
 				04EB90B9207131E1001D95E6 /* ExtFormatter.swift in Sources */,
 				0410DB182064428600FB3F4F /* RealmUserSaver.swift in Sources */,
-				040A2C9B2063CC13004A43D0 /* ExtAllGroupsTableVC.swift in Sources */,
-				04A360D9207F73AA00684090 /* ExtIncomingMsgViewCell.swift in Sources */,
 				0473636220775D8000873B09 /* TableCellReloading.swift in Sources */,
 				04D37E6B20381B1100F958AF /* AppDelegate.swift in Sources */,
-				0414D2D1207A4B4300ECB0AA /* ExtNewsViewCell.swift in Sources */,
 				049CEBA72051E3D5007ED7C2 /* GroupModel.swift in Sources */,
 				04A360C2207CCAAA00684090 /* NewsViewCell.swift in Sources */,
 				0416316820415F7F00446639 /* MyFriendCollectionVC.swift in Sources */,
@@ -593,10 +503,8 @@
 				0462E5F12067ADC900E0038C /* MessagesTableVC.swift in Sources */,
 				0462E5E32067968E00E0038C /* NewsModel.swift in Sources */,
 				0473634E2073C7B600873B09 /* GetCashedImageOperation.swift in Sources */,
-				04A360CF207F64D700684090 /* ExtMyFriendCollectionViewCell.swift in Sources */,
 				04CEE5D5206AD18100300107 /* NewsAttachmentsModel.swift in Sources */,
 				041631772042109300446639 /* Helpers.swift in Sources */,
-				04A360CD207F5FEA00684090 /* ExtAllGroupsViewCell.swift in Sources */,
 				0416316C2042016500446639 /* MyGroupsTableVC.swift in Sources */,
 				046DE624205D967200FEF668 /* UserModel.swift in Sources */,
 				04D2194B204B0AF6001E5B26 /* GroupsRequests.swift in Sources */,
@@ -605,15 +513,11 @@
 				04D37E7D2038445C00F958AF /* LoginVC.swift in Sources */,
 				048714D62066BCB5003405B4 /* NewsTableVC.swift in Sources */,
 				0416316A20415FF600446639 /* MyFriendCollectionViewCell.swift in Sources */,
-				04CEE5CD20682AD600300107 /* ExtMessagesTableVC.swift in Sources */,
 				047363642077625000873B09 /* CollectionCellReloading.swift in Sources */,
 				04EB90BB20713252001D95E6 /* ExtInt.swift in Sources */,
 				04CEE5D7206AE96A00300107 /* RealmNewsAttachSaver.swift in Sources */,
 				04EB90BF20714A42001D95E6 /* MessageModel.swift in Sources */,
-				04CEE5DB206CD52200300107 /* ExtDialogsTableVC.swift in Sources */,
 				0462E5EF20679ABF00E0038C /* DialogsViewCell.swift in Sources */,
-				04A360C9207F532F00684090 /* ExtMyFriendsViewCell.swift in Sources */,
-				0410DB142064411F00FB3F4F /* ExtLoginWebVC.swift in Sources */,
 				0410DB162064420E00FB3F4F /* RealmGroupsSaver.swift in Sources */,
 				0462E5E7206796FB00E0038C /* NewsRequests.swift in Sources */,
 				0462E5E92067973100E0038C /* DialogsRequests.swift in Sources */,
@@ -623,13 +527,9 @@
 				04EB90BD207139C2001D95E6 /* ExtDate.swift in Sources */,
 				0416317A2042133500446639 /* SettingsTableVC.swift in Sources */,
 				0462E5EB2067975F00E0038C /* RealmNewsSaver.swift in Sources */,
-				04A360DE207FAFFB00684090 /* ExtOutcomingMsgViewCell.swift in Sources */,
-				040A2C992063C5B9004A43D0 /* ExtMyFriendCollectionVC.swift in Sources */,
 				04A360DC207F7A1000684090 /* Protocols.swift in Sources */,
 				04D21945204A8DF3001E5B26 /* AuthorizationRequest.swift in Sources */,
-				04CEE5D3206AC0FE00300107 /* ExtNewsTableVC.swift in Sources */,
 				04D19B2D2060F1C700E1CADE /* RealmFriendsSaver.swift in Sources */,
-				04A360CB207F5E2F00684090 /* ExtMyGroupsViewCell.swift in Sources */,
 				0462E5ED20679A1300E0038C /* DialogsTableVC.swift in Sources */,
 				0490992020580A05009C784A /* FriendsRequests.swift in Sources */,
 				0462E5E5206796CD00E0038C /* DialogModel.swift in Sources */,

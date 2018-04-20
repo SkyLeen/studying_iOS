@@ -7,17 +7,13 @@
 //
 
 import UIKit
-import SwiftKeychainWrapper
 import RealmSwift
 
 class AllGroupsTableVC: UITableViewController {
     
-    let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")
-    let userId =  KeychainWrapper.standard.string(forKey: "userId")
-    
     let searchBar = UISearchBar()
     lazy var allGroupsArray: Results<Group> = {
-        return RealmLoader.loadData(object: Group()).filter("userId == ''")
+        return RealmLoader.loadData(object: Group()).sorted(byKeyPath: "followers", ascending: false)
     }()
     var filteredArray: Results<Group>!
     
@@ -38,7 +34,7 @@ class AllGroupsTableVC: UITableViewController {
         super.viewDidLoad()
         tableView.rowHeight = 55
         createSearchBar()
-        GroupsRequests.getAllGroups(accessToken: self.accessToken!)
+        GroupsRequests.getAllGroups()
         token = Notifications.getTableViewTokenRows(allGroupsArray, view: self.tableView)
     }
 
@@ -72,4 +68,50 @@ class AllGroupsTableVC: UITableViewController {
     override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         searchBar.endEditing(true)
     }
+    
+    private func createSearchBar() {
+        searchBar.barTintColor = .white
+        searchBar.tintColor = .white
+        searchBar.showsCancelButton = true
+        searchBar.keyboardType = .alphabet
+        searchBar.placeholder = "Search"
+        searchBar.returnKeyType = .done
+        searchBar.delegate = self
+        navigationItem.titleView = searchBar
+    }
 }
+
+extension AllGroupsTableVC: UISearchBarDelegate {
+    
+    internal func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text == nil || searchBar.text == "" {
+            isSearching = false
+            searchBar.endEditing(true)
+            tableView.reloadData()
+        } else {
+            isSearching = true
+            self.loadGroupsData(filter: searchText)
+            self.tableView.reloadData()
+        }
+    }
+    
+    internal func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
+    }
+    
+    internal func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
+    }
+    
+    private func loadGroupsData(filter: String = "") {
+        let groups = RealmLoader.loadData(object: Group())
+        
+        switch isSearching {
+        case true:
+            filteredArray = groups.filter("nameGroup CONTAINS[c] '\(filter)'")
+        case false:
+            allGroupsArray = groups
+        }
+    }
+}
+

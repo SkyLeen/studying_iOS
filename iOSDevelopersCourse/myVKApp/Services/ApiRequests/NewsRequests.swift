@@ -8,20 +8,24 @@
 
 import Alamofire
 import SwiftyJSON
+import SwiftKeychainWrapper
 
 class NewsRequests {
+    
+    static private let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")
+    static private let userId =  KeychainWrapper.standard.string(forKey: "userId")
     
     static let baseUrl = "https://api.vk.com"
     static let path = "/method"
     static var offset = 0
     static var start_from = ""
     
-    static func getUserNews(userId: String, accessToken: String) {
+    static func getUserNews() {
         let pathMethod = "/newsfeed.get"
         let url = baseUrl + path + pathMethod
         let parameters: Parameters = [
-            "user_id":userId,
-            "access_token":accessToken,
+            "user_id":userId!,
+            "access_token":accessToken!,
             "filters":"post", //,photo,photo_tag, wall_photo
             "count":100,
             //"offset":0,
@@ -32,11 +36,11 @@ class NewsRequests {
         Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON(queue: DispatchQueue.global(qos: .utility)) {  response in
             switch response.result {
             case .success(let value):
-                let profiles = JSON(value)["response"]["profiles"].compactMap({ Friend(json: $0.1, userId: userId) })
-                let groups = JSON(value)["response"]["groups"].compactMap({ Group(json: $0.1, userId: userId) })
+                let profiles = JSON(value)["response"]["profiles"].compactMap({ Friend(json: $0.1, userId: userId!) })
+                let groups = JSON(value)["response"]["groups"].compactMap({ Group(json: $0.1, userId: userId!) })
                 let newsFeed = JSON(value)["response"]["items"]
-                let news = newsFeed.compactMap({ News(json: $0.1, userId: userId, groups: groups, friends: profiles) })
-                RealmNewsSaver.saveUserNews(news: news, userId: userId)
+                let news = newsFeed.compactMap({ News(json: $0.1, userId: userId!, groups: groups, friends: profiles) })
+                RealmNewsSaver.saveUserNews(news: news, userId: userId!)
                 
                 DispatchQueue.global(qos: .utility).async {
                     for (_,item) in newsFeed.enumerated() {

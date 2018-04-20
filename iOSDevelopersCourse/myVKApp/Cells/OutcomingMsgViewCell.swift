@@ -16,7 +16,6 @@ class OutcomingMsgViewCell: UITableViewCell {
     
     let insets: CGFloat = 5
     let msgInset: CGFloat = 70
-    let bubbleTail: CGFloat = 35
     
     weak var delegate: CellHeightDelegate?
     var index: IndexPath?
@@ -49,3 +48,65 @@ class OutcomingMsgViewCell: UITableViewCell {
         setBubbleImage()
     }
 }
+
+extension OutcomingMsgViewCell {
+    
+    func updateHeight() {
+        let height = getCellHeight()
+        guard let index = index
+            , self.bounds.height != height else { return }
+        delegate?.setCellHeight(height, at: index, cell: self)
+    }
+    
+    private func cancelAutoConstraints() {
+        [messageLabel,dateLabel,bubbleImage].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
+    }
+    
+    private func setMsgLabelFrame() {
+        let maxInsets = insets * 3 + msgInset
+        let labelSize = Layers.getLabelSize(text: messageLabel.text!, font: messageLabel.font, in: self, insets: maxInsets)
+        
+        let insetsX = self.frame.width - insets * 2 - labelSize.width
+        let insetsY = insets * 2
+        let frame = Layers.getLabelFrame(fromX: insetsX, fromY: insetsY, labelSize: labelSize)
+        
+        messageLabel.frame = frame
+        messageLabel.sizeToFit()
+    }
+    
+    private func setDateLabelFrame() {
+        let insetsX = self.frame.origin.x + insets * 3 + msgInset
+        let insetsY = insets + messageLabel.frame.height + insets
+        let labelSize = Layers.getLabelSize(text: dateLabel.text!, font: dateLabel.font, in: self, insets: insetsX)
+        
+        let fromX = self.frame.width - labelSize.width - insets * 2
+        let frame = Layers.getLabelFrame(fromX: fromX, fromY: insetsY, labelSize: labelSize)
+        
+        dateLabel.frame = frame
+        messageLabel.sizeToFit()
+    }
+    
+    private func setBubbleImage() {
+        let content = messageLabel.frame.width > dateLabel.frame.width ? messageLabel.frame.origin.x : dateLabel.frame.origin.x
+        
+        let posX = content - insets * 2
+        let posY = CGFloat(0)
+        let origin = CGPoint(x: posX, y: posY)
+        
+        let width = self.frame.width - content + insets
+        let height = messageLabel.frame.height  + dateLabel.frame.height + insets * 4
+        let size = CGSize(width: width, height: height)
+        
+        let frame = CGRect(origin: origin, size: size)
+        
+        bubbleImage.frame = frame
+    }
+    
+    private func getCellHeight() -> CGFloat {
+        let height = insets * 2 + bubbleImage.frame.height
+        return height
+    }
+}
+

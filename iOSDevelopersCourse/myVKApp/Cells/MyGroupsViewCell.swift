@@ -17,15 +17,15 @@ class MyGroupsViewCell: UITableViewCell {
     
     var group: Group? {
         didSet {
-            setImageFrame()
             myGroupNameLabel.text = group?.nameGroup
+            setImageFrame()
             setLabelFrame()
         }
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        cancelAutoConstraints() 
+        cancelAutoConstraints()
         ImageSettingsHelper.setImageLayersSettings(for: myGroupImageView, mode: .forAvatarImages)
     }
     
@@ -33,5 +33,29 @@ class MyGroupsViewCell: UITableViewCell {
         super.layoutSubviews()
         setImageFrame()
         setLabelFrame()
+    }
+}
+
+extension MyGroupsViewCell {
+    
+    private func cancelAutoConstraints() {
+        [myGroupImageView, myGroupNameLabel].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
+    }
+    
+    private func setImageFrame() {
+        let frame = Layers.getAvatarImageFrame(insets: insets)
+        myGroupImageView.frame = frame
+    }
+    
+    private func setLabelFrame() {
+        let insetsX = insets + myGroupImageView.frame.width + insets
+        let labelSize = Layers.getLabelSize(text: myGroupNameLabel.text!, font: myGroupNameLabel.font, in: self, insets: insetsX)
+        let insetsY = myGroupImageView.frame.midY - labelSize.height / 2
+        
+        let frame = Layers.getLabelFrame(fromX: insetsX, fromY: insetsY, labelSize: labelSize)
+        
+        myGroupNameLabel.frame = frame
     }
 }

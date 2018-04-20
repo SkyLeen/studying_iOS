@@ -23,3 +23,21 @@ class MyFriendCollectionViewCell: UICollectionViewCell {
         setImageFrame()
     }
 }
+
+extension MyFriendCollectionViewCell {
+    
+    private func cancelAutoConstraints() {
+        myFriendPhoto.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    private func setImageFrame() {
+        let side: CGFloat = self.frame.width
+        let size = CGSize(width: ceil(side), height: ceil(side))
+        
+        let position: CGFloat = 0.0
+        let origin = CGPoint(x: position, y: position)
+        let frame = CGRect(origin: origin, size: size)
+        
+        myFriendPhoto.frame = frame
+    }
+}

@@ -7,8 +7,24 @@
 //
 
 import RealmSwift
+import SwiftKeychainWrapper
 
 class RealmRequests {
+    
+    static private let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")
+    static private let userId =  KeychainWrapper.standard.string(forKey: "userId")
+    
+    static func getUserGroups() -> Results<Group> {
+        var result: Results<Group>!
+        do {
+            let realm = try Realm()
+            let user = realm.object(ofType: User.self, forPrimaryKey: userId)
+            result = user?.groups.filter("idGroup != ''").sorted(byKeyPath: "nameGroup")
+            } catch {
+            print(error.localizedDescription)
+        }
+        return result
+    }
     
     static func getFriendData(friend: String) -> (name: String, photoUrl: String?)? {
         guard let realm = try? Realm() else { return nil }
@@ -30,17 +46,6 @@ class RealmRequests {
             let name = group[0].nameGroup
             let photoUrl = group[0].photoGroupUrl
             
-            return (name: name, photoUrl: photoUrl)
-        } else { return nil }
-    }
-    
-    static func getUserData() -> (name: String, photoUrl: String?)? {
-        guard let realm = try? Realm() else { return nil }
-        let user = realm.objects(User.self)
-        if !user.isEmpty {
-            let name = user[0].name
-            let photoUrl = user[0].photoUrl
-
             return (name: name, photoUrl: photoUrl)
         } else { return nil }
     }

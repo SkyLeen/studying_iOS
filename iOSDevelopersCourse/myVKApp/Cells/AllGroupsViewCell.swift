@@ -18,9 +18,8 @@ class AllGroupsViewCell: UITableViewCell {
     
     var group: Group? {
         didSet {
-            setImageFrame()
-            
             allGroupNameLabel.text = group?.nameGroup
+            setImageFrame()
             setNameLabelFrame()
             
             guard let followers = group?.followers else { return }
@@ -31,7 +30,7 @@ class AllGroupsViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        cancelAutoConstraints() 
+        cancelAutoConstraints()
         ImageSettingsHelper.setImageLayersSettings(for: allGroupImageView, mode: .forAvatarImages)
     }
     
@@ -40,5 +39,37 @@ class AllGroupsViewCell: UITableViewCell {
         setImageFrame()
         setNameLabelFrame()
         setFollowersFrame()
+    }
+}
+
+extension AllGroupsViewCell {
+    
+    private func cancelAutoConstraints() {
+        [allGroupImageView, allGroupNameLabel, allGroupFollowersCountLabel].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
+    }
+    
+    private func setImageFrame() {
+        let frame = Layers.getAvatarImageFrame(insets: insets)
+        allGroupImageView.frame = frame
+    }
+    
+    private func setNameLabelFrame() {
+        let insetsX = insets + allGroupImageView.frame.width + insets
+        let labelSize = Layers.getLabelSize(text: allGroupNameLabel.text!, font: allGroupNameLabel.font, in: self, insets: insetsX)
+        let frame = Layers.getLabelFrame(fromX: insetsX, fromY: insets, labelSize: labelSize)
+        
+        allGroupNameLabel.frame = frame
+    }
+    
+    private func setFollowersFrame() {
+        let insetsX = insets + allGroupImageView.frame.width + insets
+        let insetsY = allGroupNameLabel.frame.maxY + insets
+        let labelSize = Layers.getLabelSize(text: allGroupFollowersCountLabel.text!, font: allGroupFollowersCountLabel.font, in: self, insets: insetsX)
+        
+        let frame = Layers.getLabelFrame(fromX: insetsX, fromY: insetsY, labelSize: labelSize)
+        
+        allGroupFollowersCountLabel.frame = frame
     }
 }

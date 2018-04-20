@@ -17,15 +17,15 @@ class MyFriendsViewCell: UITableViewCell {
     
     var user: Friend? {
         didSet {
-            setImageFrame()
             friendNameLabel.text = user?.name
+            setImageFrame()
             setLabelFrame()
         }
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        cancelAutoConstraints() 
+        cancelAutoConstraints()
         ImageSettingsHelper.setImageLayersSettings(for: friendImageView, mode: .forAvatarImages)
     }
     
@@ -33,5 +33,29 @@ class MyFriendsViewCell: UITableViewCell {
         super.layoutSubviews()
         setImageFrame()
         setLabelFrame()
+    }
+}
+
+extension MyFriendsViewCell {
+    
+    private func cancelAutoConstraints() {
+        [friendImageView, friendNameLabel].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
+    }
+    
+    private func setImageFrame() {
+        let frame = Layers.getAvatarImageFrame(insets: insets)
+        friendImageView.frame = frame
+    }
+    
+    private func setLabelFrame() {
+        let insetsX = insets + friendImageView.frame.width + insets
+        let labelSize = Layers.getLabelSize(text: friendNameLabel.text!, font: friendNameLabel.font, in: self, insets: insetsX)
+        let insetsY = friendImageView.frame.midY - labelSize.height / 2
+        
+        let frame = Layers.getLabelFrame(fromX: insetsX, fromY: insetsY, labelSize: labelSize)
+        friendNameLabel.frame = frame
+        friendNameLabel.sizeToFit()
     }
 }

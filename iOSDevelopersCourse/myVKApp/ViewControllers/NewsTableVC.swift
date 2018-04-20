@@ -7,13 +7,9 @@
 //
 
 import UIKit
-import SwiftKeychainWrapper
 import RealmSwift
 
 class NewsTableVC: UITableViewController {
-    
-    let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")
-    let userId =  KeychainWrapper.standard.string(forKey: "userId")
     
     lazy var newsArray: Results<News> = {
         return RealmLoader.loadData(object: News()).sorted(byKeyPath: "date", ascending: false)
@@ -37,7 +33,7 @@ class NewsTableVC: UITableViewController {
         super.viewDidLoad()
         self.tableView.register(UINib(nibName: "NewsViewCell", bundle: nil), forCellReuseIdentifier: "NewsViewCell")
         addRefreshControl()
-        NewsRequests.getUserNews(userId: self.userId!, accessToken: self.accessToken!)
+        NewsRequests.getUserNews()
         token = Notifications.getTableViewTokenSections(newsArray, view: self.tableView)
     }
     
@@ -86,5 +82,28 @@ class NewsTableVC: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         guard let height = heightCellCash[indexPath] else { return 120 }
         return height
+    }
+}
+
+extension NewsTableVC {
+    
+    private func addRefreshControl() {
+        self.refreshControl?.addTarget(self, action: #selector(self.refreshView), for: .valueChanged)
+    }
+    
+    @objc func refreshView(sender: AnyObject) {
+        NewsRequests.getUserNews()
+        DispatchQueue.main.async { [weak self] in
+            guard let s = self else { return }
+            s.refreshControl?.endRefreshing()
+            s.tableView.reloadData()
+        }
+    }
+}
+
+extension NewsTableVC: CellHeightDelegate {
+    
+    func setCellHeight(_ height: CGFloat, at index: IndexPath, cell: UITableViewCell) {
+        heightCellCash[index] = height
     }
 }
