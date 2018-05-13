@@ -32,6 +32,7 @@
 		0462E5EF20679ABF00E0038C /* DialogsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0462E5EE20679ABF00E0038C /* DialogsViewCell.swift */; };
 		0462E5F12067ADC900E0038C /* MessagesTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0462E5F02067ADC900E0038C /* MessagesTableVC.swift */; };
 		0465C99C20A85F4500F9BB51 /* NewPostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0465C99B20A85F4500F9BB51 /* NewPostVC.swift */; };
+		0465C9A220A89E0700F9BB51 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0465C9A120A89E0700F9BB51 /* MapVC.swift */; };
 		046DE624205D967200FEF668 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046DE623205D967200FEF668 /* UserModel.swift */; };
 		0473634E2073C7B600873B09 /* GetCashedImageOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0473634D2073C7B600873B09 /* GetCashedImageOperation.swift */; };
 		0473636220775D8000873B09 /* TableCellReloading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0473636120775D8000873B09 /* TableCellReloading.swift */; };
@@ -97,6 +98,7 @@
 		0462E5EE20679ABF00E0038C /* DialogsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogsViewCell.swift; sourceTree = "<group>"; };
 		0462E5F02067ADC900E0038C /* MessagesTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesTableVC.swift; sourceTree = "<group>"; };
 		0465C99B20A85F4500F9BB51 /* NewPostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostVC.swift; sourceTree = "<group>"; };
+		0465C9A120A89E0700F9BB51 /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
 		046DE623205D967200FEF668 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		0473634D2073C7B600873B09 /* GetCashedImageOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCashedImageOperation.swift; sourceTree = "<group>"; };
 		0473636120775D8000873B09 /* TableCellReloading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCellReloading.swift; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 				0416316F204202F100446639 /* AllGroupsTableVC.swift */,
 				048714D52066BCB5003405B4 /* NewsTableVC.swift */,
 				0465C99B20A85F4500F9BB51 /* NewPostVC.swift */,
+				0465C9A120A89E0700F9BB51 /* MapVC.swift */,
 				0462E5EC20679A1300E0038C /* DialogsTableVC.swift */,
 				0462E5F02067ADC900E0038C /* MessagesTableVC.swift */,
 				041631792042133500446639 /* SettingsTableVC.swift */,
@@ -540,6 +543,7 @@
 				04D19B2D2060F1C700E1CADE /* RealmFriendsSaver.swift in Sources */,
 				0462E5ED20679A1300E0038C /* DialogsTableVC.swift in Sources */,
 				0490992020580A05009C784A /* FriendsRequests.swift in Sources */,
+				0465C9A220A89E0700F9BB51 /* MapVC.swift in Sources */,
 				0462E5E5206796CD00E0038C /* DialogModel.swift in Sources */,
 				04EB90B7206EB103001D95E6 /* RealmRequests.swift in Sources */,
 				04CEE5D120692AA600300107 /* OutcomingMsgViewCell.swift in Sources */,
@@ -683,7 +687,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G4SYRYWB23;
 				INFOPLIST_FILE = "$(SRCROOT)/myVKApp/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "na-shi.myVKApp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -700,7 +704,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G4SYRYWB23;
 				INFOPLIST_FILE = "$(SRCROOT)/myVKApp/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "na-shi.myVKApp";
 				PRODUCT_NAME = "$(TARGET_NAME)";

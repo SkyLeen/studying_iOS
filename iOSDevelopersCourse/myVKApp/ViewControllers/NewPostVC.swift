@@ -112,6 +112,7 @@ extension NewPostVC {
         let frameFriend = CGRect(origin: originFriend, size: size)
 
         friendButton.frame = frameFriend
+        friendButton.imageView?.tintColor = .darkGray
         
         let posLocX = friendButton.frame.origin.x - inset - side
         let originLoc = CGPoint(x: posLocX, y: positionY)

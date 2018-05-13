@@ -882,7 +882,7 @@
         <!--New Post-->
         <scene sceneID="ANq-o8-Vq6">
             <objects>
-                <viewController id="vfC-vd-rDf" customClass="NewPostVC" customModule="myVKApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="vfC-vd-rDf" customClass="NewPostVC" customModule="myVKApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2Me-XF-4Nt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -898,17 +898,21 @@
                                 <rect key="frame" x="0.0" y="231" width="375" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cS5-DU-Ow7">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cS5-DU-Ow7">
                                         <rect key="frame" x="177" y="0.0" width="20" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="friends"/>
+                                        <state key="normal" image="user-shape"/>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oC1-DD-7rv">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oC1-DD-7rv">
                                         <rect key="frame" x="75" y="0.0" width="20" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" red="0.2627450980392157" green="0.2627450980392157" blue="0.2627450980392157" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" image="location"/>
+                                        <connections>
+                                            <segue destination="jZW-E6-Tku" kind="show" id="G5E-Mp-O4f"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hem-Ul-fLV">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hem-Ul-fLV">
                                         <rect key="frame" x="268" y="0.0" width="20" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="photos"/>
@@ -921,6 +925,7 @@
                         <viewLayoutGuide key="safeArea" id="Bym-JQ-Etg"/>
                     </view>
                     <navigationItem key="navigationItem" title="New Post" id="xWM-vS-bSE">
+                        <barButtonItem key="backBarButtonItem" title="Cancel" id="eJA-9i-76v"/>
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Nzj-gh-yIU">
                             <connections>
                                 <action selector="cancelPost:" destination="vfC-vd-rDf" id="EtM-Zb-wcO"/>
@@ -943,6 +948,36 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bOY-7H-kqd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3768.8000000000002" y="10.344827586206897"/>
+        </scene>
+        <!--Location-->
+        <scene sceneID="Cuf-uq-KXH">
+            <objects>
+                <viewController title="Location" hidesBottomBarWhenPushed="YES" id="jZW-E6-Tku" customClass="MapVC" customModule="myVKApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nq6-qP-WG5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="S4X-tA-cpt">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="S4X-tA-cpt" firstAttribute="bottom" secondItem="VS3-FU-57I" secondAttribute="bottom" id="GZM-kv-bKI"/>
+                            <constraint firstItem="S4X-tA-cpt" firstAttribute="top" secondItem="VS3-FU-57I" secondAttribute="top" id="Hc2-HG-23r"/>
+                            <constraint firstItem="S4X-tA-cpt" firstAttribute="leading" secondItem="VS3-FU-57I" secondAttribute="leading" id="NLY-rG-5vc"/>
+                            <constraint firstItem="S4X-tA-cpt" firstAttribute="trailing" secondItem="VS3-FU-57I" secondAttribute="trailing" id="xeW-Vf-xKb"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="VS3-FU-57I"/>
+                    </view>
+                    <toolbarItems/>
+                    <connections>
+                        <outlet property="mapView" destination="S4X-tA-cpt" id="g3d-Z7-6ha"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fuO-hQ-Zfc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4520.8000000000002" y="8.5457271364317844"/>
         </scene>
         <!--Login WebVC-->
         <scene sceneID="wnB-5d-ffL">
@@ -1013,6 +1048,7 @@
         <image name="news" width="25" height="25"/>
         <image name="photos" width="25" height="25"/>
         <image name="settings" width="25" height="25"/>
+        <image name="user-shape" width="25" height="25"/>
         <image name="yellow" width="133" height="204"/>
     </resources>
     <inferredMetricsTieBreakers>
