@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import SwiftKeychainWrapper
 
 class MessagesTableVC: UIViewController {
 
@@ -17,9 +18,13 @@ class MessagesTableVC: UIViewController {
     @IBOutlet weak var messageView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     
+    private let userId =  KeychainWrapper.standard.string(forKey: "userId")
+
     var friendId = 0
     var friendName = ""
     var friendImage: UIImage?
+    var dialogId = ""
+    var chatId = 0
     
     var heightInCellCash: [IndexPath : CGFloat] = [:]
     var heightOutCellCash: [IndexPath : CGFloat] = [:]
@@ -44,11 +49,17 @@ class MessagesTableVC: UIViewController {
         super.viewDidLoad()
         setTitle()
         setTextView()
-        DialogsRequests.getMessages(friendId: friendId.description)
+        if chatId > 0 {
+            DialogsRequests.getChatUsers(chatId: chatId)
+        } else {
+            DialogsRequests.getMessages(friendId: friendId.description)
+        }
         messageToken = Notifications.getTableViewTokenRows(friendsMessageArray, view: self.messageTableView)
         
         let hideKbGesture = UITapGestureRecognizer(target: self, action: #selector(self.hideKeyboard))
         self.scrollView?.addGestureRecognizer(hideKbGesture)
+        
+        goToBottom()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -84,8 +95,12 @@ class MessagesTableVC: UIViewController {
     }
     
     private func sendMessage() {
-        let text = textView.text
-        print(text ?? "")
+        textView.resignFirstResponder()
+        
+        guard let text = textView.text, !text.isEmpty else { return }
+        let destination = chatId > 0 ? 2_000_000_000 + chatId : friendId
+        DialogsRequests.sendMessage(to: destination, chatId: chatId, text: text)
+        self.textView.text.removeAll()
     }
 }
 
@@ -100,12 +115,25 @@ extension MessagesTableVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let message = friendsMessageArray[indexPath.row]
+        let attachments = message.attachments
         
         if message.out == 0 {
             let cellFriend = tableView.dequeueReusableCell(withIdentifier: "IncomingMsgViewCell", for: indexPath) as! IncomingMsgViewCell
+            
             cellFriend.delegate = self
             cellFriend.index = indexPath
             cellFriend.message = message
+            cellFriend.attachments = Array(attachments)
+            
+            if !attachments.isEmpty, let url = attachments[0].url {
+                let getImageOp = GetCashedImage(url: url, folderName: .Dialogs)
+                let newsReloadedOp = TableCellReloading(indexPath: indexPath, view: tableView, cell: cellFriend, imageView: cellFriend.attachedImage)
+                newsReloadedOp.addDependency(getImageOp)
+                opQueue.addOperation(getImageOp)
+                OperationQueue.main.addOperation(newsReloadedOp)
+            }
+            cellFriend.setAttachedImageFrame()
+            cellFriend.setBubbleImage()
             cellFriend.updateHeight()
             
             return cellFriend
@@ -115,6 +143,18 @@ extension MessagesTableVC: UITableViewDelegate {
             cellUser.delegate = self
             cellUser.index = indexPath
             cellUser.message = message
+            cellUser.attachments = Array(attachments)
+            
+            if !attachments.isEmpty, let url = attachments[0].url {
+                let getImageOp = GetCashedImage(url: url, folderName: .Dialogs)
+                let newsReloadedOp = TableCellReloading(indexPath: indexPath, view: tableView, cell: cellUser, imageView: cellUser.attachedImage)
+                newsReloadedOp.addDependency(getImageOp)
+                opQueue.addOperation(getImageOp)
+                OperationQueue.main.addOperation(newsReloadedOp)
+            }
+            
+            cellUser.setAttachedImageFrame()
+            cellUser.setBubbleImage()
             cellUser.updateHeight()
             
             return cellUser
@@ -143,7 +183,24 @@ extension MessagesTableVC: CellHeightDelegate {
     }
 }
 
+extension MessagesTableVC: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        sendMessage()
+        
+        return true
+    }
+}
+
 extension MessagesTableVC {
+    
+    private func goToBottom() {
+        DispatchQueue.main.async {
+            guard self.friendsMessageArray.count > 0 else { return }
+            let indexPath = IndexPath(row: self.friendsMessageArray.count - 1, section: 0)
+            self.messageTableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
+        }
+    }
     
     private func setTitle() {
         let navView = UIView()

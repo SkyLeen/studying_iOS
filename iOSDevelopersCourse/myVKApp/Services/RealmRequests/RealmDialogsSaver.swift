@@ -35,4 +35,18 @@ class RealmDialogSaver {
             print(error.localizedDescription)
         }
     }
+        
+    static func saveMsgsAttach (attachs: [MessageAttachments], msgId: String) {
+        do {
+            let realm = try Realm()
+            let msg = realm.object(ofType: Message.self, forPrimaryKey: "\(msgId)")
+            let oldAttachs = realm.objects(MessageAttachments.self).filter("msgId == %@", "\(msgId)")
+            try realm.write {
+                realm.delete(oldAttachs)
+                msg?.attachments.append(objectsIn: attachs)
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
 }

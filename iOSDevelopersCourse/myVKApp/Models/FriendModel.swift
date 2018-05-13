@@ -12,6 +12,7 @@ import RealmSwift
 class Friend: Object {
     
     @objc dynamic var idFriend: String = ""
+    @objc dynamic var online: Int = 0
     @objc dynamic private var firstName: String = ""
     @objc dynamic private var lastName: String = ""
     @objc dynamic var photoUrl: String?
@@ -35,6 +36,7 @@ class Friend: Object {
     convenience init(json: JSON, userId: String = "") {
         self.init()
         self.idFriend = json["id"].stringValue
+        self.online = json["online"].intValue
         self.firstName = json["first_name"].stringValue
         self.lastName = json["last_name"].stringValue
         self.photoUrl = json["photo_100"].stringValue

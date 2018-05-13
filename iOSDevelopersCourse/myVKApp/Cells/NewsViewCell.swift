@@ -143,7 +143,7 @@ extension NewsViewCell {
         let width = self.bounds.width
         let height = self.bounds.width + insetsBtwElements
         let imageBlock = CGSize(width: width, height: height)
-        
+
         let positionX = self.frame.origin.x
         let positionY = newsLabel.frame.origin.y + newsLabel.bounds.height + insetsBtwElements
         let origin = CGPoint(x: positionX, y: positionY)

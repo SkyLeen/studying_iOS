@@ -46,7 +46,6 @@ class DialogsTableVC: UITableViewController {
         tableView.rowHeight = 55
         addRefreshControl()
         DialogsRequests.getUserDialogs()
-        
         dialogsToken = Notifications.getTableViewTokenRows(dialogsArray, view: self.tableView)
         usersToken = Notifications.getTableViewTokenLight(usersArray, view: self.tableView)
         groupsToken = Notifications.getTableViewTokenLight(groupsArray, view: self.tableView)
@@ -63,7 +62,8 @@ class DialogsTableVC: UITableViewController {
         
         cell.dialog = dialog
         
-        guard let user = friendId > 0 ? RealmRequests.getFriendData(friend: friendId.description) :
+        guard dialog.chatId == 0,
+            let user = friendId > 0 ? RealmRequests.getFriendData(friend: friendId.description) :
             RealmRequests.getGroupData(group: friendId.magnitude.description),
             let url = user.photoUrl
             else { return cell }
@@ -86,6 +86,8 @@ class DialogsTableVC: UITableViewController {
         guard let friend = sender as? IndexPath else { return }
         let dialog = dialogsArray[friend.row]
         
+        destinationVC.dialogId = dialog.id
+        destinationVC.chatId = dialog.chatId
         setFriendNameForTitle(dialog: dialog, to: destinationVC)
     }
 }
@@ -97,19 +99,17 @@ extension DialogsTableVC {
     }
     
     @objc func refreshView(sender: AnyObject) {
-        DispatchQueue.global(qos: .utility).async {
             DialogsRequests.getUserDialogs()
             DispatchQueue.main.async { [weak self] in
                 guard let s = self else { return }
                 s.refreshControl?.endRefreshing()
                 s.tableView.reloadData()
             }
-        }
     }
     
     private func setFriendNameForTitle(dialog: Dialog, to vc: UIViewController) {
         guard let controller = vc as? MessagesTableVC else { return }
-        let friendId = dialog.friendId
+        let friendId = dialog.chatId == 0 ? dialog.friendId : 0
         controller.friendId = friendId
         
         if dialog.title == ""  {
