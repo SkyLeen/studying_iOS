@@ -14,8 +14,11 @@ class MapVC: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     
     var currentPin: MKPointAnnotation?
+    var selectedPin: MKPointAnnotation?
     let locationManager = CLLocationManager()
     let geocoder = CLGeocoder()
+    
+    var placeName = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +29,36 @@ class MapVC: UIViewController {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
+        
+        let pressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPress))
+        pressRecognizer.minimumPressDuration = 1.0
+        mapView.addGestureRecognizer(pressRecognizer)
+    }
+    
+    @objc func longPress(_ gestureRecognizer : UIGestureRecognizer){
+        if gestureRecognizer.state != .began { return }
+        
+        let touchPoint = gestureRecognizer.location(in: mapView)
+        let touchMapCoordinate = mapView.convert(touchPoint, toCoordinateFrom: mapView)
+        let coordinates = CLLocation(latitude: touchMapCoordinate.latitude, longitude: touchMapCoordinate.longitude)
+        
+        selectedPin = MKPointAnnotation()
+        selectedPin?.coordinate = touchMapCoordinate
+        selectedPin?.title = "Selected"
+        interpretateCoords(coordinates) {
+            self.selectedPin?.subtitle = self.placeName
+        }
+        
+        mapView.addAnnotation(selectedPin!)
+    }
+    
+    private func interpretateCoords(_ coords: CLLocation, closure: @escaping () -> Void) {
+        geocoder.reverseGeocodeLocation(coords) { [weak self] places,error in
+            if let place = places?.first {
+                self?.placeName = place.country! + ", "  + place.locality! + ", " + place.name!
+                closure()
+            }
+        }
     }
     
     private func createSearchBar() {
@@ -59,24 +92,20 @@ extension MapVC: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let currentLocation = locations.last?.coordinate {
-            let coordinates = CLLocation(latitude: currentLocation.latitude, longitude: currentLocation.longitude)
-            currentPin = MKPointAnnotation()
-            currentPin?.coordinate = currentLocation
-            
-            geocoder.reverseGeocodeLocation(coordinates) { [weak self] places,error in
-                if let place = places?.first {
-                    self?.currentPin?.title = place.locality!
-                    self?.currentPin?.subtitle = place.name
-                }
-            }
-            
             let currentRadius: CLLocationDistance = 1000
             let currentRegion = MKCoordinateRegionMakeWithDistance(currentLocation, currentRadius * 2.0, currentRadius * 2.0)
             
-            mapView.addAnnotation(currentPin!)
+            let coordinates = CLLocation(latitude: currentLocation.latitude, longitude: currentLocation.longitude)
+            currentPin = MKPointAnnotation()
+            currentPin?.coordinate = currentLocation
+            currentPin?.title = "My location"
+            interpretateCoords(coordinates) {
+                self.currentPin?.subtitle = self.placeName
+            }
+            
             mapView.setRegion(currentRegion, animated: true)
             mapView.showsUserLocation = true
-            
+            mapView.addAnnotation(currentPin!)
         }
     }
 }
