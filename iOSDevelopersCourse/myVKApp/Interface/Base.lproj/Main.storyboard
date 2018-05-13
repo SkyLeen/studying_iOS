@@ -278,7 +278,15 @@
                             <outlet property="delegate" destination="iBD-L0-bCm" id="GUz-eu-dHW"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="News" id="Nd3-sb-oas"/>
+                    <navigationItem key="navigationItem" title="News" id="Nd3-sb-oas">
+                        <barButtonItem key="backBarButtonItem" title="Cancel" id="1Me-gV-h7J"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="9NF-AK-pdY">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <segue destination="5Ea-l5-oRI" kind="showDetail" id="ZtE-OA-zNo"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="0cj-ju-YjI">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -851,6 +859,91 @@
             </objects>
             <point key="canvasLocation" x="3068" y="-657"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="3Mx-mU-zbJ">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9uq-UK-bqD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController id="5Ea-l5-oRI" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="DPp-db-0N6">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.93725490199999995" green="0.76078431369999999" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="19"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="vfC-vd-rDf" kind="relationship" relationship="rootViewController" id="p2p-Cn-BRR"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="3069" y="10"/>
+        </scene>
+        <!--New Post-->
+        <scene sceneID="ANq-o8-Vq6">
+            <objects>
+                <viewController id="vfC-vd-rDf" customClass="NewPostVC" customModule="myVKApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2Me-XF-4Nt">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dha-dU-Cu4">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="113"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gck-f7-1xT">
+                                <rect key="frame" x="0.0" y="231" width="375" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cS5-DU-Ow7">
+                                        <rect key="frame" x="177" y="0.0" width="20" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="friends"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oC1-DD-7rv">
+                                        <rect key="frame" x="75" y="0.0" width="20" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="location"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hem-Ul-fLV">
+                                        <rect key="frame" x="268" y="0.0" width="20" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="photos"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Bym-JQ-Etg"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="New Post" id="xWM-vS-bSE">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Nzj-gh-yIU">
+                            <connections>
+                                <action selector="cancelPost:" destination="vfC-vd-rDf" id="EtM-Zb-wcO"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="done" id="d3Y-CQ-SRd">
+                            <connections>
+                                <action selector="sendPost:" destination="vfC-vd-rDf" id="8Tl-us-POA"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="barView" destination="gck-f7-1xT" id="fDe-Ut-Za0"/>
+                        <outlet property="friendButton" destination="cS5-DU-Ow7" id="tRW-5x-jaT"/>
+                        <outlet property="locationButton" destination="oC1-DD-7rv" id="imt-WS-5Tt"/>
+                        <outlet property="photosButton" destination="Hem-Ul-fLV" id="BS3-1Z-RjH"/>
+                        <outlet property="textView" destination="dha-dU-Cu4" id="Z4V-3e-30N"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bOY-7H-kqd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3768.8000000000002" y="10.344827586206897"/>
+        </scene>
         <!--Login WebVC-->
         <scene sceneID="wnB-5d-ffL">
             <objects>
@@ -915,8 +1008,10 @@
         <image name="add" width="16" height="16"/>
         <image name="friends" width="25" height="25"/>
         <image name="groups" width="25" height="25"/>
+        <image name="location" width="25" height="25"/>
         <image name="messages" width="25" height="25"/>
         <image name="news" width="25" height="25"/>
+        <image name="photos" width="25" height="25"/>
         <image name="settings" width="25" height="25"/>
         <image name="yellow" width="133" height="204"/>
     </resources>

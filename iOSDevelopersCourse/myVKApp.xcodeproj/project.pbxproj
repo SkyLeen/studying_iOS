@@ -31,6 +31,7 @@
 		0462E5ED20679A1300E0038C /* DialogsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0462E5EC20679A1300E0038C /* DialogsTableVC.swift */; };
 		0462E5EF20679ABF00E0038C /* DialogsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0462E5EE20679ABF00E0038C /* DialogsViewCell.swift */; };
 		0462E5F12067ADC900E0038C /* MessagesTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0462E5F02067ADC900E0038C /* MessagesTableVC.swift */; };
+		0465C99C20A85F4500F9BB51 /* NewPostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0465C99B20A85F4500F9BB51 /* NewPostVC.swift */; };
 		046DE624205D967200FEF668 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046DE623205D967200FEF668 /* UserModel.swift */; };
 		0473634E2073C7B600873B09 /* GetCashedImageOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0473634D2073C7B600873B09 /* GetCashedImageOperation.swift */; };
 		0473636220775D8000873B09 /* TableCellReloading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0473636120775D8000873B09 /* TableCellReloading.swift */; };
@@ -95,6 +96,7 @@
 		0462E5EC20679A1300E0038C /* DialogsTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogsTableVC.swift; sourceTree = "<group>"; };
 		0462E5EE20679ABF00E0038C /* DialogsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogsViewCell.swift; sourceTree = "<group>"; };
 		0462E5F02067ADC900E0038C /* MessagesTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesTableVC.swift; sourceTree = "<group>"; };
+		0465C99B20A85F4500F9BB51 /* NewPostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostVC.swift; sourceTree = "<group>"; };
 		046DE623205D967200FEF668 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		0473634D2073C7B600873B09 /* GetCashedImageOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCashedImageOperation.swift; sourceTree = "<group>"; };
 		0473636120775D8000873B09 /* TableCellReloading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCellReloading.swift; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 				0416316B2042016500446639 /* MyGroupsTableVC.swift */,
 				0416316F204202F100446639 /* AllGroupsTableVC.swift */,
 				048714D52066BCB5003405B4 /* NewsTableVC.swift */,
+				0465C99B20A85F4500F9BB51 /* NewPostVC.swift */,
 				0462E5EC20679A1300E0038C /* DialogsTableVC.swift */,
 				0462E5F02067ADC900E0038C /* MessagesTableVC.swift */,
 				041631792042133500446639 /* SettingsTableVC.swift */,
@@ -488,6 +491,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0465C99C20A85F4500F9BB51 /* NewPostVC.swift in Sources */,
 				04EB90B9207131E1001D95E6 /* ExtFormatter.swift in Sources */,
 				0410DB182064428600FB3F4F /* RealmUserSaver.swift in Sources */,
 				0473636220775D8000873B09 /* TableCellReloading.swift in Sources */,
