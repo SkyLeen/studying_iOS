@@ -55,4 +55,25 @@ class NewsRequests {
             }
         }
     }
+    
+    static func postNews(text: String = "", attachment: String = "") {
+        let pathMethod = "/wall.post"
+        let url = baseUrl + path + pathMethod
+        let parameters: Parameters = [
+            "owner_id":userId!,
+            "access_token":accessToken!,
+            "message": text,
+            "signed":1,
+            "v":"5.73"
+        ]
+         Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON(queue: DispatchQueue.global(qos: .utility)) {  response in
+            switch response.result {
+            case .success(let value):
+                print(JSON(value))
+                NewsRequests.getUserNews()
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
 }

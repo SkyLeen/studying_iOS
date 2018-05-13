@@ -928,7 +928,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="done" id="d3Y-CQ-SRd">
                             <connections>
-                                <action selector="sendPost:" destination="vfC-vd-rDf" id="8Tl-us-POA"/>
+                                <action selector="addNewPost:" destination="vfC-vd-rDf" id="5zO-hp-mdT"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

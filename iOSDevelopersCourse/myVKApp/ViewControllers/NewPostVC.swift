@@ -42,8 +42,12 @@ class NewPostVC: UIViewController {
         setTextViewsFrame()
         setBarItemsFrames()
     }
-
-    @IBAction func sendPost(_ sender: UIBarButtonItem) {
+    
+    @IBAction func addNewPost(_ sender: UIBarButtonItem) {
+        guard let canSend = navigationItem.rightBarButtonItem?.isEnabled, canSend else { return }
+        guard !textView.text.isEmpty else { return }
+        NewsRequests.postNews(text: textView.text)
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func cancelPost(_ sender: UIBarButtonItem) {
