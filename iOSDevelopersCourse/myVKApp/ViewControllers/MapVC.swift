@@ -19,6 +19,7 @@ class MapVC: UIViewController {
     let geocoder = CLGeocoder()
     
     var placeName = ""
+    var locationCoordinates: CLLocationCoordinate2D?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,12 +51,17 @@ class MapVC: UIViewController {
         }
         
         mapView.addAnnotation(selectedPin!)
+
     }
     
     private func interpretateCoords(_ coords: CLLocation, closure: @escaping () -> Void) {
         geocoder.reverseGeocodeLocation(coords) { [weak self] places,error in
             if let place = places?.first {
-                self?.placeName = place.country! + ", "  + place.locality! + ", " + place.name!
+                let country = place.country ?? "Unknown country"
+                let city = place.locality ?? "Uknown city"
+                let address = place.name ?? "Unknown place"
+                
+                self?.placeName = country + ", "  + city + ", " + address
                 closure()
             }
         }
@@ -79,13 +85,22 @@ extension MapVC: MKMapViewDelegate {
             return annotationView
         }
         
+        let button = UIButton(type: .contactAdd)
+        button.addTarget(self, action: #selector(addLocation), for: .touchUpInside)
+        
         let annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "ID")
         annotationView.canShowCallout = true
         annotationView.calloutOffset = CGPoint(x: -5, y: 5)
-        annotationView.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+        annotationView.rightCalloutAccessoryView = button
         annotationView.annotation = annotation
         
+        locationCoordinates = annotationView.annotation?.coordinate
+        
         return annotationView
+    }
+    
+    @objc func addLocation() {
+        self.performSegue(withIdentifier: "addLocation", sender: nil)
     }
 }
 extension MapVC: CLLocationManagerDelegate {

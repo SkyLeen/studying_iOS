@@ -56,7 +56,7 @@ class NewsRequests {
         }
     }
     
-    static func postNews(text: String = "", attachment: String = "") {
+    static func postNews(text: String = "", attachment: String = "", lat: Double = 0.0, long: Double = 0.0) {
         let pathMethod = "/wall.post"
         let url = baseUrl + path + pathMethod
         let parameters: Parameters = [
@@ -64,6 +64,8 @@ class NewsRequests {
             "access_token":accessToken!,
             "message": text,
             "signed":1,
+            "lat":lat,
+            "long":long,
             "v":"5.73"
         ]
          Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON(queue: DispatchQueue.global(qos: .utility)) {  response in

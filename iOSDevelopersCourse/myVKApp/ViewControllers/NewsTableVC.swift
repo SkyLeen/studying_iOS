@@ -11,11 +11,10 @@ import RealmSwift
 
 class NewsTableVC: UITableViewController {
     
+    var token: NotificationToken?
     lazy var newsArray: Results<News> = {
         return RealmLoader.loadData(object: News()).sorted(byKeyPath: "date", ascending: false)
     }()
-    
-    var token: NotificationToken?
     
     var heightCellCash: [IndexPath : CGFloat] = [:]
     
@@ -34,17 +33,16 @@ class NewsTableVC: UITableViewController {
         self.tableView.register(UINib(nibName: "NewsViewCell", bundle: nil), forCellReuseIdentifier: "NewsViewCell")
         addRefreshControl()
         NewsRequests.getUserNews()
-        token = Notifications.getTableViewTokenSections(newsArray, view: self.tableView)
+       
+        token =  Notifications.getTableViewTokenLight(newsArray, view: self.tableView)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        let count = !newsArray.isEmpty ? newsArray.count : 100
-        return count
+        return 100//newsArray.count
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let count = !newsArray.isEmpty ? 1 : 0
-        return count
+        return 1
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -86,6 +84,25 @@ class NewsTableVC: UITableViewController {
 }
 
 extension NewsTableVC {
+    
+    @IBAction func addNewPost(segue: UIStoryboardSegue) {
+        guard segue.identifier == "addNewPost" else { return }
+        guard let newPostVC = segue.source as? NewPostVC else { return }
+        guard let textView = newPostVC.textView else { return }
+        var text = textView.text
+        
+        if let label = newPostVC.locationLabel.text, !label.isEmpty {
+            text?.append("""
+                
+                
+                \(label)
+                """)
+        }
+        
+        let lat = newPostVC.locationCoordinates?.latitude ?? 0.0
+        let long = newPostVC.locationCoordinates?.longitude ?? 0.0
+        NewsRequests.postNews(text: text!, lat: lat, long: long)
+    }
     
     private func addRefreshControl() {
         self.refreshControl?.addTarget(self, action: #selector(self.refreshView), for: .valueChanged)
