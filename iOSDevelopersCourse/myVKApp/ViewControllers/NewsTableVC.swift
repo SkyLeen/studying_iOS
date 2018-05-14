@@ -34,15 +34,15 @@ class NewsTableVC: UITableViewController {
         addRefreshControl()
         NewsRequests.getUserNews()
        
-        token =  Notifications.getTableViewTokenLight(newsArray, view: self.tableView)
+        token =  Notifications.getTableViewTokenRows(newsArray, view: self.tableView)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 100//newsArray.count
+        return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return newsArray.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -50,7 +50,7 @@ class NewsTableVC: UITableViewController {
         cell.delegate = self
         cell.index = indexPath
         
-        let newsFeed = newsArray[indexPath.section]
+        let newsFeed = newsArray[indexPath.row]
         let attachments = newsFeed.attachments
         
         cell.attachments = Array(attachments)

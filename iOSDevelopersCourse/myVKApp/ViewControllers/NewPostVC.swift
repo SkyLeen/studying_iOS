@@ -33,25 +33,6 @@ class NewPostVC: UIViewController {
         self.locationCoordinates = mapVC.locationCoordinates
     }
     
-//    @IBAction func addNewPost(_ sender: UIBarButtonItem) {
-//        guard let canSend = navigationItem.rightBarButtonItem?.isEnabled, canSend else { return }
-//        guard !textView.text.isEmpty else { return }
-//        var text = textView.text
-//            
-//        if let label = locationLabel.text, !label.isEmpty {
-//            text?.append("""
-//            
-//            
-//            \(label)
-//            """)
-//        }
-//        
-//        let lat = locationCoordinates?.latitude ?? 0.0
-//        let long = locationCoordinates?.longitude ?? 0.0
-//        NewsRequests.postNews(text: text!, lat: lat, long: long)
-//        dismiss(animated: true, completion: nil)
-//    }
-    
     @IBAction func cancelPost(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
