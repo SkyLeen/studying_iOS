@@ -12,10 +12,6 @@ import CoreLocation
 class NewPostVC: UIViewController {
 
     @IBOutlet weak var textView: UITextView!
-    @IBOutlet weak var barView: UIView!
-    @IBOutlet weak var friendButton: UIButton!
-    @IBOutlet weak var photosButton: UIButton!
-    @IBOutlet weak var locationButton: UIButton!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
