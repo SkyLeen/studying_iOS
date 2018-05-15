@@ -17,6 +17,7 @@ class NewPostVC: UIViewController {
     @IBOutlet weak var photosButton: UIButton!
     @IBOutlet weak var locationButton: UIButton!
     @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     var locationCoordinates: CLLocationCoordinate2D?
     
@@ -24,6 +25,22 @@ class NewPostVC: UIViewController {
         super.viewDidLoad()
         textView.delegate = self
         textView.becomeFirstResponder()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+    }
+    
+    @objc func keyboardWasShown(notification: Notification) {
+        let info = notification.userInfo! as NSDictionary
+        let kbSize = (info.value(forKey: UIKeyboardFrameEndUserInfoKey) as! NSValue).cgRectValue.size
+        bottomConstraint.constant = kbSize.height
     }
     
     @IBAction func addLocation(segue: UIStoryboardSegue) {

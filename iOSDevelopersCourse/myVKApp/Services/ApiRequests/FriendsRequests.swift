@@ -61,4 +61,24 @@ class FriendsRequests {
             }
         }
     }
+    
+    static func getFriendsRequest() {
+        let pathMethod = "/photos.getAll"
+        let url = baseUrl + path + pathMethod
+        let parameters: Parameters = [
+            "user_id":userId!,
+            "access_token":accessToken!,
+            "skip_hidden":"1",
+            "v":"5.73"
+        ]
+        
+        Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON(queue: DispatchQueue.global(qos: .utility)) { response in
+            switch response.result {
+            case .success(let value):
+                print(value)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
 }
