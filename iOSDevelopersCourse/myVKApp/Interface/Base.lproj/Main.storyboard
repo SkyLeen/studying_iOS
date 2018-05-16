@@ -267,10 +267,10 @@
         <scene sceneID="MJq-le-p9j">
             <objects>
                 <tableViewController id="iBD-L0-bCm" customClass="NewsTableVC" customModule="myVKApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="jLw-oC-VDx">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="jLw-oC-VDx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="separatorColor" red="0.4756349325" green="0.47564673419999998" blue="0.47564041610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <connections>
                             <outlet property="dataSource" destination="iBD-L0-bCm" id="mPp-f8-ex5"/>
@@ -282,7 +282,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="9NF-AK-pdY">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <segue destination="IrT-9K-yZe" kind="show" id="anE-Bc-xZ0"/>
+                                <action selector="addNewPostPressed:" destination="iBD-L0-bCm" id="CxM-4X-dgU"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -298,6 +298,9 @@
                             </fragment>
                         </attributedString>
                     </refreshControl>
+                    <connections>
+                        <segue destination="IrT-9K-yZe" kind="show" identifier="showNewPost" id="9pD-pR-Dda"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l7f-0T-3Lh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -941,6 +944,7 @@
                             <constraint firstAttribute="bottom" secondItem="gck-f7-1xT" secondAttribute="bottom" id="wIA-cc-3KX"/>
                             <constraint firstItem="dha-dU-Cu4" firstAttribute="top" secondItem="2Me-XF-4Nt" secondAttribute="top" id="zjI-W6-3GA"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="6BK-BQ-WZ2"/>
                     </view>
                     <navigationItem key="navigationItem" title="New Post" id="xWM-vS-bSE">
                         <barButtonItem key="backBarButtonItem" title="Cancel" id="eJA-9i-76v"/>
@@ -957,12 +961,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="barView" destination="gck-f7-1xT" id="fDe-Ut-Za0"/>
                         <outlet property="bottomConstraint" destination="wIA-cc-3KX" id="51R-U2-xIt"/>
-                        <outlet property="friendButton" destination="cS5-DU-Ow7" id="tRW-5x-jaT"/>
-                        <outlet property="locationButton" destination="oC1-DD-7rv" id="imt-WS-5Tt"/>
                         <outlet property="locationLabel" destination="yng-0A-knc" id="6CJ-Mj-Rgq"/>
-                        <outlet property="photosButton" destination="Hem-Ul-fLV" id="BS3-1Z-RjH"/>
                         <outlet property="textView" destination="dha-dU-Cu4" id="Z4V-3e-30N"/>
                     </connections>
                 </viewController>
@@ -1076,6 +1076,9 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Tq2-6k-TZR">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="vfC-vd-rDf" kind="relationship" relationship="rootViewController" id="glK-f0-Egh"/>
                     </connections>

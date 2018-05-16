@@ -33,7 +33,11 @@ class NewsTableVC: UITableViewController {
         self.tableView.register(UINib(nibName: "NewsViewCell", bundle: nil), forCellReuseIdentifier: "NewsViewCell")
         addRefreshControl()
         NewsRequests.getUserNews()
-       
+        
+        FriendsRequests.getFriendsList()
+        GroupsRequests.getUserGroups()
+        DialogsRequests.getUserDialogs()
+
         token =  Notifications.getTableViewTokenRows(newsArray, view: self.tableView)
     }
     
@@ -81,6 +85,11 @@ class NewsTableVC: UITableViewController {
         guard let height = heightCellCash[indexPath] else { return 120 }
         return height
     }
+    
+    @IBAction func addNewPostPressed(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "showNewPost", sender: nil)
+    }
+    
 }
 
 extension NewsTableVC {

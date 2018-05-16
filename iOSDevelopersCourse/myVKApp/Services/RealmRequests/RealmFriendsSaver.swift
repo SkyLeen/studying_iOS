@@ -70,4 +70,18 @@ class RealmFriendsSaver {
         }
     }
     
+    static func saveFriendsRequested(friends: [FriendRequest], userId: String) {
+        do {
+            let realm = try Realm()
+            let user = realm.object(ofType: User.self, forPrimaryKey: userId)
+            let oldRequests = realm.objects(FriendRequest.self)
+            try realm.write {
+                realm.delete(oldRequests)
+                user?.requests.append(objectsIn: friends)
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
 }
