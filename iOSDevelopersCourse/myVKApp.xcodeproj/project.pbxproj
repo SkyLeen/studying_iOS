@@ -71,6 +71,8 @@
 		04EB90BF20714A42001D95E6 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB90BE20714A42001D95E6 /* MessageModel.swift */; };
 		04FF913F20AC25A60033E990 /* FriendRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FF913E20AC25A60033E990 /* FriendRequestModel.swift */; };
 		04FF914120AC3F740033E990 /* RequestsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FF914020AC3F740033E990 /* RequestsViewCell.swift */; };
+		04FF914320AC55C50033E990 /* FriendsRequestsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FF914220AC55C50033E990 /* FriendsRequestsVC.swift */; };
+		04FF914520AC63B80033E990 /* FriendsRequestsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FF914420AC63B80033E990 /* FriendsRequestsViewCell.swift */; };
 		BC3D90955834458BC2944F04 /* Pods_myVKApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FCF50A99A46AFA8D4241B66 /* Pods_myVKApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -141,6 +143,8 @@
 		04EB90BE20714A42001D95E6 /* MessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
 		04FF913E20AC25A60033E990 /* FriendRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequestModel.swift; sourceTree = "<group>"; };
 		04FF914020AC3F740033E990 /* RequestsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestsViewCell.swift; sourceTree = "<group>"; };
+		04FF914220AC55C50033E990 /* FriendsRequestsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsRequestsVC.swift; sourceTree = "<group>"; };
+		04FF914420AC63B80033E990 /* FriendsRequestsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsRequestsViewCell.swift; sourceTree = "<group>"; };
 		40B8995E02CBB95866C66069 /* Pods-myVKApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myVKApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-myVKApp/Pods-myVKApp.release.xcconfig"; sourceTree = "<group>"; };
 		5FCF50A99A46AFA8D4241B66 /* Pods_myVKApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_myVKApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6485FB65E5A254A576B87BAF /* Pods-myVKApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myVKApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-myVKApp/Pods-myVKApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -259,6 +263,7 @@
 				04D21946204AA716001E5B26 /* LoginWebVC.swift */,
 				0416316520415EDE00446639 /* MyFriendsTableVC.swift */,
 				0416316720415F7F00446639 /* MyFriendCollectionVC.swift */,
+				04FF914220AC55C50033E990 /* FriendsRequestsVC.swift */,
 				0416316B2042016500446639 /* MyGroupsTableVC.swift */,
 				0416316F204202F100446639 /* AllGroupsTableVC.swift */,
 				048714D52066BCB5003405B4 /* NewsTableVC.swift */,
@@ -277,6 +282,7 @@
 				0416316320415E5000446639 /* MyFriendsViewCell.swift */,
 				04FF914020AC3F740033E990 /* RequestsViewCell.swift */,
 				0416316920415FF600446639 /* MyFriendCollectionViewCell.swift */,
+				04FF914420AC63B80033E990 /* FriendsRequestsViewCell.swift */,
 				0416316D204201B800446639 /* MyGroupsViewCell.swift */,
 				04163174204203E400446639 /* AllGroupsViewCell.swift */,
 				04A360C0207CCAAA00684090 /* NewsViewCell.swift */,
@@ -512,6 +518,7 @@
 				0473636220775D8000873B09 /* TableCellReloading.swift in Sources */,
 				04FF914120AC3F740033E990 /* RequestsViewCell.swift in Sources */,
 				04D37E6B20381B1100F958AF /* AppDelegate.swift in Sources */,
+				04FF914520AC63B80033E990 /* FriendsRequestsViewCell.swift in Sources */,
 				049CEBA72051E3D5007ED7C2 /* GroupModel.swift in Sources */,
 				04A360C2207CCAAA00684090 /* NewsViewCell.swift in Sources */,
 				0416316820415F7F00446639 /* MyFriendCollectionVC.swift in Sources */,
@@ -527,6 +534,7 @@
 				0462E5E32067968E00E0038C /* NewsModel.swift in Sources */,
 				0473634E2073C7B600873B09 /* GetCashedImageOperation.swift in Sources */,
 				04560A962088ABD500AC9074 /* MessageAttachmentsModel.swift in Sources */,
+				04FF914320AC55C50033E990 /* FriendsRequestsVC.swift in Sources */,
 				04CEE5D5206AD18100300107 /* NewsAttachmentsModel.swift in Sources */,
 				041631772042109300446639 /* Helpers.swift in Sources */,
 				0416316C2042016500446639 /* MyGroupsTableVC.swift in Sources */,

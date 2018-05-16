@@ -36,10 +36,10 @@ class Layers {
         let textBlock = CGSize(width: maxWidth, height: maxHeight)
         
         let rect = text.boundingRect(with: textBlock, attributes: [NSAttributedStringKey.font: font], context: nil)
-        let width = rect.size.width
+        //let width = rect.size.width
         let height = rect.size.height
         
-        let labelSize = CGSize(width: ceil(width), height: ceil(height))
+        let labelSize = CGSize(width: ceil(maxWidth), height: ceil(height))
         return labelSize
     }
     

@@ -52,7 +52,7 @@ class MyFriendsTableVC: UITableViewController {
         if section == 0 {
             return 1
         } else {
-            let sectionRowsCount = myFriendsArray.isEmpty ? 0 : myFriendsArray.count
+            let sectionRowsCount = myFriendsArray.count
             return sectionRowsCount
         }
     }

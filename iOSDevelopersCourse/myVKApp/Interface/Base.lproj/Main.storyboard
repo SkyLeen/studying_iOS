@@ -211,7 +211,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="c3C-3w-Pym">
-                                            <rect key="frame" x="293" y="16" width="7" height="7"/>
+                                            <rect key="frame" x="293" y="25" width="7" height="7"/>
                                             <color key="backgroundColor" red="0.93725490199999995" green="0.76078431369999999" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="7" id="6VV-uS-E4M"/>
@@ -223,7 +223,7 @@
                                         <constraint firstAttribute="bottom" secondItem="bqo-y4-BRD" secondAttribute="bottom" constant="5" id="3fc-hF-Wo4"/>
                                         <constraint firstItem="uMC-sy-RmR" firstAttribute="top" secondItem="fy9-Ig-CGV" secondAttribute="top" id="UUw-on-dbh"/>
                                         <constraint firstItem="c3C-3w-Pym" firstAttribute="leading" secondItem="uMC-sy-RmR" secondAttribute="trailing" constant="10" id="Uze-PF-1OB"/>
-                                        <constraint firstItem="c3C-3w-Pym" firstAttribute="top" secondItem="fy9-Ig-CGV" secondAttribute="top" constant="16" id="aJg-cq-Tb9"/>
+                                        <constraint firstItem="c3C-3w-Pym" firstAttribute="top" secondItem="fy9-Ig-CGV" secondAttribute="top" constant="25" id="aJg-cq-Tb9"/>
                                         <constraint firstItem="bqo-y4-BRD" firstAttribute="top" secondItem="fy9-Ig-CGV" secondAttribute="top" constant="5" id="eeV-t6-hnS"/>
                                         <constraint firstItem="uMC-sy-RmR" firstAttribute="leading" secondItem="bqo-y4-BRD" secondAttribute="trailing" constant="5" id="iPZ-d6-av4"/>
                                         <constraint firstAttribute="bottom" secondItem="uMC-sy-RmR" secondAttribute="bottom" id="isI-Bm-WmE"/>
@@ -808,22 +808,50 @@
             </objects>
             <point key="canvasLocation" x="2344" y="-657"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Friend Requests-->
         <scene sceneID="vPO-c6-dNs">
             <objects>
-                <tableViewController id="W3O-gR-7VK" sceneMemberID="viewController">
+                <tableViewController title="Friend Requests" id="W3O-gR-7VK" customClass="FriendsRequestsVC" customModule="myVKApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="HdI-Q3-nT6">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="requestedFriend" id="uwA-XS-hpD">
-                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="requestedFriend" editingAccessoryType="checkmark" rowHeight="55" id="uwA-XS-hpD" customClass="FriendsRequestsViewCell" customModule="myVKApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="320" height="55"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uwA-XS-hpD" id="yQ9-5l-HE8">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="54.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Snr-cu-0cU">
+                                            <rect key="frame" x="5" y="5" width="45" height="45"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="45" id="JQn-u4-ffh"/>
+                                                <constraint firstAttribute="height" constant="45" id="Jak-J3-KHl"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZHy-ee-ypt">
+                                            <rect key="frame" x="55" y="0.0" width="265" height="54.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="ZHy-ee-ypt" firstAttribute="top" secondItem="yQ9-5l-HE8" secondAttribute="top" id="0TA-2h-sbN"/>
+                                        <constraint firstAttribute="bottom" secondItem="Snr-cu-0cU" secondAttribute="bottom" constant="5" id="7de-wZ-jdG"/>
+                                        <constraint firstAttribute="bottom" secondItem="ZHy-ee-ypt" secondAttribute="bottom" id="DZa-qd-bD2"/>
+                                        <constraint firstAttribute="trailing" secondItem="ZHy-ee-ypt" secondAttribute="trailing" id="VuK-Bo-kqn"/>
+                                        <constraint firstItem="ZHy-ee-ypt" firstAttribute="leading" secondItem="Snr-cu-0cU" secondAttribute="trailing" constant="5" id="fjW-xw-tL9"/>
+                                        <constraint firstItem="Snr-cu-0cU" firstAttribute="leading" secondItem="yQ9-5l-HE8" secondAttribute="leading" constant="5" id="iM5-c2-rWg"/>
+                                        <constraint firstItem="Snr-cu-0cU" firstAttribute="top" secondItem="yQ9-5l-HE8" secondAttribute="top" constant="5" id="tCE-Sl-HyQ"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="friendImage" destination="Snr-cu-0cU" id="e9L-zS-4rb"/>
+                                    <outlet property="nameFriend" destination="ZHy-ee-ypt" id="E0W-8m-gLV"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -834,7 +862,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bVj-IW-2tz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3167" y="-1985"/>
+            <point key="canvasLocation" x="3166.875" y="-1985"/>
         </scene>
         <!--Title-->
         <scene sceneID="QaD-6d-lY7">

@@ -35,8 +35,6 @@ class NewsTableVC: UITableViewController {
         NewsRequests.getUserNews()
         
         FriendsRequests.getFriendsList()
-        GroupsRequests.getUserGroups()
-        DialogsRequests.getUserDialogs()
         checkRequestsDb()
 
         token =  Notifications.getTableViewTokenRows(newsArray, view: self.tableView)

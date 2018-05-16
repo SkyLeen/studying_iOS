@@ -75,8 +75,11 @@ class FriendsRequests {
         Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON(queue: DispatchQueue.global(qos: .utility)) { response in
             switch response.result {
             case .success(let value):
-                let requests = JSON(value)["response"]["items"].compactMap({ FriendRequest(json: $0.1) })
-                RealmFriendsSaver.saveFriendsRequested(friends: requests, userId: userId!)
+                let requests = JSON(value)["response"]["items"]
+                for request in requests {
+                    let user = request.1["user_id"].stringValue
+                    UserRequests.getUserById(userId: userId!, accessToken: accessToken!, requestUserId: user, attribute: .requests)
+                }
                 complition()
             case .failure(let error):
                 print(error)
