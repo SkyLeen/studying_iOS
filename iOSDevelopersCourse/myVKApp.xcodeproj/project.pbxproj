@@ -298,9 +298,9 @@
 			isa = PBXGroup;
 			children = (
 				041631762042109300446639 /* Helpers.swift */,
+				0473634C2073C74800873B09 /* Operations */,
 				04D19B2B2060F18000E1CADE /* ApiRequests */,
 				04D19B2A2060F17400E1CADE /* RealmRequests */,
-				0473634C2073C74800873B09 /* Operations */,
 				04A360C5207F446500684090 /* Layers */,
 			);
 			path = Services;

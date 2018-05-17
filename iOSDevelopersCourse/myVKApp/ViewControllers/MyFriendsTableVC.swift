@@ -12,6 +12,8 @@ import RealmSwift
 
 class MyFriendsTableVC: UITableViewController {
     
+    @IBOutlet weak var requests: UIBarButtonItem!
+    
     let userId =  KeychainWrapper.standard.string(forKey: "userId")
     
     lazy var myFriendsArray: Results<Friend> = {
@@ -34,35 +36,28 @@ class MyFriendsTableVC: UITableViewController {
     
     deinit {
         token?.invalidate()
+        tokenRequests?.invalidate()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = 55
-        FriendsRequests.getFriendsList()
-        token = Notifications.getTableViewTokenLight(myFriendsArray, view: self.tableView)
-        tokenRequests = getToken(myRequestsArray, view: self.tableView)
-    }
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return 1
-        } else {
-            let sectionRowsCount = myFriendsArray.count
-            return sectionRowsCount
+        token = Notifications.getTableViewTokenRows(myFriendsArray, view: self.tableView)
+        tokenRequests = getToken(myRequestsArray, view: self.tableView)
+        
+        if myRequestsArray.count > 0 {
+            requestButton("+ \(myRequestsArray.count)")
         }
     }
 
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+            let sectionRowsCount = myFriendsArray.count
+            return sectionRowsCount
+    }
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "friendRequests") as! RequestsViewCell
-            cell.countLabel.text = "\(myRequestsArray.count)"
-            return cell
-        } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "FriendCell", for: indexPath) as! MyFriendsViewCell
             
             let user = myFriendsArray[indexPath.row]
@@ -76,15 +71,10 @@ class MyFriendsTableVC: UITableViewController {
             OperationQueue.main.addOperation(cellReloadedOp)
             
             return cell
-        }
     }
  
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 0 {
-            performSegue(withIdentifier: "showRequests", sender: indexPath)
-        } else {
             performSegue(withIdentifier: "showFriendPhotos", sender: indexPath)
-        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -95,6 +85,7 @@ class MyFriendsTableVC: UITableViewController {
         destinationVC.friendName = myFriendsArray[friend.row].name
         destinationVC.friendId = myFriendsArray[friend.row].idFriend
     }
+    
 }
 
 extension MyFriendsTableVC {
@@ -110,8 +101,10 @@ extension MyFriendsTableVC {
                 view.reloadData()
                 if array.count > 0, let items = self.tabBarController?.tabBar.items {
                     items[2].title = "+ \(array.count)"
+                    self.requestButton("+ \(array.count)")
                 } else if let items = self.tabBarController?.tabBar.items {
                     items[2].title = ""
+                    self.requestButton("")
                 }
                 view.endUpdates()
             case .error(let error):
@@ -120,5 +113,17 @@ extension MyFriendsTableVC {
         })
         
         return token
+    }
+    
+    private func requestButton(_ title: String) {
+        let button = UIButton(type: .system)
+        button.setTitle(title, for: .normal)
+        button.addTarget(self, action: #selector(showRequests), for: .touchUpInside)
+        button.sizeToFit()
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: button)
+    }
+    
+    @objc private func showRequests() {
+        performSegue(withIdentifier: "showRequests", sender: nil)
     }
 }

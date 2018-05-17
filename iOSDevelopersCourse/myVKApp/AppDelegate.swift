@@ -9,6 +9,7 @@
 import UIKit
 import RealmSwift
 import Firebase
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -35,7 +36,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return
         }
 
-        checkRequests()
+        dispatchGroup.enter()
+        FriendsRequests.getIncomingFriendsRequest() { requests in
+            DispatchQueue.main.async {
+                application.applicationIconBadgeNumber = requests
+            }
+            self.dispatchGroup.leave()
+        }
         
         dispatchGroup.notify(queue: .main) {
             print("Data was loaded in the background")
@@ -58,20 +65,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        configureNotifications()
+        configureRealm()
+        FirebaseApp.configure()
+        return true
+    }
+    
+    private func configureRealm() {
         var configuration = Realm.Configuration()
         configuration.deleteRealmIfMigrationNeeded = true
         Realm.Configuration.defaultConfiguration = configuration
         
         print(configuration.fileURL!)
-        
-        FirebaseApp.configure()
-        return true
     }
     
-    private func checkRequests() {
-        dispatchGroup.enter()
-        FriendsRequests.getIncomingFriendsRequest() {
-            self.dispatchGroup.leave()
+    private func configureNotifications() {
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: .badge) { _, error in
+            if error != nil { print(error.debugDescription) }
         }
     }
 }

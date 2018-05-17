@@ -237,40 +237,6 @@
                                     <outlet property="stateImage" destination="c3C-3w-Pym" id="Vwu-Nh-v9P"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="friendRequests" id="fZE-nQ-0P8" customClass="RequestsViewCell" customModule="myVKApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="110.5" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fZE-nQ-0P8" id="mqi-fi-L5g">
-                                    <rect key="frame" x="0.0" y="0.0" width="286" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Friend Requests" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xd2-3c-GiR">
-                                            <rect key="frame" x="5" y="0.0" width="237" height="43.5"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="count" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aID-Vo-Skz">
-                                            <rect key="frame" x="242" y="0.0" width="44" height="43.5"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="aID-Vo-Skz" secondAttribute="bottom" id="55K-Nc-Lnu"/>
-                                        <constraint firstAttribute="trailing" secondItem="aID-Vo-Skz" secondAttribute="trailing" id="9L7-UY-RVu"/>
-                                        <constraint firstItem="aID-Vo-Skz" firstAttribute="leading" secondItem="Xd2-3c-GiR" secondAttribute="trailing" id="CgU-25-6tp"/>
-                                        <constraint firstItem="Xd2-3c-GiR" firstAttribute="left" secondItem="mqi-fi-L5g" secondAttribute="left" constant="5" id="FoC-YB-JYZ"/>
-                                        <constraint firstItem="aID-Vo-Skz" firstAttribute="top" secondItem="mqi-fi-L5g" secondAttribute="top" id="Nl5-V5-bsc"/>
-                                        <constraint firstAttribute="bottom" secondItem="Xd2-3c-GiR" secondAttribute="bottom" id="lBK-m8-JEb"/>
-                                        <constraint firstItem="Xd2-3c-GiR" firstAttribute="top" secondItem="mqi-fi-L5g" secondAttribute="top" id="sHp-f2-CfG"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="countLabel" destination="aID-Vo-Skz" id="735-CK-CHe"/>
-                                </connections>
-                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="HsF-eZ-o7S" id="qtl-C1-UxI"/>

@@ -33,8 +33,9 @@ class NewsTableVC: UITableViewController {
         self.tableView.register(UINib(nibName: "NewsViewCell", bundle: nil), forCellReuseIdentifier: "NewsViewCell")
         addRefreshControl()
         NewsRequests.getUserNews()
-        
         FriendsRequests.getFriendsList()
+        DialogsRequests.getUserDialogs()
+        GroupsRequests.getUserGroups()
         checkRequestsDb()
 
         token =  Notifications.getTableViewTokenRows(newsArray, view: self.tableView)

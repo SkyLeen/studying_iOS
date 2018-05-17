@@ -19,8 +19,7 @@ class RealmRequests {
         do {
             let realm = try Realm()
             let user = realm.object(ofType: User.self, forPrimaryKey: userId)
-            //result = user?.groups.filter("idGroup != ''").sorted(byKeyPath: "nameGroup")
-            result = user?.groups.sorted(byKeyPath: "nameGroup")
+            result = user?.groups.filter("idGroup != ''").sorted(byKeyPath: "nameGroup")
             } catch {
             print(error.localizedDescription)
         }

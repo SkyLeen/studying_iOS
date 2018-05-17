@@ -45,7 +45,7 @@ class DialogsTableVC: UITableViewController {
         super.viewDidLoad()
         tableView.rowHeight = 55
         addRefreshControl()
-        DialogsRequests.getUserDialogs()
+
         dialogsToken = Notifications.getTableViewTokenRows(dialogsArray, view: self.tableView)
         usersToken = Notifications.getTableViewTokenLight(usersArray, view: self.tableView)
         groupsToken = Notifications.getTableViewTokenLight(groupsArray, view: self.tableView)

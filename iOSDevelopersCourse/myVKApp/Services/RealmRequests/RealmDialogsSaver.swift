@@ -14,9 +14,10 @@ class RealmDialogSaver {
         do {
             let realm = try Realm()
             let user = realm.object(ofType: User.self, forPrimaryKey: userId)
+            let oldDialogs = realm.objects(Dialog.self)
             
             try realm.write {
-                if  let oldDialogs = user?.dialogs.filter("id != ''"), !oldDialogs.isEmpty { realm.delete(oldDialogs) }
+                realm.delete(oldDialogs)
                 user?.dialogs.append(objectsIn: dialog)
             }
         } catch {

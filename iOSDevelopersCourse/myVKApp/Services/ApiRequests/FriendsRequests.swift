@@ -62,7 +62,7 @@ class FriendsRequests {
         }
     }
     
-    static func getIncomingFriendsRequest(complition: @escaping () -> ()) {
+    static func getIncomingFriendsRequest(complition: @escaping (Int) -> ()) {
         let pathMethod = "/friends.getRequests"
         let url = baseUrl + path + pathMethod
         let parameters: Parameters = [
@@ -80,7 +80,7 @@ class FriendsRequests {
                     let user = request.1["user_id"].stringValue
                     UserRequests.getUserById(userId: userId!, accessToken: accessToken!, requestUserId: user, attribute: .requests)
                 }
-                complition()
+                complition(requests.count)
             case .failure(let error):
                 print(error)
             }
