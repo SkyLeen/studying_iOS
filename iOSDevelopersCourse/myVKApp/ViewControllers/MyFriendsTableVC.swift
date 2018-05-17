@@ -97,8 +97,8 @@ extension MyFriendsTableVC {
             case .initial:
                 view.reloadData()
             case .update:
-                view.beginUpdates()
-                view.reloadData()
+                //view.beginUpdates()
+                //view.reloadData()
                 if array.count > 0, let items = self.tabBarController?.tabBar.items {
                     items[2].title = "+ \(array.count)"
                     self.requestButton("+ \(array.count)")
@@ -106,7 +106,7 @@ extension MyFriendsTableVC {
                     items[2].title = ""
                     self.requestButton("")
                 }
-                view.endUpdates()
+                //view.endUpdates()
             case .error(let error):
                 print(error.localizedDescription)
             }
