@@ -46,6 +46,10 @@ class MyFriendsTableVC: UITableViewController {
         token = Notifications.getTableViewTokenRows(myFriendsArray, view: self.tableView)
         tokenRequests = getToken(myRequestsArray, view: self.tableView)
         
+        if myFriendsArray.isEmpty {
+            FriendsRequests.getFriendsList()
+        }
+        
         if myRequestsArray.count > 0 {
             requestButton("+ \(myRequestsArray.count)")
         }
@@ -97,8 +101,6 @@ extension MyFriendsTableVC {
             case .initial:
                 view.reloadData()
             case .update:
-                //view.beginUpdates()
-                //view.reloadData()
                 if array.count > 0, let items = self.tabBarController?.tabBar.items {
                     items[2].title = "+ \(array.count)"
                     self.requestButton("+ \(array.count)")
@@ -106,7 +108,6 @@ extension MyFriendsTableVC {
                     items[2].title = ""
                     self.requestButton("")
                 }
-                //view.endUpdates()
             case .error(let error):
                 print(error.localizedDescription)
             }

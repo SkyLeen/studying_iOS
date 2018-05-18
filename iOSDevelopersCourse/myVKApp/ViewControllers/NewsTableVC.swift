@@ -32,10 +32,12 @@ class NewsTableVC: UITableViewController {
         super.viewDidLoad()
         self.tableView.register(UINib(nibName: "NewsViewCell", bundle: nil), forCellReuseIdentifier: "NewsViewCell")
         addRefreshControl()
+        
         NewsRequests.getUserNews()
         FriendsRequests.getFriendsList()
-        DialogsRequests.getUserDialogs()
+        DialogsRequests.getUserDialogs(complition: nil)
         GroupsRequests.getUserGroups()
+        
         checkRequestsDb()
 
         token =  Notifications.getTableViewTokenRows(newsArray, view: self.tableView)
@@ -127,11 +129,18 @@ extension NewsTableVC {
     }
     
     private func checkRequestsDb() {
-        let array = RealmLoader.loadData(object: FriendRequest())
-        if array.count > 0, let items = tabBarController?.tabBar.items {
-            items[2].title = "+ \(array.count)"
+        let arrayFriends = RealmLoader.loadData(object: FriendRequest())
+        if arrayFriends.count > 0, let items = tabBarController?.tabBar.items {
+            items[2].title = "+ \(arrayFriends.count)"
         } else if let items = tabBarController?.tabBar.items {
             items[2].title = ""
+        }
+        
+        let arrayDialogs = RealmLoader.loadData(object: Dialog()).filter( { $0.readState == 0 } )
+        if arrayDialogs.count > 0, let items = tabBarController?.tabBar.items {
+            items[1].title = "+ \(arrayDialogs.count)"
+        } else if let items = tabBarController?.tabBar.items {
+            items[1].title = ""
         }
     }
 }

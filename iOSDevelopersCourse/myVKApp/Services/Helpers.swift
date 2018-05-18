@@ -61,26 +61,6 @@ class Notifications {
         return token
     }
     
-    static func getTableViewTokenSections<T: Object>(_ array: Results<T>, view: UITableView?) -> NotificationToken {
-        let token = array.observe({ [weak view] changes in
-            guard let view = view else { return }
-            switch changes {
-            case .initial:
-                view.reloadData()
-            case .update(_, let delete, let insert, let update):
-                view.beginUpdates()
-                view.reloadSections(IndexSet(delete), with: .none)
-                view.reloadSections(IndexSet(insert), with: .none)
-                view.reloadSections(IndexSet(update), with: .none)
-                view.endUpdates()
-            case .error(let error):
-                print(error.localizedDescription)
-            }
-        })
-        
-        return token
-    }
-    
     static func getTableViewTokenLight<T: Object>(_ array: Results<T>, view: UITableView?) -> NotificationToken {
         let token = array.observe({ [weak view] changes in
             guard let view = view else { return }

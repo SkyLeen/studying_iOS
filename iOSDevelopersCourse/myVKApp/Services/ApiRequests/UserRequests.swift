@@ -63,10 +63,9 @@ class UserRequests {
                         RealmFriendsSaver.saveSingleFriend(friends: user, userId: userId)
                     }
                 case .requests:
+                    
                     let users = JSON(value)["response"].compactMap({ FriendRequest(json: $0.1) })
-                    for user in users {
-                        RealmFriendsSaver.saveFriendsRequested(friends: user, userId: userId)
-                    }
+                    RealmFriendsSaver.saveFriendsRequested(friends: users, userId: userId)
                 }
             case .failure(let error):
                 print(error)

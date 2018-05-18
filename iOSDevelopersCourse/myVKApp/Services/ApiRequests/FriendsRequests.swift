@@ -76,6 +76,7 @@ class FriendsRequests {
             switch response.result {
             case .success(let value):
                 let requests = JSON(value)["response"]["items"]
+                RealmDeleter.removeRequests()
                 for request in requests {
                     let user = request.1["user_id"].stringValue
                     UserRequests.getUserById(userId: userId!, accessToken: accessToken!, requestUserId: user, attribute: .requests)

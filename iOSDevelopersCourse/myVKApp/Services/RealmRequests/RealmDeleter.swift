@@ -33,4 +33,16 @@ class RealmDeleter {
             print(error.localizedDescription)
         }
     }
+    static func removeRequests() {
+        do {
+            let realm = try Realm()
+            let dialogs = realm.objects(FriendRequest.self)
+            try realm.write {
+                realm.delete(dialogs)
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
 }

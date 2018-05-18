@@ -19,7 +19,7 @@ class DialogsRequests {
     static let path = "/method"
     static let version = "5.74"
     
-    static func getUserDialogs() {
+    static func getUserDialogs(complition: (([Dialog]) -> ())?) {
         let pathMethod = "/messages.getDialogs"
         let url = baseUrl + path + pathMethod
         let parameters: Parameters = [
@@ -45,6 +45,7 @@ class DialogsRequests {
                     }
                 }
                 RealmDialogSaver.saveUserDialogs(dialog: dialogs.compactMap({ Dialog(json: $0.1)}), userId: userId!)
+                complition?(dialogs.compactMap({ Dialog(json: $0.1)}))
             case .failure(let error):
                 print(error)
             }

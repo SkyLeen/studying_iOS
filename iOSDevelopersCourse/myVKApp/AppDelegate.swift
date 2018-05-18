@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
+    var requestsCount = 0
     let dispatchGroup = DispatchGroup()
     var timer: DispatchSourceTimer?
     var lastUpadte: Date? {
@@ -35,13 +36,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             completionHandler(.noData)
             return
         }
+        
+        requestsCount = 0
 
         dispatchGroup.enter()
-        FriendsRequests.getIncomingFriendsRequest() { requests in
+        FriendsRequests.getIncomingFriendsRequest() { [weak self] requests in
+            self?.requestsCount += requests
             DispatchQueue.main.async {
-                application.applicationIconBadgeNumber = requests
+                application.applicationIconBadgeNumber = self?.requestsCount ?? 0
             }
-            self.dispatchGroup.leave()
+            self?.dispatchGroup.leave()
+        }
+        
+        dispatchGroup.enter()
+        DialogsRequests.getUserDialogs() { [weak self] dialogs in
+            let dialogCount = dialogs.filter( {$0.readState == 0 } ).count
+            
+            self?.requestsCount += dialogCount
+            DispatchQueue.main.async {
+                application.applicationIconBadgeNumber = self?.requestsCount ?? 0
+            }
+            self?.dispatchGroup.leave()
         }
         
         dispatchGroup.notify(queue: .main) {
