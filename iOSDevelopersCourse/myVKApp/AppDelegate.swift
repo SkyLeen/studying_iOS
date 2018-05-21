@@ -44,8 +44,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self?.requestsCount += requests
             DispatchQueue.main.async {
                 application.applicationIconBadgeNumber = self?.requestsCount ?? 0
+                self?.dispatchGroup.leave()
             }
-            self?.dispatchGroup.leave()
         }
         
         dispatchGroup.enter()
@@ -55,8 +55,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self?.requestsCount += dialogCount
             DispatchQueue.main.async {
                 application.applicationIconBadgeNumber = self?.requestsCount ?? 0
+                self?.dispatchGroup.leave()
             }
-            self?.dispatchGroup.leave()
         }
         
         dispatchGroup.notify(queue: .main) {
