@@ -85,7 +85,7 @@ extension IncomingMsgViewCell {
         let insetsX = insets * 3
         let labelSize = Layers.getLabelSize(text: dateLabel.text!, font: dateLabel.font, in: self, insets: insetsX + msgInset)
         let insetsY = self.frame.height - labelSize.height - insets * 3
-        let frame = Layers.getLabelFrame(fromX: insets, fromY: insetsY, labelSize: labelSize)
+        let frame = Layers.getLabelFrame(fromX: insetsX, fromY: insetsY, labelSize: labelSize)
         
         dateLabel.frame = frame
         dateLabel.sizeToFit()
