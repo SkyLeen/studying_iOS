@@ -61,4 +61,30 @@ class FriendsRequests {
             }
         }
     }
+    
+    static func getIncomingFriendsRequest(complition: @escaping (Int) -> ()) {
+        let pathMethod = "/friends.getRequests"
+        let url = baseUrl + path + pathMethod
+        let parameters: Parameters = [
+            "access_token":accessToken!,
+            "out":0,
+            "need_mutual":1,
+            "v":"5.73"
+        ]
+        
+        Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON(queue: DispatchQueue.global(qos: .utility)) { response in
+            switch response.result {
+            case .success(let value):
+                let requests = JSON(value)["response"]["items"]
+                RealmDeleter.removeRequests()
+                for request in requests {
+                    let user = request.1["user_id"].stringValue
+                    UserRequests.getUserById(userId: userId!, accessToken: accessToken!, requestUserId: user, attribute: .requests)
+                }
+                complition(requests.count)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
 }

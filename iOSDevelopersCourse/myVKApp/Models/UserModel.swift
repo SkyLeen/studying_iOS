@@ -26,6 +26,7 @@ class User: Object {
     var groups = List<Group>()
     var newsfeed = List<News>()
     var dialogs = List<Dialog>()
+    var requests = List<FriendRequest>()
     
     var makeAny: Any {
         return [

@@ -202,7 +202,7 @@ extension NewsViewCell {
     private func setLikesLabel() {
         let insetsX = likesImage.bounds.width + insetsBtwElements
         let insetsY = footerView.bounds.origin.y
-        let labelSize = Layers.getLabelSize(text: likesLabel.text!, font: likesLabel.font, in: self, insets: insetsX)
+        let labelSize = getLabelFooterSize(text: likesLabel.text!, font: likesLabel.font, in: self, insets: insetsX)
         
         let frame = Layers.getLabelFrame(fromX: insetsX, fromY: insetsY, labelSize: labelSize)
         
@@ -225,7 +225,7 @@ extension NewsViewCell {
         let insetsX = likesImage.bounds.width + insetsBtwElements + likesLabel.bounds.width + insetsBtwElements + commentImage.bounds.width + insetsBtwElements
         let insetsY = footerView.bounds.origin.y
         
-        let labelSize = Layers.getLabelSize(text: commentsLabel.text!, font: commentsLabel.font, in: self, insets: insetsX)
+        let labelSize = getLabelFooterSize(text: commentsLabel.text!, font: commentsLabel.font, in: self, insets: insetsX)
         
         let frame = Layers.getLabelFrame(fromX: insetsX, fromY: insetsY, labelSize: labelSize)
         
@@ -248,7 +248,7 @@ extension NewsViewCell {
         let insetsX = likesImage.bounds.width + insetsBtwElements + likesLabel.bounds.width + insetsBtwElements + commentImage.bounds.width + insetsBtwElements + commentsLabel.bounds.width + insetsBtwElements + repostsImage.bounds.width + insetsBtwElements
         let insetsY = footerView.bounds.origin.y
         
-        let labelSize = Layers.getLabelSize(text: repostsLabel.text!, font: repostsLabel.font, in: self, insets: insetsX)
+        let labelSize = getLabelFooterSize(text: repostsLabel.text!, font: repostsLabel.font, in: self, insets: insetsX)
         
         let frame = Layers.getLabelFrame(fromX: insetsX, fromY: insetsY, labelSize: labelSize)
         
@@ -256,7 +256,7 @@ extension NewsViewCell {
     }
     
     private func setViewsLabel() {
-        let labelSize = Layers.getLabelSize(text: viewsLabel.text!, font: viewsLabel.font, in: self, insets: CGFloat(0.0))
+        let labelSize = getLabelFooterSize(text: viewsLabel.text!, font: viewsLabel.font, in: self, insets: CGFloat(0.0))
         let insetsX = footerView.bounds.width - labelSize.width
         let insetsY = footerView.bounds.origin.y
         let frame = Layers.getLabelFrame(fromX: insetsX, fromY: insetsY, labelSize: labelSize)
@@ -274,6 +274,20 @@ extension NewsViewCell {
         let frame = CGRect(origin: origin, size: size)
         
         viewsImage.frame = frame
+    }
+    
+    
+    private func getLabelFooterSize(text: String, font: UIFont, in cell: UITableViewCell, insets: CGFloat) -> CGSize {
+        let maxWidth = cell.bounds.width - insets
+        let maxHeight = CGFloat.greatestFiniteMagnitude
+        let textBlock = CGSize(width: maxWidth, height: maxHeight)
+        
+        let rect = text.boundingRect(with: textBlock, attributes: [NSAttributedStringKey.font: font], context: nil)
+        let width = rect.size.width
+        let height = rect.size.height
+        
+        let labelSize = CGSize(width: ceil(width), height: ceil(height))
+        return labelSize
     }
 }
 

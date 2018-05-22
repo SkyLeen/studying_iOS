@@ -14,6 +14,7 @@ enum Attributes {
     case mainUser
     case fromDialogs
     case newFriend
+    case requests
 }
 
 class UserRequests {
@@ -61,6 +62,10 @@ class UserRequests {
                     for user in users {
                         RealmFriendsSaver.saveSingleFriend(friends: user, userId: userId)
                     }
+                case .requests:
+                    
+                    let users = JSON(value)["response"].compactMap({ FriendRequest(json: $0.1) })
+                    RealmFriendsSaver.saveFriendsRequested(friends: users, userId: userId)
                 }
             case .failure(let error):
                 print(error)

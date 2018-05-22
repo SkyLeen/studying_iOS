@@ -32,8 +32,14 @@ class NewsTableVC: UITableViewController {
         super.viewDidLoad()
         self.tableView.register(UINib(nibName: "NewsViewCell", bundle: nil), forCellReuseIdentifier: "NewsViewCell")
         addRefreshControl()
+        
         NewsRequests.getUserNews()
-       
+        FriendsRequests.getFriendsList()
+        DialogsRequests.getUserDialogs(complition: nil)
+        GroupsRequests.getUserGroups()
+        
+        checkRequestsDb()
+
         token =  Notifications.getTableViewTokenRows(newsArray, view: self.tableView)
     }
     
@@ -81,6 +87,11 @@ class NewsTableVC: UITableViewController {
         guard let height = heightCellCash[indexPath] else { return 120 }
         return height
     }
+    
+    @IBAction func addNewPostPressed(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "showNewPost", sender: nil)
+    }
+    
 }
 
 extension NewsTableVC {
@@ -114,6 +125,22 @@ extension NewsTableVC {
             guard let s = self else { return }
             s.refreshControl?.endRefreshing()
             s.tableView.reloadData()
+        }
+    }
+    
+    private func checkRequestsDb() {
+        let arrayFriends = RealmLoader.loadData(object: FriendRequest())
+        if arrayFriends.count > 0, let items = tabBarController?.tabBar.items {
+            items[2].title = "+ \(arrayFriends.count)"
+        } else if let items = tabBarController?.tabBar.items {
+            items[2].title = ""
+        }
+        
+        let arrayDialogs = RealmLoader.loadData(object: Dialog()).filter( { $0.readState == 0 } )
+        if arrayDialogs.count > 0, let items = tabBarController?.tabBar.items {
+            items[1].title = "+ \(arrayDialogs.count)"
+        } else if let items = tabBarController?.tabBar.items {
+            items[1].title = ""
         }
     }
 }

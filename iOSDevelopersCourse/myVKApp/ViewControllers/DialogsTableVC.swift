@@ -45,10 +45,14 @@ class DialogsTableVC: UITableViewController {
         super.viewDidLoad()
         tableView.rowHeight = 55
         addRefreshControl()
-        DialogsRequests.getUserDialogs()
-        dialogsToken = Notifications.getTableViewTokenRows(dialogsArray, view: self.tableView)
+
+        dialogsToken = getToken(dialogsArray, view: self.tableView)
         usersToken = Notifications.getTableViewTokenLight(usersArray, view: self.tableView)
         groupsToken = Notifications.getTableViewTokenLight(groupsArray, view: self.tableView)
+        
+        if dialogsArray.isEmpty {
+            DialogsRequests.getUserDialogs(complition: nil)
+        }
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -99,7 +103,7 @@ extension DialogsTableVC {
     }
     
     @objc func refreshView(sender: AnyObject) {
-            DialogsRequests.getUserDialogs()
+        DialogsRequests.getUserDialogs(complition: nil)
             DispatchQueue.main.async { [weak self] in
                 guard let s = self else { return }
                 s.refreshControl?.endRefreshing()
@@ -128,5 +132,32 @@ extension DialogsTableVC {
         } else  {
             controller.friendName = dialog.title
         }
+    }
+    
+    private func getToken<T: Object>(_ array: Results<T>, view: UITableView?) -> NotificationToken {
+        let arr = array.filter("readState == 0")
+        let token = array.observe({ [weak view] changes in
+            guard let view = view else { return }
+            switch changes {
+            case .initial:
+                view.reloadData()
+            case .update(_, let delete, let insert, let update):
+                view.beginUpdates()
+                view.deleteRows(at: delete.map({ IndexPath(row: $0, section: 0) }), with: .none)
+                view.insertRows(at: insert.map({ IndexPath(row: $0, section: 0) }), with: .none)
+                view.reloadRows(at: update.map({ IndexPath(row: $0, section: 0) }), with: .none)
+                view.endUpdates()
+                
+                if arr.count > 0, let items = self.tabBarController?.tabBar.items {
+                    items[1].title = "+ \(arr.count)"
+                } else if let items = self.tabBarController?.tabBar.items {
+                    items[1].title = ""
+                }
+            case .error(let error):
+                print(error.localizedDescription)
+            }
+        })
+        
+        return token
     }
 }

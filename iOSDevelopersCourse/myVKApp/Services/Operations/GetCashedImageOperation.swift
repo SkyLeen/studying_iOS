@@ -15,6 +15,7 @@ enum Folders: String {
     case News
     case Dialogs
     case Others
+    case Requests
 }
 
 class GetCashedImage: Operation {

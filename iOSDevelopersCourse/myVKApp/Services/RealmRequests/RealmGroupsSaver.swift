@@ -18,9 +18,9 @@ class RealmGroupsSaver {
         do {
             let realm = try Realm()
             let user = realm.object(ofType: User.self, forPrimaryKey: userId)
-           
+            let oldGroups = realm.objects(Group.self)
             try realm.write {
-                if  let oldGroups = user?.groups.filter("idGroup != ''"), !oldGroups.isEmpty { realm.delete(oldGroups) }
+                realm.delete(oldGroups)
                 user?.groups.append(objectsIn: groups)
             }
         } catch {
