@@ -18,7 +18,7 @@ class FriendsRequests {
     static let baseUrl = "https://api.vk.com"
     static let path = "/method"
     
-   static func getFriendsList() {
+   static func getFriendsList(closure: @escaping ([Friend])->()) {
         let pathMethod = "/friends.get"
         let url = baseUrl + path + pathMethod
         let parameters: Parameters = [
@@ -29,11 +29,12 @@ class FriendsRequests {
             "v":"5.73"
         ]
         
-    Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON(queue: DispatchQueue.global(qos: .utility)) { response in
+    Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON { response in
             switch response.result {
             case .success(let value):
                 let users = JSON(value)["response"]["items"].compactMap({ Friend(json: $0.1, userId: userId!) })
                 RealmFriendsSaver.saveFriendsData(friends: users, userId: userId!)
+                closure(users)
             case .failure(let error):
                 print(error)
             }

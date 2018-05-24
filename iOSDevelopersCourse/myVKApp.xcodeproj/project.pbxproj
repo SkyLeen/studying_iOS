@@ -22,6 +22,7 @@
 		0416317A2042133500446639 /* SettingsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041631792042133500446639 /* SettingsTableVC.swift */; };
 		0416317C204213AA00446639 /* SettingsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0416317B204213AA00446639 /* SettingsViewCell.swift */; };
 		0445CD6C2052656900D48551 /* LogOutRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0445CD6B2052656900D48551 /* LogOutRequest.swift */; };
+		0446650820B74BF300300F5E /* iCloudFriendsSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0446650720B74BF300300F5E /* iCloudFriendsSaver.swift */; };
 		04560A962088ABD500AC9074 /* MessageAttachmentsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04560A952088ABD500AC9074 /* MessageAttachmentsModel.swift */; };
 		0462E5E32067968E00E0038C /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0462E5E22067968E00E0038C /* NewsModel.swift */; };
 		0462E5E5206796CD00E0038C /* DialogModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0462E5E4206796CD00E0038C /* DialogModel.swift */; };
@@ -40,6 +41,7 @@
 		048714D62066BCB5003405B4 /* NewsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048714D52066BCB5003405B4 /* NewsTableVC.swift */; };
 		048714DA2066CF8C003405B4 /* ExtUIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048714D92066CF8C003405B4 /* ExtUIImage.swift */; };
 		04886BD42063AFB300236E08 /* RealmDeleter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04886BD32063AFB300236E08 /* RealmDeleter.swift */; };
+		048E842920B69E1800C49AA0 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 048E842820B69E1800C49AA0 /* CloudKit.framework */; };
 		0490992020580A05009C784A /* FriendsRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0490991F20580A05009C784A /* FriendsRequests.swift */; };
 		049CEBA32051AF28007ED7C2 /* FriendModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CEBA22051AF28007ED7C2 /* FriendModel.swift */; };
 		049CEBA52051D558007ED7C2 /* PhotosModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CEBA42051D558007ED7C2 /* PhotosModel.swift */; };
@@ -92,6 +94,7 @@
 		041631792042133500446639 /* SettingsTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableVC.swift; sourceTree = "<group>"; };
 		0416317B204213AA00446639 /* SettingsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewCell.swift; sourceTree = "<group>"; };
 		0445CD6B2052656900D48551 /* LogOutRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOutRequest.swift; sourceTree = "<group>"; };
+		0446650720B74BF300300F5E /* iCloudFriendsSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iCloudFriendsSaver.swift; sourceTree = "<group>"; };
 		04560A952088ABD500AC9074 /* MessageAttachmentsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageAttachmentsModel.swift; sourceTree = "<group>"; };
 		0462E5E22067968E00E0038C /* NewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
 		0462E5E4206796CD00E0038C /* DialogModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogModel.swift; sourceTree = "<group>"; };
@@ -110,6 +113,8 @@
 		048714D52066BCB5003405B4 /* NewsTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableVC.swift; sourceTree = "<group>"; };
 		048714D92066CF8C003405B4 /* ExtUIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtUIImage.swift; sourceTree = "<group>"; };
 		04886BD32063AFB300236E08 /* RealmDeleter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDeleter.swift; sourceTree = "<group>"; };
+		048E842720B69E1200C49AA0 /* myVKApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = myVKApp.entitlements; sourceTree = "<group>"; };
+		048E842820B69E1800C49AA0 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		0490991F20580A05009C784A /* FriendsRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsRequests.swift; sourceTree = "<group>"; };
 		049CEBA22051AF28007ED7C2 /* FriendModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendModel.swift; sourceTree = "<group>"; };
 		049CEBA42051D558007ED7C2 /* PhotosModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosModel.swift; sourceTree = "<group>"; };
@@ -156,6 +161,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC3D90955834458BC2944F04 /* Pods_myVKApp.framework in Frameworks */,
+				048E842920B69E1800C49AA0 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,6 +177,14 @@
 				04EB90BC207139C2001D95E6 /* ExtDate.swift */,
 			);
 			path = Exnensions;
+			sourceTree = "<group>";
+		};
+		0446650620B74BAE00300F5E /* iCLoudRequests */ = {
+			isa = PBXGroup;
+			children = (
+				0446650720B74BF300300F5E /* iCloudFriendsSaver.swift */,
+			);
+			path = iCLoudRequests;
 			sourceTree = "<group>";
 		};
 		0473634C2073C74800873B09 /* Operations */ = {
@@ -301,6 +315,7 @@
 				0473634C2073C74800873B09 /* Operations */,
 				04D19B2B2060F18000E1CADE /* ApiRequests */,
 				04D19B2A2060F17400E1CADE /* RealmRequests */,
+				0446650620B74BAE00300F5E /* iCLoudRequests */,
 				04A360C5207F446500684090 /* Layers */,
 			);
 			path = Services;
@@ -327,6 +342,7 @@
 		04D37E6920381B1100F958AF /* myVKApp */ = {
 			isa = PBXGroup;
 			children = (
+				048E842720B69E1200C49AA0 /* myVKApp.entitlements */,
 				04D37E6A20381B1100F958AF /* AppDelegate.swift */,
 				04A360C4207CD2B800684090 /* Interface */,
 				0490991D2056F4D7009C784A /* Models */,
@@ -345,6 +361,7 @@
 		3D1AEF9DC0E1D6283BDDC5DD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				048E842820B69E1800C49AA0 /* CloudKit.framework */,
 				5FCF50A99A46AFA8D4241B66 /* Pods_myVKApp.framework */,
 			);
 			name = Frameworks;
@@ -400,6 +417,12 @@
 								enabled = 0;
 							};
 							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
 								enabled = 1;
 							};
 						};
@@ -541,6 +564,7 @@
 				04CEE5D5206AD18100300107 /* NewsAttachmentsModel.swift in Sources */,
 				041631772042109300446639 /* Helpers.swift in Sources */,
 				0416316C2042016500446639 /* MyGroupsTableVC.swift in Sources */,
+				0446650820B74BF300300F5E /* iCloudFriendsSaver.swift in Sources */,
 				046DE624205D967200FEF668 /* UserModel.swift in Sources */,
 				04D2194B204B0AF6001E5B26 /* GroupsRequests.swift in Sources */,
 				048714DA2066CF8C003405B4 /* ExtUIImage.swift in Sources */,
@@ -708,6 +732,7 @@
 			baseConfigurationReference = 6485FB65E5A254A576B87BAF /* Pods-myVKApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = myVKApp/myVKApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G4SYRYWB23;
 				INFOPLIST_FILE = "$(SRCROOT)/myVKApp/Info.plist";
@@ -725,6 +750,7 @@
 			baseConfigurationReference = 40B8995E02CBB95866C66069 /* Pods-myVKApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = myVKApp/myVKApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G4SYRYWB23;
 				INFOPLIST_FILE = "$(SRCROOT)/myVKApp/Info.plist";

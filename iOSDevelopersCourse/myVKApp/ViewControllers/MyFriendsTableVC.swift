@@ -9,6 +9,7 @@
 import UIKit
 import SwiftKeychainWrapper
 import RealmSwift
+import CloudKit
 
 class MyFriendsTableVC: UITableViewController {
     
@@ -16,9 +17,12 @@ class MyFriendsTableVC: UITableViewController {
     
     let userId =  KeychainWrapper.standard.string(forKey: "userId")
     
+    private let recordType = "Friends"
+    private var cloudDB: CKDatabase = CKContainer.default().publicCloudDatabase
+    private var friendsArray = [Friend]()
+    
     lazy var myFriendsArray: Results<Friend> = {
         return RealmLoader.loadData(object: Friend()).filter("userId == %@", userId!).sorted(byKeyPath: "lastName")
-
     }()
     
     lazy var myRequestsArray: Results<FriendRequest> = {
@@ -43,28 +47,39 @@ class MyFriendsTableVC: UITableViewController {
         super.viewDidLoad()
         tableView.rowHeight = 55
 
-        token = Notifications.getTableViewTokenRows(myFriendsArray, view: self.tableView)
+        //token = Notifications.getTableViewTokenRows(myFriendsArray, view: self.tableView)
         tokenRequests = getToken(myRequestsArray, view: self.tableView)
         
-        if myFriendsArray.isEmpty {
-            FriendsRequests.getFriendsList()
-        }
+//        if myFriendsArray.isEmpty {
+//            FriendsRequests.getFriendsList() { friends in
+//                CloudFriendsSaver.operateDataCloud(friends: friends)
+//            }
+//        }
         
         if myRequestsArray.count > 0 {
             requestButton("+ \(myRequestsArray.count)")
         }
+        
+        loadDataFromCloud { [weak self] friends in
+            self?.friendsArray = friends.sorted(by: { f1, f2 in
+                return f1.name < f2.name
+            })
+            DispatchQueue.main.async {
+                self?.tableView?.reloadData()
+            }
+        }
+        
     }
 
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            let sectionRowsCount = myFriendsArray.count
+            let sectionRowsCount = friendsArray.count//myFriendsArray.count
             return sectionRowsCount
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell = tableView.dequeueReusableCell(withIdentifier: "FriendCell", for: indexPath) as! MyFriendsViewCell
             
-            let user = myFriendsArray[indexPath.row]
+            let user = friendsArray[indexPath.row]//myFriendsArray[indexPath.row]
             cell.user = user
             
             guard let url = user.photoUrl else { return cell }
@@ -86,8 +101,8 @@ class MyFriendsTableVC: UITableViewController {
         guard let destinationVC = segue.destination as? MyFriendCollectionVC else { return }
         guard let friend = sender as? IndexPath else { return }
 
-        destinationVC.friendName = myFriendsArray[friend.row].name
-        destinationVC.friendId = myFriendsArray[friend.row].idFriend
+        destinationVC.friendName = friendsArray[friend.row].name //myFriendsArray[friend.row].name
+        destinationVC.friendId = friendsArray[friend.row].idFriend //myFriendsArray[friend.row].idFriend
     }
     
 }
@@ -126,5 +141,25 @@ extension MyFriendsTableVC {
     
     @objc private func showRequests() {
         performSegue(withIdentifier: "showRequests", sender: nil)
+    }
+    
+    private func loadDataFromCloud(closure: @escaping ([Friend]) -> ()) {
+        var friendArr = [Friend]()
+        let predicate = NSPredicate(value: true)
+        let query = CKQuery(recordType: recordType, predicate: predicate)
+        cloudDB.perform(query, inZoneWith: nil) { (records, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            if let records = records
+            {
+                for record in records {
+                    let friendItem = records.compactMap({ _ in Friend(record: record) })
+                    
+                    friendArr.append(friendItem[0])
+                }
+                closure(friendArr)
+            }
+        }
     }
 }

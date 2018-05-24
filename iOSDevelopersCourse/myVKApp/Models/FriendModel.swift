@@ -8,13 +8,14 @@
 
 import SwiftyJSON
 import RealmSwift
+import CloudKit
 
 class Friend: Object {
     
     @objc dynamic var idFriend: String = ""
     @objc dynamic var online: Int = 0
-    @objc dynamic private var firstName: String = ""
-    @objc dynamic private var lastName: String = ""
+    @objc dynamic var firstName: String = ""
+    @objc dynamic var lastName: String = ""
     @objc dynamic var photoUrl: String?
     @objc dynamic var userId: String = ""
     @objc dynamic var compoundKey: String = ""
@@ -42,5 +43,16 @@ class Friend: Object {
         self.photoUrl = json["photo_100"].stringValue
         self.userId = userId
         self.compoundKey = "\(idFriend)\(userId)"
+    }
+    
+    convenience  init(record: CKRecord) {
+        self.init()
+        self.idFriend = record.value(forKey: "idFriend") as! String
+        self.online = record.value(forKey: "online") as! Int
+        self.firstName = record.value(forKey: "firstName") as! String
+        self.lastName = record.value(forKey: "lastName") as! String
+        self.photoUrl = record.value(forKey: "photoUrl") as? String
+        self.userId = record.value(forKey: "userId") as! String
+        self.compoundKey = record.recordID.recordName
     }
 }
