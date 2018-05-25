@@ -34,7 +34,6 @@ class NewsTableVC: UITableViewController {
         addRefreshControl()
         
         NewsRequests.getUserNews()
-        
         FriendsRequests.getFriendsList { friends in
             DispatchQueue.main.async {
                 CloudFriendsSaver.operateDataCloud(friends: friends)

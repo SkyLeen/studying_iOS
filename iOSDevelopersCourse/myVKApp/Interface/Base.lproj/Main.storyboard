@@ -247,6 +247,17 @@
                     <navigationItem key="navigationItem" title="Friends" id="6Fa-0M-LaO">
                         <barButtonItem key="backBarButtonItem" title=" " id="cUJ-wR-mb2"/>
                     </navigationItem>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="7lx-hI-P5r">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <attributedString key="attributedTitle">
+                            <fragment content="Updating...">
+                                <attributes>
+                                    <font key="NSFont" size="16" name="HelveticaNeue"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                    </refreshControl>
                     <connections>
                         <segue destination="zrG-0r-dxb" kind="show" identifier="showFriendPhotos" id="BCH-pX-VhN"/>
                         <segue destination="W3O-gR-7VK" kind="show" identifier="showRequests" id="0Zp-3t-Bi4"/>

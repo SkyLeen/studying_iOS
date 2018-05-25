@@ -46,7 +46,7 @@ class MyFriendsTableVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = 55
-
+        addRefreshControl()
         //token = Notifications.getTableViewTokenRows(myFriendsArray, view: self.tableView)
         tokenRequests = getToken(myRequestsArray, view: self.tableView)
         
@@ -60,7 +60,7 @@ class MyFriendsTableVC: UITableViewController {
             requestButton("+ \(myRequestsArray.count)")
         }
         
-        loadDataFromCloud { [weak self] friends in
+        self.loadDataFromCloud { [weak self] friends in
             self?.friendsArray = friends.sorted(by: { f1, f2 in
                 return f1.name < f2.name
             })
@@ -129,6 +129,27 @@ extension MyFriendsTableVC {
         })
         
         return token
+    }
+    
+    private func addRefreshControl() {
+        self.refreshControl?.addTarget(self, action: #selector(self.refreshView), for: .valueChanged)
+    }
+    
+    @objc func refreshView(sender: AnyObject) {
+        FriendsRequests.getFriendsList { friends in
+            DispatchQueue.main.async {
+                CloudFriendsSaver.operateDataCloud(friends: friends)
+            }
+            self.loadDataFromCloud { [weak self] friends in
+                self?.friendsArray = friends.sorted(by: { f1, f2 in
+                    return f1.name < f2.name
+                })
+                DispatchQueue.main.async {
+                    self?.refreshControl?.endRefreshing()
+                    self?.tableView?.reloadData()
+                }
+            }
+        }
     }
     
     private func requestButton(_ title: String) {
