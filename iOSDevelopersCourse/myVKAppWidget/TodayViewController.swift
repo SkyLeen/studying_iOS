@@ -16,6 +16,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     @IBOutlet weak var recNews: UILabel!
     @IBOutlet weak var textNews: UILabel!
     @IBOutlet weak var pages: UIPageControl!
+    @IBOutlet weak var showAppButton: UIButton!
     
     private var defaults = UserDefaults(suiteName: "group.myVKApp")
     lazy var news: Results<News>! = {
@@ -32,8 +33,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        showAppButton.layer.cornerRadius = 10
         guard let userId = defaults?.string(forKey: "userId"), let accessToken = defaults?.string(forKey: "accessToken") else { return }
-        print(userId)
         NewsRequests.getUserNews(userId: userId, accessToken: accessToken)
         configureRealm()
         configurePageControl()
@@ -52,6 +53,10 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         pages.currentPage = counter
         setNews(for: counter)
         counter = counter + 1
+    }
+    
+    @IBAction func showApp(_ sender: UIButton) {
+        extensionContext?.open(URL(string: "myVKAppWidget://")!)
     }
 }
 
