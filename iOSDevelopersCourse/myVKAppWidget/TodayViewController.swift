@@ -90,7 +90,7 @@ extension TodayViewController {
         authorNews.text = newsFeed.author
         authorNews.sizeToFit()
         textNews.text = newsFeed.text
-        recNews.text = "\(newsFeed.likesCount) человек рекомендуют эту новость"
+        recNews.text = "\(newsFeed.likesCount) users like it"
         if let url = newsFeed.authorImageUrl {
             let getImageOp = newsFeed.authorId>0 ? GetCashedImage(url: url, folderName: .UserAvatars, userId: newsFeed.authorId.description) : GetCashedImage(url: url, folderName: .Groups, userId: newsFeed.authorId.magnitude.description)
             getImageOp.completionBlock = {

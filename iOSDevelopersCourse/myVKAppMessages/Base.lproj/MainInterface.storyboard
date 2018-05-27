@@ -15,45 +15,59 @@
             <objects>
                 <viewController id="M4Y-Lb-cyx" customClass="TodayMessagesVC" customModule="myVKAppMessages" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" simulatedAppContext="notificationCenter" id="S3S-Oj-5AN">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="125"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="udc-Mg-hhz">
-                                <rect key="frame" x="10" y="5" width="300" height="19"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="10" y="5" width="300" height="15.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                                <color key="textColor" white="0.0" alpha="0.80128959760273977" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="s32-tD-LtY">
-                                <rect key="frame" x="5" y="27" width="310" height="68"/>
+                                <rect key="frame" x="5" y="23.5" width="310" height="96.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" sectionInsetReference="layoutMargins" id="t4e-cp-gYn">
-                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="itemSize" width="70" height="76"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" reuseIdentifier="messageWidgetCell" id="gJz-ch-GWH" customClass="TodayMessageViewCell" customModule="myVKAppMessages" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="9" width="50" height="50"/>
+                                        <rect key="frame" x="8" y="10.5" width="70" height="76"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="70" height="76"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="X6b-Zd-JeU">
-                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <rect key="frame" x="15" y="0.0" width="40" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="poh-ZF-qDX"/>
+                                                        <constraint firstAttribute="width" constant="40" id="xpd-K0-hDl"/>
+                                                    </constraints>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label          label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iAK-HJ-aYO">
+                                                    <rect key="frame" x="0.0" y="40" width="70" height="31"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                                                    <color key="textColor" white="0.0" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </view>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="X6b-Zd-JeU" secondAttribute="trailing" id="8sz-CR-EbI"/>
-                                            <constraint firstAttribute="bottom" secondItem="X6b-Zd-JeU" secondAttribute="bottom" id="ERS-uz-yp7"/>
                                             <constraint firstItem="X6b-Zd-JeU" firstAttribute="top" secondItem="gJz-ch-GWH" secondAttribute="top" id="FYn-zT-gAm"/>
-                                            <constraint firstItem="X6b-Zd-JeU" firstAttribute="leading" secondItem="gJz-ch-GWH" secondAttribute="leading" id="kzl-zM-TGg"/>
+                                            <constraint firstItem="iAK-HJ-aYO" firstAttribute="top" secondItem="X6b-Zd-JeU" secondAttribute="bottom" id="St4-bj-nle"/>
+                                            <constraint firstItem="iAK-HJ-aYO" firstAttribute="left" secondItem="gJz-ch-GWH" secondAttribute="left" id="fLy-IR-QJK"/>
+                                            <constraint firstItem="X6b-Zd-JeU" firstAttribute="centerX" secondItem="gJz-ch-GWH" secondAttribute="centerX" id="qhB-J5-pEu"/>
+                                            <constraint firstAttribute="right" secondItem="iAK-HJ-aYO" secondAttribute="right" id="t1e-Rv-fJD"/>
+                                            <constraint firstAttribute="bottom" secondItem="iAK-HJ-aYO" secondAttribute="bottom" constant="5" id="xwN-yb-DST"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="dialogImage" destination="X6b-Zd-JeU" id="ddb-N3-Acg"/>
+                                            <outlet property="friendLabel" destination="iAK-HJ-aYO" id="Bi8-UM-A7h"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -76,7 +90,7 @@
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="100"/>
+                    <size key="freeformSize" width="320" height="125"/>
                     <connections>
                         <outlet property="collectionView" destination="s32-tD-LtY" id="Z9E-gh-a2I"/>
                         <outlet property="countUnreaded" destination="udc-Mg-hhz" id="MmW-ds-tzr"/>
@@ -84,6 +98,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vXp-U4-Rya" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="137.59999999999999" y="105.69715142428787"/>
         </scene>
     </scenes>
 </document>

@@ -75,12 +75,14 @@ extension TodayMessagesVC: UICollectionViewDelegate {
         let dialog = dialogs[indexPath.row]
         let friendId = dialog.friendId
         
+        cell.dialog = dialog
+        
         guard dialog.chatId == 0,
             let user = friendId > 0 ? RealmRequests.getFriendData(friend: friendId.description) :
                 RealmRequests.getGroupData(group: friendId.magnitude.description),
             let url = user.photoUrl
             else { return cell }
-        
+
         let getImageOp = friendId > 0 ? GetCashedImage(url: url, folderName: .UserAvatars, userId: friendId.description) : GetCashedImage(url: url, folderName: .Groups, userId: friendId.magnitude.description)
         let cellReloadedOp = CollectionCellReloading(indexPath: indexPath, view: collectionView, cell: cell, imageView: cell.dialogImage)
         cellReloadedOp.addDependency(getImageOp)

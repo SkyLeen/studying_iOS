@@ -11,6 +11,19 @@ import UIKit
 class TodayMessageViewCell: UICollectionViewCell {
     
     @IBOutlet weak var dialogImage: UIImageView!
+    @IBOutlet weak var friendLabel: UILabel!
+    
+    var dialog: Dialog? {
+        didSet {
+            guard let friendId = dialog?.friendId,
+                let user = friendId > 0 ? RealmRequests.getFriendData(friend: "\(friendId)") : RealmRequests.getGroupData(group: "\(friendId.magnitude)")
+                else { return }
+            friendLabel.text = dialog?.title == "" ? user.name : dialog?.title
+            friendLabel.numberOfLines = 0
+            friendLabel.lineBreakMode = .byWordWrapping
+            friendLabel.sizeToFit()
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
