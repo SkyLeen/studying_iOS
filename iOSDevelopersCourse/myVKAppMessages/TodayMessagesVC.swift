@@ -12,7 +12,7 @@ import RealmSwift
 
 class TodayMessagesVC: UIViewController, NCWidgetProviding {
     @IBOutlet weak var countUnreaded: UILabel!
-    @IBOutlet weak var showAppButton: UIButton!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     private var vc = "Dialogs"
     private var defaults = UserDefaults(suiteName: "group.myVKApp")
@@ -30,7 +30,10 @@ class TodayMessagesVC: UIViewController, NCWidgetProviding {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        showAppButton.layer.cornerRadius = 10
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        
+        collectionView.layer.cornerRadius = 10
         guard let userId = defaults?.string(forKey: "userId"), let accessToken = defaults?.string(forKey: "accessToken") else { return }
         configureRealm()
         DialogsRequests.getUserDialogs(userId: userId, accessToken: accessToken, complition: nil)
@@ -40,26 +43,9 @@ class TodayMessagesVC: UIViewController, NCWidgetProviding {
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
         completionHandler(NCUpdateResult.newData)
     }
-    
-    @IBAction func showApp(_ sender: UIButton) {
-        if let url = URL(string: "myVKAppWidget://\(vc)") {
-            extensionContext?.open(url)
-        }
-    }
-    
 }
 
 extension TodayMessagesVC {
-    
-//    private func configurePageControl() {
-//        pages.numberOfPages = countNews
-//        pages.currentPage = 0
-//        pages.tintColor = UIColor.red
-//        pages.pageIndicatorTintColor = UIColor.black
-//        pages.currentPageIndicatorTintColor = UIColor.green
-//        //setNews(for: 0)
-//        counter = counter + 1
-//    }
     
     private func configureRealm() {
         let configuration = Realm.Configuration(
@@ -73,5 +59,40 @@ extension TodayMessagesVC {
     
     private func setDialogs(for index: Int) {
         _ = dialogs[index]
+    }
+}
+
+extension TodayMessagesVC: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return dialogs.count
+    }
+}
+
+extension TodayMessagesVC: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "messageWidgetCell", for: indexPath) as! TodayMessageViewCell
+        
+        let dialog = dialogs[indexPath.row]
+        let friendId = dialog.friendId
+        
+        guard dialog.chatId == 0,
+            let user = friendId > 0 ? RealmRequests.getFriendData(friend: friendId.description) :
+                RealmRequests.getGroupData(group: friendId.magnitude.description),
+            let url = user.photoUrl
+            else { return cell }
+        
+        let getImageOp = friendId > 0 ? GetCashedImage(url: url, folderName: .UserAvatars, userId: friendId.description) : GetCashedImage(url: url, folderName: .Groups, userId: friendId.magnitude.description)
+        let cellReloadedOp = CollectionCellReloading(indexPath: indexPath, view: collectionView, cell: cell, imageView: cell.dialogImage)
+        cellReloadedOp.addDependency(getImageOp)
+        operationQueue.addOperation(getImageOp)
+        OperationQueue.main.addOperation(cellReloadedOp)
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let url = URL(string: "myVKAppWidget://\(vc)") {
+            extensionContext?.open(url)
+        }
     }
 }

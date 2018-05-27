@@ -146,6 +146,8 @@
 		04D9E87B20BAC30F00458F2E /* ExtInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB90BA20713252001D95E6 /* ExtInt.swift */; };
 		04D9E87C20BAC30F00458F2E /* ExtDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB90BC207139C2001D95E6 /* ExtDate.swift */; };
 		04D9E87D20BAC32A00458F2E /* TodayMessagesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D9E84C20BAC2A500458F2E /* TodayMessagesVC.swift */; };
+		04D9E87F20BAE87A00458F2E /* TodayMessageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D9E87E20BAE87A00458F2E /* TodayMessageViewCell.swift */; };
+		04D9E88120BAEC9900458F2E /* TodayMessageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D9E87E20BAE87A00458F2E /* TodayMessageViewCell.swift */; };
 		04EA44B6203C2F5E00074ACA /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04EA44B5203C2F5E00074ACA /* Launch.storyboard */; };
 		04EB90B5206E891D001D95E6 /* UserRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB90B4206E891D001D95E6 /* UserRequests.swift */; };
 		04EB90B7206EB103001D95E6 /* RealmRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB90B6206EB103001D95E6 /* RealmRequests.swift */; };
@@ -266,6 +268,7 @@
 		04D9E84F20BAC2A500458F2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		04D9E85120BAC2A500458F2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04D9E85820BAC2BB00458F2E /* myVKAppMessages.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = myVKAppMessages.entitlements; sourceTree = "<group>"; };
+		04D9E87E20BAE87A00458F2E /* TodayMessageViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayMessageViewCell.swift; sourceTree = "<group>"; };
 		04EA44B5203C2F5E00074ACA /* Launch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
 		04EB90B4206E891D001D95E6 /* UserRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequests.swift; sourceTree = "<group>"; };
 		04EB90B6206EB103001D95E6 /* RealmRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRequests.swift; sourceTree = "<group>"; };
@@ -517,8 +520,8 @@
 			isa = PBXGroup;
 			children = (
 				04D9E81920BA211A00458F2E /* myVKAppWidget.entitlements */,
-				04D9E80C20BA20F200458F2E /* TodayViewController.swift */,
 				04D9E80E20BA20F200458F2E /* MainInterface.storyboard */,
+				04D9E80C20BA20F200458F2E /* TodayViewController.swift */,
 				04D9E81120BA20F200458F2E /* Info.plist */,
 			);
 			path = myVKAppWidget;
@@ -528,8 +531,9 @@
 			isa = PBXGroup;
 			children = (
 				04D9E85820BAC2BB00458F2E /* myVKAppMessages.entitlements */,
-				04D9E84C20BAC2A500458F2E /* TodayMessagesVC.swift */,
 				04D9E84E20BAC2A500458F2E /* MainInterface.storyboard */,
+				04D9E84C20BAC2A500458F2E /* TodayMessagesVC.swift */,
+				04D9E87E20BAE87A00458F2E /* TodayMessageViewCell.swift */,
 				04D9E85120BAC2A500458F2E /* Info.plist */,
 			);
 			path = myVKAppMessages;
@@ -894,6 +898,7 @@
 				04D19B2F2060FC9B00E1CADE /* RealmLoader.swift in Sources */,
 				049CEBA32051AF28007ED7C2 /* FriendModel.swift in Sources */,
 				049CEBA52051D558007ED7C2 /* PhotosModel.swift in Sources */,
+				04D9E88120BAEC9900458F2E /* TodayMessageViewCell.swift in Sources */,
 				0416316620415EDE00446639 /* MyFriendsTableVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -982,6 +987,7 @@
 				04D9E86E20BAC2F800458F2E /* RealmUserSaver.swift in Sources */,
 				04D9E86F20BAC2F800458F2E /* RealmFriendsSaver.swift in Sources */,
 				04D9E87520BAC2F800458F2E /* RealmDeleter.swift in Sources */,
+				04D9E87F20BAE87A00458F2E /* TodayMessageViewCell.swift in Sources */,
 				04D9E87720BAC2FD00458F2E /* iCloudFriendsSaver.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
