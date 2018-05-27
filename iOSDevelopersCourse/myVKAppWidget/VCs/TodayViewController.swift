@@ -10,11 +10,16 @@ import UIKit
 import NotificationCenter
 
 class TodayViewController: UIViewController, NCWidgetProviding {
-        
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var imageNews: UIImageView!
+    @IBOutlet weak var authorNews: UILabel!
+    @IBOutlet weak var recNews: UILabel!
+    
+    @IBOutlet weak var textNews: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
     }
     
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
