@@ -87,8 +87,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func configureRealm() {
-        var configuration = Realm.Configuration()
-        configuration.deleteRealmIfMigrationNeeded = true
+        let configuration = Realm.Configuration(
+            fileURL: FileManager
+                .default
+                .containerURL(forSecurityApplicationGroupIdentifier: "group.myVKApp")?.appendingPathComponent("default.realm"),
+            deleteRealmIfMigrationNeeded: true,
+            objectTypes: [User.self, Friend.self, FriendRequest.self, Photos.self, Group.self, News.self, NewsAttachments.self, Dialog.self, Message.self, MessageAttachments.self])
         Realm.Configuration.defaultConfiguration = configuration
         
         print(configuration.fileURL!)

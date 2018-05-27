@@ -447,28 +447,12 @@
 		04D9E80B20BA20F200458F2E /* myVKAppWidget */ = {
 			isa = PBXGroup;
 			children = (
-				04D9E84120BA2B5500458F2E /* VCs */,
-				04D9E84020BA2B4D00458F2E /* Cells */,
 				04D9E81920BA211A00458F2E /* myVKAppWidget.entitlements */,
+				04D9E80C20BA20F200458F2E /* TodayViewController.swift */,
 				04D9E80E20BA20F200458F2E /* MainInterface.storyboard */,
 				04D9E81120BA20F200458F2E /* Info.plist */,
 			);
 			path = myVKAppWidget;
-			sourceTree = "<group>";
-		};
-		04D9E84020BA2B4D00458F2E /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Cells;
-			sourceTree = "<group>";
-		};
-		04D9E84120BA2B5500458F2E /* VCs */ = {
-			isa = PBXGroup;
-			children = (
-				04D9E80C20BA20F200458F2E /* TodayViewController.swift */,
-			);
-			path = VCs;
 			sourceTree = "<group>";
 		};
 		3D1AEF9DC0E1D6283BDDC5DD /* Frameworks */ = {
@@ -555,6 +539,9 @@
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
+							com.apple.Keychain = {
+								enabled = 0;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -569,6 +556,9 @@
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
+							};
+							com.apple.Keychain = {
+								enabled = 0;
 							};
 						};
 					};

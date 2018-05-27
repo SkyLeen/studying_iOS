@@ -8,8 +8,12 @@
 
 import UIKit
 import RealmSwift
+import SwiftKeychainWrapper
 
 class NewsTableVC: UITableViewController {
+    
+    private let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")
+    private let userId =  KeychainWrapper.standard.string(forKey: "userId")
     
     var token: NotificationToken?
     lazy var newsArray: Results<News> = {
@@ -32,8 +36,8 @@ class NewsTableVC: UITableViewController {
         super.viewDidLoad()
         self.tableView.register(UINib(nibName: "NewsViewCell", bundle: nil), forCellReuseIdentifier: "NewsViewCell")
         addRefreshControl()
-        
-        NewsRequests.getUserNews()
+        guard let userId = userId, let accessToken = accessToken else { return }
+        NewsRequests.getUserNews(userId: userId, accessToken: accessToken)
         FriendsRequests.getFriendsList { friends in
             DispatchQueue.main.async {
                 CloudFriendsSaver.operateDataCloud(friends: friends)
@@ -124,7 +128,8 @@ extension NewsTableVC {
     }
     
     @objc func refreshView(sender: AnyObject) {
-        NewsRequests.getUserNews()
+        guard let userId = userId, let accessToken = accessToken else { return }
+        NewsRequests.getUserNews(userId: userId, accessToken: accessToken)
         DispatchQueue.main.async { [weak self] in
             guard let s = self else { return }
             s.refreshControl?.endRefreshing()
