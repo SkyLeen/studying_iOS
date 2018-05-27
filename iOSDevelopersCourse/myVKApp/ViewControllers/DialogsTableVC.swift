@@ -13,6 +13,9 @@ import Alamofire
 
 class DialogsTableVC: UITableViewController {
     
+    private let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")
+    private let userId =  KeychainWrapper.standard.string(forKey: "userId")
+    
     private lazy var dialogsArray: Results<Dialog> = {
         return RealmLoader.loadData(object: Dialog()).sorted(byKeyPath: "date", ascending: false)
     }()
@@ -45,13 +48,14 @@ class DialogsTableVC: UITableViewController {
         super.viewDidLoad()
         tableView.rowHeight = 55
         addRefreshControl()
-
+        
         dialogsToken = getToken(dialogsArray, view: self.tableView)
         usersToken = Notifications.getTableViewTokenLight(usersArray, view: self.tableView)
         groupsToken = Notifications.getTableViewTokenLight(groupsArray, view: self.tableView)
         
+        guard let userId = userId, let accessToken = accessToken else { return }
         if dialogsArray.isEmpty {
-            DialogsRequests.getUserDialogs(complition: nil)
+            DialogsRequests.getUserDialogs(userId: userId, accessToken: accessToken, complition: nil)
         }
     }
 
@@ -103,7 +107,8 @@ extension DialogsTableVC {
     }
     
     @objc func refreshView(sender: AnyObject) {
-        DialogsRequests.getUserDialogs(complition: nil)
+        guard let userId = userId, let accessToken = accessToken else { return }
+        DialogsRequests.getUserDialogs(userId:userId, accessToken: accessToken, complition: nil)
             DispatchQueue.main.async { [weak self] in
                 guard let s = self else { return }
                 s.refreshControl?.endRefreshing()
@@ -135,7 +140,7 @@ extension DialogsTableVC {
     }
     
     private func getToken<T: Object>(_ array: Results<T>, view: UITableView?) -> NotificationToken {
-        let arr = array.filter("readState == 0")
+        let arr = array.filter("readState == 0 && out == 0")
         let token = array.observe({ [weak view] changes in
             guard let view = view else { return }
             switch changes {

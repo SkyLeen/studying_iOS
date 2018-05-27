@@ -630,7 +630,7 @@
         <!--Navigation Controller-->
         <scene sceneID="AXi-Yp-i0Z">
             <objects>
-                <navigationController id="VLd-Nf-Mdw" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="dialogsNavigationVC" id="VLd-Nf-Mdw" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="messages" id="cDz-tn-0t4">
                         <color key="badgeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBarItem>
@@ -655,7 +655,7 @@
         <!--Navigation Controller-->
         <scene sceneID="g7i-bN-vCM">
             <objects>
-                <navigationController id="ZGi-or-z2q" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="newsNavigationVC" id="ZGi-or-z2q" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="news" id="t3v-Vr-4L9"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="blackTranslucent" translucent="NO" id="nlf-7g-yTB">
                         <rect key="frame" x="0.0" y="20" width="320" height="44"/>
@@ -1131,7 +1131,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="6el-06-rQd">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="fAW-te-Zjk" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabBarVC" automaticallyAdjustsScrollViewInsets="NO" id="fAW-te-Zjk" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" itemPositioning="centered" id="Kk7-9c-fZW">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>

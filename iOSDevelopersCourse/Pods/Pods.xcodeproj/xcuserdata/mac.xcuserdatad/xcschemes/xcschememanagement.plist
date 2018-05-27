@@ -53,68 +53,75 @@
 			<key>orderHint</key>
 			<integer>13</integer>
 		</dict>
-		<key>Pods-myVKAppWidget.xcscheme</key>
+		<key>Pods-myVKAppMessages.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>14</integer>
 		</dict>
-		<key>Realm-iOS11.0.xcscheme</key>
+		<key>Pods-myVKAppWidget.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>15</integer>
 		</dict>
-		<key>Realm-iOS11.3.xcscheme</key>
+		<key>Realm-iOS11.0.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>16</integer>
 		</dict>
-		<key>RealmSwift-iOS11.0.xcscheme</key>
+		<key>Realm-iOS11.3.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>17</integer>
 		</dict>
-		<key>RealmSwift-iOS11.3.xcscheme</key>
+		<key>RealmSwift-iOS11.0.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>18</integer>
 		</dict>
-		<key>SwiftKeychainWrapper-iOS11.0.xcscheme</key>
+		<key>RealmSwift-iOS11.3.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>19</integer>
 		</dict>
-		<key>SwiftKeychainWrapper-iOS11.3.xcscheme</key>
+		<key>SwiftKeychainWrapper-iOS11.0.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>20</integer>
 		</dict>
-		<key>SwiftyJSON-iOS11.0.xcscheme</key>
+		<key>SwiftKeychainWrapper-iOS11.3.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>21</integer>
 		</dict>
-		<key>SwiftyJSON-iOS11.3.xcscheme</key>
+		<key>SwiftyJSON-iOS11.0.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>22</integer>
+		</dict>
+		<key>SwiftyJSON-iOS11.3.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>23</integer>
 		</dict>
 		<key>leveldb-library-iOS11.0.xcscheme</key>
 		<dict>

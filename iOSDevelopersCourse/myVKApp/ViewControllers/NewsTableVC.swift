@@ -43,7 +43,7 @@ class NewsTableVC: UITableViewController {
                 CloudFriendsSaver.operateDataCloud(friends: friends)
             }
         }
-        DialogsRequests.getUserDialogs(complition: nil)
+        DialogsRequests.getUserDialogs(userId: userId, accessToken: accessToken, complition: nil)
         GroupsRequests.getUserGroups()
         
         checkRequestsDb()
@@ -145,7 +145,7 @@ extension NewsTableVC {
             items[2].title = ""
         }
         
-        let arrayDialogs = RealmLoader.loadData(object: Dialog()).filter( { $0.readState == 0 } )
+        let arrayDialogs = RealmLoader.loadData(object: Dialog()).filter( { $0.readState == 0 && $0.out == 0 } )
         if arrayDialogs.count > 0, let items = tabBarController?.tabBar.items {
             items[1].title = "+ \(arrayDialogs.count)"
         } else if let items = tabBarController?.tabBar.items {

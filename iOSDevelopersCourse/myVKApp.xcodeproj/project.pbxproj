@@ -105,6 +105,47 @@
 		04D9E83C20BA223D00458F2E /* ExtInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB90BA20713252001D95E6 /* ExtInt.swift */; };
 		04D9E83D20BA223D00458F2E /* ExtDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB90BC207139C2001D95E6 /* ExtDate.swift */; };
 		04D9E83F20BA227500458F2E /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D9E80C20BA20F200458F2E /* TodayViewController.swift */; };
+		04D9E84A20BAC2A500458F2E /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04D9E80920BA20F200458F2E /* NotificationCenter.framework */; };
+		04D9E84D20BAC2A500458F2E /* TodayMessagesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D9E84C20BAC2A500458F2E /* TodayMessagesVC.swift */; };
+		04D9E85020BAC2A500458F2E /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04D9E84E20BAC2A500458F2E /* MainInterface.storyboard */; };
+		04D9E85420BAC2A500458F2E /* myVKAppMessages.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 04D9E84920BAC2A500458F2E /* myVKAppMessages.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		04D9E85920BAC2D500458F2E /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046DE623205D967200FEF668 /* UserModel.swift */; };
+		04D9E85A20BAC2D500458F2E /* FriendModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CEBA22051AF28007ED7C2 /* FriendModel.swift */; };
+		04D9E85B20BAC2D500458F2E /* FriendRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FF913E20AC25A60033E990 /* FriendRequestModel.swift */; };
+		04D9E85C20BAC2D500458F2E /* PhotosModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CEBA42051D558007ED7C2 /* PhotosModel.swift */; };
+		04D9E85D20BAC2D500458F2E /* GroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CEBA62051E3D5007ED7C2 /* GroupModel.swift */; };
+		04D9E85E20BAC2D500458F2E /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0462E5E22067968E00E0038C /* NewsModel.swift */; };
+		04D9E85F20BAC2D500458F2E /* NewsAttachmentsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEE5D4206AD18100300107 /* NewsAttachmentsModel.swift */; };
+		04D9E86020BAC2D500458F2E /* DialogModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0462E5E4206796CD00E0038C /* DialogModel.swift */; };
+		04D9E86120BAC2D500458F2E /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB90BE20714A42001D95E6 /* MessageModel.swift */; };
+		04D9E86220BAC2D500458F2E /* MessageAttachmentsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04560A952088ABD500AC9074 /* MessageAttachmentsModel.swift */; };
+		04D9E86320BAC2DC00458F2E /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041631762042109300446639 /* Helpers.swift */; };
+		04D9E86420BAC2E100458F2E /* GetCashedImageOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0473634D2073C7B600873B09 /* GetCashedImageOperation.swift */; };
+		04D9E86520BAC2E100458F2E /* TableCellReloading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0473636120775D8000873B09 /* TableCellReloading.swift */; };
+		04D9E86620BAC2E100458F2E /* CollectionCellReloading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047363632077625000873B09 /* CollectionCellReloading.swift */; };
+		04D9E86720BAC2E700458F2E /* AuthorizationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D21944204A8DF3001E5B26 /* AuthorizationRequest.swift */; };
+		04D9E86820BAC2E700458F2E /* UserRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB90B4206E891D001D95E6 /* UserRequests.swift */; };
+		04D9E86920BAC2E700458F2E /* FriendsRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0490991F20580A05009C784A /* FriendsRequests.swift */; };
+		04D9E86A20BAC2E700458F2E /* GroupsRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D2194A204B0AF6001E5B26 /* GroupsRequests.swift */; };
+		04D9E86B20BAC2E700458F2E /* NewsRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0462E5E6206796FB00E0038C /* NewsRequests.swift */; };
+		04D9E86C20BAC2E700458F2E /* DialogsRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0462E5E82067973100E0038C /* DialogsRequests.swift */; };
+		04D9E86D20BAC2E700458F2E /* LogOutRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0445CD6B2052656900D48551 /* LogOutRequest.swift */; };
+		04D9E86E20BAC2F800458F2E /* RealmUserSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0410DB172064428600FB3F4F /* RealmUserSaver.swift */; };
+		04D9E86F20BAC2F800458F2E /* RealmFriendsSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D19B2C2060F1C700E1CADE /* RealmFriendsSaver.swift */; };
+		04D9E87020BAC2F800458F2E /* RealmGroupsSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0410DB152064420E00FB3F4F /* RealmGroupsSaver.swift */; };
+		04D9E87120BAC2F800458F2E /* RealmNewsSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0462E5EA2067975F00E0038C /* RealmNewsSaver.swift */; };
+		04D9E87220BAC2F800458F2E /* RealmNewsAttachSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEE5D6206AE96A00300107 /* RealmNewsAttachSaver.swift */; };
+		04D9E87320BAC2F800458F2E /* RealmDialogsSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEE5D8206BF56D00300107 /* RealmDialogsSaver.swift */; };
+		04D9E87420BAC2F800458F2E /* RealmLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D19B2E2060FC9B00E1CADE /* RealmLoader.swift */; };
+		04D9E87520BAC2F800458F2E /* RealmDeleter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04886BD32063AFB300236E08 /* RealmDeleter.swift */; };
+		04D9E87620BAC2F800458F2E /* RealmRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB90B6206EB103001D95E6 /* RealmRequests.swift */; };
+		04D9E87720BAC2FD00458F2E /* iCloudFriendsSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0446650720B74BF300300F5E /* iCloudFriendsSaver.swift */; };
+		04D9E87820BAC30100458F2E /* Layers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A360C6207F44E500684090 /* Layers.swift */; };
+		04D9E87920BAC30F00458F2E /* ExtFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB90B8207131E1001D95E6 /* ExtFormatter.swift */; };
+		04D9E87A20BAC30F00458F2E /* ExtUIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048714D92066CF8C003405B4 /* ExtUIImage.swift */; };
+		04D9E87B20BAC30F00458F2E /* ExtInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB90BA20713252001D95E6 /* ExtInt.swift */; };
+		04D9E87C20BAC30F00458F2E /* ExtDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB90BC207139C2001D95E6 /* ExtDate.swift */; };
+		04D9E87D20BAC32A00458F2E /* TodayMessagesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D9E84C20BAC2A500458F2E /* TodayMessagesVC.swift */; };
 		04EA44B6203C2F5E00074ACA /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04EA44B5203C2F5E00074ACA /* Launch.storyboard */; };
 		04EB90B5206E891D001D95E6 /* UserRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB90B4206E891D001D95E6 /* UserRequests.swift */; };
 		04EB90B7206EB103001D95E6 /* RealmRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB90B6206EB103001D95E6 /* RealmRequests.swift */; };
@@ -118,6 +159,7 @@
 		04FF914520AC63B80033E990 /* FriendsRequestsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FF914420AC63B80033E990 /* FriendsRequestsViewCell.swift */; };
 		BC3D90955834458BC2944F04 /* Pods_myVKApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FCF50A99A46AFA8D4241B66 /* Pods_myVKApp.framework */; };
 		BF5D864307A762643EAF7BF5 /* Pods_myVKAppWidget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11195D96E9021C8955B12805 /* Pods_myVKAppWidget.framework */; };
+		CACC8DA9B88354B9242B345D /* Pods_myVKAppMessages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52458930533A8FED9951649C /* Pods_myVKAppMessages.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,6 +169,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 04D9E80720BA20F000458F2E;
 			remoteInfo = myVKAppWidget;
+		};
+		04D9E85220BAC2A500458F2E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 04D37E5F20381B1100F958AF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 04D9E84820BAC2A500458F2E;
+			remoteInfo = myVKAppMessages;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -138,6 +187,7 @@
 			dstSubfolderSpec = 13;
 			files = (
 				04D9E81420BA20F200458F2E /* myVKAppWidget.appex in Embed App Extensions */,
+				04D9E85420BAC2A500458F2E /* myVKAppMessages.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -211,6 +261,11 @@
 		04D9E80F20BA20F200458F2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		04D9E81120BA20F200458F2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04D9E81920BA211A00458F2E /* myVKAppWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = myVKAppWidget.entitlements; sourceTree = "<group>"; };
+		04D9E84920BAC2A500458F2E /* myVKAppMessages.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = myVKAppMessages.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		04D9E84C20BAC2A500458F2E /* TodayMessagesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayMessagesVC.swift; sourceTree = "<group>"; };
+		04D9E84F20BAC2A500458F2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		04D9E85120BAC2A500458F2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		04D9E85820BAC2BB00458F2E /* myVKAppMessages.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = myVKAppMessages.entitlements; sourceTree = "<group>"; };
 		04EA44B5203C2F5E00074ACA /* Launch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
 		04EB90B4206E891D001D95E6 /* UserRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequests.swift; sourceTree = "<group>"; };
 		04EB90B6206EB103001D95E6 /* RealmRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRequests.swift; sourceTree = "<group>"; };
@@ -225,9 +280,12 @@
 		11195D96E9021C8955B12805 /* Pods_myVKAppWidget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_myVKAppWidget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A9DE2850D0753814D331672 /* Pods-myVKAppWidget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myVKAppWidget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-myVKAppWidget/Pods-myVKAppWidget.debug.xcconfig"; sourceTree = "<group>"; };
 		40B8995E02CBB95866C66069 /* Pods-myVKApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myVKApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-myVKApp/Pods-myVKApp.release.xcconfig"; sourceTree = "<group>"; };
+		52458930533A8FED9951649C /* Pods_myVKAppMessages.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_myVKAppMessages.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FCF50A99A46AFA8D4241B66 /* Pods_myVKApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_myVKApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6096406B28037043D5F7FE65 /* Pods-myVKAppWidget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myVKAppWidget.release.xcconfig"; path = "Pods/Target Support Files/Pods-myVKAppWidget/Pods-myVKAppWidget.release.xcconfig"; sourceTree = "<group>"; };
 		6485FB65E5A254A576B87BAF /* Pods-myVKApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myVKApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-myVKApp/Pods-myVKApp.debug.xcconfig"; sourceTree = "<group>"; };
+		7288F23CE681A1EDFBE632CC /* Pods-myVKAppMessages.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myVKAppMessages.debug.xcconfig"; path = "Pods/Target Support Files/Pods-myVKAppMessages/Pods-myVKAppMessages.debug.xcconfig"; sourceTree = "<group>"; };
+		B562C668D7F686D31B421997 /* Pods-myVKAppMessages.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myVKAppMessages.release.xcconfig"; path = "Pods/Target Support Files/Pods-myVKAppMessages/Pods-myVKAppMessages.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,6 +304,15 @@
 			files = (
 				04D9E80A20BA20F200458F2E /* NotificationCenter.framework in Frameworks */,
 				BF5D864307A762643EAF7BF5 /* Pods_myVKAppWidget.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04D9E84620BAC2A500458F2E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04D9E84A20BAC2A500458F2E /* NotificationCenter.framework in Frameworks */,
+				CACC8DA9B88354B9242B345D /* Pods_myVKAppMessages.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,6 +477,7 @@
 			children = (
 				04D37E6920381B1100F958AF /* myVKApp */,
 				04D9E80B20BA20F200458F2E /* myVKAppWidget */,
+				04D9E84B20BAC2A500458F2E /* myVKAppMessages */,
 				04D37E6820381B1100F958AF /* Products */,
 				AF784B111E619CCF9EC40420 /* Pods */,
 				3D1AEF9DC0E1D6283BDDC5DD /* Frameworks */,
@@ -421,6 +489,7 @@
 			children = (
 				04D37E6720381B1100F958AF /* myVKApp.app */,
 				04D9E80820BA20F000458F2E /* myVKAppWidget.appex */,
+				04D9E84920BAC2A500458F2E /* myVKAppMessages.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -455,6 +524,17 @@
 			path = myVKAppWidget;
 			sourceTree = "<group>";
 		};
+		04D9E84B20BAC2A500458F2E /* myVKAppMessages */ = {
+			isa = PBXGroup;
+			children = (
+				04D9E85820BAC2BB00458F2E /* myVKAppMessages.entitlements */,
+				04D9E84C20BAC2A500458F2E /* TodayMessagesVC.swift */,
+				04D9E84E20BAC2A500458F2E /* MainInterface.storyboard */,
+				04D9E85120BAC2A500458F2E /* Info.plist */,
+			);
+			path = myVKAppMessages;
+			sourceTree = "<group>";
+		};
 		3D1AEF9DC0E1D6283BDDC5DD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -462,6 +542,7 @@
 				5FCF50A99A46AFA8D4241B66 /* Pods_myVKApp.framework */,
 				04D9E80920BA20F200458F2E /* NotificationCenter.framework */,
 				11195D96E9021C8955B12805 /* Pods_myVKAppWidget.framework */,
+				52458930533A8FED9951649C /* Pods_myVKAppMessages.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -473,6 +554,8 @@
 				40B8995E02CBB95866C66069 /* Pods-myVKApp.release.xcconfig */,
 				3A9DE2850D0753814D331672 /* Pods-myVKAppWidget.debug.xcconfig */,
 				6096406B28037043D5F7FE65 /* Pods-myVKAppWidget.release.xcconfig */,
+				7288F23CE681A1EDFBE632CC /* Pods-myVKAppMessages.debug.xcconfig */,
+				B562C668D7F686D31B421997 /* Pods-myVKAppMessages.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -495,6 +578,7 @@
 			);
 			dependencies = (
 				04D9E81320BA20F200458F2E /* PBXTargetDependency */,
+				04D9E85320BAC2A500458F2E /* PBXTargetDependency */,
 			);
 			name = myVKApp;
 			productName = iOSDevelopersCourse;
@@ -517,6 +601,24 @@
 			name = myVKAppWidget;
 			productName = myVKAppWidget;
 			productReference = 04D9E80820BA20F000458F2E /* myVKAppWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		04D9E84820BAC2A500458F2E /* myVKAppMessages */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 04D9E85520BAC2A500458F2E /* Build configuration list for PBXNativeTarget "myVKAppMessages" */;
+			buildPhases = (
+				8974B16E662B09EC224D83F6 /* [CP] Check Pods Manifest.lock */,
+				04D9E84520BAC2A500458F2E /* Sources */,
+				04D9E84620BAC2A500458F2E /* Frameworks */,
+				04D9E84720BAC2A500458F2E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = myVKAppMessages;
+			productName = myVKAppMessages;
+			productReference = 04D9E84920BAC2A500458F2E /* myVKAppMessages.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
@@ -562,6 +664,15 @@
 							};
 						};
 					};
+					04D9E84820BAC2A500458F2E = {
+						CreatedOnToolsVersion = 9.3.1;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
 				};
 			};
 			buildConfigurationList = 04D37E6220381B1100F958AF /* Build configuration list for PBXProject "myVKApp" */;
@@ -579,6 +690,7 @@
 			targets = (
 				04D37E6620381B1100F958AF /* myVKApp */,
 				04D9E80720BA20F000458F2E /* myVKAppWidget */,
+				04D9E84820BAC2A500458F2E /* myVKAppMessages */,
 			);
 		};
 /* End PBXProject section */
@@ -604,6 +716,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		04D9E84720BAC2A500458F2E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04D9E85020BAC2A500458F2E /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -619,6 +739,24 @@
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-myVKApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8974B16E662B09EC224D83F6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-myVKAppMessages-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -745,6 +883,7 @@
 				0462E5EB2067975F00E0038C /* RealmNewsSaver.swift in Sources */,
 				04A360DC207F7A1000684090 /* Protocols.swift in Sources */,
 				04D21945204A8DF3001E5B26 /* AuthorizationRequest.swift in Sources */,
+				04D9E87D20BAC32A00458F2E /* TodayMessagesVC.swift in Sources */,
 				04D19B2D2060F1C700E1CADE /* RealmFriendsSaver.swift in Sources */,
 				0462E5ED20679A1300E0038C /* DialogsTableVC.swift in Sources */,
 				0490992020580A05009C784A /* FriendsRequests.swift in Sources */,
@@ -803,6 +942,50 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		04D9E84520BAC2A500458F2E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04D9E87120BAC2F800458F2E /* RealmNewsSaver.swift in Sources */,
+				04D9E86A20BAC2E700458F2E /* GroupsRequests.swift in Sources */,
+				04D9E86020BAC2D500458F2E /* DialogModel.swift in Sources */,
+				04D9E87B20BAC30F00458F2E /* ExtInt.swift in Sources */,
+				04D9E86920BAC2E700458F2E /* FriendsRequests.swift in Sources */,
+				04D9E85E20BAC2D500458F2E /* NewsModel.swift in Sources */,
+				04D9E85920BAC2D500458F2E /* UserModel.swift in Sources */,
+				04D9E86C20BAC2E700458F2E /* DialogsRequests.swift in Sources */,
+				04D9E87820BAC30100458F2E /* Layers.swift in Sources */,
+				04D9E85C20BAC2D500458F2E /* PhotosModel.swift in Sources */,
+				04D9E86D20BAC2E700458F2E /* LogOutRequest.swift in Sources */,
+				04D9E86820BAC2E700458F2E /* UserRequests.swift in Sources */,
+				04D9E86520BAC2E100458F2E /* TableCellReloading.swift in Sources */,
+				04D9E85B20BAC2D500458F2E /* FriendRequestModel.swift in Sources */,
+				04D9E87420BAC2F800458F2E /* RealmLoader.swift in Sources */,
+				04D9E87920BAC30F00458F2E /* ExtFormatter.swift in Sources */,
+				04D9E86120BAC2D500458F2E /* MessageModel.swift in Sources */,
+				04D9E87A20BAC30F00458F2E /* ExtUIImage.swift in Sources */,
+				04D9E86B20BAC2E700458F2E /* NewsRequests.swift in Sources */,
+				04D9E87220BAC2F800458F2E /* RealmNewsAttachSaver.swift in Sources */,
+				04D9E86620BAC2E100458F2E /* CollectionCellReloading.swift in Sources */,
+				04D9E85A20BAC2D500458F2E /* FriendModel.swift in Sources */,
+				04D9E86320BAC2DC00458F2E /* Helpers.swift in Sources */,
+				04D9E86420BAC2E100458F2E /* GetCashedImageOperation.swift in Sources */,
+				04D9E87320BAC2F800458F2E /* RealmDialogsSaver.swift in Sources */,
+				04D9E86220BAC2D500458F2E /* MessageAttachmentsModel.swift in Sources */,
+				04D9E87620BAC2F800458F2E /* RealmRequests.swift in Sources */,
+				04D9E84D20BAC2A500458F2E /* TodayMessagesVC.swift in Sources */,
+				04D9E87020BAC2F800458F2E /* RealmGroupsSaver.swift in Sources */,
+				04D9E85D20BAC2D500458F2E /* GroupModel.swift in Sources */,
+				04D9E85F20BAC2D500458F2E /* NewsAttachmentsModel.swift in Sources */,
+				04D9E87C20BAC30F00458F2E /* ExtDate.swift in Sources */,
+				04D9E86720BAC2E700458F2E /* AuthorizationRequest.swift in Sources */,
+				04D9E86E20BAC2F800458F2E /* RealmUserSaver.swift in Sources */,
+				04D9E86F20BAC2F800458F2E /* RealmFriendsSaver.swift in Sources */,
+				04D9E87520BAC2F800458F2E /* RealmDeleter.swift in Sources */,
+				04D9E87720BAC2FD00458F2E /* iCloudFriendsSaver.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -810,6 +993,11 @@
 			isa = PBXTargetDependency;
 			target = 04D9E80720BA20F000458F2E /* myVKAppWidget */;
 			targetProxy = 04D9E81220BA20F200458F2E /* PBXContainerItemProxy */;
+		};
+		04D9E85320BAC2A500458F2E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 04D9E84820BAC2A500458F2E /* myVKAppMessages */;
+			targetProxy = 04D9E85220BAC2A500458F2E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -826,6 +1014,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				04D9E80F20BA20F200458F2E /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
+		04D9E84E20BAC2A500458F2E /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				04D9E84F20BAC2A500458F2E /* Base */,
 			);
 			name = MainInterface.storyboard;
 			sourceTree = "<group>";
@@ -1020,6 +1216,44 @@
 			};
 			name = Release;
 		};
+		04D9E85620BAC2A500458F2E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7288F23CE681A1EDFBE632CC /* Pods-myVKAppMessages.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_ENTITLEMENTS = myVKAppMessages/myVKAppMessages.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = G4SYRYWB23;
+				INFOPLIST_FILE = myVKAppMessages/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "na-shi.myVKApp.myVKAppMessages";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		04D9E85720BAC2A500458F2E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B562C668D7F686D31B421997 /* Pods-myVKAppMessages.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_ENTITLEMENTS = myVKAppMessages/myVKAppMessages.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = G4SYRYWB23;
+				INFOPLIST_FILE = myVKAppMessages/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "na-shi.myVKApp.myVKAppMessages";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1046,6 +1280,15 @@
 			buildConfigurations = (
 				04D9E81520BA20F200458F2E /* Debug */,
 				04D9E81620BA20F200458F2E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		04D9E85520BAC2A500458F2E /* Build configuration list for PBXNativeTarget "myVKAppMessages" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04D9E85620BAC2A500458F2E /* Debug */,
+				04D9E85720BAC2A500458F2E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

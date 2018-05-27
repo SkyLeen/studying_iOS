@@ -23,3 +23,14 @@ pod 'Firebase/Auth', '4.9.0'
 pod 'Firebase/Database', '4.9.0'
 
 end
+target 'myVKAppMessages' do
+  use_frameworks!
+pod 'Alamofire'
+pod 'SwiftyJSON'
+pod 'RealmSwift'
+pod 'SwiftKeychainWrapper'
+pod 'Firebase/Core', '4.9.0'
+pod 'Firebase/Auth', '4.9.0'
+pod 'Firebase/Database', '4.9.0'
+
+end

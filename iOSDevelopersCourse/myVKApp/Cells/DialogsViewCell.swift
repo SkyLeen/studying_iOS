@@ -47,8 +47,11 @@ extension DialogsViewCell {
     private func setBackgroungColor() {
         let color = UIColor(red: 239/255, green: 194/255, blue: 68/255, alpha: 1.0)
         
-        if dialog?.readState == 0 {
+        if dialog?.readState == 0 && dialog?.out == 0 {
             stateImage.backgroundColor = color
+        } else if dialog?.readState == 0 && dialog?.out == 1
+        {
+            stateImage.backgroundColor = .darkGray
         } else {
             stateImage.backgroundColor = .white
         }

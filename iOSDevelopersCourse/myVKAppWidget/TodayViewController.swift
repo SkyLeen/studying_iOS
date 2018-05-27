@@ -18,6 +18,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     @IBOutlet weak var pages: UIPageControl!
     @IBOutlet weak var showAppButton: UIButton!
     
+    private var vc = "News"
     private var defaults = UserDefaults(suiteName: "group.myVKApp")
     lazy var news: Results<News>! = {
         return RealmLoader.loadData(object: News()).sorted(byKeyPath: "date", ascending: false)
@@ -56,7 +57,9 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
     
     @IBAction func showApp(_ sender: UIButton) {
-        extensionContext?.open(URL(string: "myVKAppWidget://")!)
+        if let url = URL(string: "myVKAppWidget://\(vc)") {
+            extensionContext?.open(url)
+        }
     }
 }
 

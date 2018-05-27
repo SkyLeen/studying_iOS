@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="M4Y-Lb-cyx">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Today MessagesVC-->
+        <scene sceneID="cwh-vc-ff4">
+            <objects>
+                <viewController id="M4Y-Lb-cyx" customClass="TodayMessagesVC" customModule="myVKAppMessages" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" simulatedAppContext="notificationCenter" id="S3S-Oj-5AN">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="udc-Mg-hhz">
+                                <rect key="frame" x="10" y="5" width="300" height="19"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HQv-sd-e3d">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                                <color key="backgroundColor" white="1" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="showApp:" destination="M4Y-Lb-cyx" eventType="touchUpInside" id="i6o-md-tUK"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="ssy-KU-ocm" firstAttribute="bottom" secondItem="HQv-sd-e3d" secondAttribute="bottom" id="L2M-HS-M5c"/>
+                            <constraint firstItem="HQv-sd-e3d" firstAttribute="leading" secondItem="ssy-KU-ocm" secondAttribute="leading" id="O1M-6P-FlD"/>
+                            <constraint firstItem="udc-Mg-hhz" firstAttribute="top" secondItem="ssy-KU-ocm" secondAttribute="top" constant="5" id="Qud-fO-K3o"/>
+                            <constraint firstItem="ssy-KU-ocm" firstAttribute="trailing" secondItem="HQv-sd-e3d" secondAttribute="trailing" id="UCM-Kv-PYe"/>
+                            <constraint firstItem="udc-Mg-hhz" firstAttribute="leading" secondItem="ssy-KU-ocm" secondAttribute="leading" constant="10" id="Vav-QM-bC7"/>
+                            <constraint firstItem="HQv-sd-e3d" firstAttribute="top" secondItem="ssy-KU-ocm" secondAttribute="top" id="jm0-wO-9wd"/>
+                            <constraint firstItem="ssy-KU-ocm" firstAttribute="trailing" secondItem="udc-Mg-hhz" secondAttribute="trailing" constant="10" id="qHA-qS-mWO"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ssy-KU-ocm"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="100"/>
+                    <connections>
+                        <outlet property="countUnreaded" destination="udc-Mg-hhz" id="MmW-ds-tzr"/>
+                        <outlet property="showAppButton" destination="HQv-sd-e3d" id="ur3-5J-0kO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vXp-U4-Rya" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>
