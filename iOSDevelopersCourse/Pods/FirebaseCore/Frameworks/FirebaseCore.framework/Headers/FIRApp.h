@@ -52,8 +52,7 @@ NS_SWIFT_NAME(FirebaseApp)
 /**
  * Configures a default Firebase app. Raises an exception if any configuration step fails. The
  * default app is named "__FIRAPP_DEFAULT". This method should be called after the app is launched
- * and before using Firebase services. This method is thread safe and contains synchronous file I/O
- * (reading GoogleService-Info.plist from disk).
+ * and before using Firebase services. This method is thread safe.
  */
 + (void)configure;
 

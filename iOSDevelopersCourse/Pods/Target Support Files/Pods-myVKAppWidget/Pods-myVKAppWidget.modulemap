@@ -1,0 +1,6 @@
+framework module Pods_myVKAppWidget {
+  umbrella header "Pods-myVKAppWidget-umbrella.h"
+
+  export *
+  module * { export * }
+}
