@@ -22,7 +22,6 @@
 		0416317A2042133500446639 /* SettingsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041631792042133500446639 /* SettingsTableVC.swift */; };
 		0416317C204213AA00446639 /* SettingsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0416317B204213AA00446639 /* SettingsViewCell.swift */; };
 		041B8AF320BEA56600B701F4 /* Messages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 041B8AF220BEA56600B701F4 /* Messages.framework */; };
-		041B8AF620BEA56600B701F4 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041B8AF520BEA56600B701F4 /* MessagesViewController.swift */; };
 		041B8AF920BEA56600B701F4 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 041B8AF720BEA56600B701F4 /* MainInterface.storyboard */; };
 		041B8AFB20BEA56900B701F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 041B8AFA20BEA56900B701F4 /* Assets.xcassets */; };
 		041B8AFF20BEA56900B701F4 /* myVKAppiMessage.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 041B8AF120BEA56600B701F4 /* myVKAppiMessage.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -106,6 +105,14 @@
 		04D37E7020381B1100F958AF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04D37E6E20381B1100F958AF /* Main.storyboard */; };
 		04D37E7D2038445C00F958AF /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D37E7C2038445C00F958AF /* LoginVC.swift */; };
 		04D6299320BEC13700C472EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04CEE5CE2068383900300107 /* Assets.xcassets */; };
+		04D6299420BED13200C472EB /* NewsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A360C0207CCAAA00684090 /* NewsViewCell.swift */; };
+		04D6299520BED13900C472EB /* NewsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048714D52066BCB5003405B4 /* NewsTableVC.swift */; };
+		04D6299620BED1E600C472EB /* NewsViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04A360C1207CCAAA00684090 /* NewsViewCell.xib */; };
+		04D6299720BED26C00C472EB /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A360DB207F7A1000684090 /* Protocols.swift */; };
+		04D6299820BED27B00C472EB /* NewPostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0465C99B20A85F4500F9BB51 /* NewPostVC.swift */; };
+		04D6299920BED28C00C472EB /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0465C9A120A89E0700F9BB51 /* MapVC.swift */; };
+		04D6299B20BEDCC900C472EB /* iMessageTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D6299A20BEDCC900C472EB /* iMessageTableVC.swift */; };
+		04D6299D20BEDD3E00C472EB /* iMessageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D6299C20BEDD3E00C472EB /* iMessageViewCell.swift */; };
 		04D9E80A20BA20F200458F2E /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04D9E80920BA20F200458F2E /* NotificationCenter.framework */; };
 		04D9E80D20BA20F200458F2E /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D9E80C20BA20F200458F2E /* TodayViewController.swift */; };
 		04D9E81020BA20F200458F2E /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04D9E80E20BA20F200458F2E /* MainInterface.storyboard */; };
@@ -264,7 +271,6 @@
 		0416317B204213AA00446639 /* SettingsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewCell.swift; sourceTree = "<group>"; };
 		041B8AF120BEA56600B701F4 /* myVKAppiMessage.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = myVKAppiMessage.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		041B8AF220BEA56600B701F4 /* Messages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Messages.framework; path = System/Library/Frameworks/Messages.framework; sourceTree = SDKROOT; };
-		041B8AF520BEA56600B701F4 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		041B8AF820BEA56600B701F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		041B8AFA20BEA56900B701F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		041B8AFC20BEA56900B701F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -315,6 +321,8 @@
 		04D37E6F20381B1100F958AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		04D37E7620381B1100F958AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04D37E7C2038445C00F958AF /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		04D6299A20BEDCC900C472EB /* iMessageTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iMessageTableVC.swift; sourceTree = "<group>"; };
+		04D6299C20BEDD3E00C472EB /* iMessageViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iMessageViewCell.swift; sourceTree = "<group>"; };
 		04D9E80820BA20F000458F2E /* myVKAppWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = myVKAppWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		04D9E80920BA20F200458F2E /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		04D9E80C20BA20F200458F2E /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
@@ -408,7 +416,8 @@
 			children = (
 				041B8B0320BEA58700B701F4 /* myVKAppiMessage.entitlements */,
 				041B8AF720BEA56600B701F4 /* MainInterface.storyboard */,
-				041B8AF520BEA56600B701F4 /* MessagesViewController.swift */,
+				04D6299A20BEDCC900C472EB /* iMessageTableVC.swift */,
+				04D6299C20BEDD3E00C472EB /* iMessageViewCell.swift */,
 				041B8AFA20BEA56900B701F4 /* Assets.xcassets */,
 				041B8AFC20BEA56900B701F4 /* Info.plist */,
 			);
@@ -822,6 +831,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				041B8AFB20BEA56900B701F4 /* Assets.xcassets in Resources */,
+				04D6299620BED1E600C472EB /* NewsViewCell.xib in Resources */,
 				04D6299320BEC13700C472EB /* Assets.xcassets in Resources */,
 				041B8AF920BEA56600B701F4 /* MainInterface.storyboard in Resources */,
 			);
@@ -982,17 +992,22 @@
 			files = (
 				041B8B1C20BEA5C200B701F4 /* RealmNewsSaver.swift in Sources */,
 				041B8B1520BEA5BC00B701F4 /* GroupsRequests.swift in Sources */,
+				04D6299520BED13900C472EB /* NewsTableVC.swift in Sources */,
 				041B8B0B20BEA59F00B701F4 /* DialogModel.swift in Sources */,
 				041B8B2620BEA5DA00B701F4 /* ExtInt.swift in Sources */,
 				041B8B1420BEA5BC00B701F4 /* FriendsRequests.swift in Sources */,
 				041B8B0920BEA59F00B701F4 /* NewsModel.swift in Sources */,
 				041B8B0420BEA59F00B701F4 /* UserModel.swift in Sources */,
+				04D6299420BED13200C472EB /* NewsViewCell.swift in Sources */,
 				041B8B1720BEA5BC00B701F4 /* DialogsRequests.swift in Sources */,
 				041B8B2320BEA5CA00B701F4 /* Layers.swift in Sources */,
 				041B8B0720BEA59F00B701F4 /* PhotosModel.swift in Sources */,
 				041B8B1820BEA5BC00B701F4 /* LogOutRequest.swift in Sources */,
 				041B8B1320BEA5BC00B701F4 /* UserRequests.swift in Sources */,
+				04D6299D20BEDD3E00C472EB /* iMessageViewCell.swift in Sources */,
+				04D6299820BED27B00C472EB /* NewPostVC.swift in Sources */,
 				041B8B1020BEA5A800B701F4 /* TableCellReloading.swift in Sources */,
+				04D6299720BED26C00C472EB /* Protocols.swift in Sources */,
 				041B8B0620BEA59F00B701F4 /* FriendRequestModel.swift in Sources */,
 				041B8B1F20BEA5C200B701F4 /* RealmLoader.swift in Sources */,
 				041B8B2420BEA5DA00B701F4 /* ExtFormatter.swift in Sources */,
@@ -1001,16 +1016,17 @@
 				041B8B1620BEA5BC00B701F4 /* NewsRequests.swift in Sources */,
 				041B8B1D20BEA5C200B701F4 /* RealmNewsAttachSaver.swift in Sources */,
 				041B8B1120BEA5A800B701F4 /* CollectionCellReloading.swift in Sources */,
+				04D6299920BED28C00C472EB /* MapVC.swift in Sources */,
 				041B8B0520BEA59F00B701F4 /* FriendModel.swift in Sources */,
 				041B8B0E20BEA5A200B701F4 /* Helpers.swift in Sources */,
 				041B8B0F20BEA5A800B701F4 /* GetCashedImageOperation.swift in Sources */,
 				041B8B1E20BEA5C200B701F4 /* RealmDialogsSaver.swift in Sources */,
 				041B8B0D20BEA59F00B701F4 /* MessageAttachmentsModel.swift in Sources */,
 				041B8B2120BEA5C200B701F4 /* RealmRequests.swift in Sources */,
-				041B8AF620BEA56600B701F4 /* MessagesViewController.swift in Sources */,
 				041B8B1B20BEA5C200B701F4 /* RealmGroupsSaver.swift in Sources */,
 				041B8B0820BEA59F00B701F4 /* GroupModel.swift in Sources */,
 				041B8B0A20BEA59F00B701F4 /* NewsAttachmentsModel.swift in Sources */,
+				04D6299B20BEDCC900C472EB /* iMessageTableVC.swift in Sources */,
 				041B8B2720BEA5DA00B701F4 /* ExtDate.swift in Sources */,
 				041B8B1220BEA5BC00B701F4 /* AuthorizationRequest.swift in Sources */,
 				041B8B1920BEA5C200B701F4 /* RealmUserSaver.swift in Sources */,

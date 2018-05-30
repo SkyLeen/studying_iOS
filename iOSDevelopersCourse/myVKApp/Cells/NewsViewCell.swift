@@ -78,11 +78,6 @@ class NewsViewCell: UITableViewCell {
         setNewsImageFrame()
         setFooterViewFrame()
     }
-    
-    @IBAction func share(_ sender: UIButton) {
-        
-        print("post shared")
-    }
 }
 
 extension NewsViewCell {
@@ -178,7 +173,6 @@ extension NewsViewCell {
         setCommentsLabel()
         setRepostsImages()
         setRepostsLabel()
-        setRepostButtonFrame()
         setViewsLabel()
         setViewsImages()
     }
@@ -262,19 +256,6 @@ extension NewsViewCell {
         let frame = Layers.getLabelFrame(fromX: insetsX, fromY: insetsY, labelSize: labelSize)
         
         repostsLabel.frame = frame
-    }
-    
-    private func setRepostButtonFrame() {
-        let side: CGFloat = 20
-        let size = CGSize(width: side, height: side)
-        
-        let positionX = repostsLabel.frame.origin.x + repostsLabel.frame.width + insetsBtwElements
-        let positionY = footerView.bounds.origin.y
-        
-        let origin = CGPoint(x: positionX, y: positionY)
-        let frame = CGRect(origin: origin, size: size)
-        
-        shareButton.frame = frame
     }
     
     private func setViewsLabel() {

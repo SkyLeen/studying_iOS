@@ -56,10 +56,6 @@ extension TodayMessagesVC {
             objectTypes: [User.self, Friend.self, FriendRequest.self, Photos.self, Group.self, News.self, NewsAttachments.self, Dialog.self, Message.self, MessageAttachments.self])
         Realm.Configuration.defaultConfiguration = configuration
     }
-    
-    private func setDialogs(for index: Int) {
-        _ = dialogs[index]
-    }
 }
 
 extension TodayMessagesVC: UICollectionViewDataSource {
