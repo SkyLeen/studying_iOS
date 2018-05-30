@@ -51,7 +51,7 @@
                         <rect key="frame" x="13" y="273" width="374" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="likes" translatesAutoresizingMaskIntoConstraints="NO" id="xnh-on-b5i">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="thumbs-up" translatesAutoresizingMaskIntoConstraints="NO" id="xnh-on-b5i">
                                 <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -95,6 +95,14 @@
                                 <rect key="frame" x="316" y="0.0" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zUb-Et-JDi">
+                                <rect key="frame" x="244" y="0.0" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="share-option"/>
+                                <connections>
+                                    <action selector="share:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="pPQ-Cy-oXc"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                 </subviews>
@@ -113,6 +121,7 @@
                 <outlet property="newsLabel" destination="0xP-cf-bmP" id="qP3-FI-uAC"/>
                 <outlet property="repostsImage" destination="Ob6-nC-2fN" id="or9-GH-wD5"/>
                 <outlet property="repostsLabel" destination="pbh-sK-xzX" id="VHI-uO-MW7"/>
+                <outlet property="shareButton" destination="zUb-Et-JDi" id="7ci-zd-JN0"/>
                 <outlet property="viewsImage" destination="suy-fg-IcF" id="jA0-LO-Uhk"/>
                 <outlet property="viewsLabel" destination="vwg-2D-l8Y" id="2EP-NQ-q0W"/>
             </connections>
@@ -121,8 +130,9 @@
     </objects>
     <resources>
         <image name="comments" width="16" height="16"/>
-        <image name="likes" width="16" height="16"/>
         <image name="reposts" width="16" height="16"/>
+        <image name="share-option" width="16" height="16"/>
+        <image name="thumbs-up" width="16" height="16"/>
         <image name="views" width="16" height="16"/>
     </resources>
 </document>

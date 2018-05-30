@@ -22,7 +22,7 @@
 		<key>myVKAppMessages.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>24</integer>
+			<integer>26</integer>
 		</dict>
 		<key>myVKAppWidget.xcscheme</key>
 		<dict>
@@ -32,7 +32,7 @@
 		<key>myVKAppiMessage.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>26</integer>
+			<integer>27</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>

@@ -8,6 +8,7 @@
 
 import UIKit
 import Messages
+import RealmSwift
 
 class MessagesViewController: MSMessagesAppViewController {
     

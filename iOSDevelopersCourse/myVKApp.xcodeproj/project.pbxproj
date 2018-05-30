@@ -200,6 +200,7 @@
 		04FF914120AC3F740033E990 /* RequestsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FF914020AC3F740033E990 /* RequestsViewCell.swift */; };
 		04FF914320AC55C50033E990 /* FriendsRequestsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FF914220AC55C50033E990 /* FriendsRequestsVC.swift */; };
 		04FF914520AC63B80033E990 /* FriendsRequestsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FF914420AC63B80033E990 /* FriendsRequestsViewCell.swift */; };
+		6AFCD764983CB23936648045 /* Pods_myVKAppiMessage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A860152A4B460AD9EC982C56 /* Pods_myVKAppiMessage.framework */; };
 		BC3D90955834458BC2944F04 /* Pods_myVKApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FCF50A99A46AFA8D4241B66 /* Pods_myVKApp.framework */; };
 		BF5D864307A762643EAF7BF5 /* Pods_myVKAppWidget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11195D96E9021C8955B12805 /* Pods_myVKAppWidget.framework */; };
 		CACC8DA9B88354B9242B345D /* Pods_myVKAppMessages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52458930533A8FED9951649C /* Pods_myVKAppMessages.framework */; };
@@ -338,12 +339,15 @@
 		04FF914420AC63B80033E990 /* FriendsRequestsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsRequestsViewCell.swift; sourceTree = "<group>"; };
 		11195D96E9021C8955B12805 /* Pods_myVKAppWidget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_myVKAppWidget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A9DE2850D0753814D331672 /* Pods-myVKAppWidget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myVKAppWidget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-myVKAppWidget/Pods-myVKAppWidget.debug.xcconfig"; sourceTree = "<group>"; };
+		3D116DDA31645C5CA0F8DF7B /* Pods-myVKAppiMessage.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myVKAppiMessage.debug.xcconfig"; path = "Pods/Target Support Files/Pods-myVKAppiMessage/Pods-myVKAppiMessage.debug.xcconfig"; sourceTree = "<group>"; };
 		40B8995E02CBB95866C66069 /* Pods-myVKApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myVKApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-myVKApp/Pods-myVKApp.release.xcconfig"; sourceTree = "<group>"; };
 		52458930533A8FED9951649C /* Pods_myVKAppMessages.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_myVKAppMessages.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D1B4EF00BA00F9DDFEF5FD7 /* Pods-myVKAppiMessage.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myVKAppiMessage.release.xcconfig"; path = "Pods/Target Support Files/Pods-myVKAppiMessage/Pods-myVKAppiMessage.release.xcconfig"; sourceTree = "<group>"; };
 		5FCF50A99A46AFA8D4241B66 /* Pods_myVKApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_myVKApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6096406B28037043D5F7FE65 /* Pods-myVKAppWidget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myVKAppWidget.release.xcconfig"; path = "Pods/Target Support Files/Pods-myVKAppWidget/Pods-myVKAppWidget.release.xcconfig"; sourceTree = "<group>"; };
 		6485FB65E5A254A576B87BAF /* Pods-myVKApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myVKApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-myVKApp/Pods-myVKApp.debug.xcconfig"; sourceTree = "<group>"; };
 		7288F23CE681A1EDFBE632CC /* Pods-myVKAppMessages.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myVKAppMessages.debug.xcconfig"; path = "Pods/Target Support Files/Pods-myVKAppMessages/Pods-myVKAppMessages.debug.xcconfig"; sourceTree = "<group>"; };
+		A860152A4B460AD9EC982C56 /* Pods_myVKAppiMessage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_myVKAppiMessage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B562C668D7F686D31B421997 /* Pods-myVKAppMessages.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myVKAppMessages.release.xcconfig"; path = "Pods/Target Support Files/Pods-myVKAppMessages/Pods-myVKAppMessages.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -353,6 +357,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				041B8AF320BEA56600B701F4 /* Messages.framework in Frameworks */,
+				6AFCD764983CB23936648045 /* Pods_myVKAppiMessage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -626,6 +631,7 @@
 				11195D96E9021C8955B12805 /* Pods_myVKAppWidget.framework */,
 				52458930533A8FED9951649C /* Pods_myVKAppMessages.framework */,
 				041B8AF220BEA56600B701F4 /* Messages.framework */,
+				A860152A4B460AD9EC982C56 /* Pods_myVKAppiMessage.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -639,6 +645,8 @@
 				6096406B28037043D5F7FE65 /* Pods-myVKAppWidget.release.xcconfig */,
 				7288F23CE681A1EDFBE632CC /* Pods-myVKAppMessages.debug.xcconfig */,
 				B562C668D7F686D31B421997 /* Pods-myVKAppMessages.release.xcconfig */,
+				3D116DDA31645C5CA0F8DF7B /* Pods-myVKAppiMessage.debug.xcconfig */,
+				5D1B4EF00BA00F9DDFEF5FD7 /* Pods-myVKAppiMessage.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -650,6 +658,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 041B8B0220BEA56900B701F4 /* Build configuration list for PBXNativeTarget "myVKAppiMessage" */;
 			buildPhases = (
+				BE6E35E519B246AA6DF16E18 /* [CP] Check Pods Manifest.lock */,
 				041B8AED20BEA56600B701F4 /* Sources */,
 				041B8AEE20BEA56600B701F4 /* Frameworks */,
 				041B8AEF20BEA56600B701F4 /* Resources */,
@@ -924,6 +933,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-myVKApp/Pods-myVKApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BE6E35E519B246AA6DF16E18 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-myVKAppiMessage-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E4E03A5094947C96C899A987 /* [CP] Check Pods Manifest.lock */ = {
@@ -1210,6 +1237,7 @@
 /* Begin XCBuildConfiguration section */
 		041B8B0020BEA56900B701F4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3D116DDA31645C5CA0F8DF7B /* Pods-myVKAppiMessage.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -1229,6 +1257,7 @@
 		};
 		041B8B0120BEA56900B701F4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5D1B4EF00BA00F9DDFEF5FD7 /* Pods-myVKAppiMessage.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
 				CLANG_ENABLE_OBJC_WEAK = YES;
