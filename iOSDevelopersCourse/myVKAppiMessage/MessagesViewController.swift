@@ -12,11 +12,28 @@ import RealmSwift
 
 class MessagesViewController: MSMessagesAppViewController {
     
+    @IBOutlet weak var friendImage: UIImageView!
+    @IBOutlet weak var friendLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var newsLabel: UILabel!
+    @IBOutlet weak var imageView: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     // MARK: - Conversation Handling
+    
+    @IBAction func send(_ sender: UIButton) {
+        let layout = MSMessageTemplateLayout()
+        layout.trailingSubcaption = friendLabel.text! + " " + dateLabel.text!
+        layout.caption = newsLabel.text
+        layout.image = imageView.image
+        
+        let message = MSMessage()
+        message.layout = layout
+        activeConversation?.insert(message, completionHandler: nil)
+    }
     
     override func willBecomeActive(with conversation: MSConversation) {
         // Called when the extension is about to move from the inactive to active state.

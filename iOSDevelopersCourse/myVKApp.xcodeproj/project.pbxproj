@@ -105,6 +105,7 @@
 		04D37E6B20381B1100F958AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D37E6A20381B1100F958AF /* AppDelegate.swift */; };
 		04D37E7020381B1100F958AF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04D37E6E20381B1100F958AF /* Main.storyboard */; };
 		04D37E7D2038445C00F958AF /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D37E7C2038445C00F958AF /* LoginVC.swift */; };
+		04D6299320BEC13700C472EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04CEE5CE2068383900300107 /* Assets.xcassets */; };
 		04D9E80A20BA20F200458F2E /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04D9E80920BA20F200458F2E /* NotificationCenter.framework */; };
 		04D9E80D20BA20F200458F2E /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D9E80C20BA20F200458F2E /* TodayViewController.swift */; };
 		04D9E81020BA20F200458F2E /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04D9E80E20BA20F200458F2E /* MainInterface.storyboard */; };
@@ -821,6 +822,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				041B8AFB20BEA56900B701F4 /* Assets.xcassets in Resources */,
+				04D6299320BEC13700C472EB /* Assets.xcassets in Resources */,
 				041B8AF920BEA56600B701F4 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
