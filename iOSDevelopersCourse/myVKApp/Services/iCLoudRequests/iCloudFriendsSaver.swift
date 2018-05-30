@@ -30,30 +30,44 @@ class CloudFriendsSaver {
             print("Update isn`t nessesary")
             return
         }
-    
-        self.lastUpdate = Date()
+        recordsToSave.removeAll()
+        recordIDsToDelete.removeAll()
+        lastUpdate = Date()
         
         let predicate = NSPredicate(value: true)
         let queryDel = CKQuery(recordType: recordType, predicate: predicate)
-        
-        cloudDB.perform(queryDel, inZoneWith: nil) { (records, error) in
-            if let error = error {
-                print(error.localizedDescription)
-            }
-            if let records = records
-            {
-                for record in records {
+        var queryOperation = CKQueryOperation(query: queryDel)
+        queryOperation.queuePriority =  .veryHigh
+        queryOperation.qualityOfService = .userInitiated
+        queryOperation.resultsLimit = 50
+        queryOperation.recordFetchedBlock = { record in
+            self.recordIDsToDelete.append(record.recordID)
+        }
+        queryOperation.queryCompletionBlock = { (cursor, error) in
+            
+            if let cursor = cursor {
+                let cursorOperation = CKQueryOperation(cursor: cursor)
+                cursorOperation.cursor = cursor
+                cursorOperation.resultsLimit = queryOperation.resultsLimit
+                cursorOperation.queryCompletionBlock = queryOperation.queryCompletionBlock
+                
+                cursorOperation.recordFetchedBlock = { record in
                     self.recordIDsToDelete.append(record.recordID)
                 }
                 
+                queryOperation = cursorOperation
+                
+                cloudDB.add(queryOperation)
+                return
+            } else {
                 let operation = CKModifyRecordsOperation(recordsToSave: nil, recordIDsToDelete: recordIDsToDelete)
                 
                 operation.modifyRecordsCompletionBlock = { (savedRecords: [CKRecord]?, deletedRecordIDs: [CKRecordID]?, error: Error?) in
                     if let error = error {
-                        print(error.localizedDescription)
+                        print("deleting error: ", error.localizedDescription)
                         return
                     }
-                    self.recordIDsToDelete.removeAll()
+                    self.recordsToSave.removeAll()
                     DispatchQueue.main.async {
                         self.saveDataToCloud(friends: friends)
                     }
@@ -61,7 +75,8 @@ class CloudFriendsSaver {
                 self.cloudDB.add(operation)
             }
         }
-    }
+        cloudDB.add(queryOperation)
+}
     
     static private func saveDataToCloud(friends: [Friend]) {
         
@@ -82,10 +97,9 @@ class CloudFriendsSaver {
             
             operation.modifyRecordsCompletionBlock = { (savedRecords: [CKRecord]?, deletedRecordIDs: [CKRecordID]?, error: Error?) in
                 if let error = error {
-                    print(error.localizedDescription)
+                    print("savings error: ", error.localizedDescription)
                     return
                 }
-                self.recordsToSave.removeAll()
                 print("saved")
             }
            self.cloudDB.add(operation)

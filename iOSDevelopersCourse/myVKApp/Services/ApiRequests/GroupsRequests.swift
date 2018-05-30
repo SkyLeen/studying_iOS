@@ -103,11 +103,11 @@ class GroupsRequests {
         Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON(queue: DispatchQueue.global(qos: .utility)) { response in }
     }
     
-    static func getGroupById(idGroup: String) {
+    static func getGroupById(userId: String, accessToken: String, idGroup: String) {
         let pathMethod = "/groups.getById"
         let url = baseUrl + path + pathMethod
         let parameters: Parameters = [
-            "access_token":accessToken!,
+            "access_token":accessToken,
             "group_ids":idGroup,
             "fields":"members_count",
             "v":"5.73"

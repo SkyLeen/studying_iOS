@@ -60,15 +60,14 @@ class MyFriendsTableVC: UITableViewController {
             requestButton("+ \(myRequestsArray.count)")
         }
         
-        self.loadDataFromCloud { [weak self] friends in
-            self?.friendsArray = friends.sorted(by: { f1, f2 in
+        self.loadDataFromCloud { friends in
+            self.friendsArray = friends.sorted(by: { f1, f2 in
                 return f1.name < f2.name
             })
             DispatchQueue.main.async {
-                self?.tableView?.reloadData()
+                self.tableView?.reloadData()
             }
         }
-        
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -136,18 +135,16 @@ extension MyFriendsTableVC {
     }
     
     @objc func refreshView(sender: AnyObject) {
-        FriendsRequests.getFriendsList { friends in
-            DispatchQueue.main.async {
-                CloudFriendsSaver.operateDataCloud(friends: friends)
-            }
-            self.loadDataFromCloud { [weak self] friends in
-                self?.friendsArray = friends.sorted(by: { f1, f2 in
-                    return f1.name < f2.name
-                })
-                DispatchQueue.main.async {
-                    self?.refreshControl?.endRefreshing()
-                    self?.tableView?.reloadData()
-                }
+        
+        self.loadDataFromCloud { friends in
+            self.friendsArray = friends.sorted(by: { f1, f2 in
+                return f1.name < f2.name
+            })
+            
+            DispatchQueue.main.async { [weak self] in
+                guard let s = self else { return }
+                s.refreshControl?.endRefreshing()
+                s.tableView.reloadData()
             }
         }
     }
@@ -168,19 +165,35 @@ extension MyFriendsTableVC {
         var friendArr = [Friend]()
         let predicate = NSPredicate(value: true)
         let query = CKQuery(recordType: recordType, predicate: predicate)
-        cloudDB.perform(query, inZoneWith: nil) { (records, error) in
-            if let error = error {
-                print(error.localizedDescription)
-            }
-            if let records = records
-            {
-                for record in records {
-                    let friendItem = records.compactMap({ _ in Friend(record: record) })
-                    
-                    friendArr.append(friendItem[0])
+        var queryOperation = CKQueryOperation(query: query)
+        queryOperation.queuePriority =  .veryHigh
+        queryOperation.qualityOfService = .userInitiated
+        queryOperation.resultsLimit = 50
+        queryOperation.recordFetchedBlock = { record in
+            let friendItem = Friend(record: record)
+            friendArr.append(friendItem)
+        }
+        queryOperation.queryCompletionBlock = { (cursor, error) in
+            
+            if let cursor = cursor {
+                let cursorOperation = CKQueryOperation(cursor: cursor)
+                cursorOperation.cursor = cursor
+                cursorOperation.resultsLimit = queryOperation.resultsLimit
+                cursorOperation.queryCompletionBlock = queryOperation.queryCompletionBlock
+                
+                cursorOperation.recordFetchedBlock = { record in
+                    let friendItem = Friend(record: record)
+                    friendArr.append(friendItem)
                 }
+                
+                queryOperation = cursorOperation
+                
+                self.cloudDB.add(queryOperation)
+                return
+            } else {
                 closure(friendArr)
             }
         }
+        cloudDB.add(queryOperation)
     }
 }

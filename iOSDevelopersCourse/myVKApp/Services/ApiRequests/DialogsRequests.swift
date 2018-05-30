@@ -19,11 +19,11 @@ class DialogsRequests {
     static let path = "/method"
     static let version = "5.74"
     
-    static func getUserDialogs(complition: (([Dialog]) -> ())?) {
+    static func getUserDialogs(userId: String, accessToken: String, complition: (([Dialog]) -> ())?) {
         let pathMethod = "/messages.getDialogs"
         let url = baseUrl + path + pathMethod
         let parameters: Parameters = [
-            "access_token":accessToken!,
+            "access_token":accessToken,
             "count":200,
             //"start_message_id":0,
             "v":version
@@ -38,13 +38,13 @@ class DialogsRequests {
                     
                     if RealmRequests.getFriendData(friend: "\(dialog.friendId)") == nil {
                         if dialog.friendId > 0 {
-                            UserRequests.getUserById(userId: userId!, accessToken: accessToken!, requestUserId: "\(dialog.friendId)", attribute: .fromDialogs)
+                            UserRequests.getUserById(userId: userId, accessToken: accessToken, requestUserId: "\(dialog.friendId)", attribute: .fromDialogs)
                         } else {
-                            GroupsRequests.getGroupById(idGroup: "\(dialog.friendId.magnitude)")
+                            GroupsRequests.getGroupById(userId: userId, accessToken: accessToken, idGroup: "\(dialog.friendId.magnitude)")
                         }
                     }
                 }
-                RealmDialogSaver.saveUserDialogs(dialog: dialogs.compactMap({ Dialog(json: $0.1)}), userId: userId!)
+                RealmDialogSaver.saveUserDialogs(dialog: dialogs.compactMap({ Dialog(json: $0.1)}), userId: userId)
                 complition?(dialogs.compactMap({ Dialog(json: $0.1)}))
             case .failure(let error):
                 print(error)

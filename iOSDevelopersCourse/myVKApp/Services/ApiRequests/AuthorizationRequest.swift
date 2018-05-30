@@ -45,6 +45,8 @@ class AuthorizationRequest {
             userDefaults.set(true, forKey: "isLogged")
             keyChain.set(params["access_token"]!, forKey: "accessToken")
             keyChain.set(params["user_id"]!, forKey: "userId")
+
+            setDefaultsForWidget(userId: params["user_id"]!, token: params["access_token"]!)
             
             UserRequests.getUserById(userId: params["user_id"]!, accessToken: params["access_token"]!, requestUserId: params["user_id"]!, attribute: .mainUser)
         }
@@ -62,5 +64,12 @@ class AuthorizationRequest {
                         return dict
                 }
         return params
+    }
+    
+    private static func setDefaultsForWidget(userId: String, token: String) {
+        let defaults = UserDefaults(suiteName: "group.myVKApp")
+        defaults?.set(token, forKey: "accessToken")
+        defaults?.set(userId, forKey: "userId")
+        defaults?.synchronize()
     }
 }

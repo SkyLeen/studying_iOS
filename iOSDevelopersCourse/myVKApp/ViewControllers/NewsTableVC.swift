@@ -8,8 +8,12 @@
 
 import UIKit
 import RealmSwift
+import SwiftKeychainWrapper
 
 class NewsTableVC: UITableViewController {
+    
+    private let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")
+    private let userId =  KeychainWrapper.standard.string(forKey: "userId")
     
     var token: NotificationToken?
     lazy var newsArray: Results<News> = {
@@ -32,14 +36,14 @@ class NewsTableVC: UITableViewController {
         super.viewDidLoad()
         self.tableView.register(UINib(nibName: "NewsViewCell", bundle: nil), forCellReuseIdentifier: "NewsViewCell")
         addRefreshControl()
-        
-        NewsRequests.getUserNews()
+        guard let userId = userId, let accessToken = accessToken else { return }
+        NewsRequests.getUserNews(userId: userId, accessToken: accessToken)
         FriendsRequests.getFriendsList { friends in
             DispatchQueue.main.async {
                 CloudFriendsSaver.operateDataCloud(friends: friends)
             }
         }
-        DialogsRequests.getUserDialogs(complition: nil)
+        DialogsRequests.getUserDialogs(userId: userId, accessToken: accessToken, complition: nil)
         GroupsRequests.getUserGroups()
         
         checkRequestsDb()
@@ -124,7 +128,8 @@ extension NewsTableVC {
     }
     
     @objc func refreshView(sender: AnyObject) {
-        NewsRequests.getUserNews()
+        guard let userId = userId, let accessToken = accessToken else { return }
+        NewsRequests.getUserNews(userId: userId, accessToken: accessToken)
         DispatchQueue.main.async { [weak self] in
             guard let s = self else { return }
             s.refreshControl?.endRefreshing()
@@ -140,7 +145,7 @@ extension NewsTableVC {
             items[2].title = ""
         }
         
-        let arrayDialogs = RealmLoader.loadData(object: Dialog()).filter( { $0.readState == 0 } )
+        let arrayDialogs = RealmLoader.loadData(object: Dialog()).filter( { $0.readState == 0 && $0.out == 0 } )
         if arrayDialogs.count > 0, let items = tabBarController?.tabBar.items {
             items[1].title = "+ \(arrayDialogs.count)"
         } else if let items = tabBarController?.tabBar.items {
