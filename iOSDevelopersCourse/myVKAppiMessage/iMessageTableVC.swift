@@ -42,28 +42,14 @@ extension iMessageTableVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let news = newsFeed[indexPath.row]
-        let attachments = news.attachments
-        
         
         let sendAction = UITableViewRowAction(style: .normal, title: "Send post") { (rowAction, indexPath) in
+            let cell = tableView.cellForRow(at: indexPath) as! iMessageViewCell
             let layout = MSMessageTemplateLayout()
             layout.imageTitle = news.author!
-            layout.imageSubtitle = Date(timeIntervalSince1970: (news.date)).formatted
-            layout.caption = news.text
-            
-            if !attachments.isEmpty, let urlPath = attachments[0].url, let url = URL(string: urlPath) {
-                let data = try! Data(contentsOf: url)
-                layout.image = UIImage(data: data)
-
-// Не получается подгрузить фото из кеша
-//                let getImageOp = GetCashedImage(url: urlPath, folderName: .News)
-//                getImageOp.completionBlock = {
-//                    OperationQueue.main.addOperation {
-//                        layout.image = getImageOp.outputImage
-//                    }
-//                }
-//                self.operationQueue.addOperation(getImageOp)
-           }
+            layout.imageSubtitle = cell.dateLabel.text
+            layout.caption = cell.newsTextLabel.text
+            layout.image = cell.newsImage.image
             
             let message = MSMessage()
             message.layout = layout
