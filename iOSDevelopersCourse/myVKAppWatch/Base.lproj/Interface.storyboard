@@ -9,10 +9,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14033"/>
     </dependencies>
     <scenes>
-        <!--Interface Controller-->
+        <!--Dialog Controller-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="myVKAppWatch" customModuleProvider="target">
+                <controller id="AgC-eL-Hgc" customClass="DialogController" customModule="myVKAppWatch" customModuleProvider="target">
                     <items>
                         <table alignment="left" id="akd-NO-jcO">
                             <items>
@@ -73,10 +73,10 @@
             </objects>
             <point key="canvasLocation" x="220" y="643"/>
         </scene>
-        <!--Notification Controller-->
+        <!--Notification Dialog Controller-->
         <scene sceneID="ZPc-GJ-vnh">
             <objects>
-                <controller id="4sK-HA-Art" customClass="NotificationController" customModule="myVKAppWatch" customModuleProvider="target"/>
+                <controller id="4sK-HA-Art" customClass="NotificationDialogController" customModule="myVKAppWatch" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="468" y="643"/>
         </scene>

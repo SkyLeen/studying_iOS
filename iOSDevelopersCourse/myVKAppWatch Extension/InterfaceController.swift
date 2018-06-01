@@ -31,16 +31,7 @@ class InterfaceController: WKInterfaceController {
     @IBOutlet var textLabel: WKInterfaceLabel!
     @IBOutlet var newsImage: WKInterfaceImage!
     
-    private var task: URLSessionTask?
-    
     var wsSession: WCSession?
-    private var defaults = UserDefaults(suiteName: "group.myVKApp")
-    
-    let operationQueue: OperationQueue = {
-        let queue = OperationQueue()
-        queue.qualityOfService = .userInteractive
-        return queue
-    } ()
     
     var newsFeed = [NewsFeed]()
     
