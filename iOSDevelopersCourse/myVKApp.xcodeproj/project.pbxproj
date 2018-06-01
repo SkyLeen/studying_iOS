@@ -69,6 +69,7 @@
 		041B8B2520BEA5DA00B701F4 /* ExtUIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048714D92066CF8C003405B4 /* ExtUIImage.swift */; };
 		041B8B2620BEA5DA00B701F4 /* ExtInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB90BA20713252001D95E6 /* ExtInt.swift */; };
 		041B8B2720BEA5DA00B701F4 /* ExtDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB90BC207139C2001D95E6 /* ExtDate.swift */; };
+		041E126320C1B5C3006031BA /* TableRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041E126220C1B5C3006031BA /* TableRowController.swift */; };
 		0445CD6C2052656900D48551 /* LogOutRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0445CD6B2052656900D48551 /* LogOutRequest.swift */; };
 		0446650820B74BF300300F5E /* iCloudFriendsSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0446650720B74BF300300F5E /* iCloudFriendsSaver.swift */; };
 		04560A962088ABD500AC9074 /* MessageAttachmentsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04560A952088ABD500AC9074 /* MessageAttachmentsModel.swift */; };
@@ -333,6 +334,7 @@
 		041B8AFA20BEA56900B701F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		041B8AFC20BEA56900B701F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		041B8B0320BEA58700B701F4 /* myVKAppiMessage.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = myVKAppiMessage.entitlements; sourceTree = "<group>"; };
+		041E126220C1B5C3006031BA /* TableRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableRowController.swift; sourceTree = "<group>"; };
 		0445CD6B2052656900D48551 /* LogOutRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOutRequest.swift; sourceTree = "<group>"; };
 		0446650720B74BF300300F5E /* iCloudFriendsSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iCloudFriendsSaver.swift; sourceTree = "<group>"; };
 		04560A952088ABD500AC9074 /* MessageAttachmentsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageAttachmentsModel.swift; sourceTree = "<group>"; };
@@ -506,6 +508,7 @@
 			children = (
 				040F7A6820C140F200D3AD25 /* myVKAppWatch Extension.entitlements */,
 				040F7A5320C140E700D3AD25 /* InterfaceController.swift */,
+				041E126220C1B5C3006031BA /* TableRowController.swift */,
 				040F7A5520C140E700D3AD25 /* ExtensionDelegate.swift */,
 				040F7A5720C140E700D3AD25 /* NotificationController.swift */,
 				040F7A5920C140E800D3AD25 /* Assets.xcassets */,
@@ -1221,6 +1224,7 @@
 				040F7A5820C140E700D3AD25 /* NotificationController.swift in Sources */,
 				040F7A5620C140E700D3AD25 /* ExtensionDelegate.swift in Sources */,
 				040F7A5420C140E700D3AD25 /* InterfaceController.swift in Sources */,
+				041E126320C1B5C3006031BA /* TableRowController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

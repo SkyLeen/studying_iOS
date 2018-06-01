@@ -133,7 +133,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
             newsFeed.append(["author": new.author ?? "",
                              "date": Date(timeIntervalSince1970: new.date).formatted,
                              "text": new.text,
-                             "url": new.attachments.first?.url ?? ""
+                             "url": new.attachments.isEmpty ?  "" : (new.attachments.first?.url!)!
                 ])
         }
     }
