@@ -25,9 +25,11 @@ class iMessageTableVC: MSMessagesAppViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let userId = defaults?.string(forKey: "userId"), let accessToken = defaults?.string(forKey: "accessToken") else { return }
+        guard let userId = defaults?.string(forKey: "userId"),
+            let accessToken = defaults?.string(forKey: "accessToken")
+            else { return }
         NewsRequests.getUserNews(userId: userId, accessToken: accessToken)
-        configureRealm()
+        RealmConfigurator.configureRealm()
     }
 }
 
@@ -40,24 +42,17 @@ extension iMessageTableVC: UITableViewDataSource {
 
 extension iMessageTableVC: UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let news = newsFeed[indexPath.row]
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! iMessageViewCell
+        let layout = MSMessageTemplateLayout()
+        layout.imageTitle = cell.friendLabel.text
+        layout.imageSubtitle = cell.dateLabel.text
+        layout.caption = cell.newsTextLabel.text
+        layout.image = cell.newsImage.image
         
-        let sendAction = UITableViewRowAction(style: .normal, title: "Send post") { (rowAction, indexPath) in
-            let cell = tableView.cellForRow(at: indexPath) as! iMessageViewCell
-            let layout = MSMessageTemplateLayout()
-            layout.imageTitle = news.author!
-            layout.imageSubtitle = cell.dateLabel.text
-            layout.caption = cell.newsTextLabel.text
-            layout.image = cell.newsImage.image
-            
-            let message = MSMessage()
-            message.layout = layout
-            self.activeConversation?.insert(message, completionHandler: nil)
-        }
-        sendAction.backgroundColor = .blue
-        
-        return [sendAction]
+        let message = MSMessage()
+        message.layout = layout
+        self.activeConversation?.insert(message, completionHandler: nil)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -78,18 +73,5 @@ extension iMessageTableVC: UITableViewDelegate {
         }
         
         return cell
-    }
-}
-
-extension iMessageTableVC {
-    
-    private func configureRealm() {
-        let configuration = Realm.Configuration(
-            fileURL: FileManager
-                .default
-                .containerURL(forSecurityApplicationGroupIdentifier: "group.myVKApp")?.appendingPathComponent("default.realm"),
-            deleteRealmIfMigrationNeeded: true,
-            objectTypes: [User.self, Friend.self, FriendRequest.self, Photos.self, Group.self, News.self, NewsAttachments.self, Dialog.self, Message.self, MessageAttachments.self])
-        Realm.Configuration.defaultConfiguration = configuration
     }
 }

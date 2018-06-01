@@ -35,26 +35,13 @@ class TodayMessagesVC: UIViewController, NCWidgetProviding {
         
         collectionView.layer.cornerRadius = 10
         guard let userId = defaults?.string(forKey: "userId"), let accessToken = defaults?.string(forKey: "accessToken") else { return }
-        configureRealm()
+        RealmConfigurator.configureRealm()
         DialogsRequests.getUserDialogs(userId: userId, accessToken: accessToken, complition: nil)
         countUnreaded.text = "\(dialogs.count) unreaded dialogs"
     }
     
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
         completionHandler(NCUpdateResult.newData)
-    }
-}
-
-extension TodayMessagesVC {
-    
-    private func configureRealm() {
-        let configuration = Realm.Configuration(
-            fileURL: FileManager
-                .default
-                .containerURL(forSecurityApplicationGroupIdentifier: "group.myVKApp")?.appendingPathComponent("default.realm"),
-            deleteRealmIfMigrationNeeded: true,
-            objectTypes: [User.self, Friend.self, FriendRequest.self, Photos.self, Group.self, News.self, NewsAttachments.self, Dialog.self, Message.self, MessageAttachments.self])
-        Realm.Configuration.defaultConfiguration = configuration
     }
 }
 

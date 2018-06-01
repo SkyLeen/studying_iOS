@@ -86,7 +86,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         configureNotifications()
-        configureRealm()
+        RealmConfigurator.configureRealm()
         FirebaseApp.configure()
         return true
     }
@@ -106,18 +106,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.makeKeyAndVisible()
         
         return true
-    }
-    
-    private func configureRealm() {
-        let configuration = Realm.Configuration(
-            fileURL: FileManager
-                .default
-                .containerURL(forSecurityApplicationGroupIdentifier: "group.myVKApp")?.appendingPathComponent("default.realm"),
-            deleteRealmIfMigrationNeeded: true,
-            objectTypes: [User.self, Friend.self, FriendRequest.self, Photos.self, Group.self, News.self, NewsAttachments.self, Dialog.self, Message.self, MessageAttachments.self])
-        Realm.Configuration.defaultConfiguration = configuration
-        
-        print(configuration.fileURL!)
     }
     
     private func configureNotifications() {
