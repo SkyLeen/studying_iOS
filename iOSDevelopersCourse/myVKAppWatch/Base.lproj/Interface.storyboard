@@ -17,24 +17,24 @@
                         <table alignment="left" id="akd-NO-jcO">
                             <items>
                                 <tableRow identifier="TableCell" id="dbr-hu-7ko" customClass="TableCell" customModule="myVKAppWatch_Extension">
-                                    <group key="rootItem" width="1" height="54" alignment="left" id="HEB-zN-uWJ">
+                                    <group key="rootItem" width="1" height="65" alignment="left" id="HEB-zN-uWJ">
                                         <items>
                                             <group alignment="right" verticalAlignment="center" radius="10" id="Wqk-Jd-oXS">
                                                 <items>
                                                     <imageView width="33" height="33" alignment="center" verticalAlignment="center" image="friends" id="43z-2d-Wew"/>
                                                 </items>
                                             </group>
-                                            <group height="1" alignment="left" layout="vertical" id="8um-yI-eX2">
+                                            <group height="72" alignment="left" layout="vertical" id="8um-yI-eX2">
                                                 <items>
-                                                    <label width="86" height="18" alignment="left" textAlignment="left" numberOfLines="2" id="G3K-BV-gJg">
+                                                    <label width="86" height="13" alignment="left" textAlignment="left" numberOfLines="2" id="G3K-BV-gJg">
                                                         <fontDescription key="font" type="system" pointSize="9"/>
                                                     </label>
                                                     <label width="90" height="8" alignment="center" textAlignment="left" id="CCX-3E-lOU">
                                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="font" type="system" pointSize="8"/>
                                                     </label>
-                                                    <label width="92" height="19" alignment="center" textAlignment="left" numberOfLines="2" id="Mpm-wy-qBo">
-                                                        <fontDescription key="font" type="system" pointSize="10"/>
+                                                    <label width="92" height="35" alignment="left" textAlignment="left" numberOfLines="0" id="Mpm-wy-qBo">
+                                                        <fontDescription key="font" type="system" pointSize="9"/>
                                                     </label>
                                                 </items>
                                             </group>
