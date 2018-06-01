@@ -11,9 +11,10 @@ import RealmSwift
 import Firebase
 import UserNotifications
 import SwiftKeychainWrapper
+import WatchConnectivity
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
 
     var window: UIWindow?
     
@@ -24,13 +25,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let dispatchGroup = DispatchGroup()
     var timer: DispatchSourceTimer?
     var lastUpadte: Date? {
-        get {
-            return UserDefaults.standard.object(forKey: "LastUpdate") as? Date
-        }
+        get { return UserDefaults.standard.object(forKey: "LastUpdate") as? Date }
+        set { UserDefaults.standard.set(newValue, forKey: "LastUpdate") }
+    }
+    var wsSession: WCSession?
+    var newsArray: Results<News>!
+    var newsFeed = [[String:String]]()
+    
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        configureNotifications()
+        RealmConfigurator.configureRealm()
         
-        set {
-            UserDefaults.standard.set(newValue, forKey: "LastUpdate")
-        }
+        FirebaseApp.configure()
+        configureWSSession()
+        return true
     }
     
     func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
@@ -83,14 +91,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         timer?.resume()
     }
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
-        configureNotifications()
-        RealmConfigurator.configureRealm()
-        FirebaseApp.configure()
-        return true
-    }
-    
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         let path = url.absoluteString
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -114,6 +114,51 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if error != nil { print(error.debugDescription) }
         }
     }
-}
+    
+    private func configureWSSession() {
 
+        if WCSession.isSupported() {
+            wsSession = WCSession.default
+            wsSession?.delegate = self
+            wsSession?.activate()
+        }
+    }
+    
+    private func fillNewsArray() {
+        
+        newsArray = RealmLoader.loadData(object: News()).sorted(byKeyPath: "date", ascending: false)
+        newsFeed.removeAll()
+        
+        for new in newsArray {
+            newsFeed.append(["author": new.author ?? "",
+                             "date": Date(timeIntervalSince1970: new.date).formatted,
+                             "text": new.text,
+                             "url": new.attachments.first?.url ?? ""
+                ])
+        }
+    }
+    
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
+        
+        fillNewsArray()
+        
+        if message["request"] as? String == "news" {
+            replyHandler(["newsFeed": newsFeed])
+            
+        }
+    }
+    
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        print("activationDidCompleteWith: ", activationState.rawValue)
+    }
+    
+    func sessionDidBecomeInactive(_ session: WCSession) {
+        print("sessionDidBecomeInactive")
+    }
+    
+    func sessionDidDeactivate(_ session: WCSession) {
+
+
+    }
+}
 

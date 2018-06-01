@@ -7,9 +7,9 @@ pod 'Alamofire'
 pod 'SwiftyJSON'
 pod 'RealmSwift'
 pod 'SwiftKeychainWrapper'
-pod 'Firebase/Core'
-pod 'Firebase/Auth'
-pod 'Firebase/Database'
+pod 'Firebase/Core', '4.9.0'
+pod 'Firebase/Auth', '4.9.0'
+pod 'Firebase/Database', '4.9.0'
 
 end
 target 'myVKAppWidget' do
@@ -43,5 +43,12 @@ pod 'SwiftKeychainWrapper'
 pod 'Firebase/Core', '4.9.0'
 pod 'Firebase/Auth', '4.9.0'
 pod 'Firebase/Database', '4.9.0'
+
+end
+target 'myVKAppWatch Extension' do
+  use_frameworks!
+platform :watchos, '4.0'
+pod 'Alamofire'
+pod 'SwiftyJSON'
 
 end
