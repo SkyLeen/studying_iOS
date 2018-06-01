@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1C825C43BA5589F2F85617ECC93A80B8"
-               BuildableName = "GTMSessionFetcher.framework"
-               BlueprintName = "GTMSessionFetcher-iOS11.0"
+               BlueprintIdentifier = "B167D6C49AA19AF73639479160E42DF0"
+               BuildableName = "Pods_myVKAppiMessage.framework"
+               BlueprintName = "Pods-myVKAppiMessage"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1C825C43BA5589F2F85617ECC93A80B8"
-            BuildableName = "GTMSessionFetcher.framework"
-            BlueprintName = "GTMSessionFetcher-iOS11.0"
+            BlueprintIdentifier = "B167D6C49AA19AF73639479160E42DF0"
+            BuildableName = "Pods_myVKAppiMessage.framework"
+            BlueprintName = "Pods-myVKAppiMessage"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

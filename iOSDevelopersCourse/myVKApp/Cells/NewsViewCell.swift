@@ -30,6 +30,9 @@ class NewsViewCell: UITableViewCell {
     @IBOutlet weak var viewsImage: UIImageView!
     @IBOutlet weak var viewsLabel: UILabel!
     
+    @IBOutlet weak var shareButton: UIButton!
+    
+    
     weak var delegate: CellHeightDelegate?
     var index: IndexPath?
     var attachments: [NewsAttachments]?
