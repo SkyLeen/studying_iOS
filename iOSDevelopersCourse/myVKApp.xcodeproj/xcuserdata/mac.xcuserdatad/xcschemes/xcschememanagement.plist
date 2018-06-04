@@ -22,7 +22,7 @@
 		<key>myVKAppMessages.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>29</integer>
+			<integer>28</integer>
 		</dict>
 		<key>myVKAppWatch (Notification).xcscheme</key>
 		<dict>
@@ -47,7 +47,7 @@
 		<key>myVKAppWidget.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>28</integer>
+			<integer>29</integer>
 		</dict>
 		<key>myVKAppiMessage.xcscheme</key>
 		<dict>
