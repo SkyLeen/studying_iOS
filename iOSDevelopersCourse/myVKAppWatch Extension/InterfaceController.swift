@@ -55,6 +55,7 @@ extension InterfaceController: WCSessionDelegate {
     
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         if activationState == .activated {
+            configureTableView()
             sendRequest()
         } else {
             print("Smth goes wrong")
