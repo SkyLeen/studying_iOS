@@ -37,7 +37,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         showAppButton.layer.cornerRadius = 10
         guard let userId = defaults?.string(forKey: "userId"), let accessToken = defaults?.string(forKey: "accessToken") else { return }
         NewsRequests.getUserNews(userId: userId, accessToken: accessToken)
-        configureRealm()
+        RealmConfigurator.configureRealm()
         configurePageControl()
         ImageSettingsHelper.setImageLayersSettings(for: imageNews, mode: .forAvatarImages)
     }
@@ -73,16 +73,6 @@ extension TodayViewController {
         pages.currentPageIndicatorTintColor = UIColor.green
         setNews(for: 0)
         counter = counter + 1
-    }
-    
-    private func configureRealm() {
-        let configuration = Realm.Configuration(
-            fileURL: FileManager
-                .default
-                .containerURL(forSecurityApplicationGroupIdentifier: "group.myVKApp")?.appendingPathComponent("default.realm"),
-            deleteRealmIfMigrationNeeded: true,
-            objectTypes: [User.self, Friend.self, FriendRequest.self, Photos.self, Group.self, News.self, NewsAttachments.self, Dialog.self, Message.self, MessageAttachments.self])
-        Realm.Configuration.defaultConfiguration = configuration
     }
     
     private func setNews(for page: Int) {

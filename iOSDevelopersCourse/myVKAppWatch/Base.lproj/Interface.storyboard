@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14113" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+    <device id="watch38" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="watchOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14033"/>
+    </dependencies>
+    <scenes>
+        <!--Interface Controller-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="myVKAppWatch_Extension">
+                    <items>
+                        <table alignment="left" id="akd-NO-jcO">
+                            <items>
+                                <tableRow identifier="TableCell" id="dbr-hu-7ko" customClass="TableCell" customModule="myVKAppWatch_Extension">
+                                    <group key="rootItem" width="1" height="65" alignment="left" id="HEB-zN-uWJ">
+                                        <items>
+                                            <group alignment="right" verticalAlignment="center" radius="10" id="Wqk-Jd-oXS">
+                                                <items>
+                                                    <imageView width="33" height="33" alignment="center" verticalAlignment="center" image="friends" id="43z-2d-Wew"/>
+                                                </items>
+                                            </group>
+                                            <group height="72" alignment="left" layout="vertical" id="8um-yI-eX2">
+                                                <items>
+                                                    <label width="86" height="13" alignment="left" textAlignment="left" numberOfLines="2" id="G3K-BV-gJg">
+                                                        <fontDescription key="font" type="system" pointSize="9"/>
+                                                    </label>
+                                                    <label width="90" height="8" alignment="center" textAlignment="left" id="CCX-3E-lOU">
+                                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="font" type="system" pointSize="8"/>
+                                                    </label>
+                                                    <label width="92" height="35" alignment="left" textAlignment="left" numberOfLines="0" id="Mpm-wy-qBo">
+                                                        <fontDescription key="font" type="system" pointSize="9"/>
+                                                    </label>
+                                                </items>
+                                            </group>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="authorLabel" destination="G3K-BV-gJg" id="4n8-Yf-99j"/>
+                                        <outlet property="dateLabel" destination="CCX-3E-lOU" id="A3i-4i-hc9"/>
+                                        <outlet property="newsImage" destination="43z-2d-Wew" id="vBg-Xi-r6U"/>
+                                        <outlet property="textLabel" destination="Mpm-wy-qBo" id="Bdq-RQ-wed"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="tableView" destination="akd-NO-jcO" id="wNW-wk-FRV"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="220" y="345"/>
+        </scene>
+        <!--Static Notification Interface Controller-->
+        <scene sceneID="AEw-b0-oYE">
+            <objects>
+                <notificationController id="YCC-NB-fut">
+                    <items>
+                        <label alignment="left" text="Alert Label" id="IdU-wH-bcW"/>
+                    </items>
+                    <notificationCategory key="notificationCategory" identifier="myCategory" id="JfB-70-Muf"/>
+                    <connections>
+                        <outlet property="notificationAlertLabel" destination="IdU-wH-bcW" id="JKC-fr-R95"/>
+                        <segue destination="4sK-HA-Art" kind="relationship" relationship="dynamicNotificationInterface" id="kXh-Jw-8B1"/>
+                    </connections>
+                </notificationController>
+            </objects>
+            <point key="canvasLocation" x="220" y="643"/>
+        </scene>
+        <!--Notification Dialog Controller-->
+        <scene sceneID="ZPc-GJ-vnh">
+            <objects>
+                <controller id="4sK-HA-Art" customClass="NotificationDialogController" customModule="myVKAppWatch" customModuleProvider="target"/>
+            </objects>
+            <point key="canvasLocation" x="468" y="643"/>
+        </scene>
+    </scenes>
+</document>

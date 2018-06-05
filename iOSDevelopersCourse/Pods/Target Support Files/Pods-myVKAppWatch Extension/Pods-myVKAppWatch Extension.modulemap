@@ -1,0 +1,6 @@
+framework module Pods_myVKAppWatch_Extension {
+  umbrella header "Pods-myVKAppWatch Extension-umbrella.h"
+
+  export *
+  module * { export * }
+}
