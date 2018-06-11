@@ -15,6 +15,8 @@ class NewsTableVC: UITableViewController {
     private let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")
     private let userId =  KeychainWrapper.standard.string(forKey: "userId")
     
+    private let bannerVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BannerView")
+    
     var token: NotificationToken?
     lazy var newsArray: Results<News> = {
         return RealmLoader.loadData(object: News()).sorted(byKeyPath: "date", ascending: false)
@@ -37,6 +39,8 @@ class NewsTableVC: UITableViewController {
         super.viewDidLoad()
         self.tableView.register(UINib(nibName: "NewsViewCell", bundle: nil), forCellReuseIdentifier: "NewsViewCell")
         addRefreshControl()
+        setupBannerVC()
+        
         guard let userId = userId, let accessToken = accessToken else { return }
         NewsRequests.getUserNews(userId: userId, accessToken: accessToken)
         FriendsRequests.getFriendsList { friends in
@@ -111,6 +115,15 @@ class NewsTableVC: UITableViewController {
 }
 
 extension NewsTableVC {
+    
+    private func setupBannerVC() {
+        let size = CGSize(width: tableView.frame.width, height: 50)
+        let origin = CGPoint(x: 0, y: (tableView.frame.height - (tabBarController?.tabBar.frame.height)! - 50))
+        bannerVC.view.frame = CGRect(origin: origin, size: size)
+        tabBarController?.addChildViewController(bannerVC)
+        tabBarController?.view.addSubview(bannerVC.view)
+        bannerVC.didMove(toParentViewController: tabBarController)
+    }
     
     private func addRefreshControl() {
         self.refreshControl?.addTarget(self, action: #selector(self.refreshView), for: .valueChanged)

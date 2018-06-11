@@ -37,6 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
         RealmConfigurator.configureRealm()
         
         FirebaseApp.configure()
+        GADMobileAds.configure(withApplicationID: "ca-app-pub-3215412991703994~4814646556")
         configureWSSession()
         return true
     }

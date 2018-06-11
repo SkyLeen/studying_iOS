@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0940"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F2CD5D2C315386CD09FB109E1AE4C63F"
+               BlueprintIdentifier = "B133F4E1BC14C499F9DFFA6DC2795615"
                BuildableName = "SwiftyJSON.framework"
                BlueprintName = "SwiftyJSON-iOS11.0"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F2CD5D2C315386CD09FB109E1AE4C63F"
+            BlueprintIdentifier = "B133F4E1BC14C499F9DFFA6DC2795615"
             BuildableName = "SwiftyJSON.framework"
             BlueprintName = "SwiftyJSON-iOS11.0"
             ReferencedContainer = "container:Pods.xcodeproj">

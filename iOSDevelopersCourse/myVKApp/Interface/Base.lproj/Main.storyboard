@@ -155,6 +155,22 @@
             </objects>
             <point key="canvasLocation" x="-1271" y="12"/>
         </scene>
+        <!--Banner View Controller-->
+        <scene sceneID="YeT-PE-STV">
+            <objects>
+                <viewController storyboardIdentifier="BannerView" id="pQm-vu-OoL" customClass="BannerViewController" customModule="myVKApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1Hx-zM-MuU">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Qo5-I2-MMT"/>
+                    </view>
+                    <size key="freeformSize" width="320" height="50"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gC9-cX-wXx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1271" y="469"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="fiF-AY-gHb">
             <objects>
