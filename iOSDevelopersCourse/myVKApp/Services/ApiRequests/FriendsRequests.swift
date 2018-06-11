@@ -17,6 +17,7 @@ class FriendsRequests {
     
     static let baseUrl = "https://api.vk.com"
     static let path = "/method"
+    static let version = "5.74"
     
    static func getFriendsList(closure: @escaping ([Friend])->()) {
         let pathMethod = "/friends.get"
@@ -26,7 +27,7 @@ class FriendsRequests {
             "access_token":accessToken!,
             "order":"name",
             "fields": "uid, first_name, last_name, photo_100",
-            "v":"5.73"
+            "v":version
         ]
         
     Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON { response in
@@ -49,7 +50,7 @@ class FriendsRequests {
             "access_token":accessToken!,
             "owner_id":friendId,
             "skip_hidden":"1",
-            "v":"5.73"
+            "v":version
         ]
         
         Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON(queue: DispatchQueue.global(qos: .utility)) { response in
@@ -70,7 +71,7 @@ class FriendsRequests {
             "access_token":accessToken!,
             "out":0,
             "need_mutual":1,
-            "v":"5.73"
+            "v":version
         ]
         
         Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON(queue: DispatchQueue.global(qos: .utility)) { response in

@@ -104,25 +104,6 @@ class NewsTableVC: UITableViewController {
 
 extension NewsTableVC {
     
-    @IBAction func addNewPost(segue: UIStoryboardSegue) {
-        guard segue.identifier == "addNewPost" else { return }
-        guard let newPostVC = segue.source as? NewPostVC else { return }
-        guard let textView = newPostVC.textView else { return }
-        var text = textView.text
-        
-        if let label = newPostVC.locationLabel.text, !label.isEmpty {
-            text?.append("""
-                
-                
-                \(label)
-                """)
-        }
-        
-        let lat = newPostVC.locationCoordinates?.latitude ?? 0.0
-        let long = newPostVC.locationCoordinates?.longitude ?? 0.0
-        NewsRequests.postNews(text: text!, lat: lat, long: long)
-    }
-    
     private func addRefreshControl() {
         self.refreshControl?.addTarget(self, action: #selector(self.refreshView), for: .valueChanged)
     }

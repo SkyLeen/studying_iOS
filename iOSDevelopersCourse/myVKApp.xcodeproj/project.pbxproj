@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0404A9E720CED40500593A76 /* PhotosRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0404A9E620CED40500593A76 /* PhotosRequests.swift */; };
 		040F7A4620C140E300D3AD25 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 040F7A4420C140E300D3AD25 /* Interface.storyboard */; };
 		040F7A4820C140E700D3AD25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 040F7A4720C140E700D3AD25 /* Assets.xcassets */; };
 		040F7A4F20C140E700D3AD25 /* myVKAppWatch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 040F7A4E20C140E700D3AD25 /* myVKAppWatch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -301,6 +302,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0404A9E620CED40500593A76 /* PhotosRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosRequests.swift; sourceTree = "<group>"; };
 		040F7A4220C140E300D3AD25 /* myVKAppWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myVKAppWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		040F7A4520C140E300D3AD25 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		040F7A4720C140E700D3AD25 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -617,6 +619,7 @@
 				04D2194A204B0AF6001E5B26 /* GroupsRequests.swift */,
 				0462E5E6206796FB00E0038C /* NewsRequests.swift */,
 				0462E5E82067973100E0038C /* DialogsRequests.swift */,
+				0404A9E620CED40500593A76 /* PhotosRequests.swift */,
 				0445CD6B2052656900D48551 /* LogOutRequest.swift */,
 			);
 			path = ApiRequests;
@@ -1340,6 +1343,7 @@
 				0490992020580A05009C784A /* FriendsRequests.swift in Sources */,
 				0465C9A220A89E0700F9BB51 /* MapVC.swift in Sources */,
 				0462E5E5206796CD00E0038C /* DialogModel.swift in Sources */,
+				0404A9E720CED40500593A76 /* PhotosRequests.swift in Sources */,
 				04EB90B7206EB103001D95E6 /* RealmRequests.swift in Sources */,
 				04CEE5D120692AA600300107 /* OutcomingMsgViewCell.swift in Sources */,
 				04D19B2F2060FC9B00E1CADE /* RealmLoader.swift in Sources */,

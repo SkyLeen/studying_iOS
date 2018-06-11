@@ -20,6 +20,7 @@ class GroupsRequests {
     
     static let baseUrl = "https://api.vk.com"
     static let path = "/method"
+    static let version = "5.74"
     
     static func getUserGroups() {
         let pathMethod = "/groups.get"
@@ -29,7 +30,7 @@ class GroupsRequests {
             "access_token":accessToken!,
             "extended":1,
             "fields":"members_count",
-            "v":"5.73"
+            "v":version
         ]
         
         Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON {  response in
@@ -50,7 +51,7 @@ class GroupsRequests {
             "access_token":accessToken!,
             "extended":1,
             "fields":"members_count",
-            "v":"5.73"
+            "v":version
         ]
         
         Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON(queue: DispatchQueue.global(qos: .utility)) { response in
@@ -70,7 +71,7 @@ class GroupsRequests {
         let parameters: Parameters = [
             "group_id":idGroup,
             "access_token":accessToken!,
-            "v":"5.73"
+            "v":version
         ]
         
         Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON(queue: DispatchQueue.global(qos: .utility)) { response in
@@ -97,7 +98,7 @@ class GroupsRequests {
         let parameters: Parameters = [
             "group_id":idGroup,
             "access_token":accessToken!,
-            "v":"5.73"
+            "v":version
         ]
         
         Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON(queue: DispatchQueue.global(qos: .utility)) { response in }
@@ -110,7 +111,7 @@ class GroupsRequests {
             "access_token":accessToken,
             "group_ids":idGroup,
             "fields":"members_count",
-            "v":"5.73"
+            "v":version
         ]
         
         Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON {  response in

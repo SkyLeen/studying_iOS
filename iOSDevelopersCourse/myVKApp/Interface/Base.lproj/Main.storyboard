@@ -979,7 +979,7 @@
                                         </constraints>
                                         <state key="normal" image="photos"/>
                                         <connections>
-                                            <segue destination="NCT-dq-dqq" kind="show" id="zSz-ix-2Z4"/>
+                                            <action selector="openPhotoLibrary:" destination="vfC-vd-rDf" eventType="touchUpInside" id="4xT-WI-A9t"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oC1-DD-7rv">
@@ -1030,8 +1030,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="done" id="d3Y-CQ-SRd">
                             <connections>
-                                <action selector="addNewPost:" destination="vfC-vd-rDf" id="5zO-hp-mdT"/>
-                                <segue destination="cay-Id-1gv" kind="unwind" identifier="addNewPost" unwindAction="addNewPostWithSegue:" id="shL-0d-J0R"/>
+                                <action selector="addNewPost:" destination="vfC-vd-rDf" id="jfC-fD-II2"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1042,24 +1041,8 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bOY-7H-kqd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="cay-Id-1gv" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3863" y="10"/>
-        </scene>
-        <!--Photos-->
-        <scene sceneID="AHn-OD-i0N">
-            <objects>
-                <viewController title="Photos" id="NCT-dq-dqq" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="sek-3C-dsv">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="431"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="mKQ-ug-v8L"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0po-ab-4dh" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4639" y="348"/>
         </scene>
         <!--Location-->
         <scene sceneID="Cuf-uq-KXH">

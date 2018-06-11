@@ -23,6 +23,7 @@ class UserRequests {
     
     static let baseUrl = "https://api.vk.com"
     static let path = "/method"
+    static let version = "5.74"
     
     static func getUserById(userId: String, accessToken: String, requestUserId: String, attribute: Attributes) {
         let pathMethod = "/users.get"
@@ -31,7 +32,7 @@ class UserRequests {
             "access_token":accessToken,
             "user_ids":requestUserId,
             "fields":"uid, first_name, last_name, photo_100",
-            "v":"5.73"
+            "v":version
         ]
         
         Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON(queue: DispatchQueue.global(qos: .utility)) { response in

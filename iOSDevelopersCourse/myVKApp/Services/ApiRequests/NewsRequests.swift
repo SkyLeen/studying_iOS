@@ -17,6 +17,7 @@ class NewsRequests {
     
     static let baseUrl = "https://api.vk.com"
     static let path = "/method"
+    static let version = "5.74"
     static var offset = 0
     static var start_from = ""
     
@@ -30,7 +31,7 @@ class NewsRequests {
             "count":100,
             //"offset":0,
             //"start_from":0,
-            "v":"5.73"
+            "v":version
         ]
         
         Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON(queue: DispatchQueue.global(qos: .utility)) {  response in
@@ -56,17 +57,27 @@ class NewsRequests {
         }
     }
     
-    static func postNews(text: String = "", attachment: String = "", lat: Double = 0.0, long: Double = 0.0) {
+    static func postNews(text: String = "", attachment: [Photos]?, lat: Double = 0.0, long: Double = 0.0) {
+        var attachments = ""
+        
+        if let attachedImages = attachment, !attachedImages.isEmpty {
+            for image in attachedImages {
+                attachments += "photo\(image.idFriend.description)_\(image.idPhoto.description),"
+            }
+            attachments.removeLast()
+        }
+        
         let pathMethod = "/wall.post"
         let url = baseUrl + path + pathMethod
         let parameters: Parameters = [
             "owner_id":userId!,
             "access_token":accessToken!,
             "message": text,
+            "attachments": attachments,
             "signed":1,
             "lat":lat,
             "long":long,
-            "v":"5.73"
+            "v":version
         ]
          Alamofire.request(url, method: .get, parameters: parameters).validate().responseJSON(queue: DispatchQueue.global(qos: .utility)) {  response in
             switch response.result {
