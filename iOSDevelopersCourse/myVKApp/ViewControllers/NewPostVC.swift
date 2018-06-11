@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import Photos
 
 class NewPostVC: UIViewController {
 
@@ -16,7 +17,17 @@ class NewPostVC: UIViewController {
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     var locationCoordinates: CLLocationCoordinate2D?
-    var attachedImages: [Photos]?
+    var attachedImages = [Photos]() {
+        didSet {
+            DispatchQueue.main.async {
+                if !self.attachedImages.isEmpty {
+                    self.navigationItem.rightBarButtonItem?.isEnabled = true
+                } else {
+                    self.navigationItem.rightBarButtonItem?.isEnabled = false
+                }
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,20 +59,12 @@ class NewPostVC: UIViewController {
     }
     
     @IBAction func addNewPost(_ sender: UIBarButtonItem) {
-        var text = textView.text
-        
-        if let label = locationLabel.text, !label.isEmpty {
-            text?.append("""
-                
-                
-                \(label)
-                """)
-        }
+        let text = textView.text
         
         let lat = locationCoordinates?.latitude ?? 0.0
         let long = locationCoordinates?.longitude ?? 0.0
         NewsRequests.postNews(text: text!, attachment: attachedImages, lat: lat, long: long)
-        
+
         dismiss(animated: true)
     }
     
@@ -91,24 +94,29 @@ extension NewPostVC: UIImagePickerControllerDelegate, UINavigationControllerDele
         dismiss(animated: true)
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage
         let imageUrl = info[UIImagePickerControllerImageURL] as? URL
         
         if let image = originalImage, let url = imageUrl {
-            attachImage(image)
-            uploadImageToServer(url)
+            PhotosRequests.uploadPhotosToServer(url) { [weak self] photosPost in
+                guard let s = self else { return }
+                if let photos = photosPost {
+                    for photo in photos {
+                        s.attachedImages.append(photo)
+                    }
+                }
+                
+                DispatchQueue.main.async {
+                    s.attachImage(image)
+                    picker.dismiss(animated: true)
+                }
+            }
         }
-        
-        dismiss(animated: true)
     }
 }
 
 extension NewPostVC {
-    
-    private func uploadImageToServer(_ imageUrl: URL) {
-        //PhotosRequests.uploadPhotosToServer(imageUrl)
-    }
     
     private func attachImage(_ image: UIImage) {
         var attributedString: NSMutableAttributedString!
@@ -144,7 +152,7 @@ extension NewPostVC {
     }
     
     private func checkTextViewActivity(_ textView: UITextView) {
-        if !textView.text.isEmpty {
+        if !textView.text.isEmpty  {
             navigationItem.rightBarButtonItem?.isEnabled = true
         } else {
             navigationItem.rightBarButtonItem?.isEnabled = false
