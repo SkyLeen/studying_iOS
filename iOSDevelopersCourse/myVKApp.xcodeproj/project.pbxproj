@@ -11,6 +11,7 @@
 		0404A9E820CEE38400593A76 /* PhotosRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0404A9E620CED40500593A76 /* PhotosRequests.swift */; };
 		0404A9E920CEE38400593A76 /* PhotosRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0404A9E620CED40500593A76 /* PhotosRequests.swift */; };
 		0404A9EA20CEE38600593A76 /* PhotosRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0404A9E620CED40500593A76 /* PhotosRequests.swift */; };
+		0404A9EC20CEF91300593A76 /* PostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0404A9EB20CEF91300593A76 /* PostCollectionViewCell.swift */; };
 		040F7A4620C140E300D3AD25 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 040F7A4420C140E300D3AD25 /* Interface.storyboard */; };
 		040F7A4820C140E700D3AD25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 040F7A4720C140E700D3AD25 /* Assets.xcassets */; };
 		040F7A4F20C140E700D3AD25 /* myVKAppWatch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 040F7A4E20C140E700D3AD25 /* myVKAppWatch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -306,6 +307,7 @@
 
 /* Begin PBXFileReference section */
 		0404A9E620CED40500593A76 /* PhotosRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosRequests.swift; sourceTree = "<group>"; };
+		0404A9EB20CEF91300593A76 /* PostCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCollectionViewCell.swift; sourceTree = "<group>"; };
 		040F7A4220C140E300D3AD25 /* myVKAppWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myVKAppWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		040F7A4520C140E300D3AD25 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		040F7A4720C140E700D3AD25 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -658,6 +660,7 @@
 				0416316D204201B800446639 /* MyGroupsViewCell.swift */,
 				04163174204203E400446639 /* AllGroupsViewCell.swift */,
 				04A360C0207CCAAA00684090 /* NewsViewCell.swift */,
+				0404A9EB20CEF91300593A76 /* PostCollectionViewCell.swift */,
 				0462E5EE20679ABF00E0038C /* DialogsViewCell.swift */,
 				04A360D4207F731700684090 /* IncomingMsgViewCell.swift */,
 				04CEE5D020692AA600300107 /* OutcomingMsgViewCell.swift */,
@@ -1325,6 +1328,7 @@
 				04D37E7D2038445C00F958AF /* LoginVC.swift in Sources */,
 				048714D62066BCB5003405B4 /* NewsTableVC.swift in Sources */,
 				0416316A20415FF600446639 /* MyFriendCollectionViewCell.swift in Sources */,
+				0404A9EC20CEF91300593A76 /* PostCollectionViewCell.swift in Sources */,
 				047363642077625000873B09 /* CollectionCellReloading.swift in Sources */,
 				04EB90BB20713252001D95E6 /* ExtInt.swift in Sources */,
 				04CEE5D7206AE96A00300107 /* RealmNewsAttachSaver.swift in Sources */,

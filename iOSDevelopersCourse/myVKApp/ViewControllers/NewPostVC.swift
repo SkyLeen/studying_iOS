@@ -12,6 +12,7 @@ import Photos
 
 class NewPostVC: UIViewController {
 
+    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
@@ -31,8 +32,12 @@ class NewPostVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         textView.delegate = self
         textView.becomeFirstResponder()
+        
+        collectionView.delegate = self
+        collectionView.dataSource = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -76,6 +81,20 @@ class NewPostVC: UIViewController {
         openLibrary()
     }
     
+}
+
+extension NewPostVC: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return attachedImages.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "postPhoto", for: indexPath) as! PostCollectionViewCell
+        
+        
+        
+        return cell
+    }
 }
 
 extension NewPostVC: UITextViewDelegate {
