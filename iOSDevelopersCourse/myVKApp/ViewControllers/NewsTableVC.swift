@@ -21,6 +21,7 @@ class NewsTableVC: UITableViewController {
     }()
     
     var heightCellCash: [IndexPath : CGFloat] = [:]
+    var myTimer: Timer?
     
     var opQueue: OperationQueue = {
         let q = OperationQueue()
@@ -43,12 +44,19 @@ class NewsTableVC: UITableViewController {
                 CloudFriendsSaver.operateDataCloud(friends: friends)
             }
         }
-        DialogsRequests.getUserDialogs(userId: userId, accessToken: accessToken, complition: nil)
+        FriendsRequests.getIncomingFriendsRequest() { _ in }
+        DialogsRequests.getUserDialogs(userId: userId, accessToken: accessToken) { _ in
+            DispatchQueue.main.async {
+                self.checkNewMessages()
+            }
+        }
         GroupsRequests.getUserGroups()
         
-        checkRequestsDb()
-
+        checkNewRequests()
         token =  Notifications.getTableViewTokenRows(newsArray, view: self.tableView)
+        
+        self.myTimer = Timer(timeInterval: 20.0, target: self, selector: #selector(self.refreshView), userInfo: nil, repeats: true)
+        RunLoop.main.add(self.myTimer!, forMode: RunLoopMode.defaultRunLoopMode)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -118,14 +126,16 @@ extension NewsTableVC {
         }
     }
     
-    private func checkRequestsDb() {
+    private func checkNewRequests() {
         let arrayFriends = RealmLoader.loadData(object: FriendRequest())
         if arrayFriends.count > 0, let items = tabBarController?.tabBar.items {
             items[2].title = "+ \(arrayFriends.count)"
         } else if let items = tabBarController?.tabBar.items {
             items[2].title = ""
         }
-        
+    }
+    
+    private func checkNewMessages() {
         let arrayDialogs = RealmLoader.loadData(object: Dialog()).filter( { $0.readState == 0 && $0.out == 0 } )
         if arrayDialogs.count > 0, let items = tabBarController?.tabBar.items {
             items[1].title = "+ \(arrayDialogs.count)"
