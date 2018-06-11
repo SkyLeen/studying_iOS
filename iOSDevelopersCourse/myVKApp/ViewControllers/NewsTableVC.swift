@@ -15,12 +15,15 @@ class NewsTableVC: UITableViewController {
     private let accessToken = KeychainWrapper.standard.string(forKey: "accessToken")
     private let userId =  KeychainWrapper.standard.string(forKey: "userId")
     
+    private let bannerVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BannerView")
+    
     var token: NotificationToken?
     lazy var newsArray: Results<News> = {
         return RealmLoader.loadData(object: News()).sorted(byKeyPath: "date", ascending: false)
     }()
     
     var heightCellCash: [IndexPath : CGFloat] = [:]
+    var myTimer: Timer?
     
     var opQueue: OperationQueue = {
         let q = OperationQueue()
@@ -36,6 +39,8 @@ class NewsTableVC: UITableViewController {
         super.viewDidLoad()
         self.tableView.register(UINib(nibName: "NewsViewCell", bundle: nil), forCellReuseIdentifier: "NewsViewCell")
         addRefreshControl()
+        setupBannerVC()
+        
         guard let userId = userId, let accessToken = accessToken else { return }
         NewsRequests.getUserNews(userId: userId, accessToken: accessToken)
         FriendsRequests.getFriendsList { friends in
@@ -43,12 +48,19 @@ class NewsTableVC: UITableViewController {
                 CloudFriendsSaver.operateDataCloud(friends: friends)
             }
         }
-        DialogsRequests.getUserDialogs(userId: userId, accessToken: accessToken, complition: nil)
+        FriendsRequests.getIncomingFriendsRequest() { _ in }
+        DialogsRequests.getUserDialogs(userId: userId, accessToken: accessToken) { _ in
+            DispatchQueue.main.async {
+                self.checkNewMessages()
+            }
+        }
         GroupsRequests.getUserGroups()
         
-        checkRequestsDb()
-
+        checkNewRequests()
         token =  Notifications.getTableViewTokenRows(newsArray, view: self.tableView)
+        
+        self.myTimer = Timer(timeInterval: 20.0, target: self, selector: #selector(self.refreshView), userInfo: nil, repeats: true)
+        RunLoop.main.add(self.myTimer!, forMode: RunLoopMode.defaultRunLoopMode)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -104,23 +116,13 @@ class NewsTableVC: UITableViewController {
 
 extension NewsTableVC {
     
-    @IBAction func addNewPost(segue: UIStoryboardSegue) {
-        guard segue.identifier == "addNewPost" else { return }
-        guard let newPostVC = segue.source as? NewPostVC else { return }
-        guard let textView = newPostVC.textView else { return }
-        var text = textView.text
-        
-        if let label = newPostVC.locationLabel.text, !label.isEmpty {
-            text?.append("""
-                
-                
-                \(label)
-                """)
-        }
-        
-        let lat = newPostVC.locationCoordinates?.latitude ?? 0.0
-        let long = newPostVC.locationCoordinates?.longitude ?? 0.0
-        NewsRequests.postNews(text: text!, lat: lat, long: long)
+    private func setupBannerVC() {
+        let size = CGSize(width: tableView.frame.width, height: 50)
+        let origin = CGPoint(x: 0, y: (tableView.frame.height - (tabBarController?.tabBar.frame.height)! - 50))
+        bannerVC.view.frame = CGRect(origin: origin, size: size)
+        tabBarController?.addChildViewController(bannerVC)
+        tabBarController?.view.addSubview(bannerVC.view)
+        bannerVC.didMove(toParentViewController: tabBarController)
     }
     
     private func addRefreshControl() {
@@ -137,14 +139,16 @@ extension NewsTableVC {
         }
     }
     
-    private func checkRequestsDb() {
+    private func checkNewRequests() {
         let arrayFriends = RealmLoader.loadData(object: FriendRequest())
         if arrayFriends.count > 0, let items = tabBarController?.tabBar.items {
             items[2].title = "+ \(arrayFriends.count)"
         } else if let items = tabBarController?.tabBar.items {
             items[2].title = ""
         }
-        
+    }
+    
+    private func checkNewMessages() {
         let arrayDialogs = RealmLoader.loadData(object: Dialog()).filter( { $0.readState == 0 && $0.out == 0 } )
         if arrayDialogs.count > 0, let items = tabBarController?.tabBar.items {
             items[1].title = "+ \(arrayDialogs.count)"

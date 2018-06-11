@@ -71,4 +71,5 @@ class FriendsRequestsVC: UITableViewController {
         
         return [editAction,deleteAction]
     }
+
 }

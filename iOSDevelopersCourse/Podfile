@@ -7,9 +7,10 @@ pod 'Alamofire'
 pod 'SwiftyJSON'
 pod 'RealmSwift'
 pod 'SwiftKeychainWrapper'
-pod 'Firebase/Core', '4.9.0'
-pod 'Firebase/Auth', '4.9.0'
-pod 'Firebase/Database', '4.9.0'
+pod 'Firebase/Core'
+pod 'Firebase/Auth'
+pod 'Firebase/Database'
+pod 'Firebase/AdMob'
 
 end
 target 'myVKAppWidget' do
@@ -18,9 +19,10 @@ pod 'Alamofire'
 pod 'SwiftyJSON'
 pod 'RealmSwift'
 pod 'SwiftKeychainWrapper'
-pod 'Firebase/Core', '4.9.0'
-pod 'Firebase/Auth', '4.9.0'
-pod 'Firebase/Database', '4.9.0'
+pod 'Firebase/Core'
+pod 'Firebase/Auth'
+pod 'Firebase/Database'
+pod 'Firebase/AdMob'
 
 end
 target 'myVKAppMessages' do
@@ -29,9 +31,10 @@ pod 'Alamofire'
 pod 'SwiftyJSON'
 pod 'RealmSwift'
 pod 'SwiftKeychainWrapper'
-pod 'Firebase/Core', '4.9.0'
-pod 'Firebase/Auth', '4.9.0'
-pod 'Firebase/Database', '4.9.0'
+pod 'Firebase/Core'
+pod 'Firebase/Auth'
+pod 'Firebase/Database'
+pod 'Firebase/AdMob'
 
 end
 target 'myVKAppiMessage' do
@@ -40,9 +43,10 @@ pod 'Alamofire'
 pod 'SwiftyJSON'
 pod 'RealmSwift'
 pod 'SwiftKeychainWrapper'
-pod 'Firebase/Core', '4.9.0'
-pod 'Firebase/Auth', '4.9.0'
-pod 'Firebase/Database', '4.9.0'
+pod 'Firebase/Core'
+pod 'Firebase/Auth'
+pod 'Firebase/Database'
+pod 'Firebase/AdMob'
 
 end
 target 'myVKAppWatch Extension' do

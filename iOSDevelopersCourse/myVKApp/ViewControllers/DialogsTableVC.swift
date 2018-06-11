@@ -32,6 +32,8 @@ class DialogsTableVC: UITableViewController {
     var usersToken: NotificationToken?
     var groupsToken: NotificationToken?
     
+    var myTimer: Timer?
+    
     var opQueue: OperationQueue = {
         let q = OperationQueue()
         q.qualityOfService = .userInteractive
@@ -57,6 +59,9 @@ class DialogsTableVC: UITableViewController {
         if dialogsArray.isEmpty {
             DialogsRequests.getUserDialogs(userId: userId, accessToken: accessToken, complition: nil)
         }
+        
+        self.myTimer = Timer(timeInterval: 20.0, target: self, selector: #selector(self.refreshView), userInfo: nil, repeats: true)
+        RunLoop.main.add(self.myTimer!, forMode: RunLoopMode.defaultRunLoopMode)
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

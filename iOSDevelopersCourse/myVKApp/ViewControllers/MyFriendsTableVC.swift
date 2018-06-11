@@ -32,6 +32,8 @@ class MyFriendsTableVC: UITableViewController {
     var token: NotificationToken?
     var tokenRequests: NotificationToken?
     
+    var myTimer: Timer?
+    
     var opQueue: OperationQueue = {
         let q = OperationQueue()
         q.qualityOfService = .userInteractive
@@ -47,14 +49,8 @@ class MyFriendsTableVC: UITableViewController {
         super.viewDidLoad()
         tableView.rowHeight = 55
         addRefreshControl()
-        //token = Notifications.getTableViewTokenRows(myFriendsArray, view: self.tableView)
+
         tokenRequests = getToken(myRequestsArray, view: self.tableView)
-        
-//        if myFriendsArray.isEmpty {
-//            FriendsRequests.getFriendsList() { friends in
-//                CloudFriendsSaver.operateDataCloud(friends: friends)
-//            }
-//        }
         
         if myRequestsArray.count > 0 {
             requestButton("+ \(myRequestsArray.count)")
@@ -68,6 +64,9 @@ class MyFriendsTableVC: UITableViewController {
                 self.tableView?.reloadData()
             }
         }
+        
+        self.myTimer = Timer(timeInterval: 20.0, target: self, selector: #selector(self.refreshView), userInfo: nil, repeats: true)
+        RunLoop.main.add(self.myTimer!, forMode: RunLoopMode.defaultRunLoopMode)
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -15,6 +15,7 @@ class AuthorizationRequest {
     static let scheme = "https"
     static let baseHost = "oauth.vk.com"
     static let cliendId = "6389925"
+    static let version = "5.74"
     
     static func requestAuthorization() -> URLRequest {
         let path = "/authorize"
@@ -30,7 +31,7 @@ class AuthorizationRequest {
             URLQueryItem(name: "display", value: "mobile"),
             URLQueryItem(name: "redirect_uri", value: urlRedirect),
             URLQueryItem(name: "response_type", value: "token"),
-            URLQueryItem(name: "v", value: "5.73")
+            URLQueryItem(name: "v", value: version)
         ]
         
         let request = URLRequest(url: urlComponents.url!)

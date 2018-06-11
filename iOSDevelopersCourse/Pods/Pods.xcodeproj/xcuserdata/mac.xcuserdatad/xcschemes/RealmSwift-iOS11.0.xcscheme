@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0940"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D3C923FA172C8B48279F92BFA1869821"
+               BlueprintIdentifier = "56CDCCBCB9A0DD751859B69FA466036C"
                BuildableName = "RealmSwift.framework"
                BlueprintName = "RealmSwift-iOS11.0"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D3C923FA172C8B48279F92BFA1869821"
+            BlueprintIdentifier = "56CDCCBCB9A0DD751859B69FA466036C"
             BuildableName = "RealmSwift.framework"
             BlueprintName = "RealmSwift-iOS11.0"
             ReferencedContainer = "container:Pods.xcodeproj">

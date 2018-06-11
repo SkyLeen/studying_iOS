@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0404A9E720CED40500593A76 /* PhotosRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0404A9E620CED40500593A76 /* PhotosRequests.swift */; };
+		0404A9EC20CEF91300593A76 /* PostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0404A9EB20CEF91300593A76 /* PostCollectionViewCell.swift */; };
+		0404A9F120CF207900593A76 /* BannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0404A9F020CF207900593A76 /* BannerViewController.swift */; };
 		040F7A4620C140E300D3AD25 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 040F7A4420C140E300D3AD25 /* Interface.storyboard */; };
 		040F7A4820C140E700D3AD25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 040F7A4720C140E700D3AD25 /* Assets.xcassets */; };
 		040F7A4F20C140E700D3AD25 /* myVKAppWatch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 040F7A4E20C140E700D3AD25 /* myVKAppWatch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -47,13 +50,8 @@
 		041B8B0F20BEA5A800B701F4 /* GetCashedImageOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0473634D2073C7B600873B09 /* GetCashedImageOperation.swift */; };
 		041B8B1020BEA5A800B701F4 /* TableCellReloading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0473636120775D8000873B09 /* TableCellReloading.swift */; };
 		041B8B1120BEA5A800B701F4 /* CollectionCellReloading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047363632077625000873B09 /* CollectionCellReloading.swift */; };
-		041B8B1220BEA5BC00B701F4 /* AuthorizationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D21944204A8DF3001E5B26 /* AuthorizationRequest.swift */; };
-		041B8B1320BEA5BC00B701F4 /* UserRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB90B4206E891D001D95E6 /* UserRequests.swift */; };
-		041B8B1420BEA5BC00B701F4 /* FriendsRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0490991F20580A05009C784A /* FriendsRequests.swift */; };
-		041B8B1520BEA5BC00B701F4 /* GroupsRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D2194A204B0AF6001E5B26 /* GroupsRequests.swift */; };
 		041B8B1620BEA5BC00B701F4 /* NewsRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0462E5E6206796FB00E0038C /* NewsRequests.swift */; };
 		041B8B1720BEA5BC00B701F4 /* DialogsRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0462E5E82067973100E0038C /* DialogsRequests.swift */; };
-		041B8B1820BEA5BC00B701F4 /* LogOutRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0445CD6B2052656900D48551 /* LogOutRequest.swift */; };
 		041B8B1920BEA5C200B701F4 /* RealmUserSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0410DB172064428600FB3F4F /* RealmUserSaver.swift */; };
 		041B8B1A20BEA5C200B701F4 /* RealmFriendsSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D19B2C2060F1C700E1CADE /* RealmFriendsSaver.swift */; };
 		041B8B1B20BEA5C200B701F4 /* RealmGroupsSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0410DB152064420E00FB3F4F /* RealmGroupsSaver.swift */; };
@@ -70,6 +68,30 @@
 		041B8B2620BEA5DA00B701F4 /* ExtInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB90BA20713252001D95E6 /* ExtInt.swift */; };
 		041B8B2720BEA5DA00B701F4 /* ExtDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB90BC207139C2001D95E6 /* ExtDate.swift */; };
 		041E126320C1B5C3006031BA /* TableRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041E126220C1B5C3006031BA /* TableRowController.swift */; };
+		043C7E6920CF2EC600A161A8 /* RealmUserSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0410DB172064428600FB3F4F /* RealmUserSaver.swift */; };
+		043C7E6A20CF2EC600A161A8 /* RealmFriendsSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D19B2C2060F1C700E1CADE /* RealmFriendsSaver.swift */; };
+		043C7E6B20CF2EC600A161A8 /* RealmGroupsSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0410DB152064420E00FB3F4F /* RealmGroupsSaver.swift */; };
+		043C7E6C20CF2EC600A161A8 /* RealmNewsSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0462E5EA2067975F00E0038C /* RealmNewsSaver.swift */; };
+		043C7E6D20CF2EC600A161A8 /* RealmNewsAttachSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEE5D6206AE96A00300107 /* RealmNewsAttachSaver.swift */; };
+		043C7E6E20CF2EC600A161A8 /* RealmDialogsSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEE5D8206BF56D00300107 /* RealmDialogsSaver.swift */; };
+		043C7E6F20CF2EC600A161A8 /* RealmLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D19B2E2060FC9B00E1CADE /* RealmLoader.swift */; };
+		043C7E7020CF2EC600A161A8 /* RealmDeleter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04886BD32063AFB300236E08 /* RealmDeleter.swift */; };
+		043C7E7120CF2EC600A161A8 /* RealmRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB90B6206EB103001D95E6 /* RealmRequests.swift */; };
+		043C7E7220CF2EC600A161A8 /* RealmUserSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0410DB172064428600FB3F4F /* RealmUserSaver.swift */; };
+		043C7E7320CF2EC600A161A8 /* RealmFriendsSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D19B2C2060F1C700E1CADE /* RealmFriendsSaver.swift */; };
+		043C7E7420CF2EC600A161A8 /* RealmGroupsSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0410DB152064420E00FB3F4F /* RealmGroupsSaver.swift */; };
+		043C7E7520CF2EC600A161A8 /* RealmNewsSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0462E5EA2067975F00E0038C /* RealmNewsSaver.swift */; };
+		043C7E7620CF2EC600A161A8 /* RealmNewsAttachSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEE5D6206AE96A00300107 /* RealmNewsAttachSaver.swift */; };
+		043C7E7720CF2EC600A161A8 /* RealmDialogsSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEE5D8206BF56D00300107 /* RealmDialogsSaver.swift */; };
+		043C7E7820CF2EC600A161A8 /* RealmLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D19B2E2060FC9B00E1CADE /* RealmLoader.swift */; };
+		043C7E7920CF2EC600A161A8 /* RealmDeleter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04886BD32063AFB300236E08 /* RealmDeleter.swift */; };
+		043C7E7A20CF2EC600A161A8 /* RealmRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB90B6206EB103001D95E6 /* RealmRequests.swift */; };
+		043C7E7B20CF2EF000A161A8 /* GroupsRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D2194A204B0AF6001E5B26 /* GroupsRequests.swift */; };
+		043C7E7C20CF2EF000A161A8 /* GroupsRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D2194A204B0AF6001E5B26 /* GroupsRequests.swift */; };
+		043C7E7D20CF2EF100A161A8 /* GroupsRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D2194A204B0AF6001E5B26 /* GroupsRequests.swift */; };
+		043C7E7E20CF2EF500A161A8 /* UserRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB90B4206E891D001D95E6 /* UserRequests.swift */; };
+		043C7E7F20CF2EF500A161A8 /* UserRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB90B4206E891D001D95E6 /* UserRequests.swift */; };
+		043C7E8020CF2EF600A161A8 /* UserRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB90B4206E891D001D95E6 /* UserRequests.swift */; };
 		0445CD6C2052656900D48551 /* LogOutRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0445CD6B2052656900D48551 /* LogOutRequest.swift */; };
 		0446650820B74BF300300F5E /* iCloudFriendsSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0446650720B74BF300300F5E /* iCloudFriendsSaver.swift */; };
 		04560A962088ABD500AC9074 /* MessageAttachmentsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04560A952088ABD500AC9074 /* MessageAttachmentsModel.swift */; };
@@ -114,12 +136,8 @@
 		04D37E7020381B1100F958AF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04D37E6E20381B1100F958AF /* Main.storyboard */; };
 		04D37E7D2038445C00F958AF /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D37E7C2038445C00F958AF /* LoginVC.swift */; };
 		04D6299320BEC13700C472EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04CEE5CE2068383900300107 /* Assets.xcassets */; };
-		04D6299420BED13200C472EB /* NewsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A360C0207CCAAA00684090 /* NewsViewCell.swift */; };
-		04D6299520BED13900C472EB /* NewsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048714D52066BCB5003405B4 /* NewsTableVC.swift */; };
 		04D6299620BED1E600C472EB /* NewsViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04A360C1207CCAAA00684090 /* NewsViewCell.xib */; };
 		04D6299720BED26C00C472EB /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A360DB207F7A1000684090 /* Protocols.swift */; };
-		04D6299820BED27B00C472EB /* NewPostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0465C99B20A85F4500F9BB51 /* NewPostVC.swift */; };
-		04D6299920BED28C00C472EB /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0465C9A120A89E0700F9BB51 /* MapVC.swift */; };
 		04D6299B20BEDCC900C472EB /* iMessageTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D6299A20BEDCC900C472EB /* iMessageTableVC.swift */; };
 		04D6299D20BEDD3E00C472EB /* iMessageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D6299C20BEDD3E00C472EB /* iMessageViewCell.swift */; };
 		04D9E80A20BA20F200458F2E /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04D9E80920BA20F200458F2E /* NotificationCenter.framework */; };
@@ -133,22 +151,8 @@
 		04D9E81E20BA21E000458F2E /* GetCashedImageOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0473634D2073C7B600873B09 /* GetCashedImageOperation.swift */; };
 		04D9E81F20BA21E500458F2E /* TableCellReloading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0473636120775D8000873B09 /* TableCellReloading.swift */; };
 		04D9E82020BA21E500458F2E /* CollectionCellReloading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047363632077625000873B09 /* CollectionCellReloading.swift */; };
-		04D9E82120BA21F300458F2E /* AuthorizationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D21944204A8DF3001E5B26 /* AuthorizationRequest.swift */; };
-		04D9E82220BA21F300458F2E /* UserRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB90B4206E891D001D95E6 /* UserRequests.swift */; };
 		04D9E82320BA21F600458F2E /* NewsRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0462E5E6206796FB00E0038C /* NewsRequests.swift */; };
-		04D9E82420BA21FD00458F2E /* FriendsRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0490991F20580A05009C784A /* FriendsRequests.swift */; };
 		04D9E82520BA220100458F2E /* DialogsRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0462E5E82067973100E0038C /* DialogsRequests.swift */; };
-		04D9E82620BA220C00458F2E /* GroupsRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D2194A204B0AF6001E5B26 /* GroupsRequests.swift */; };
-		04D9E82720BA220C00458F2E /* LogOutRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0445CD6B2052656900D48551 /* LogOutRequest.swift */; };
-		04D9E82820BA221400458F2E /* RealmUserSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0410DB172064428600FB3F4F /* RealmUserSaver.swift */; };
-		04D9E82920BA221400458F2E /* RealmFriendsSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D19B2C2060F1C700E1CADE /* RealmFriendsSaver.swift */; };
-		04D9E82A20BA221400458F2E /* RealmGroupsSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0410DB152064420E00FB3F4F /* RealmGroupsSaver.swift */; };
-		04D9E82B20BA221400458F2E /* RealmNewsSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0462E5EA2067975F00E0038C /* RealmNewsSaver.swift */; };
-		04D9E82C20BA221400458F2E /* RealmNewsAttachSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEE5D6206AE96A00300107 /* RealmNewsAttachSaver.swift */; };
-		04D9E82D20BA221400458F2E /* RealmDialogsSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEE5D8206BF56D00300107 /* RealmDialogsSaver.swift */; };
-		04D9E82E20BA221400458F2E /* RealmLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D19B2E2060FC9B00E1CADE /* RealmLoader.swift */; };
-		04D9E82F20BA221400458F2E /* RealmDeleter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04886BD32063AFB300236E08 /* RealmDeleter.swift */; };
-		04D9E83020BA221400458F2E /* RealmRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB90B6206EB103001D95E6 /* RealmRequests.swift */; };
 		04D9E83120BA221800458F2E /* iCloudFriendsSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0446650720B74BF300300F5E /* iCloudFriendsSaver.swift */; };
 		04D9E83220BA222600458F2E /* FriendModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CEBA22051AF28007ED7C2 /* FriendModel.swift */; };
 		04D9E83320BA222600458F2E /* FriendRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FF913E20AC25A60033E990 /* FriendRequestModel.swift */; };
@@ -181,22 +185,8 @@
 		04D9E86420BAC2E100458F2E /* GetCashedImageOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0473634D2073C7B600873B09 /* GetCashedImageOperation.swift */; };
 		04D9E86520BAC2E100458F2E /* TableCellReloading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0473636120775D8000873B09 /* TableCellReloading.swift */; };
 		04D9E86620BAC2E100458F2E /* CollectionCellReloading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047363632077625000873B09 /* CollectionCellReloading.swift */; };
-		04D9E86720BAC2E700458F2E /* AuthorizationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D21944204A8DF3001E5B26 /* AuthorizationRequest.swift */; };
-		04D9E86820BAC2E700458F2E /* UserRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB90B4206E891D001D95E6 /* UserRequests.swift */; };
-		04D9E86920BAC2E700458F2E /* FriendsRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0490991F20580A05009C784A /* FriendsRequests.swift */; };
-		04D9E86A20BAC2E700458F2E /* GroupsRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D2194A204B0AF6001E5B26 /* GroupsRequests.swift */; };
 		04D9E86B20BAC2E700458F2E /* NewsRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0462E5E6206796FB00E0038C /* NewsRequests.swift */; };
 		04D9E86C20BAC2E700458F2E /* DialogsRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0462E5E82067973100E0038C /* DialogsRequests.swift */; };
-		04D9E86D20BAC2E700458F2E /* LogOutRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0445CD6B2052656900D48551 /* LogOutRequest.swift */; };
-		04D9E86E20BAC2F800458F2E /* RealmUserSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0410DB172064428600FB3F4F /* RealmUserSaver.swift */; };
-		04D9E86F20BAC2F800458F2E /* RealmFriendsSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D19B2C2060F1C700E1CADE /* RealmFriendsSaver.swift */; };
-		04D9E87020BAC2F800458F2E /* RealmGroupsSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0410DB152064420E00FB3F4F /* RealmGroupsSaver.swift */; };
-		04D9E87120BAC2F800458F2E /* RealmNewsSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0462E5EA2067975F00E0038C /* RealmNewsSaver.swift */; };
-		04D9E87220BAC2F800458F2E /* RealmNewsAttachSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEE5D6206AE96A00300107 /* RealmNewsAttachSaver.swift */; };
-		04D9E87320BAC2F800458F2E /* RealmDialogsSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEE5D8206BF56D00300107 /* RealmDialogsSaver.swift */; };
-		04D9E87420BAC2F800458F2E /* RealmLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D19B2E2060FC9B00E1CADE /* RealmLoader.swift */; };
-		04D9E87520BAC2F800458F2E /* RealmDeleter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04886BD32063AFB300236E08 /* RealmDeleter.swift */; };
-		04D9E87620BAC2F800458F2E /* RealmRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB90B6206EB103001D95E6 /* RealmRequests.swift */; };
 		04D9E87720BAC2FD00458F2E /* iCloudFriendsSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0446650720B74BF300300F5E /* iCloudFriendsSaver.swift */; };
 		04D9E87820BAC30100458F2E /* Layers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A360C6207F44E500684090 /* Layers.swift */; };
 		04D9E87920BAC30F00458F2E /* ExtFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB90B8207131E1001D95E6 /* ExtFormatter.swift */; };
@@ -301,6 +291,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0404A9E620CED40500593A76 /* PhotosRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosRequests.swift; sourceTree = "<group>"; };
+		0404A9EB20CEF91300593A76 /* PostCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCollectionViewCell.swift; sourceTree = "<group>"; };
+		0404A9F020CF207900593A76 /* BannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerViewController.swift; sourceTree = "<group>"; };
 		040F7A4220C140E300D3AD25 /* myVKAppWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myVKAppWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		040F7A4520C140E300D3AD25 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		040F7A4720C140E700D3AD25 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -617,6 +610,7 @@
 				04D2194A204B0AF6001E5B26 /* GroupsRequests.swift */,
 				0462E5E6206796FB00E0038C /* NewsRequests.swift */,
 				0462E5E82067973100E0038C /* DialogsRequests.swift */,
+				0404A9E620CED40500593A76 /* PhotosRequests.swift */,
 				0445CD6B2052656900D48551 /* LogOutRequest.swift */,
 			);
 			path = ApiRequests;
@@ -625,6 +619,7 @@
 		04D2193B20486CEB001E5B26 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				0404A9F020CF207900593A76 /* BannerViewController.swift */,
 				04D37E7C2038445C00F958AF /* LoginVC.swift */,
 				04D21946204AA716001E5B26 /* LoginWebVC.swift */,
 				0416316520415EDE00446639 /* MyFriendsTableVC.swift */,
@@ -652,6 +647,7 @@
 				0416316D204201B800446639 /* MyGroupsViewCell.swift */,
 				04163174204203E400446639 /* AllGroupsViewCell.swift */,
 				04A360C0207CCAAA00684090 /* NewsViewCell.swift */,
+				0404A9EB20CEF91300593A76 /* PostCollectionViewCell.swift */,
 				0462E5EE20679ABF00E0038C /* DialogsViewCell.swift */,
 				04A360D4207F731700684090 /* IncomingMsgViewCell.swift */,
 				04CEE5D020692AA600300107 /* OutcomingMsgViewCell.swift */,
@@ -1233,21 +1229,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				041B8B1C20BEA5C200B701F4 /* RealmNewsSaver.swift in Sources */,
-				041B8B1520BEA5BC00B701F4 /* GroupsRequests.swift in Sources */,
-				04D6299520BED13900C472EB /* NewsTableVC.swift in Sources */,
 				041B8B0B20BEA59F00B701F4 /* DialogModel.swift in Sources */,
 				041B8B2620BEA5DA00B701F4 /* ExtInt.swift in Sources */,
-				041B8B1420BEA5BC00B701F4 /* FriendsRequests.swift in Sources */,
 				041B8B0920BEA59F00B701F4 /* NewsModel.swift in Sources */,
 				041B8B0420BEA59F00B701F4 /* UserModel.swift in Sources */,
-				04D6299420BED13200C472EB /* NewsViewCell.swift in Sources */,
 				041B8B1720BEA5BC00B701F4 /* DialogsRequests.swift in Sources */,
 				041B8B2320BEA5CA00B701F4 /* Layers.swift in Sources */,
 				041B8B0720BEA59F00B701F4 /* PhotosModel.swift in Sources */,
-				041B8B1820BEA5BC00B701F4 /* LogOutRequest.swift in Sources */,
-				041B8B1320BEA5BC00B701F4 /* UserRequests.swift in Sources */,
 				04D6299D20BEDD3E00C472EB /* iMessageViewCell.swift in Sources */,
-				04D6299820BED27B00C472EB /* NewPostVC.swift in Sources */,
 				041B8B1020BEA5A800B701F4 /* TableCellReloading.swift in Sources */,
 				04D6299720BED26C00C472EB /* Protocols.swift in Sources */,
 				041B8B0620BEA59F00B701F4 /* FriendRequestModel.swift in Sources */,
@@ -1257,8 +1246,8 @@
 				041B8B2520BEA5DA00B701F4 /* ExtUIImage.swift in Sources */,
 				041B8B1620BEA5BC00B701F4 /* NewsRequests.swift in Sources */,
 				041B8B1D20BEA5C200B701F4 /* RealmNewsAttachSaver.swift in Sources */,
+				043C7E7D20CF2EF100A161A8 /* GroupsRequests.swift in Sources */,
 				041B8B1120BEA5A800B701F4 /* CollectionCellReloading.swift in Sources */,
-				04D6299920BED28C00C472EB /* MapVC.swift in Sources */,
 				041B8B0520BEA59F00B701F4 /* FriendModel.swift in Sources */,
 				041B8B0E20BEA5A200B701F4 /* Helpers.swift in Sources */,
 				041B8B0F20BEA5A800B701F4 /* GetCashedImageOperation.swift in Sources */,
@@ -1267,10 +1256,10 @@
 				041B8B2120BEA5C200B701F4 /* RealmRequests.swift in Sources */,
 				041B8B1B20BEA5C200B701F4 /* RealmGroupsSaver.swift in Sources */,
 				041B8B0820BEA59F00B701F4 /* GroupModel.swift in Sources */,
+				043C7E8020CF2EF600A161A8 /* UserRequests.swift in Sources */,
 				041B8B0A20BEA59F00B701F4 /* NewsAttachmentsModel.swift in Sources */,
 				04D6299B20BEDCC900C472EB /* iMessageTableVC.swift in Sources */,
 				041B8B2720BEA5DA00B701F4 /* ExtDate.swift in Sources */,
-				041B8B1220BEA5BC00B701F4 /* AuthorizationRequest.swift in Sources */,
 				041B8B1920BEA5C200B701F4 /* RealmUserSaver.swift in Sources */,
 				041B8B1A20BEA5C200B701F4 /* RealmFriendsSaver.swift in Sources */,
 				041B8B2020BEA5C200B701F4 /* RealmDeleter.swift in Sources */,
@@ -1314,10 +1303,12 @@
 				04D9E83F20BA227500458F2E /* TodayViewController.swift in Sources */,
 				04D2194B204B0AF6001E5B26 /* GroupsRequests.swift in Sources */,
 				048714DA2066CF8C003405B4 /* ExtUIImage.swift in Sources */,
+				0404A9F120CF207900593A76 /* BannerViewController.swift in Sources */,
 				04CEE5D9206BF56D00300107 /* RealmDialogsSaver.swift in Sources */,
 				04D37E7D2038445C00F958AF /* LoginVC.swift in Sources */,
 				048714D62066BCB5003405B4 /* NewsTableVC.swift in Sources */,
 				0416316A20415FF600446639 /* MyFriendCollectionViewCell.swift in Sources */,
+				0404A9EC20CEF91300593A76 /* PostCollectionViewCell.swift in Sources */,
 				047363642077625000873B09 /* CollectionCellReloading.swift in Sources */,
 				04EB90BB20713252001D95E6 /* ExtInt.swift in Sources */,
 				04CEE5D7206AE96A00300107 /* RealmNewsAttachSaver.swift in Sources */,
@@ -1340,6 +1331,7 @@
 				0490992020580A05009C784A /* FriendsRequests.swift in Sources */,
 				0465C9A220A89E0700F9BB51 /* MapVC.swift in Sources */,
 				0462E5E5206796CD00E0038C /* DialogModel.swift in Sources */,
+				0404A9E720CED40500593A76 /* PhotosRequests.swift in Sources */,
 				04EB90B7206EB103001D95E6 /* RealmRequests.swift in Sources */,
 				04CEE5D120692AA600300107 /* OutcomingMsgViewCell.swift in Sources */,
 				04D19B2F2060FC9B00E1CADE /* RealmLoader.swift in Sources */,
@@ -1354,41 +1346,38 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04D9E82820BA221400458F2E /* RealmUserSaver.swift in Sources */,
-				04D9E82C20BA221400458F2E /* RealmNewsAttachSaver.swift in Sources */,
-				04D9E82E20BA221400458F2E /* RealmLoader.swift in Sources */,
 				04D9E83C20BA223D00458F2E /* ExtInt.swift in Sources */,
 				04D9E83520BA222600458F2E /* GroupModel.swift in Sources */,
-				04D9E82F20BA221400458F2E /* RealmDeleter.swift in Sources */,
 				04D9E83320BA222600458F2E /* FriendRequestModel.swift in Sources */,
 				04D9E81B20BA21CB00458F2E /* NewsModel.swift in Sources */,
+				043C7E7E20CF2EF500A161A8 /* UserRequests.swift in Sources */,
 				04D9E83920BA223100458F2E /* Layers.swift in Sources */,
+				043C7E7620CF2EC600A161A8 /* RealmNewsAttachSaver.swift in Sources */,
 				04D9E83120BA221800458F2E /* iCloudFriendsSaver.swift in Sources */,
-				04D9E82120BA21F300458F2E /* AuthorizationRequest.swift in Sources */,
 				04D9E83220BA222600458F2E /* FriendModel.swift in Sources */,
+				043C7E7420CF2EC600A161A8 /* RealmGroupsSaver.swift in Sources */,
 				04D9E83820BA222600458F2E /* MessageAttachmentsModel.swift in Sources */,
+				043C7E7220CF2EC600A161A8 /* RealmUserSaver.swift in Sources */,
 				04D9E82020BA21E500458F2E /* CollectionCellReloading.swift in Sources */,
+				043C7E7920CF2EC600A161A8 /* RealmDeleter.swift in Sources */,
 				04D9E81C20BA21D000458F2E /* DialogModel.swift in Sources */,
+				043C7E7B20CF2EF000A161A8 /* GroupsRequests.swift in Sources */,
 				04D9E83A20BA223D00458F2E /* ExtFormatter.swift in Sources */,
-				04D9E82220BA21F300458F2E /* UserRequests.swift in Sources */,
 				04D9E83B20BA223D00458F2E /* ExtUIImage.swift in Sources */,
-				04D9E82B20BA221400458F2E /* RealmNewsSaver.swift in Sources */,
 				04D9E81A20BA21C500458F2E /* UserModel.swift in Sources */,
+				043C7E7720CF2EC600A161A8 /* RealmDialogsSaver.swift in Sources */,
 				04D9E83420BA222600458F2E /* PhotosModel.swift in Sources */,
-				04D9E83020BA221400458F2E /* RealmRequests.swift in Sources */,
-				04D9E82A20BA221400458F2E /* RealmGroupsSaver.swift in Sources */,
 				04D9E81D20BA21DA00458F2E /* Helpers.swift in Sources */,
-				04D9E82420BA21FD00458F2E /* FriendsRequests.swift in Sources */,
-				04D9E82D20BA221400458F2E /* RealmDialogsSaver.swift in Sources */,
 				04D9E83620BA222600458F2E /* NewsAttachmentsModel.swift in Sources */,
 				04D9E83720BA222600458F2E /* MessageModel.swift in Sources */,
 				04D9E81F20BA21E500458F2E /* TableCellReloading.swift in Sources */,
+				043C7E7820CF2EC600A161A8 /* RealmLoader.swift in Sources */,
 				04D9E81E20BA21E000458F2E /* GetCashedImageOperation.swift in Sources */,
+				043C7E7320CF2EC600A161A8 /* RealmFriendsSaver.swift in Sources */,
 				04D9E82520BA220100458F2E /* DialogsRequests.swift in Sources */,
+				043C7E7A20CF2EC600A161A8 /* RealmRequests.swift in Sources */,
+				043C7E7520CF2EC600A161A8 /* RealmNewsSaver.swift in Sources */,
 				04D9E83D20BA223D00458F2E /* ExtDate.swift in Sources */,
-				04D9E82720BA220C00458F2E /* LogOutRequest.swift in Sources */,
-				04D9E82920BA221400458F2E /* RealmFriendsSaver.swift in Sources */,
-				04D9E82620BA220C00458F2E /* GroupsRequests.swift in Sources */,
 				04D9E80D20BA20F200458F2E /* TodayViewController.swift in Sources */,
 				04D9E82320BA21F600458F2E /* NewsRequests.swift in Sources */,
 			);
@@ -1398,42 +1387,39 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04D9E87120BAC2F800458F2E /* RealmNewsSaver.swift in Sources */,
-				04D9E86A20BAC2E700458F2E /* GroupsRequests.swift in Sources */,
 				04D9E86020BAC2D500458F2E /* DialogModel.swift in Sources */,
 				04D9E87B20BAC30F00458F2E /* ExtInt.swift in Sources */,
-				04D9E86920BAC2E700458F2E /* FriendsRequests.swift in Sources */,
+				043C7E6D20CF2EC600A161A8 /* RealmNewsAttachSaver.swift in Sources */,
+				043C7E7020CF2EC600A161A8 /* RealmDeleter.swift in Sources */,
 				04D9E85E20BAC2D500458F2E /* NewsModel.swift in Sources */,
 				04D9E85920BAC2D500458F2E /* UserModel.swift in Sources */,
 				04D9E86C20BAC2E700458F2E /* DialogsRequests.swift in Sources */,
+				043C7E6A20CF2EC600A161A8 /* RealmFriendsSaver.swift in Sources */,
+				043C7E6C20CF2EC600A161A8 /* RealmNewsSaver.swift in Sources */,
 				04D9E87820BAC30100458F2E /* Layers.swift in Sources */,
+				043C7E6B20CF2EC600A161A8 /* RealmGroupsSaver.swift in Sources */,
 				04D9E85C20BAC2D500458F2E /* PhotosModel.swift in Sources */,
-				04D9E86D20BAC2E700458F2E /* LogOutRequest.swift in Sources */,
-				04D9E86820BAC2E700458F2E /* UserRequests.swift in Sources */,
 				04D9E86520BAC2E100458F2E /* TableCellReloading.swift in Sources */,
 				04D9E85B20BAC2D500458F2E /* FriendRequestModel.swift in Sources */,
-				04D9E87420BAC2F800458F2E /* RealmLoader.swift in Sources */,
 				04D9E87920BAC30F00458F2E /* ExtFormatter.swift in Sources */,
 				04D9E86120BAC2D500458F2E /* MessageModel.swift in Sources */,
 				04D9E87A20BAC30F00458F2E /* ExtUIImage.swift in Sources */,
 				04D9E86B20BAC2E700458F2E /* NewsRequests.swift in Sources */,
-				04D9E87220BAC2F800458F2E /* RealmNewsAttachSaver.swift in Sources */,
 				04D9E86620BAC2E100458F2E /* CollectionCellReloading.swift in Sources */,
 				04D9E85A20BAC2D500458F2E /* FriendModel.swift in Sources */,
 				04D9E86320BAC2DC00458F2E /* Helpers.swift in Sources */,
 				04D9E86420BAC2E100458F2E /* GetCashedImageOperation.swift in Sources */,
-				04D9E87320BAC2F800458F2E /* RealmDialogsSaver.swift in Sources */,
+				043C7E6E20CF2EC600A161A8 /* RealmDialogsSaver.swift in Sources */,
 				04D9E86220BAC2D500458F2E /* MessageAttachmentsModel.swift in Sources */,
-				04D9E87620BAC2F800458F2E /* RealmRequests.swift in Sources */,
 				04D9E84D20BAC2A500458F2E /* TodayMessagesVC.swift in Sources */,
-				04D9E87020BAC2F800458F2E /* RealmGroupsSaver.swift in Sources */,
+				043C7E7C20CF2EF000A161A8 /* GroupsRequests.swift in Sources */,
 				04D9E85D20BAC2D500458F2E /* GroupModel.swift in Sources */,
+				043C7E6F20CF2EC600A161A8 /* RealmLoader.swift in Sources */,
 				04D9E85F20BAC2D500458F2E /* NewsAttachmentsModel.swift in Sources */,
+				043C7E7F20CF2EF500A161A8 /* UserRequests.swift in Sources */,
 				04D9E87C20BAC30F00458F2E /* ExtDate.swift in Sources */,
-				04D9E86720BAC2E700458F2E /* AuthorizationRequest.swift in Sources */,
-				04D9E86E20BAC2F800458F2E /* RealmUserSaver.swift in Sources */,
-				04D9E86F20BAC2F800458F2E /* RealmFriendsSaver.swift in Sources */,
-				04D9E87520BAC2F800458F2E /* RealmDeleter.swift in Sources */,
+				043C7E7120CF2EC600A161A8 /* RealmRequests.swift in Sources */,
+				043C7E6920CF2EC600A161A8 /* RealmUserSaver.swift in Sources */,
 				04D9E87F20BAE87A00458F2E /* TodayMessageViewCell.swift in Sources */,
 				04D9E87720BAC2FD00458F2E /* iCloudFriendsSaver.swift in Sources */,
 			);

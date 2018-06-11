@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0940"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "22A372CEE1596D9684D74B2899F3A57C"
+               BlueprintIdentifier = "3B916AD79CC63E24A5ECAF42B3D72E43"
                BuildableName = "Pods_myVKAppWidget.framework"
                BlueprintName = "Pods-myVKAppWidget"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "22A372CEE1596D9684D74B2899F3A57C"
+            BlueprintIdentifier = "3B916AD79CC63E24A5ECAF42B3D72E43"
             BuildableName = "Pods_myVKAppWidget.framework"
             BlueprintName = "Pods-myVKAppWidget"
             ReferencedContainer = "container:Pods.xcodeproj">
