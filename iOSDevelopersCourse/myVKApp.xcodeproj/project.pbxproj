@@ -12,6 +12,7 @@
 		0404A9E920CEE38400593A76 /* PhotosRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0404A9E620CED40500593A76 /* PhotosRequests.swift */; };
 		0404A9EA20CEE38600593A76 /* PhotosRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0404A9E620CED40500593A76 /* PhotosRequests.swift */; };
 		0404A9EC20CEF91300593A76 /* PostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0404A9EB20CEF91300593A76 /* PostCollectionViewCell.swift */; };
+		0404A9EF20CF006400593A76 /* PostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0404A9EB20CEF91300593A76 /* PostCollectionViewCell.swift */; };
 		040F7A4620C140E300D3AD25 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 040F7A4420C140E300D3AD25 /* Interface.storyboard */; };
 		040F7A4820C140E700D3AD25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 040F7A4720C140E700D3AD25 /* Assets.xcassets */; };
 		040F7A4F20C140E700D3AD25 /* myVKAppWatch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 040F7A4E20C140E700D3AD25 /* myVKAppWatch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -1276,6 +1277,7 @@
 				041B8B2120BEA5C200B701F4 /* RealmRequests.swift in Sources */,
 				041B8B1B20BEA5C200B701F4 /* RealmGroupsSaver.swift in Sources */,
 				041B8B0820BEA59F00B701F4 /* GroupModel.swift in Sources */,
+				0404A9EF20CF006400593A76 /* PostCollectionViewCell.swift in Sources */,
 				041B8B0A20BEA59F00B701F4 /* NewsAttachmentsModel.swift in Sources */,
 				0404A9EA20CEE38600593A76 /* PhotosRequests.swift in Sources */,
 				04D6299B20BEDCC900C472EB /* iMessageTableVC.swift in Sources */,

@@ -18,10 +18,11 @@ class NewPostVC: UIViewController {
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     var locationCoordinates: CLLocationCoordinate2D?
-    var attachedImages = [Photos]() {
+    var attachedImagesForPost = [Photos]()
+    var attachedImages = [UIImage]() {
         didSet {
             DispatchQueue.main.async {
-                if !self.attachedImages.isEmpty {
+                if (!self.textView.text.isEmpty) || (self.attachedImages.count > 0 && self.attachedImages.count <= 5)  {
                     self.navigationItem.rightBarButtonItem?.isEnabled = true
                 } else {
                     self.navigationItem.rightBarButtonItem?.isEnabled = false
@@ -68,7 +69,7 @@ class NewPostVC: UIViewController {
         
         let lat = locationCoordinates?.latitude ?? 0.0
         let long = locationCoordinates?.longitude ?? 0.0
-        NewsRequests.postNews(text: text!, attachment: attachedImages, lat: lat, long: long)
+        NewsRequests.postNews(text: text!, attachment: attachedImagesForPost, lat: lat, long: long)
 
         dismiss(animated: true)
     }
@@ -90,8 +91,11 @@ extension NewPostVC: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "postPhoto", for: indexPath) as! PostCollectionViewCell
+        let photo = attachedImages[indexPath.row]
         
-        
+        cell.delegate = self
+        cell.photoImage.image = photo
+        cell.index = indexPath
         
         return cell
     }
@@ -111,6 +115,7 @@ extension NewPostVC: UITextViewDelegate {
 extension NewPostVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true)
+        textView.becomeFirstResponder()
     }
     
     @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -122,42 +127,35 @@ extension NewPostVC: UIImagePickerControllerDelegate, UINavigationControllerDele
                 guard let s = self else { return }
                 if let photos = photosPost {
                     for photo in photos {
-                        s.attachedImages.append(photo)
+                        s.attachedImagesForPost.append(photo)
+                        s.attachedImages.append(image)
                     }
                 }
                 
+                if s.attachedImages.count > 5 {
+                    s.navigationItem.rightBarButtonItem?.isEnabled = false
+                }
+                
                 DispatchQueue.main.async {
-                    s.attachImage(image)
+                    s.collectionView.reloadData()
                     picker.dismiss(animated: true)
+                    s.textView.becomeFirstResponder()
                 }
             }
         }
     }
 }
 
-extension NewPostVC {
+extension NewPostVC: PostCollectionViewCellDelegate {
     
-    private func attachImage(_ image: UIImage) {
-        var attributedString: NSMutableAttributedString!
-        attributedString = NSMutableAttributedString(attributedString: textView.attributedText)
-        
-        let attachment = NSTextAttachment()
-        attachment.image = image
-        
-        if let imageAttach = attachment.image, let image =  imageAttach.cgImage {
-            let scale = imageAttach.size.width / ((textView.frame.width - 10) / 5)
-            
-            let attachImage = UIImage(cgImage: image, scale: scale, orientation: .up)
-            attachment.image = attachImage
-            
-        }
-        
-        let attributedStringWithImage = NSAttributedString(attachment: attachment)
-        attributedString.append(attributedStringWithImage)
-        attributedString.append(NSAttributedString(string: "  "))
-        
-        textView.attributedText = attributedString
+    func deleteCollectionViewCell(at index: IndexPath) {
+        attachedImagesForPost.remove(at: index.row)
+        attachedImages.remove(at: index.row)
+        collectionView.deleteItems(at: [index])
     }
+}
+
+extension NewPostVC {
     
     private func openLibrary() {
         guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else { return }
@@ -171,7 +169,7 @@ extension NewPostVC {
     }
     
     private func checkTextViewActivity(_ textView: UITextView) {
-        if !textView.text.isEmpty  {
+        if !textView.text.isEmpty || (attachedImages.count > 0 && attachedImages.count <= 5) {
             navigationItem.rightBarButtonItem?.isEnabled = true
         } else {
             navigationItem.rightBarButtonItem?.isEnabled = false
